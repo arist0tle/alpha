@@ -5,6 +5,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>commons-csv</module>
+		<module>thread</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

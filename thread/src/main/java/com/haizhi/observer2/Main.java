@@ -2,9 +2,9 @@ package com.haizhi.observer2;
 
 /* Created by Haiyang on 2018/2/28. */
 
+import lombok.extern.slf4j.Slf4j;
 
-import com.haizhi.log.Log;
-
+@Slf4j
 public class Main {
     public static void main(String[] args) {
         // 一个小孩找监护人，一个小孩做事情，被监护
@@ -19,7 +19,7 @@ public class Main {
         // notifyObservers -> notifyObservers（null）
         publish.setData("开始");
 
-        Log.logger.info("getData:{}", publish.getData());
+        log.info("getData:{}", publish.getData());
         publish.setData("1111");
     }
 }

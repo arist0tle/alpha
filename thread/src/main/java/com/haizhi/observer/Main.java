@@ -3,8 +3,9 @@ package com.haizhi.observer;
 /* Created by Haiyang on 2018/2/28. */
 
 
-import com.haizhi.log.Log;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Main {
     public static void main(String[] args) {
         // Publish是被观察者，继承了Observable类
@@ -22,7 +23,7 @@ public class Main {
         // notifyObservers -> notifyObservers（null）
         publish.setData("开始");
 
-        Log.logger.info("getData:{}", publish.getData());
+        log.info("getData:{}", publish.getData());
         publish.setData("1111");
     }
 }

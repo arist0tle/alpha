@@ -6,6 +6,8 @@
 	<modules>
 		<module>commons-csv</module>
 		<module>thread</module>
+		<module>rest</module>
+		<module>arango</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

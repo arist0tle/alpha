@@ -1,4 +1,4 @@
-package com.geektcp.alpha.spring.jpa;
+package com.geektcp.alpha.api;
 
 /**
  * Created by HaiyangHome on 2018/11/28.

@@ -11,5 +11,12 @@
 
     <artifactId>alpha-api</artifactId>
 
+    <dependencies>
+        <dependency>
+            <artifactId>alpha-common-spring</artifactId>
+            <groupId>com.geektcp.alpha</groupId>
+            <version>${project.version}</version>
+        </dependency>
 
+    </dependencies>
 </project>

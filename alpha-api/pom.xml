@@ -18,5 +18,12 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <artifactId>alpha-spring-shiro</artifactId>
+            <groupId>com.geektcp.alpha</groupId>
+            <version>${project.version}</version>
+        </dependency>
+
     </dependencies>
+
 </project>

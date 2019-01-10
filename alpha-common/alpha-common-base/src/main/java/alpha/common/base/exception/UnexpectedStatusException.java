@@ -14,6 +14,7 @@ public class UnexpectedStatusException extends BaseException {
         this(status, new String[]{});
     }
 
+
     public UnexpectedStatusException(Status status, Object... args) {
         this(status, null, args);
     }

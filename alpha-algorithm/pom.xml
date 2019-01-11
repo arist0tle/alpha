@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>alpha-algorithm-mahout</module>
+        <module>alpha-algorithm-tree</module>
     </modules>
 
 

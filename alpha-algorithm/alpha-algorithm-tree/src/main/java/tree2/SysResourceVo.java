@@ -28,7 +28,7 @@ public class SysResourceVo extends BaseTreeNodeVo {
     @ApiModelProperty(value = "资源url", example = "http://xxxx:xx/api/xx")
     private String url;
 
-    public SysResourceVo(Long id, int parentId, String name, String remark, String url) {
+    public SysResourceVo(Long id, Long parentId, String name, String remark, String url) {
         this.id = id;
         this.url = url;
         this.name = name;

@@ -1,4 +1,4 @@
-package tree;
+package com.geektcp.alpha.algorithm.tree.simple.tree1;
 
 import alpha.common.base.constant.Constants;
 import com.fasterxml.jackson.annotation.JsonFormat;

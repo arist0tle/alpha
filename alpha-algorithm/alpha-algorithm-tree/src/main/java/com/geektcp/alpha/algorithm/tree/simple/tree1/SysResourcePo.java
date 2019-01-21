@@ -1,4 +1,4 @@
-package tree;
+package com.geektcp.alpha.algorithm.tree.simple.tree1;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

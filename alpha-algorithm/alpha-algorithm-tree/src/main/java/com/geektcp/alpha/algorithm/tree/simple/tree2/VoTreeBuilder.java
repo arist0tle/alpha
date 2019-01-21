@@ -1,4 +1,4 @@
-package tree2;
+package com.geektcp.alpha.algorithm.tree.simple.tree2;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

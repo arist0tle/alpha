@@ -1,4 +1,4 @@
-package tree2;
+package com.geektcp.alpha.algorithm.tree.simple.tree2;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;

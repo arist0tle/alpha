@@ -1,4 +1,4 @@
-package tree;
+package com.geektcp.alpha.algorithm.tree.simple.tree1;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

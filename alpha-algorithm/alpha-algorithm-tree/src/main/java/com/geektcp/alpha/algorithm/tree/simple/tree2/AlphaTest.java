@@ -1,4 +1,4 @@
-package tree3;
+package com.geektcp.alpha.algorithm.tree.simple.tree2;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import java.util.List;
 public class AlphaTest {
 
     @Test
-    public void test() throws Exception{
+    public void test(){
         SysResourceVo node1 = new SysResourceVo(11L, 0L, "aaaaaa", "一级资源", "http://xxxx");
         SysResourceVo node2 = new SysResourceVo(21L, 0L, "bbbbbb", "一级资源", "http://xxxx");
 
@@ -36,7 +36,7 @@ public class AlphaTest {
 //        System.out.println("+++++++++++ retTree +++++++++++++++++++++");
 //        LOG.info(retTree);
 
-        List<SysResourceVo> listTree = VoTreeBuilder.createTreeList(list, SysResourceVo.class);
+        List<SysResourceVo> listTree = VoTreeBuilder.createTreeList(list);
         System.out.println("++++++++++++ listTree ++++++++++++++++++++: " + list.size());
         log.info(listTree.toString());
     }

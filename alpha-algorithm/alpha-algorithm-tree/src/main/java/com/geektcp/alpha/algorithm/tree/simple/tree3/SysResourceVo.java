@@ -1,10 +1,11 @@
-package tree2;
+package com.geektcp.alpha.algorithm.tree.simple.tree3;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -13,6 +14,7 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 @ApiModel(value = "资源信息类SysResourceNodeVo", description = "用于展示资源信息")
 public class SysResourceVo extends BaseTreeNodeVo {
 

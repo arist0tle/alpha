@@ -26,6 +26,7 @@
         <module>alpha-driver</module>
         <module>alpha-hadoop</module>
         <module>alpha-cache</module>
+        <module>alpha-spider</module>
     </modules>
 
     <properties>

@@ -1,7 +1,5 @@
 package com.geccocrawler.gecco.demo.jd;
 
-import java.util.List;
-
 import com.geccocrawler.gecco.GeccoEngine;
 import com.geccocrawler.gecco.annotation.Gecco;
 import com.geccocrawler.gecco.annotation.HtmlField;
@@ -9,6 +7,9 @@ import com.geccocrawler.gecco.annotation.Request;
 import com.geccocrawler.gecco.request.HttpGetRequest;
 import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.spider.HtmlBean;
+
+import java.util.List;
+
 
 @Gecco(matchUrl="https://www.jd.com/allSort.aspx", pipelines={"consolePipeline", "allSortPipeline"})
 public class AllSort implements HtmlBean {
@@ -73,7 +74,7 @@ public class AllSort implements HtmlBean {
 		//开启几个爬虫线程
 		.thread(1)
 		//单个爬虫每次抓取完一个请求后的间隔时间
-		.interval(2000)
+		.interval(5000)
 		.run();
 		
 		
@@ -85,7 +86,7 @@ public class AllSort implements HtmlBean {
 		//开启几个爬虫线程
 		.thread(3)
 		//单个爬虫每次抓取完一个请求后的间隔时间
-		.interval(2000)
+		.interval(5000)
 		.start();
 	}
 }

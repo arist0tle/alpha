@@ -47,9 +47,7 @@ public class MapRecursive {
                 tmpkeys.addAll(map.get(key));
                 System.out.println("key: " + map.get(key));
             }
-
         }
-
 
     }
 

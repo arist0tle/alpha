@@ -12,4 +12,11 @@
     <artifactId>alpha-util-fastjson</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.geektcp.alpha</groupId>
+            <artifactId>alpha-common-base</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
 </project>

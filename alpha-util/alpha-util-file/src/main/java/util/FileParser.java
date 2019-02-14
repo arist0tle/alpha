@@ -56,18 +56,18 @@ public class FileParser {
     }
 
 
-    public static Map<String, Object> readLines(File file, String encoding, long pos, int num) {
-        Map<String, Object> result = Maps.newHashMap();
-        List<String> lines = Lists.newArrayList();
+    public static JSONObject readLines(File file, String encoding, long pos, int num) {
+        JSONObject result = new JSONObject();
+        JSONArray lines = new JSONArray();
         FileType fileType = FileType.JSON;
         try (BufferedRandomAccessFile reader = new BufferedRandomAccessFile(file, "r")) {
             reader.seek(pos);
             if(pos == 0 ) {
                 String firstLine = reader.readLine();
                 try{
-                    JSONObject.parseObject(firstLine);
+                    JSONObject lineJson = JSONObject.parseObject(firstLine);
                     fileType = FileType.JSON;
-                    lines.add(firstLine);
+                    lines.add(lineJson);
                 } catch (Exception e){
                     fields = firstLine.split(",");
                     fileType = FileType.CSV;
@@ -77,11 +77,15 @@ public class FileParser {
             for (int i = 0; i < num; i++) {
                 String line = reader.readLine();
                 if (StringUtils.isBlank(line)) { break; }
-                lines.add(new String(line.getBytes("8859_1"), encoding));
-            }
 
-            if(fileType.equals(FileType.CSV)){
-                lines = transfer(lines);
+                JSONObject lineJson = null;
+                if(fileType.equals(FileType.CSV)){
+                    lineJson = transfer(line);
+                }else if(fileType.equals(FileType.JSON)){
+                    lineJson = JSONObject.parseObject(line);
+                }
+//                lines.add(new String(line.getBytes("8859_1"), encoding));
+                lines.add(lineJson);
             }
 
             result.put("lines", lines);
@@ -110,4 +114,14 @@ public class FileParser {
         return ret;
     }
 
+    // used when csv
+    private static JSONObject transfer(String line){
+        String[] valuesArr = line.split(",");
+        JSONObject lineJson = new JSONObject(true);
+        for(int j=0;j<valuesArr.length;j++) {
+            lineJson.put(fields[j], valuesArr[j]);
+        }
+
+        return lineJson;
+    }
 }

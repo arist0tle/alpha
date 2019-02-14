@@ -14,6 +14,7 @@
     <modules>
         <module>alpha-util-options</module>
         <module>alpha-util-fastjson</module>
+        <module>alpha-util-file</module>
     </modules>
 
 

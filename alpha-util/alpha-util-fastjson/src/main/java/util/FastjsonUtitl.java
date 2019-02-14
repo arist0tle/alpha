@@ -1,8 +1,11 @@
 package util;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +38,7 @@ public class FastjsonUtitl {
         for (Map.Entry<String, Object> entry : jsonObject.entrySet()) {
             System.out.println(entry.getKey() + ":" + entry.getValue());
         }
-        jsonObject.getJSONArray("upstreams").add("ddddddd");
+//        jsonObject.getJSONArray("upstreams").add("ddddddd");
 
         System.out.println(jsonObject);
 
@@ -214,6 +217,36 @@ public class FastjsonUtitl {
             System.out.println("jsonArray: " + jsonArray.toString());
             System.out.println("jsonArray.size: " + jsonArray.size());
         }
+
+    }
+
+
+    @Test
+    public void addJsonObject(){
+        JSONObject first = new JSONObject();
+        JSONObject second = new JSONObject();
+
+        first.put("a", 1);
+        first.put("b", 2);
+        JSONObject tmp = new JSONObject();
+        JSONArray sex1 = new JSONArray();
+        sex1.add("male");
+        tmp.put("sex", sex1);
+        first.put("c", tmp);
+
+        second.put("h", 11);
+        second.put("i", 12);
+        JSONObject tmp2 = new JSONObject();
+        JSONArray sex2 = new JSONArray();
+        sex2.add("female");
+        tmp2.put("sex", sex2);
+        second.put("c",tmp2);
+
+
+        first.putAll(second);
+
+
+        System.out.println(JSON.toJSONString(first, SerializerFeature.PrettyFormat));
 
     }
 

@@ -35,6 +35,8 @@
         <java.version>1.8</java.version>
         <!-- spring boot overwrite -->
         <hibernate.version>5.2.10.Final</hibernate.version>
+
+        <alpha.version>1.0</alpha.version>
     </properties>
 
     <build>

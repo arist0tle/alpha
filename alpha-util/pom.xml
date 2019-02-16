@@ -16,6 +16,7 @@
         <module>alpha-util-fastjson</module>
         <module>alpha-util-file</module>
         <module>alpha-util-http</module>
+        <module>test</module>
     </modules>
 
 

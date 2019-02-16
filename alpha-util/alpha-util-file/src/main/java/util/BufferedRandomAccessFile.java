@@ -7,7 +7,7 @@ import java.io.RandomAccessFile;
 import java.util.Arrays;
 
 /**
- * Created by chengmo on 2018/8/22.
+ * Created by tanghaiyang on 2018/8/22.
  * This class come from network.
  */
 public final class BufferedRandomAccessFile extends RandomAccessFile {

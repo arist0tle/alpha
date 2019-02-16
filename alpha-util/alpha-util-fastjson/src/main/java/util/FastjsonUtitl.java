@@ -25,6 +25,11 @@ public class FastjsonUtitl {
     public static void main(String[] args) throws Exception{
 //        parseJSONArray("data/test.txt");
 //        addElement();
+
+        System.out.println("log");
+        log.info("111111111");
+        log.debug("2222222222");
+        System.out.println("log2");
         selectElement();
 
     }
@@ -36,7 +41,7 @@ public class FastjsonUtitl {
         jsonObject.put("id", "1111111");
 
         for (Map.Entry<String, Object> entry : jsonObject.entrySet()) {
-            System.out.println(entry.getKey() + ":" + entry.getValue());
+            log.info(entry.getKey() + ":" + entry.getValue());
         }
 //        jsonObject.getJSONArray("upstreams").add("ddddddd");
 

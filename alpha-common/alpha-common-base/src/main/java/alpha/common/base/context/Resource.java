@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.text.MessageFormat;
 
 /**
- * Created by chengmo on 2017/11/07.
+ * Created by tanghaiyang on 2017/11/07.
  */
 public class Resource {
 

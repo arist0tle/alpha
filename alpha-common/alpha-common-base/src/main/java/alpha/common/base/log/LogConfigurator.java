@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 /**
- * Created by chengmo on 2017/12/16.
+ * Created by tanghaiyang on 2017/12/16.
  */
 public class LogConfigurator {
     public static <T> void initialize(Class<T> clazz) {

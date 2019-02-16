@@ -4,7 +4,7 @@ package alpha.common.base.exception;
 import alpha.common.base.constant.Status;
 
 /**
- * Created by chengmo on 2018/5/16.
+ * Created by tanghaiyang on 2018/5/16.
  */
 public class UnexpectedStatusException extends BaseException {
 

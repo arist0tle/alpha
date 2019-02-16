@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.util.*;
 
 /**
- * Created by chengmo on 2018/3/12.
+ * Created by tanghaiyang on 2018/3/12.
  */
 public class PropertiesUtils {
 

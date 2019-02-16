@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by chengmo on 2018/10/25.
+ * Created by tanghaiyang on 2018/10/25.
  */
 public class GLogBuffer {
     private static final int DEFAULT_BUFFER_SIZE = 1000;

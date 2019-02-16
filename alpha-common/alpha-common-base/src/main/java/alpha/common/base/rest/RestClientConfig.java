@@ -16,7 +16,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Created by chengmo on 2018/5/16.
+ * Created by tanghaiyang on 2018/5/16.
  */
 @Configuration
 public class RestClientConfig {

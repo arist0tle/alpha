@@ -3,7 +3,7 @@ package alpha.common.base.exception;
 import java.text.MessageFormat;
 
 /**
- * Created by chengmo on 2018/5/16.
+ * Created by tanghaiyang on 2018/5/16.
  */
 
 public class BaseException extends RuntimeException {

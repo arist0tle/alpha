@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by chengmo on 2018/1/26.
+ * Created by tanghaiyang on 2018/1/26.
  */
 public class FileUtils {
     private static final GLog LOG = LogFactory.getLogger(FileUtils.class);

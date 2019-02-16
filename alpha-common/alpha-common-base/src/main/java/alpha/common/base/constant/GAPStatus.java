@@ -3,7 +3,7 @@ package alpha.common.base.constant;
 
 
 /**
- * Created by chengmo on 2018/5/2.
+ * Created by tanghaiyang on 2018/5/2.
  */
 public enum GAPStatus implements Status {
     /**

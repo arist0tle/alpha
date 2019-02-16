@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 
 /**
- * Created by chengmo on 2018/9/27.
+ * Created by tanghaiyang on 2018/9/27.
  */
 public class Module {
     private static final GLog LOG = LogFactory.getLogger(Module.class);

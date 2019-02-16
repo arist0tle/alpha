@@ -1,7 +1,7 @@
 package alpha.common.base.util;
 
 /**
- * Created by chengmo on 2018/3/15.
+ * Created by tanghaiyang on 2018/3/15.
  */
 public class ClassUtils {
 

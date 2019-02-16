@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by chengmo on 2017/12/12.
+ * Created by tanghaiyang on 2017/12/12.
  */
 public class CodecUtils {
 

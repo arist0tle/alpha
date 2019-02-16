@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.validation.Valid;
 
 /**
- * Created by chengmo on 2018/12/26.
+ * Created by tanghaiyang on 2018/12/26.
  */
 @Data
 public class PageQoBase {

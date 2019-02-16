@@ -29,3 +29,5 @@ target/
 ### maven version backup
 *.versionsBackup
 
+### log4j2
+/logs

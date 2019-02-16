@@ -7,7 +7,7 @@ import com.google.common.cache.LoadingCache;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by chengmo on 2017/12/27.
+ * Created by tanghaiyang on 2017/12/27.
  */
 public class CacheFactory {
 

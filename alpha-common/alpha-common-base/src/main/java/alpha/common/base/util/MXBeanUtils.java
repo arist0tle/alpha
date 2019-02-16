@@ -7,7 +7,7 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 
 /**
- * Created by chengmo on 2018/9/27.
+ * Created by tanghaiyang on 2018/9/27.
  */
 public class MXBeanUtils {
     public static RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();

@@ -7,7 +7,7 @@ import org.apache.logging.log4j.core.Logger;
 import java.text.MessageFormat;
 
 /**
- * Created by chengmo on 2017/12/15.
+ * Created by tanghaiyang on 2017/12/15.
  */
 public class GLog {
     public Logger logger;

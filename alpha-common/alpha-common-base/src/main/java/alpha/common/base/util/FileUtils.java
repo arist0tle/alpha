@@ -2,8 +2,7 @@ package alpha.common.base.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import alpha.common.base.log.GLog;
-import alpha.common.base.log.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,8 +15,8 @@ import java.util.Map;
 /**
  * Created by tanghaiyang on 2018/1/26.
  */
+@Slf4j
 public class FileUtils {
-    private static final GLog LOG = LogFactory.getLogger(FileUtils.class);
     public static String CHARSET = "utf-8";
 
     public static <T> T readJSONObject(String fileName, Class<T> cls) {
@@ -73,7 +72,7 @@ public class FileUtils {
         List<File> listFile = new ArrayList<>();
         try {
             File file = new File(filePath);
-            LOG.info("Start scanning folder: {0} {1}", file.getPath(), file.isDirectory());
+            log.info("Start scanning folder: {0} {1}", file.getPath(), file.isDirectory());
             if (!file.isDirectory()) {
                 listFile.add(file);
             } else {
@@ -93,9 +92,9 @@ public class FileUtils {
                 }
             }
         } catch (Exception e) {
-            LOG.info("Read files has error due to: " + e.getMessage());
+            log.info("Read files has error due to: " + e.getMessage());
         }
-        LOG.info("File list size: {0}", listFile.size());
+        log.info("File list size: {0}", listFile.size());
         return listFile;
     }
 
@@ -125,7 +124,7 @@ public class FileUtils {
                 return size;
             }
         } else {
-            LOG.warn("File does not exists,{0}", file.getPath());
+            log.warn("File does not exists,{0}", file.getPath());
             return 0.0;
         }
     }

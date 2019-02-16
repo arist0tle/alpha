@@ -1,8 +1,7 @@
 package alpha.common.base.util;
 
 
-import alpha.common.base.log.GLog;
-import alpha.common.base.log.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,9 +11,8 @@ import java.util.*;
 /**
  * Created by tanghaiyang on 2018/3/12.
  */
+@Slf4j
 public class PropertiesUtils {
-
-    private static final GLog LOG = LogFactory.getLogger(PropertiesUtils.class);
 
     public static synchronized Properties load(String location) {
         InputStream is = null;
@@ -26,13 +24,13 @@ public class PropertiesUtils {
             }
             props.load(is);
         } catch (IOException e) {
-            LOG.error("Reading properties file error!" + e.toString());
+            log.error("Reading properties file error!" + e.toString());
         } finally {
             if (is != null) {
                 try {
                     is.close();
                 } catch (IOException e) {
-                    LOG.error("Closing InputStream occurs error due to:" + e.toString());
+                    log.error("Closing InputStream occurs error due to:" + e.toString());
                 }
             }
         }

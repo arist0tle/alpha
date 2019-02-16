@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,17 +20,13 @@ import java.util.regex.Pattern;
  * Created by tanghaiyang on 2017/4/8.
  */
 
+@Slf4j
 public class FastjsonUtitl {
-    private static Logger log = LoggerFactory.getLogger(FastjsonUtitl.class);
 
     public static void main(String[] args) throws Exception{
 //        parseJSONArray("data/test.txt");
 //        addElement();
 
-        System.out.println("log");
-        log.info("111111111");
-        log.debug("2222222222");
-        System.out.println("log2");
         selectElement();
 
     }

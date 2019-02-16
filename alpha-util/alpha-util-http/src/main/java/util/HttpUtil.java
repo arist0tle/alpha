@@ -1,10 +1,9 @@
 package util;
 
+import com.sun.org.apache.regexp.internal.RE;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
@@ -23,25 +22,34 @@ public class HttpUtil {
 
 
     public static String doPost(String url, String data)throws Exception{
+        HttpPost method = new HttpPost(url);
+        return doMethod(method, data);
+    }
+
+    public static String doPut(String url, String data)throws Exception{
+        HttpPut method = new HttpPut(url);
+        return doMethod(method, data);
+    }
+
+    private static String doMethod(HttpEntityEnclosingRequestBase method, String data) throws Exception{
         HttpClientBuilder hcb = HttpClientBuilder.create();
         HttpRequestRetryHandler hrrh = new DefaultHttpRequestRetryHandler();
         HttpClientBuilder httpClientBuilder = hcb.setRetryHandler(hrrh);
         CloseableHttpClient client = httpClientBuilder.build();
-        HttpPost post = new HttpPost(url);
-        post.addHeader("User-Agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-        post.addHeader(HTTP.CONTENT_TYPE,APPLICATION_JSON);
+        method.addHeader("User-Agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+        method.addHeader(HTTP.CONTENT_TYPE,APPLICATION_JSON);
         RequestConfig.Builder confBuilder = RequestConfig.custom();
         confBuilder.setConnectTimeout(CONNECT_TIMEOUT);
         confBuilder.setConnectionRequestTimeout(REQUEST_TIMEOUT);
         confBuilder.setSocketTimeout(SOCKET_TIMEOUT);
         RequestConfig config = confBuilder.build();
-        post.setConfig(config);
+        method.setConfig(config);
         CloseableHttpResponse response = null;
         StringEntity entity = new StringEntity(data, "utf-8");
         entity.setContentEncoding("UTF-8");
         entity.setContentType("application/json");
-        post.setEntity(entity);
-        response = client.execute(post);
+        method.setEntity(entity);
+        response = client.execute(method);
         int code = response.getStatusLine().getStatusCode();
         String result = EntityUtils.toString(response.getEntity());
         response.close();
@@ -50,27 +58,30 @@ public class HttpUtil {
     }
 
     public static String doGet(String url) throws Exception{
+        HttpGet get = new HttpGet(url);
+        return doMethod(get);
+    }
+
+    private static String doMethod(HttpRequestBase method)throws Exception{
         CloseableHttpResponse response = null;
         CloseableHttpClient client;
-        HttpGet get = new HttpGet(url);
         HttpClientBuilder hcb = HttpClientBuilder.create();
         HttpRequestRetryHandler hrrh = new DefaultHttpRequestRetryHandler();
         HttpClientBuilder httpClientBuilder = hcb.setRetryHandler(hrrh);
         client = httpClientBuilder.build();
-        get.addHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-        get.addHeader(HTTP.CONTENT_TYPE, APPLICATION_JSON);
+        method.addHeader("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+        method.addHeader(HTTP.CONTENT_TYPE, APPLICATION_JSON);
         RequestConfig.Builder confBuilder = RequestConfig.custom();
         confBuilder.setConnectTimeout(CONNECT_TIMEOUT);
         confBuilder.setConnectionRequestTimeout(REQUEST_TIMEOUT);
         confBuilder.setSocketTimeout(SOCKET_TIMEOUT);
         RequestConfig config = confBuilder.build();
-        get.setConfig(config);
-        response = client.execute(get);
+        method.setConfig(config);
+        response = client.execute(method);
         int code = response.getStatusLine().getStatusCode();
         String result = EntityUtils.toString(response.getEntity());
         response.close();
         client.close();
         return result;
     }
-
 }

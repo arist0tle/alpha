@@ -20,6 +20,9 @@ public class MapRecursiveJson {
         JSONObject json = buildJson();
         log.info(JSON.toJSONString(json, SerializerFeature.PrettyFormat));
 
+        JSONObject json2 = buildJson2();
+        log.info(JSON.toJSONString(json2, SerializerFeature.PrettyFormat));
+
         JSONArray keys = new JSONArray();
         keys.add(endpoint);
 
@@ -31,7 +34,8 @@ public class MapRecursiveJson {
 
         for(int i=0;i<5; i++){
             tmpkeys.clear();
-            getKeys(json, keys, ret, tmpkeys);
+//            getKeys(json, keys, ret, tmpkeys);
+            getKeys2(json,json2, keys, ret, tmpkeys);
             keys.clear();
             keys.addAll(tmpkeys);
 //            ret.addAll(keys);
@@ -75,6 +79,34 @@ public class MapRecursiveJson {
 
     }
 
+    private static void getKeys2(JSONObject json, JSONObject json2, JSONArray keys, Set<String> ret, JSONArray tmpkeys){
+        for(Object keyObject: keys) {
+            String key = keyObject.toString();
+
+            if (json.containsKey(key)) {
+                JSONArray arr = json.getJSONArray(key);
+                for(Object o: arr) {
+                    ret.add(o.toString());
+                }
+                tmpkeys.addAll(arr);
+                log.info("key: " + json.get(key));
+            }
+
+            if (json2.containsKey(key)) {
+                JSONArray arr = json2.getJSONArray(key);
+                for(Object o: arr) {
+                    ret.add(o.toString());
+                }
+                tmpkeys.addAll(arr);
+                log.info("key: " + arr);
+            }
+
+            log.info("===============tmpkeys: {}", tmpkeys);
+        }
+
+    }
+
+
     private static JSONObject buildJson() {
         JSONObject ret = new JSONObject();
         JSONArray arr1 = new JSONArray();
@@ -82,15 +114,6 @@ public class MapRecursiveJson {
         JSONArray arr3 = new JSONArray();
         JSONArray arr4 = new JSONArray();
         JSONArray arr5 = new JSONArray();
-        JSONArray arr6 = new JSONArray();
-        JSONArray arr7 = new JSONArray();
-        JSONArray arr8 = new JSONArray();
-        JSONArray arr9 = new JSONArray();
-        JSONArray arr10 = new JSONArray();
-        JSONArray arr11 = new JSONArray();
-        JSONArray arr12 = new JSONArray();
-        JSONArray arr13 = new JSONArray();
-        JSONArray arr14 = new JSONArray();
 
         ret.put("s1", arr1);
         arr1.add("p0");
@@ -123,5 +146,39 @@ public class MapRecursiveJson {
 //        [p0, c3, s4, p7, c0, s1]
     }
 
+    private static JSONObject buildJson2() {
+        JSONObject ret = new JSONObject();
+        JSONArray arr1 = new JSONArray();
+        JSONArray arr2 = new JSONArray();
+        JSONArray arr3 = new JSONArray();
+        JSONArray arr4 = new JSONArray();
+        JSONArray arr5 = new JSONArray();
+
+        ret.put("p0", arr1);
+        arr1.add("s1");
+
+        ret.put("s4", arr2);
+        arr2.add("s1");
+
+        ret.put("c3", arr3);
+        arr3.add("p0");
+
+        ret.put("c0", arr4);
+        arr4.add("s4");
+
+        ret.put("p7", arr5);
+        arr5.add("c3");
+        arr5.add("c0");
+
+        return ret;
+
+//        {
+//            "p0": [ "s1" ],
+//            "s4": [ "s1" ],
+//            "c3": [ "p0" ],
+//            "c0": [ "s4" ],
+//            "p7": [ "c3", "c0" ]
+//        }
+    }
 }
 

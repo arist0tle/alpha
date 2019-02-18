@@ -1,3 +1,5 @@
+package sample;
+
 import alpha.common.base.json.JSONUtils;
 import alpha.common.base.util.FileUtils;
 import com.alibaba.fastjson.JSONObject;

@@ -1,0 +1,92 @@
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import lombok.extern.slf4j.Slf4j;
+import util.BTreeNode;
+import util.FileParse;
+import util.TreeNode;
+
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * Created by tanghaiyang on 2019/2/21.
+ */
+@Slf4j
+public class Main {
+    public static JSONArray result = null;
+
+    public static void main(String[] args) {
+        String filterPath = "filterSample.txt";
+        JSONObject condition = FileParse.buildFilter(filterPath);
+
+        String resultPath = "resultSample.txt";
+        result = FileParse.buildResult(resultPath);
+
+        JSONObject filter = condition.getJSONObject("filter");
+        log.info("filter: {}", JSON.toJSONString(filter, SerializerFeature.PrettyFormat));
+
+        BTreeNode root = new BTreeNode();
+
+        buildTree(root, filter);
+
+        log.info("=============", root.getData());
+
+        root.calculate();
+
+        JSONArray ret = root.getData();
+
+        log.info("ret: {}", JSON.toJSONString(ret,SerializerFeature.PrettyFormat));
+
+    }
+
+
+    public static void buildTree(BTreeNode tree, JSONObject filter){
+        if(filter.containsKey("logic")) {
+            String logic = filter.getString("logic");
+            tree.setOperation(logic);
+        }
+
+        if(filter.containsKey("filters")) {
+            JSONArray filters = filter.getJSONArray("filters");
+            for (Object o : filters) {
+                JSONObject ele = (JSONObject) o;
+                if (ele.containsKey("operator")) {
+                    BTreeNode subNode = new BTreeNode();
+                    subNode.setSingleFilter(ele);
+                    subNode.setData(excuteFilter(result, ele));
+                    tree.getChild().add(subNode);
+                }else if (ele.containsKey("logic")) {
+                    BTreeNode subTree = new BTreeNode();
+                    buildTree(subTree, ele);
+                    tree.getChild().add(subTree);
+                }
+            }
+        }
+    }
+
+
+    public static JSONArray excuteFilter(JSONArray result, JSONObject singleFilter){
+        JSONArray ret = new JSONArray();
+        JSONArray filterValue = singleFilter.getJSONArray("value");
+        String filterField = singleFilter.getString("field");
+        for(Object o: result){
+            JSONObject ele = (JSONObject)o;
+            String resultField = ele.getString(filterField);
+            if(filterValue.contains(resultField)){
+                ret.add(ele);
+            }
+        }
+
+        return ret;
+    }
+
+
+
+    public static void calculator() {
+        double a = new TreeNode("1*2+(3+4)+5-6").calculate();
+        System.out.println(a);
+
+    }
+}

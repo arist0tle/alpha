@@ -33,9 +33,7 @@ public class Main {
 
         log.info("=============", root.getData());
 
-        root.calculate();
-
-        JSONArray ret = root.getData();
+        JSONArray ret = root.calculate();
 
         log.info("ret: {}", JSON.toJSONString(ret,SerializerFeature.PrettyFormat));
 

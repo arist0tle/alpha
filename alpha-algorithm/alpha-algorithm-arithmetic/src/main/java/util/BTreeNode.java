@@ -41,6 +41,7 @@ public class BTreeNode {
                 for(BTreeNode tree: child){
                     JSONArray tmpDataOr = tree.calculate();
                     log.info("tmpDataOr: {}", JSON.toJSONString(tmpDataOr, SerializerFeature.PrettyFormat));
+                    ret.removeAll(tmpDataOr);
                     ret.addAll(tmpDataOr);
                 }
             }

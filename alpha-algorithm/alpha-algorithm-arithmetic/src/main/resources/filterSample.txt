@@ -9,7 +9,7 @@
 						"schemaName":"skill",
 						"schemaType":"VERTEX",
 						"field":"age",
-						"fieldType":"ARRAY",
+						"fieldType":"INT",
 						"value":[
 							1,
 							2
@@ -20,7 +20,7 @@
 						"schemaName":"all_to_skill",
 						"schemaType":"EDGE",
 						"field":"quadrant",
-						"fieldType":"ARRAY",
+						"fieldType":"INT",
 						"value":[
 							4,
 							5
@@ -31,7 +31,7 @@
 						"schemaName":"company",
 						"schemaType":"VERTEX",
 						"field":"city",
-						"fieldType":"ARRAY",
+						"fieldType":"STRING",
 						"value":[
 							"nanjing",
 							"shenzhen"
@@ -44,7 +44,7 @@
 				"schemaName":"persons",
 				"schemaType":"VERTEX",
 				"field":"sex",
-				"fieldType":"ARRAY",
+				"fieldType":"STRING",
 				"value":[
 					"male",
 					"female"

@@ -71,9 +71,11 @@ public class Main {
         JSONArray ret = new JSONArray();
         JSONArray filterValue = singleFilter.getJSONArray("value");
         String filterField = singleFilter.getString("field");
+        String fieldType = singleFilter.getString("fieldType");
         for(Object o: result){
             JSONObject ele = (JSONObject)o;
-            String resultField = ele.getString(filterField);
+            JSONObject attributes = ele.getJSONObject("attributes");
+            Object resultField = attributes.get(filterField);
             if(filterValue.contains(resultField)){
                 ret.add(ele);
             }

@@ -4,7 +4,8 @@
 	"v_type": "skill",
 	"attributes": {
 		"id": "s2",
-		"age": 5,
+		"quadrant": 4,
+		"age": 2,
 		"sex": "male",
 		"city": "nanjing"
 	}
@@ -15,7 +16,7 @@
 	"v_type": "skill",
 	"attributes": {
 		"id": "s3",
-		"quadrant": 2,
+		"quadrant": 4,
 		"age": 3,
 		"city": "dongguan"
 	}
@@ -29,7 +30,7 @@
 		"quadrant": 2,
 		"profileId": "p2",
 		"registrationDate": 2,
-		"age": 2,
+		"age": 1,
 		"sex": "female",
 		"city": "shanghai"
 	}

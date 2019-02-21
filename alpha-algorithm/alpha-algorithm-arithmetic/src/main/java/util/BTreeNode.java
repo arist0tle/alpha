@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by tanghaiyang on 2019/2/21.
@@ -19,18 +20,18 @@ public class BTreeNode {
 
     public JSONArray calculate(){
         JSONArray ret = new JSONArray();
-        if(child.isEmpty()){
+        if(Objects.isNull(operation) || child.isEmpty()){
             return data;
         }else {
             if(operation.equals("AND")) {
                 for (BTreeNode tree : child) {
                     JSONArray tmpDataAnd = tree.calculate();
-                    ret.addAll(tmpDataAnd);
+                    ret.retainAll(tmpDataAnd);
                 }
             }else if(operation.equals("OR")){
                 for(BTreeNode tree: child){
                     JSONArray tmpDataOr = tree.calculate();
-                    ret.retainAll(tmpDataOr);
+                    ret.addAll(tmpDataOr);
                 }
             }
         }

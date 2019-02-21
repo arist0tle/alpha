@@ -1,8 +1,11 @@
 package util;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,6 +15,7 @@ import java.util.Objects;
  * Created by tanghaiyang on 2019/2/21.
  */
 @Data
+@Slf4j
 public class BTreeNode {
     private JSONArray data;
     private JSONObject singleFilter;
@@ -26,11 +30,17 @@ public class BTreeNode {
             if(operation.equals("AND")) {
                 for (BTreeNode tree : child) {
                     JSONArray tmpDataAnd = tree.calculate();
-                    ret.retainAll(tmpDataAnd);
+                    log.info("tmpDataAnd: {}", JSON.toJSONString(tmpDataAnd, SerializerFeature.PrettyFormat));
+                    if(ret.isEmpty()){
+                        ret.addAll(tmpDataAnd);
+                    }else {
+                        ret.retainAll(tmpDataAnd);
+                    }
                 }
             }else if(operation.equals("OR")){
                 for(BTreeNode tree: child){
                     JSONArray tmpDataOr = tree.calculate();
+                    log.info("tmpDataOr: {}", JSON.toJSONString(tmpDataOr, SerializerFeature.PrettyFormat));
                     ret.addAll(tmpDataOr);
                 }
             }

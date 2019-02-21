@@ -25,7 +25,7 @@ public class Main {
         result = FileParse.buildResult(resultPath);
 
         JSONObject filter = condition.getJSONObject("filter");
-        log.info("filter: {}", JSON.toJSONString(filter, SerializerFeature.PrettyFormat));
+       // log.info("filter: {}", JSON.toJSONString(filter, SerializerFeature.PrettyFormat));
 
         BTreeNode root = new BTreeNode();
 
@@ -55,7 +55,9 @@ public class Main {
                 if (ele.containsKey("operator")) {
                     BTreeNode subNode = new BTreeNode();
                     subNode.setSingleFilter(ele);
-                    subNode.setData(excuteFilter(result, ele));
+                    JSONArray data = excuteFilter(result, ele);
+                    //log.info("data: \n{}",JSON.toJSONString(data,SerializerFeature.PrettyFormat));
+                    subNode.setData(data);
                     tree.getChild().add(subNode);
                 }else if (ele.containsKey("logic")) {
                     BTreeNode subTree = new BTreeNode();

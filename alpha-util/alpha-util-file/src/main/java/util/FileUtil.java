@@ -18,8 +18,6 @@ public class FileUtil {
 
     }
 
-
-
     @Test
     public void readFile(String resourceDir) throws Exception {
         String path = this.getClass().getResource("/" + resourceDir).getPath();

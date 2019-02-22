@@ -120,7 +120,6 @@ public final class BufferedRandomAccessFile extends RandomAccessFile {
 
     /**
      * Gets path.
-     *
      * @return the path
      */
     public String getPath() {

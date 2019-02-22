@@ -24,7 +24,7 @@ public class RandomUtilTest {
         log.info("random str: {}", RandomUtil.randomString(64));
         log.info("random str: {}", RandomUtil.randomString(128));
 
-        int[] arr = { 5, 4, 11, 23};
+        int[] arr = { 5, 4, 11, 23 };
 
         log.info("random int: {}", RandomUtil.randomInt(arr));
         log.info("random int: {}", RandomUtil.randomInt(arr));
@@ -35,7 +35,6 @@ public class RandomUtilTest {
         log.info("random arr int: {}", RandomUtil.randomString(arr2));
         log.info("random arr int: {}", RandomUtil.randomString(arr2));
         log.info("random arr int: {}", RandomUtil.randomString(arr2));
-
 
         List<String> list = new LinkedList<>();
         list.add("ooo");

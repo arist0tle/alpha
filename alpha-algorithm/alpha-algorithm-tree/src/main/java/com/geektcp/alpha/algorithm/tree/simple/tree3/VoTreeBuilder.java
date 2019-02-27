@@ -1,9 +1,7 @@
 package com.geektcp.alpha.algorithm.tree.simple.tree3;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import alpha.common.base.util.ObjectUtils;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -37,31 +35,16 @@ public class VoTreeBuilder {
             throws IllegalAccessException, InstantiationException {
 //        BaseTreeNodeVo currentNode = new BaseTreeNodeVo();
         T currentNode = clazz.newInstance();
-        List<T> listCopy = (List<T>)deepCopy(list);
+        List<T> listCopy = (List<T>) ObjectUtils.deepCopy(list);
         if(Objects.nonNull(listCopy)) {
             listCopy.forEach(childNode -> { insertNode(currentNode, childNode); });
         }
         return currentNode;
     }
 
-
     public static <T extends BaseTreeNodeVo> List createTreeList(List<T> list, Class<T> clazz)
             throws IllegalAccessException, InstantiationException {
         return createTree(list, clazz).getChildren();
     }
 
-
-    private static Object deepCopy(Object object) {
-        try {
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            ObjectOutputStream outputStrm = new ObjectOutputStream(outputStream);
-            outputStrm.writeObject(object);
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-            ObjectInputStream objInputStream = new ObjectInputStream(inputStream);
-            return objInputStream.readObject();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 }

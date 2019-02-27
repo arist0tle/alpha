@@ -1,9 +1,7 @@
 package com.geektcp.alpha.algorithm.tree.simple.tree2;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import alpha.common.base.util.ObjectUtils;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -35,7 +33,7 @@ public class VoTreeBuilder {
     @SuppressWarnings("all")
     public static <T extends BaseTreeNodeVo> BaseTreeNodeVo createTree(List<T> list){
         BaseTreeNodeVo currentNode = new BaseTreeNodeVo();
-        List<T> listCopy = (List<T>)deepCopy(list);
+        List<T> listCopy = (List<T>) ObjectUtils.deepCopy(list);
         if(Objects.nonNull(listCopy)) {
             listCopy.forEach(childNode -> { insertNode(currentNode, childNode); });
         }
@@ -47,18 +45,4 @@ public class VoTreeBuilder {
         return createTree(list).getChildren();
     }
 
-
-    private static Object deepCopy(Object object) {
-        try {
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            ObjectOutputStream outputStrm = new ObjectOutputStream(outputStream);
-            outputStrm.writeObject(object);
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-            ObjectInputStream objInputStream = new ObjectInputStream(inputStream);
-            return objInputStream.readObject();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 }

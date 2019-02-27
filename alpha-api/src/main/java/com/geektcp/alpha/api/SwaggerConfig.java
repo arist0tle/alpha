@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.geektcp.alpha.spring.jpa.controller";
+    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.geektcp.alpha.spring.com.geektcp.alpha.jpa.controller";
     public static final String VERSION = "1.0.0";
 
     ApiInfo apiInfo() {

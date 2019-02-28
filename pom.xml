@@ -27,6 +27,7 @@
         <module>alpha-hadoop</module>
         <module>alpha-cache</module>
         <module>alpha-spider</module>
+        <module>alpha-sys</module>
     </modules>
 
     <properties>

@@ -39,6 +39,10 @@ public class JSONUtils {
         });
     }
 
+    public static <From, To> To copy(From bean, Class<To> toClass){
+        return JSON.parseObject(JSON.toJSONString(bean), toClass);
+    }
+
     public static <T> void println(T object) {
         System.out.println(JSON.toJSONString(object, true));
     }

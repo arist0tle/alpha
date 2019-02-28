@@ -1,6 +1,9 @@
 package alpha.common.base.jpa;
 
+import alpha.common.base.constant.login.LoginContext;
+import alpha.common.base.model.BasePo;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.NoRepositoryBean;
 
@@ -23,5 +26,14 @@ public class JpaBase {
     @PostConstruct
     public void initFactory() {
         jpa = new JPAQueryFactory(entityManager);
+    }
+
+    protected <T extends BasePo> T setUpdateBy(T bean) {
+        String userId = LoginContext.getUserIdStr();
+        if (StringUtils.isBlank(bean.getCreatedById())) {
+            bean.setCreatedById(userId);
+        }
+        bean.setUpdateById(userId);
+        return bean;
     }
 }

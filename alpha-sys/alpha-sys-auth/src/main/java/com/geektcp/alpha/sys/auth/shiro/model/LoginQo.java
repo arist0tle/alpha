@@ -19,13 +19,13 @@ public class LoginQo implements Serializable {
     private static final long serialVersionUID = 2L;
 
     @NotNull
-    @ApiModelProperty(value = "登录用户名")
+    @ApiModelProperty(value = "登录用户名", example = "admin")
     private String userNo;
 
     @NotNull
-    @ApiModelProperty(value = "登录密码")
+    @ApiModelProperty(value = "登录密码", example = "123456")
     private String password;
 
-    @ApiModelProperty(value = "是否自动登录(Y/N),默认为N")
+    @ApiModelProperty(value = "是否自动登录(Y/N),默认为N", example = "N")
     private String autoLogin = "N";
 }

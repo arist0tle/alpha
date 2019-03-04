@@ -2,11 +2,11 @@ package com.geektcp.alpha.sys.auth.shiro;
 
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.servlet.Cookie;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +18,7 @@ import java.util.LinkedHashMap;
 /**
  * Created by chengmo on 2018/1/4.
  */
+//@Configuration
 public class ShiroConfig {
 
     @Value("${server.session.timeout:1800}")
@@ -36,7 +37,7 @@ public class ShiroConfig {
     @Bean
     public EhCacheManager ehCacheManager() {
         EhCacheManager cacheManager = new EhCacheManager();
-        cacheManager.setCacheManagerConfigFile("classpath:ehcache-shiro.xml");
+        cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
         return cacheManager;
     }
 
@@ -44,7 +45,7 @@ public class ShiroConfig {
     public DefaultWebSessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setDeleteInvalidSessions(true);
-        sessionManager.setCacheManager(ehCacheManager());
+//        sessionManager.setCacheManager(ehCacheManager());
         sessionManager.setGlobalSessionTimeout(timeout * 1000);// milliseconds
         return sessionManager;
     }
@@ -52,10 +53,10 @@ public class ShiroConfig {
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(userRealm());
         securityManager.setSessionManager(sessionManager());
-        securityManager.setCacheManager(ehCacheManager());
+//        securityManager.setCacheManager(ehCacheManager());
         securityManager.setRememberMeManager(cookieRememberMeManager());
+        securityManager.setRealm(userRealm());
         return securityManager;
     }
 
@@ -70,7 +71,7 @@ public class ShiroConfig {
 
         bean.setFilters(filters);
 
-        bean.setLoginUrl("/auth/unauth");
+        bean.setLoginUrl("/auth/login");
         bean.setSuccessUrl("/index");
         bean.setUnauthorizedUrl("/auth/unauth");
 
@@ -89,8 +90,9 @@ public class ShiroConfig {
     public SimpleCookie simpleCookie() {
         SimpleCookie cookie = new SimpleCookie();
         cookie.setHttpOnly(true);
-        //cookie.setMaxAge(43200);// 12hours
-        cookie.setMaxAge(Cookie.ONE_YEAR);
+        cookie.setMaxAge(43200);// 12hours
+//        cookie.setMaxAge(Cookie.ONE_YEAR);
+//        cookie.setMaxAge(60);
         cookie.setName("haizhi-gap");
         cookie.setPath("/");
         return cookie;
@@ -103,4 +105,16 @@ public class ShiroConfig {
         //manager.setCipherKey(Base64.decode("2AvVhdsgUs0FSA3SDFAdag=="));
         return manager;
     }
+
+
+    /*
+    * enable doGetAuthorizationInfo
+    * */
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
+        return authorizationAttributeSourceAdvisor;
+    }
+
 }

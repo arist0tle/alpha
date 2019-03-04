@@ -26,6 +26,7 @@ public enum AuthStatus implements Status {
     USER_FIND_ERROR(10015, "查询用户异常"),
     USER_RESET_PSW_WRONG(10016,"修改用户异常"),
     USER_RESET_ERROR(10017,"修改用户异常"),
+    USER_PERMISSION_ERROR(10018,"用户权限查询异常"),
 
     ROLE_SEARCH_ERROR(10101, "查询角色信息异常"),
     ROLE_NOT_EXISTS(10102, "角色不存在"),

@@ -23,7 +23,9 @@ public class ChainDefinitionProvider {
         // Subject.login(), isAuthenticated()==true
         //map.put("/**", "authc");
         // isRemembered()==true or isAuthenticated()==true
-        map.put("/**", "user");
+//        map.put("/**", "user");
+        map.put("/**", "authc");
+
         return map;
     }
 }

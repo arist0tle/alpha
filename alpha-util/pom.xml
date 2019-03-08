@@ -18,6 +18,7 @@
         <module>alpha-util-http</module>
         <module>alpha-util-common</module>
         <module>alpha-util-thread</module>
+        <module>alpha-util-cache</module>
     </modules>
 
 

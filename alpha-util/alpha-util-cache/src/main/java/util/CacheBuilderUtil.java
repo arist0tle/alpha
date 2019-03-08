@@ -24,11 +24,11 @@ public class CacheBuilderUtil {
     };
 
     /*
-    * expireAfterWrite will clean cache
+    * expireAfterWrite will clean cache and get default
     * refreshAfterWrite will delay old cache
     * */
     private static LoadingCache<String, Integer> CACHE = CacheBuilder.newBuilder()
-//            .refreshAfterWrite(3, TimeUnit.SECONDS)
+            .refreshAfterWrite(3, TimeUnit.SECONDS)
             .expireAfterWrite(5, TimeUnit.SECONDS)
             .removalListener(myRemovalListener)
             .build(new CacheLoader<String, Integer>() {

@@ -19,6 +19,7 @@
         <module>alpha-util-common</module>
         <module>alpha-util-thread</module>
         <module>alpha-util-cache</module>
+        <module>alpha-util-guava</module>
     </modules>
 
 

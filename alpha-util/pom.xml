@@ -20,6 +20,7 @@
         <module>alpha-util-thread</module>
         <module>alpha-util-cache</module>
         <module>alpha-util-guava</module>
+        <module>alpha-util-string</module>
     </modules>
 
 

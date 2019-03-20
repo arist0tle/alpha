@@ -1,6 +1,5 @@
 package util;
 
-import com.sun.org.apache.regexp.internal.RE;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.*;

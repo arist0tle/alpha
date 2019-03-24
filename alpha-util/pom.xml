@@ -21,6 +21,7 @@
         <module>alpha-util-cache</module>
         <module>alpha-util-guava</module>
         <module>alpha-util-string</module>
+        <module>alpha-util-rule</module>
     </modules>
 
 

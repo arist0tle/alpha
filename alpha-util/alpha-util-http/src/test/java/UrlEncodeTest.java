@@ -1,7 +1,7 @@
 import org.junit.Test;
 
-import java.net.URLDecoder;
-import java.net.URLEncoder;
+        import java.net.URLDecoder;
+        import java.net.URLEncoder;
 
 /**
  * Created by HaiyangHome on 2019/3/23.
@@ -10,10 +10,10 @@ public class UrlEncodeTest {
 
 
     /**
-    * urlencode转码不能随便用，因为她会把空格转换成+号，而不是标准的%20字符
+     * urlencode转码不能随便用，因为她会把空格转换成+号，而不是标准的%20字符
      * 所以urlencode只适用于服务端支持的协议是RFC1738
      * 如果服务端只支持RFC 2396标准，那么服务端解码时，会把加号+当成保留字符，而不转码
-    * */
+     * */
     @Test
     public void test()throws Exception{
         String charset = "UTF-8";

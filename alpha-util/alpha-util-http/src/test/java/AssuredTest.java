@@ -154,7 +154,7 @@ public class AssuredTest {
                // .header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36")
                 .header("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)")
 //                .header(HTTP.CONTENT_TYPE, "application/json")
-                .header(HTTP.CONTENT_TYPE, "application/http-www-format")
+                .header(HTTP.CONTENT_TYPE, "application/x-www-form-urlencoded")
                 .get(url)
                 .prettyPrint();
 

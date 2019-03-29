@@ -15,8 +15,9 @@ import org.springframework.stereotype.Component;
 public class AlphaPersistConsumerTest {
 
 //    @KafkaListener(id = "demo1", topics = "deltaQ_GPE_1Q", group = "haizhi")
-    @KafkaListener(id = "demo", topics = "mytest1", group = "haizhi")
+    @KafkaListener( topics = "mytest1") //, group = "haizhi" id = "demo",
     public void listen(ConsumerRecord<Object, Object> record, Acknowledgment ack) {
+        ack.acknowledge();
         log.info("partition: {}", record.partition());
         test(record);
     }

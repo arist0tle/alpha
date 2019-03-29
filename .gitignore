@@ -24,10 +24,8 @@ target/
 /nbdist/
 /.nb-gradle/
 
-
-
 ### maven version backup
 *.versionsBackup
 
 ### log4j2
-/logs
+logs

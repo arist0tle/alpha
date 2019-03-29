@@ -4,7 +4,6 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.protocol.HTTP;
 import org.junit.Test;
 import org.springframework.web.client.RestTemplate;
 import util.HttpUtil;
@@ -150,12 +149,13 @@ public class AssuredTest {
     @Test
     public void test6() throws Exception{
         log.info("test6=============");
-        given().headers("Content-Type", "application/json")
+        given()
+//                .headers("Content-Type", "application/json")
                // .header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36")
                 .header("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)")
 //                .header(HTTP.CONTENT_TYPE, "application/json")
-                .header(HTTP.CONTENT_TYPE, "application/x-www-form-urlencoded")
-                .get(url)
+//                .header(HTTP.CONTENT_TYPE, "application/x-www-form-urlencoded")
+                .get("http://192.168.1.101:9000/query/graph500/test?gdpQuery=aaaa ffff")
                 .prettyPrint();
 
     }
@@ -234,5 +234,33 @@ public class AssuredTest {
 
     }
 
+    @Test
+    public void test12()throws Exception{
+        String url = "http://192.168.1.101:9000/query/graph500/test?gdpQuery=";
+        String paraEncode = URLEncoder.encode("aaaa ffff", "UTF-8");
+        log.info("urlEncode: {}", paraEncode);
+        log.info("url + paraEncode: {}", url + paraEncode);
+        String ret = HttpUtil.doGet(url + paraEncode);
+        log.info("ret: {}", ret);
+    }
+
+    @Test
+    public void test13()throws Exception{
+//        String url = "http://192.168.1.101:9000/query/graph500/test?gdpQuery=aaaa ffff";
+        String ur1 = "http://192.168.1.101:9000/query/graph500/test?gdpQuery=aaaa%20ffff";
+        String url2 = "http://192.168.1.101:9000/query/graph500/test?gdpQuery=aaaa%2Bffff";
+
+        String ret = HttpUtil.doGet(url2);
+        log.info("ret: {}", ret);
+    }
+
+    @Test
+    public void test14()throws Exception{
+        String url = "ssss|1111";
+        String url1 = URLEncoder.encode(url, "UTF-8");
+        String url2 = URLEncoder.encode(url1, "UTF-8");
+        String url3 = URLEncoder.encode(url2, "UTF-8");
+        log.info("url1: {}\n{}\n{}", url, url1, url2,url3);
+    }
 
 }

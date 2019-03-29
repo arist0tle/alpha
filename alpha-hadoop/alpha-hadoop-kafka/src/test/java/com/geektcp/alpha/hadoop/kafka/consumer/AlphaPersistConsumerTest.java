@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AlphaPersistConsumerTest {
 
-    @KafkaListener(id = "demo1", topics = "deltaQ_GPE_1Q", group = "haizhi")
+    @KafkaListener(id = "demo1", topics = "deltaQ_GPE_1Q")
 //    @KafkaListener(id = "demo", group = "haizhi", topics = "mytest1")
     public void listen(ConsumerRecord<Object, Object> record, Acknowledgment ack) {
 //        ack.acknowledge();
@@ -22,19 +22,22 @@ public class AlphaPersistConsumerTest {
         test(record);
     }
 
-    private void test(ConsumerRecord<Object, Object> record){
+    private void test(ConsumerRecord<Object, Object> record) {
+        try {
+            log.info("topic: {} | value: {} | offset:{} | timestamp: {}",
+                    record.topic(), record.value(),record.offset(), record.timestamp());
 
-        log.info("topic: {} | value: {} | timestamp: {}", record.topic(), record.value(), record.timestamp());
-        String value = record.value().toString();
+            String value = record.value().toString();
+            log.info(value);
 
-
-        String ret2 = decode(value);
-        log.info("ret2: {}", ret2);
-
-        String ret = decodeUnicode(value);
-        log.info("ret: {}", ret);
-
-
+//            String ret2 = decode(value);
+//            log.info("ret2: {}", ret2);
+//
+//            String ret = decodeUnicode(value);
+//            log.info("ret: {}", ret);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static String gbEncoding(final String gbString) {

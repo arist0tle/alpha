@@ -42,7 +42,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * <p>A DSL-style API for setting up the disruptor pattern around a ring buffer
  * (aka the Builder pattern).</p>
  *
- * <p>A simple example of setting up the disruptor with two event handlers that
+ * <p>A simple alpha.socket.client.example of setting up the disruptor with two event handlers that
  * must process events in order:</p>
  * <pre>
  * <code>Disruptor&lt;MyEvent&gt; disruptor = new Disruptor&lt;MyEvent&gt;(MyEvent.FACTORY, 32, Executors.newCachedThreadPool());
@@ -151,7 +151,7 @@ public class Disruptor<T>
      * <p>Set up event handlers to handle events from the ring buffer. These handlers will process events
      * as soon as they become available, in parallel.</p>
      *
-     * <p>This method can be used as the start of a chain. For example if the handler <code>A</code> must
+     * <p>This method can be used as the start of a chain. For alpha.socket.client.example if the handler <code>A</code> must
      * process events before handler <code>B</code>:</p>
      * <pre><code>dw.handleEventsWith(A).then(B);</code></pre>
      *
@@ -171,7 +171,7 @@ public class Disruptor<T>
      * <p>Set up custom event processors to handle events from the ring buffer. The Disruptor will
      * automatically start these processors when {@link #start()} is called.</p>
      *
-     * <p>This method can be used as the start of a chain. For example if the handler <code>A</code> must
+     * <p>This method can be used as the start of a chain. For alpha.socket.client.example if the handler <code>A</code> must
      * process events before handler <code>B</code>:</p>
      * <pre><code>dw.handleEventsWith(A).then(B);</code></pre>
      *
@@ -196,7 +196,7 @@ public class Disruptor<T>
      * <p>Set up custom event processors to handle events from the ring buffer. The Disruptor will
      * automatically start this processors when {@link #start()} is called.</p>
      *
-     * <p>This method can be used as the start of a chain. For example if the processor <code>A</code> must
+     * <p>This method can be used as the start of a chain. For alpha.socket.client.example if the processor <code>A</code> must
      * process events before handler <code>B</code>:</p>
      * <pre><code>dw.handleEventsWith(A).then(B);</code></pre>
      *
@@ -282,7 +282,7 @@ public class Disruptor<T>
 
     /**
      * <p>Create a group of event handlers to be used as a dependency.
-     * For example if the handler <code>A</code> must process events before handler <code>B</code>:</p>
+     * For alpha.socket.client.example if the handler <code>A</code> must process events before handler <code>B</code>:</p>
      *
      * <pre><code>dw.after(A).handleEventsWith(B);</code></pre>
      *

@@ -22,7 +22,7 @@ import com.lmax.disruptor.ExceptionHandler;
 
 /**
  * A support class used as part of setting an exception handler for a specific event handler.
- * For example:
+ * For alpha.socket.client.example:
  * <pre><code>disruptorWizard.handleExceptionsIn(eventHandler).with(exceptionHandler);</code></pre>
  *
  * @param <T> the type of event being handled.

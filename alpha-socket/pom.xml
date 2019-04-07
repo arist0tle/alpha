@@ -14,12 +14,13 @@
     <modules>
         <module>alpha-socket-disruptor</module>
         <module>alpha-socket-logserver</module>
-        <module>alpha-socket-client</module>
         <module>alpha-socket-uploader</module>
         <module>alpha-socket-netty</module>
         <module>alpha-socket-thrift</module>
         <module>alpha-socket-jetty</module>
         <module>alpha-socket-akka</module>
+        <module>alpha-socket-server</module>
+        <module>alpha-socket-client</module>
     </modules>
 
 

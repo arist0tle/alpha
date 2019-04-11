@@ -84,7 +84,7 @@ public class EventHandlerGroup<T>
      * <p>Set up batch handlers to consume events from the ring buffer. These handlers will only process events
      * after every {@link EventProcessor} in this group has processed the event.</p>
      *
-     * <p>This method is generally used as part of a chain. For example if the handler <code>A</code> must
+     * <p>This method is generally used as part of a chain. For alpha.socket.client.example if the handler <code>A</code> must
      * process events before handler <code>B</code>:</p>
      *
      * <pre><code>dw.handleEventsWith(A).then(B);</code></pre>
@@ -102,7 +102,7 @@ public class EventHandlerGroup<T>
      * <p>Set up custom event processors to handle events from the ring buffer. The Disruptor will
      * automatically start these processors when {@link Disruptor#start()} is called.</p>
      *
-     * <p>This method is generally used as part of a chain. For example if the handler <code>A</code> must
+     * <p>This method is generally used as part of a chain. For alpha.socket.client.example if the handler <code>A</code> must
      * process events before handler <code>B</code>:</p>
      *
      * @param eventProcessorFactories the event processor factories to use to create the event processors that will process events.
@@ -119,7 +119,7 @@ public class EventHandlerGroup<T>
      * after every {@link EventProcessor} in this group has processed the event. Each event will be processed
      * by one of the work handler instances.</p>
      *
-     * <p>This method is generally used as part of a chain. For example if the handler <code>A</code> must
+     * <p>This method is generally used as part of a chain. For alpha.socket.client.example if the handler <code>A</code> must
      * process events before the worker pool with handlers <code>B, C</code>:</p>
      *
      * <pre><code>dw.handleEventsWith(A).thenHandleEventsWithWorkerPool(B, C);</code></pre>
@@ -137,7 +137,7 @@ public class EventHandlerGroup<T>
      * <p>Set up batch handlers to handle events from the ring buffer. These handlers will only process events
      * after every {@link EventProcessor} in this group has processed the event.</p>
      *
-     * <p>This method is generally used as part of a chain. For example if <code>A</code> must
+     * <p>This method is generally used as part of a chain. For alpha.socket.client.example if <code>A</code> must
      * process events before <code>B</code>:</p>
      *
      * <pre><code>dw.after(A).handleEventsWith(B);</code></pre>
@@ -155,7 +155,7 @@ public class EventHandlerGroup<T>
      * <p>Set up custom event processors to handle events from the ring buffer. The Disruptor will
      * automatically start these processors when {@link Disruptor#start()} is called.</p>
      *
-     * <p>This method is generally used as part of a chain. For example if <code>A</code> must
+     * <p>This method is generally used as part of a chain. For alpha.socket.client.example if <code>A</code> must
      * process events before <code>B</code>:</p>
      *
      * <pre><code>dw.after(A).handleEventsWith(B);</code></pre>
@@ -174,7 +174,7 @@ public class EventHandlerGroup<T>
      * after every {@link EventProcessor} in this group has processed the event. Each event will be processed
      * by one of the work handler instances.</p>
      *
-     * <p>This method is generally used as part of a chain. For example if the handler <code>A</code> must
+     * <p>This method is generally used as part of a chain. For alpha.socket.client.example if the handler <code>A</code> must
      * process events before the worker pool with handlers <code>B, C</code>:</p>
      *
      * <pre><code>dw.after(A).handleEventsWithWorkerPool(B, C);</code></pre>

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>alpha-socket-client</artifactId>
+    <artifactId>alpha-socket-server</artifactId>
 
     <dependencies>
         <dependency>
@@ -17,5 +17,7 @@
             <artifactId>alpha-common-base</artifactId>
             <version>1.0</version>
         </dependency>
+
+
     </dependencies>
 </project>

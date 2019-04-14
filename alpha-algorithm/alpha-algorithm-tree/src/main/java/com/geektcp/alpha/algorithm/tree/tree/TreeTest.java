@@ -218,7 +218,6 @@ public class TreeTest {
         }else {
             children.forEach(this::printPath);
         }
-
     }
 
 }

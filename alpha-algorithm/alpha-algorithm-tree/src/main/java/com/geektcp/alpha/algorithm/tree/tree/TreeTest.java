@@ -3,6 +3,7 @@ package com.geektcp.alpha.algorithm.tree.tree;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -12,6 +13,11 @@ import java.util.Stack;
 
 /**
  * Created by tanghaiyang on 2019/4/10.
+ *
+ * 造一棵树用于图查询结果的遍历
+ * arangodb的返回结果中可能带有重复节点，因为不同的方向的可能最终会重合
+ * 这样的节点在这棵树里面，把它当成属性完全相同的不同节点就可以了
+ * 最后寻找最短路径或者全路径，只需要判断终点的id是否是目的id即可
  */
 @Slf4j
 public class TreeTest {
@@ -25,86 +31,62 @@ public class TreeTest {
 //        GraphNode graphNodeRoot = buildTree2();
 //        GraphNode graphNodeRoot = buildTree3();
 
-//        JSONObject ret = new JSONObject();
-//        toString(graphNodeRoot, ret);
-//        log.info(JSON.toJSONString(ret, SerializerFeature.PrettyFormat));
+        JSONObject ret = new JSONObject();
+        this.toString(graphNodeRoot, ret);
+        log.info(JSON.toJSONString(ret, SerializerFeature.PrettyFormat));
 
         Stack<String> path = new Stack<>();
-//        Queue<String> path = new LinkedBlockingQueue<>();
-
         GraphNode dst = new GraphNode("vertex/13");
-        findTree(graphNodeRoot,path, dst);
+        int depth = 5;
+
+//        traverseDepthFirst(graphNodeRoot,path, dst, depth);
+
+        //相当于5层展开
+        traverseBreadthFirst(Lists.newArrayList(graphNodeRoot), path, dst, depth);
 
         printPath(graphNodeRoot);
-        log.info("graphNodeRoot: {}", graphNodeRoot);
     }
 
-
-    @Test
-    public void test2(){
-        GraphNode graphNode1 = new GraphNode("vertex/1");
-        GraphNode graphNode2 = new GraphNode("vertex/2");
-        GraphNode graphNode3 = new GraphNode("vertex/3");
-        GraphNode graphNode4 = new GraphNode("vertex/4");
-        GraphNode graphNode5 = new GraphNode("vertex/5");
-        GraphNode graphNode6 = new GraphNode("vertex/6");
-        GraphNode graphNode7 = new GraphNode("vertex/7");
-//        graphNode1.addPath(graphNode2);
-//        graphNode2.addPath(graphNode3);
-//        System.out.println(graphNode1.getPath());
-    }
 
     /*
     * 深度优先遍历
     * */
-    private boolean findTree(GraphNode node, Stack<String> path, GraphNode to) {
-//        log.info("push : {}", node.getVertexId());
+    private boolean traverseDepthFirst(GraphNode node, Stack<String> path, GraphNode to, int depth) {
+        if(depth==0) return true;
+        depth--;
         path.push(node.getVertexId());
-
         Stack<String> currentPath = new Stack<>();
         currentPath.addAll(path);
-        node.getPathList().add(currentPath);
+        node.addPath(currentPath);
         LinkedList<GraphNode> children = node.getChildren();
-
-        children.forEach(child->{
-            findTree(child, path, to);
-
-            //同一根节点的兄弟节点之间遍历要出栈
-            path.pop();
-        });
-
-        node.setTraversed(true);
-        return false;
+        for(GraphNode child:children){
+            traverseDepthFirst(child, path, to,depth);
+            path.pop();    //同一根节点的兄弟节点之间遍历要出栈
+        }
+        node.addTraverse();
+        return true;
     }
 
     /*
     * 广度优先遍历
     * */
-//    private boolean findTree2(GraphNode node, Stack<String> path, GraphNode to) {
-//        for(int i=0;i<10;i++){
-//            if (node.isArrived(to)) {
-//                LOG.info("path: {0}", path.toString());
-//                path.pop();
-//                return true;
-//            }else {
-//                LinkedList<GraphNode> subList = node.getChildren();
-//                if(subList.isEmpty()) {
-//                    LOG.info("path: {0}", path.toString());
-////                LOG.info("pop : {0}", node.getVertexId());
-//                    path.pop();
-//                    return false;
-//                } else {
-//                    for (int j = 0; i < subList.size(); i++) {
-//                        GraphNode subNode = subList.get(i);
-//                        findTree2(subNode, path, to);
-//                    }
-//                }
-//
-//            }
-//        }
-//
-//        return false;
-//    }
+    private boolean traverseBreadthFirst(List<GraphNode> nodeList, Stack<String> path, GraphNode to, int depth) {
+        if(depth==0) return true;
+        depth--;
+        for(GraphNode node:nodeList){
+            path.push(node.getVertexId());
+            Stack<String> currentPath = new Stack<>();
+            currentPath.addAll(path);
+            node.addPath(currentPath);
+            node.addTraverse();
+        }
+        for(GraphNode node:nodeList){
+            LinkedList<GraphNode> children = node.getChildren();
+            traverseBreadthFirst(children, path, to, depth);
+            path.pop();    //同一根节点的兄弟节点之间遍历要出栈
+        }
+        return true;
+    }
 
 
     /*
@@ -151,12 +133,11 @@ public class TreeTest {
         graphNode11.getChildren().add(graphNode12);
         graphNode11.getChildren().add(graphNode13);
 
-
         ////////////////////////////////
         graphNode3.getChildren().add(graphNode10);
         graphNode10.getChildren().add(graphNode13);
 
-        // 不能循环插入
+//        不能循环插入
 //        graphNode5.getChildren().add(graphNode2);
 
         return graphNodeRoot;
@@ -194,7 +175,6 @@ public class TreeTest {
         LinkedList<GraphNode> children = node.getChildren();
         children.forEach(child ->{
             toString(child, ret.getJSONObject(node.getVertexId()));
-//            ret.getJSONObject(node.getVertexId()).put(child.getVertexId(), new JSONObject());
         });
     }
 
@@ -225,21 +205,18 @@ public class TreeTest {
 
     private void printPath(GraphNode graphNode){
         List<Stack<String>> pathList = graphNode.getPathList();
-
         LinkedList<GraphNode> children = graphNode.getChildren();
         if(graphNode.isPrinted()) return;
-
-        log.info("++++++++++++++++vid: {} | path size: {}", graphNode.getVertexId(),pathList.size());
+//        log.info("++++++++++++++++vid: {} | path size: {}", graphNode.getVertexId(),pathList.size());
         if(children.isEmpty()) {
-            log.info("===========================");
+            log.info("");
+            log.info("vid: {} | pathList.size: {}", graphNode.getVertexId(), pathList.size());
             pathList.forEach(path -> {
-                log.info("pathList.size: {} | vid: {} | path: {}", pathList.size(), graphNode.getVertexId(), path);
+                log.info("path: {}", path);
                 graphNode.setPrinted(true);
             });
         }else {
-            children.forEach(child->{
-                printPath(child);
-            });
+            children.forEach(this::printPath);
         }
 
     }

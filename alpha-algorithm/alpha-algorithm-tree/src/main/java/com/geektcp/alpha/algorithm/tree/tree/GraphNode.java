@@ -1,13 +1,13 @@
 package com.geektcp.alpha.algorithm.tree.tree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import lombok.Data;
+
+import java.util.*;
 
 /**
  * Created by tanghaiyang on 2019/4/10.
  */
+@Data
 public class GraphNode {
     private String key;
     private String vertexId;
@@ -17,9 +17,15 @@ public class GraphNode {
 
     private String edgeId;
 
+    private boolean traversed = false;
+
+    private boolean printed = false;
+
     private LinkedList<GraphNode> children = new LinkedList<>();
 
-    private List<Stack<String>> pathList = new ArrayList<>();
+    private List<Stack<String>> pathList = new Stack<>();
+
+//    private Stack<String> path = new Stack<>();
 
     public GraphNode(String id){
         this.vertexId = id;
@@ -27,18 +33,6 @@ public class GraphNode {
 
     public boolean isArrived(GraphNode to){
         return this.vertexId.equals(to.getVertexId());
-    }
-
-    public String getVertexId(){
-        return this.vertexId;
-    }
-
-    public List<Stack<String>> getPath(){
-        return this.pathList;
-    }
-
-    public LinkedList<GraphNode> getChildren(){
-        return this.children;
     }
 
 

@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -20,12 +21,13 @@ public class TreeTest {
     * */
     @Test
     public void test() {
-//        GraphNode graphNodeRoot = buildTree();
-        GraphNode graphNodeRoot = buildTree2();
-        JSONObject ret = new JSONObject();
-        toString(graphNodeRoot, ret);
-        log.info(JSON.toJSONString(ret, SerializerFeature.PrettyFormat));
+        GraphNode graphNodeRoot = buildTree();
+//        GraphNode graphNodeRoot = buildTree2();
+//        GraphNode graphNodeRoot = buildTree3();
 
+//        JSONObject ret = new JSONObject();
+//        toString(graphNodeRoot, ret);
+//        log.info(JSON.toJSONString(ret, SerializerFeature.PrettyFormat));
 
         Stack<String> path = new Stack<>();
 //        Queue<String> path = new LinkedBlockingQueue<>();
@@ -33,6 +35,8 @@ public class TreeTest {
         GraphNode dst = new GraphNode("vertex/13");
         findTree(graphNodeRoot,path, dst);
 
+        printPath(graphNodeRoot);
+        log.info("graphNodeRoot: {}", graphNodeRoot);
     }
 
 
@@ -47,38 +51,29 @@ public class TreeTest {
         GraphNode graphNode7 = new GraphNode("vertex/7");
 //        graphNode1.addPath(graphNode2);
 //        graphNode2.addPath(graphNode3);
-        System.out.println(graphNode1.getPath());
+//        System.out.println(graphNode1.getPath());
     }
 
     /*
     * 深度优先遍历
     * */
     private boolean findTree(GraphNode node, Stack<String> path, GraphNode to) {
-        log.info("push : {0}", node.getVertexId());
-//        node.getPath().addPath(node);
-        if(node.getPath().isEmpty()){
-            node.getPath().add(path);
-        }else {
-            path = node.getPath().get(0);
-        }
-
+//        log.info("push : {}", node.getVertexId());
         path.push(node.getVertexId());
-        if (node.isArrived(to)) {
-//            LOG.info("path: {0}",  path.toString());
-            return true;
-        } else {
-            LinkedList<GraphNode> subList = node.getChildren();
-            if(subList.isEmpty()){
-                node.addPath(path);
-                log.info("path: {0}",  path.toString());
-                return false;
-            }else {
-                for (int i = 0; i < subList.size(); i++) {
-                    GraphNode subNode = subList.get(i);
-                    findTree(subNode, path, to);
-                }
-            }
-        }
+
+        Stack<String> currentPath = new Stack<>();
+        currentPath.addAll(path);
+        node.getPathList().add(currentPath);
+        LinkedList<GraphNode> children = node.getChildren();
+
+        children.forEach(child->{
+            findTree(child, path, to);
+
+            //同一根节点的兄弟节点之间遍历要出栈
+            path.pop();
+        });
+
+        node.setTraversed(true);
         return false;
     }
 
@@ -111,6 +106,14 @@ public class TreeTest {
 //        return false;
 //    }
 
+
+    /*
+    * 0,1,2,4
+    * 0,1,2,5,7,8
+    * 0,1,2,5,7,9,10,13
+    * 0,1,2,6
+    * 0,1,3,10,13
+    * */
     private GraphNode buildTree() {
         GraphNode graphNodeRoot = new GraphNode("vertex/0");
 
@@ -132,7 +135,6 @@ public class TreeTest {
         graphNodeRoot.getChildren().add(graphNode1);
         graphNode1.getChildren().add(graphNode2);
         graphNode1.getChildren().add(graphNode3);
-
 
         graphNode2.getChildren().add(graphNode4);
         graphNode2.getChildren().add(graphNode5);
@@ -167,20 +169,23 @@ public class TreeTest {
     * */
     private GraphNode buildTree2() {
         GraphNode graphNodeRoot = new GraphNode("vertex/0");
-
         GraphNode graphNode1 = new GraphNode("vertex/1");
         GraphNode graphNode2 = new GraphNode("vertex/2");
         GraphNode graphNode4 = new GraphNode("vertex/4");
         GraphNode graphNode5 = new GraphNode("vertex/5");
-
         graphNodeRoot.getChildren().add(graphNode1);
         graphNodeRoot.getChildren().add(graphNode2);
-
-
         graphNode1.getChildren().add(graphNode4);
         graphNode4.getChildren().add(graphNode5);
+        return graphNodeRoot;
+    }
 
-
+    private GraphNode buildTree3() {
+        GraphNode graphNodeRoot = new GraphNode("vertex/0");
+        GraphNode graphNode1 = new GraphNode("vertex/1");
+        GraphNode graphNode2 = new GraphNode("vertex/2");
+        graphNodeRoot.getChildren().add(graphNode1);
+        graphNodeRoot.getChildren().add(graphNode2);
         return graphNodeRoot;
     }
 
@@ -215,6 +220,28 @@ public class TreeTest {
         System.out.println(stack);
         stack.remove(stack.size()-1);
         System.out.println(stack);
+    }
+
+
+    private void printPath(GraphNode graphNode){
+        List<Stack<String>> pathList = graphNode.getPathList();
+
+        LinkedList<GraphNode> children = graphNode.getChildren();
+        if(graphNode.isPrinted()) return;
+
+        log.info("++++++++++++++++vid: {} | path size: {}", graphNode.getVertexId(),pathList.size());
+        if(children.isEmpty()) {
+            log.info("===========================");
+            pathList.forEach(path -> {
+                log.info("pathList.size: {} | vid: {} | path: {}", pathList.size(), graphNode.getVertexId(), path);
+                graphNode.setPrinted(true);
+            });
+        }else {
+            children.forEach(child->{
+                printPath(child);
+            });
+        }
+
     }
 
 }

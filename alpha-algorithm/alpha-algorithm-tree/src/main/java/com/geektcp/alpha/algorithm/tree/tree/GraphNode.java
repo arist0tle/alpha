@@ -9,6 +9,7 @@ import java.util.*;
  */
 @Data
 public class GraphNode {
+
     private String key;
     private String vertexId;
 
@@ -27,7 +28,6 @@ public class GraphNode {
         this.vertexId = id;
     }
 
-
     public void addPath(Stack<String> path){
         pathList.add(path);
     }
@@ -35,6 +35,5 @@ public class GraphNode {
     public void addTraverse(){
         this.traverse++;
     }
-
 
 }

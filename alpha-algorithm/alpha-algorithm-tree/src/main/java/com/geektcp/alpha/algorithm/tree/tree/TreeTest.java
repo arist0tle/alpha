@@ -21,7 +21,6 @@ import java.util.Stack;
  */
 @Slf4j
 public class TreeTest {
-
     /*
     * path: 1,2,5,7
     * */
@@ -46,7 +45,6 @@ public class TreeTest {
 
         printPath(graphNodeRoot);
     }
-
 
     /*
     * 深度优先遍历
@@ -87,7 +85,6 @@ public class TreeTest {
         }
         return true;
     }
-
 
     /*
     * 0,1,2,4
@@ -133,16 +130,14 @@ public class TreeTest {
         graphNode11.getChildren().add(graphNode12);
         graphNode11.getChildren().add(graphNode13);
 
-        ////////////////////////////////
         graphNode3.getChildren().add(graphNode10);
         graphNode10.getChildren().add(graphNode13);
 
-//        不能循环插入
+        ///// 禁止循环插入，遍历时导致死循环 /////
 //        graphNode5.getChildren().add(graphNode2);
 
         return graphNodeRoot;
     }
-
 
     /*
     * 0,1,4,5
@@ -177,31 +172,6 @@ public class TreeTest {
             toString(child, ret.getJSONObject(node.getVertexId()));
         });
     }
-
-    @Test
-    public void testStack(){
-        Stack<Integer> stack = new Stack<>();
-        stack.push(1);
-        stack.push(2);
-        stack.push(3);
-        stack.pop();
-        System.out.println(stack);
-        stack.pop();
-        System.out.println(stack);
-    }
-
-    @Test
-    public void testStack1(){
-        Stack<Integer> stack = new Stack<>();
-        stack.push(1);
-        stack.push(2);
-        stack.push(3);
-        stack.remove(stack.size()-1);
-        System.out.println(stack);
-        stack.remove(stack.size()-1);
-        System.out.println(stack);
-    }
-
 
     private void printPath(GraphNode graphNode){
         List<Stack<String>> pathList = graphNode.getPathList();

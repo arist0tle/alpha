@@ -12,7 +12,6 @@ public class GraphNode {
 
     private String key;
     private String vertexId;
-
     private String edgeId;
 
     // 遍历次数

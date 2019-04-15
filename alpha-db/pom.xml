@@ -12,12 +12,12 @@
     <artifactId>alpha-db</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>alpha-db-arango</module>
         <module>alpha-db-mongo</module>
         <module>alpha-db-es</module>
         <module>alpha-db-neo4j</module>
         <module>alpha-db-sqlite</module>
         <module>alpha-db-tigergraph</module>
+        <module>alpha-db-arango</module>
     </modules>
 
 

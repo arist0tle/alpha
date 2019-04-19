@@ -5,6 +5,7 @@ import com.arangodb.entity.CollectionEntity;
 import com.arangodb.velocypack.VPackSlice;
 import com.arangodb.velocypack.exception.VPackException;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -18,18 +19,20 @@ public class DriverImportTest {
     private String dbName = "test";
     private String collectionName = "firstCollection";
 
-    @Test
-    public void test(){
+//    private String host = "43.247.68.115";
+    private String host = "192.168.1.176";
+
+    @Before
+    public void buildClient(){
         arangoDB = new ArangoDB.Builder()
-                .host("43.247.68.115",8529)
+                .host(host,8529)
                 .user("root")
                 .password("123456")
                 .build();
-        log.info("start");
-//        createDatabase();
-        createCollection();
     }
 
+
+    @Test
     public void createDatabase() {
         try {
             arangoDB.createDatabase(dbName);
@@ -40,6 +43,7 @@ public class DriverImportTest {
 
     }
 
+    @Test
     public void createCollection() {
         try {
             CollectionEntity myArangoCollection = arangoDB.db(dbName).createCollection(collectionName);
@@ -77,20 +81,7 @@ public class DriverImportTest {
         return myDocument;
     }
 
-    public BaseDocument readDocument(){
-        BaseDocument myObject = null;
-        try {
-            myObject = arangoDB.db(dbName).collection(collectionName).getDocument("myKey",
-                    BaseDocument.class);
-            System.out.println("Key: " + myObject.getKey());
-            System.out.println("Attribute a: " + myObject.getAttribute("a"));
-            System.out.println("Attribute b: " + myObject.getAttribute("b"));
-            System.out.println("Attribute c: " + myObject.getAttribute("c"));
-        } catch (ArangoDBException e) {
-            System.err.println("Failed to get document: myKey; " + e.getMessage());
-        }
-        return myObject;
-    }
+
 
     public void updateDocument(){
         //get the document
@@ -106,6 +97,21 @@ public class DriverImportTest {
         readDocument();
     }
 
+    private BaseDocument readDocument(){
+        BaseDocument myObject = null;
+        try {
+            myObject = arangoDB.db(dbName).collection(collectionName).getDocument("myKey",
+                    BaseDocument.class);
+            System.out.println("Key: " + myObject.getKey());
+            System.out.println("Attribute a: " + myObject.getAttribute("a"));
+            System.out.println("Attribute b: " + myObject.getAttribute("b"));
+            System.out.println("Attribute c: " + myObject.getAttribute("c"));
+        } catch (ArangoDBException e) {
+            System.err.println("Failed to get document: myKey; " + e.getMessage());
+        }
+        return myObject;
+    }
+
     public void deleteDocument(){
         try {
             arangoDB.db(dbName).collection(collectionName).deleteDocument("myKey");
@@ -113,4 +119,7 @@ public class DriverImportTest {
             System.err.println("Failed to delete document. " + e.getMessage());
         }
     }
+
+
+
 }

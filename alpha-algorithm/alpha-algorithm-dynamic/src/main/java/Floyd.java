@@ -4,11 +4,11 @@ import lombok.extern.slf4j.Slf4j;
  * Created by tanghaiyang on 2019/4/24.
  */
 @Slf4j
-public class Floyd2 {
+public class Floyd {
     private int[][] length = null;  // 任意两点之间路径长度
     private int[][][] path = null;  // 任意两点之间的路径
 
-    public Floyd2(int[][] G) {
+    public Floyd(int[][] G) {
         int MAX = 100;
         int row = G.length; // 图G的行数
         int[][] spot = new int[row][row];   // 定义任意两点之间经过的点
@@ -84,7 +84,7 @@ public class Floyd2 {
             for (int j = i; j < data.length; j++)
                 if (data[i][j] != data[j][i]) return;
 
-        Floyd2 test = new Floyd2(data);
+        Floyd test = new Floyd(data);
         for (int i = 0; i < data.length; i++)
             for (int j = i; j < data[i].length; j++) {
                 log.info("||||||||||");

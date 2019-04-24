@@ -91,6 +91,7 @@ public class Floyd {
                 log.info("From " + i + " to " + j + " path is: ");
                 for (int k = 0; k < test.path[i][j].length; k++)
                     log.info(test.path[i][j][k] + " ");
+                log.info("path:{}",test.path);
                 log.info("==============");
                 log.info("From " + i + " to " + j + " length :" + test.length[i][j]);
             }

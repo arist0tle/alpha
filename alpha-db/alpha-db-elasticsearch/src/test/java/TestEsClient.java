@@ -1,30 +1,20 @@
-package com.geektcp.alpha.db.elasticsearch;
-
+import com.geektcp.alpha.db.elasticsearch.Application;
 import com.geektcp.alpha.db.elasticsearch.rest.client.EsRestClient;
 import org.elasticsearch.client.RestClient;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * Created by tanghaiyang on 2019/5/5.
  */
-@SpringBootApplication
-@EnableCaching
-@ServletComponentScan
-@EnableScheduling
-@EnableJpaAuditing
-@EnableJpaRepositories("com.geektcp.alpha")
-@EntityScan("com.geektcp.alpha")
-@ComponentScan("com.geektcp.alpha")
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class)
+@ActiveProfiles(profiles = "")
 public class TestEsClient {
 
     @Autowired

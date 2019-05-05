@@ -18,6 +18,7 @@
         <module>alpha-db-sqlite</module>
         <module>alpha-db-tigergraph</module>
         <module>alpha-db-arango</module>
+        <module>alpha-db-elasticsearch</module>
     </modules>
 
 

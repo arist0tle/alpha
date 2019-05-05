@@ -11,5 +11,44 @@
 
     <artifactId>alpha-db-elasticsearch</artifactId>
 
+    <properties>
+        <elasticsearch.version>5.4.3</elasticsearch.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.geektcp.alpha</groupId>
+            <artifactId>alpha-common-base</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.geektcp.alpha</groupId>
+            <artifactId>alpha-util-http</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.geektcp.alpha</groupId>
+            <artifactId>alpha-common-spring</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <!-- 需要单独在每个工程里面直接引入 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <!--<scope>test</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>transport</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>rest</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

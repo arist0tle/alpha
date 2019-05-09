@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * Created by chengmo on 2018/1/4.
+ * Created by tanghaiyang on 2018/1/4.
  */
 @SpringBootApplication
 @EnableCaching

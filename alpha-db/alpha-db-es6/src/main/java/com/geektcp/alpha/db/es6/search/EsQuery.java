@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.*;
 
 /**
- * Created by chengmo on 2019/4/30.
+ * Created by tanghaiyang on 2019/4/30.
  */
 @Data
 public class EsQuery {

@@ -16,7 +16,7 @@ import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 
 /**
- * Created by chengmo on 2018/1/4.
+ * Created by tanghaiyang on 2018/1/4.
  */
 //@Configuration
 public class ShiroConfig {

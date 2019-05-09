@@ -5,7 +5,7 @@ import org.apache.shiro.crypto.hash.Sha1Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
 
 /**
- * Created by chengmo on 18/2/2.
+ * Created by tanghaiyang on 18/2/2.
  */
 public class AuthUtils {
 

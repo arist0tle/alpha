@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by chengmo on 2018/1/4.
+ * Created by tanghaiyang on 2018/1/4.
  */
 @Data
 public class UserRoleVo extends UserVo implements Serializable {

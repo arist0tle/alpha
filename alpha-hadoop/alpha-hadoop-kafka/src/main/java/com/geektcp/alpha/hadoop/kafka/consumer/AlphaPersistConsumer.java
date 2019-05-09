@@ -7,7 +7,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 
 /**
- * Created by chengmo on 2018/10/29.
+ * Created by tanghaiyang on 2018/10/29.
  */
 @Slf4j
 //@Component

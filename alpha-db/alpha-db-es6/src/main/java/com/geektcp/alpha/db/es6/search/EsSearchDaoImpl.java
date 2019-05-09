@@ -1,6 +1,6 @@
 package com.geektcp.alpha.db.es6.search;
 
-import com.haizhi.graph.lab.es6.client.EsClient;
+import com.geektcp.alpha.db.es6.client.EsClient;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

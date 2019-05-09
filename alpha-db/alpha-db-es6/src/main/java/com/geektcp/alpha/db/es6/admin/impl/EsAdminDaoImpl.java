@@ -1,10 +1,9 @@
 package com.geektcp.alpha.db.es6.admin.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.haizhi.graph.common.log.GLog;
-import com.haizhi.graph.common.log.LogFactory;
-import com.haizhi.graph.lab.es6.admin.EsAdminDao;
-import com.haizhi.graph.lab.es6.client.EsClient;
+import com.geektcp.alpha.db.es6.admin.EsAdminDao;
+import com.geektcp.alpha.db.es6.client.EsClient;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.nio.entity.NStringEntity;
@@ -22,9 +21,9 @@ import java.util.Map;
 /**
  * Created by tanghaiyang on 2019/5/7.
  */
+@Slf4j
 public class EsAdminDaoImpl implements EsAdminDao {
 
-    private static final GLog LOG = LogFactory.getLogger(EsAdminDaoImpl.class);
 
     @Autowired
     private EsClient esClient;
@@ -61,7 +60,7 @@ public class EsAdminDaoImpl implements EsAdminDao {
             HttpEntity entity = new NStringEntity(source, ContentType.APPLICATION_JSON);
             Response response =  esClient.getRestClient().performRequest("PUT", index, Collections.<String, String>emptyMap(),
                     entity);
-            LOG.info("responce: {0}", JSON.toJSONString(response,true));
+            log.info("responce: {0}", JSON.toJSONString(response,true));
             return true;
         }catch (Exception e){
             e.printStackTrace();

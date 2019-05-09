@@ -1,18 +1,7 @@
 package com.geektcp.alpha.db.es6.example;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.ThreadLocalRandom;
-
-import com.haizhi.graph.common.util.FileUtils;
+import alpha.common.base.util.FileUtils;
+import com.google.gson.Gson;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -29,7 +18,12 @@ import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class RestClientTest {

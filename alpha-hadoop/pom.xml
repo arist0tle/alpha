@@ -16,10 +16,10 @@
         <module>alpha-hadoop-hdfs</module>
         <module>alpha-hadoop-hive</module>
         <module>alpha-hadoop-kafka</module>
-        <module>alpha-hadoop-hbase</module>
         <module>alpha-hadoop-flume</module>
         <module>alpha-hadoop-mapreduce</module>
         <module>alpha-hadoop-zookeeper</module>
+        <module>alpha-hadoop-hbase</module>
     </modules>
 
 

@@ -1,2 +1,2 @@
-# code repository
+# public code repository
 

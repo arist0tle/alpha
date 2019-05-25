@@ -11,11 +11,3 @@ geektcp
 
 # Experience
 
-
-# future
-
-
-# test
-
-
-# case

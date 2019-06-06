@@ -1,10 +1,9 @@
-package com.geektcp.alpha.db.es6.client;
+package com.geektcp.alpha.db.es6.dao;
 
 import alpha.common.base.model.Response;
 import com.alibaba.fastjson.JSON;
-import com.geektcp.alpha.db.es6.bean.StoreURL;
-import com.geektcp.alpha.db.es6.dao.EsIndexDao;
 import com.geektcp.alpha.db.es6.bean.Source;
+import com.geektcp.alpha.db.es6.bean.StoreURL;
 import com.geektcp.alpha.db.es6.util.DataUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;

@@ -1,7 +1,7 @@
 package com.geektcp.alpha.db.es6.bean;
 
 /**
- * Created by chengmo on 2018/1/11.
+ * Created by nagle on 2018/1/11.
  */
 public enum UpdateMode {
     INCREMENT("+="),            //Increment

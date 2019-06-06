@@ -7,7 +7,7 @@ import com.geektcp.alpha.db.es6.bean.Source;
 import java.util.List;
 
 /**
- * Created by chengmo on 2017/12/28.
+ * Created by nagle on 2017/12/28.
  */
 public interface EsIndexDao {
 

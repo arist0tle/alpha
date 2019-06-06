@@ -13,13 +13,15 @@ public class EsQuery {
     private String keyword;
     private int pageNo = 1;
     private int pageSize = 10;
-    private Set<String> schemas;
+    private Set<String> types;
+    private Map<String, Object> schemas;
     private Map<String, Object> option;
     private List<Map<String, Object>> query;
     private Map<String, Object> filter;
     private List<Map<String, Object>> sort;
     private List<Map<String, Object>> aggregation;
     private Set<String> fields;
+    private int timeout = 15;
 
     /* log */
     private boolean debugEnabled;

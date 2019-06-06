@@ -1,7 +1,7 @@
 package com.geektcp.alpha.db.es6.bean.mapping;
 
 /**
- * Created by chengmo on 2017/12/28.
+ * Created by nagle on 2017/12/28.
  */
 public enum DataType {
 

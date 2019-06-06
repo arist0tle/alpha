@@ -87,6 +87,19 @@ public class EsSearchDaoImpl implements EsSearchDao {
         return null;
     }
 
+    @Override
+    public List<EsQueryResult> searchByDSL(StoreURL storeURL, String queryDSL) {
+        try {
+            RestClient restClient = this.getClient(storeURL);
+            String url = storeURL.getUrl();
+            HttpEntity entity = new NStringEntity(queryDSL, ContentType.APPLICATION_JSON);
+            Response response = restClient.performRequest(METHOD.POST, "/es6_test16/_search", Collections.emptyMap(), entity);
+            log.info("response:\n{}", JSON.toJSONString(JSONObject.parseObject(EntityUtils.toString(response.getEntity())),true));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     //////////////////////////////////
     private EsQueryResult rawSearch(StoreURL storeURL, EsQuery esQuery){

@@ -1,4 +1,7 @@
-package com.geektcp.alpha.db.es6.search;
+package com.geektcp.alpha.db.es6.dao;
+
+import com.geektcp.alpha.db.es6.model.EsQuery;
+import com.geektcp.alpha.db.es6.model.EsQueryResult;
 
 import java.util.List;
 

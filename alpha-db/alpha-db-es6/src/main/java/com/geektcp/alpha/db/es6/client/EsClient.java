@@ -101,7 +101,7 @@ public class EsClient {
 //            LOG.info("The RestClient has been created !");
 //            //restClient.setHosts(hostArray);
 //        } catch (Exception e) {
-//            LOG.error("failed to create client of elasticsearch server cluster[{0}] url[{1}].\n", e, clusterName, url);
+//            LOG.error("failed to create client of elasticsearch server cluster[{}] url[{}].\n", e, clusterName, url);
 //        }
 //        return restClient;
 //    }

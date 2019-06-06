@@ -90,9 +90,9 @@ public class EsRestClient {
         try {
             List<HttpHost> httpHosts = buildHost(storeURL);
             restClient = RestClient.builder(httpHosts.toArray(new HttpHost[]{})).build();
-            log.info("success to create elasticsearch rest client url[{0}]", storeURL.getUrl());
+            log.info("success to create elasticsearch rest client url[{}]", storeURL.getUrl());
         } catch (Exception e) {
-            log.error("failed to create elasticsearch rest client url[{0}].\n", e, storeURL.getUrl());
+            log.error("failed to create elasticsearch rest client url[{}].\n", e, storeURL.getUrl());
         }
         return restClient;
     }
@@ -100,16 +100,14 @@ public class EsRestClient {
     private RestClientBuilder getRestClientBuilder(StoreURL storeURL) {
         RestClientBuilder restClientBuilder = null;
         try {
-            System.setProperty("es.security.indication", "false");
-            setSecConfig(storeURL);
             Header[] defaultHeaders = new Header[]{new BasicHeader("Accept", "application/json"),
                     new BasicHeader("Content-type", "application/json")};
             List<HttpHost> hostList = buildHostNew(storeURL);
             restClientBuilder = RestClient.builder(hostList.toArray(new HttpHost[]{}))
                     .setDefaultHeaders(defaultHeaders);
-            log.info("success to create elasticsearch rest client url[{0}]", storeURL.getUrl());
+            log.info("success to create elasticsearch rest client url[{}]", storeURL.getUrl());
         } catch (Exception e) {
-            log.error("failed to create elasticsearch rest client url[{0}].\n", e, storeURL.getUrl());
+            log.error("failed to create elasticsearch rest client url[{}].\n", e, storeURL.getUrl());
         }
         return restClientBuilder;
     }
@@ -127,7 +125,7 @@ public class EsRestClient {
 
         for (String host : hostArray) {
             String[] ipPort = host.split(":");
-            HttpHost hostNew = new HttpHost(ipPort[0], Integer.valueOf(ipPort[1]), "https");
+            HttpHost hostNew = new HttpHost(ipPort[0], Integer.valueOf(ipPort[1]), "http");
             hostList.add(hostNew);
         }
         return hostList;
@@ -168,49 +166,4 @@ public class EsRestClient {
         return tcpUrl;
     }
 
-
-    ////////////////////////////
-    private static void setSecConfig(StoreURL storeURL) throws Exception {
-        String krb5ConfFile = storeURL.getFilePath().get("krb5.conf");
-        log.info("krb5ConfFile: " + krb5ConfFile);
-        System.setProperty("java.security.krb5.conf", krb5ConfFile);
-
-        String jaasPath = storeURL.getFilePath().get("jaas.conf");
-        modifyJaasConfigFile(jaasPath, storeURL);
-
-        log.info("jaasPath: " + jaasPath);
-        System.setProperty("java.security.auth.login.config", jaasPath);
-        System.setProperty("javax.security.auth.useSubjectCredsOnly", "false");
-
-        System.setProperty("es.security.indication", "true");
-        log.info("es.security.indication is  " + System.getProperty("es.security.indication"));
-
-    }
-
-    private static void modifyJaasConfigFile(String jaasPath, StoreURL storeURL) throws IOException {
-        File jaasFile = new File(jaasPath);
-        StringBuilder stringBuilder = new StringBuilder();
-        try (FileReader reader = new FileReader(jaasFile);
-             BufferedReader bufferedReader = new BufferedReader(reader)) {
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                if (stringBuilder.length() != 0) {
-                    stringBuilder.append('\n');
-                }
-                if (line.trim().startsWith("principal")) {
-                    line = "principal=\"" + storeURL.getUserPrincipal() + "\"";
-                }
-                if (line.trim().startsWith("keyTab")) {
-                    line = "keyTab=\"" + storeURL.getFilePath().get("user.keytab") + "\"";
-                }
-                stringBuilder.append(line.trim());
-            }
-        }
-        try (FileWriter fileWriter = new FileWriter(jaasPath)) {
-            fileWriter.write("");
-            fileWriter.flush();
-            fileWriter.write(stringBuilder.toString());
-            fileWriter.flush();
-        }
-    }
 }

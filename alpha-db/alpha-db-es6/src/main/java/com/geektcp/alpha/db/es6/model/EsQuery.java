@@ -1,4 +1,4 @@
-package com.geektcp.alpha.db.es6.search;
+package com.geektcp.alpha.db.es6.model;
 
 import lombok.Data;
 

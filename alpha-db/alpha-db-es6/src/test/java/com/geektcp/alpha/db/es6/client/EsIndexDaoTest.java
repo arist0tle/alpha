@@ -3,8 +3,9 @@ package com.geektcp.alpha.db.es6.client;
 import alpha.common.base.model.Response;
 import com.alibaba.fastjson.JSON;
 import com.geektcp.alpha.db.es6.bean.StoreURL;
-import com.geektcp.alpha.db.es6.index.EsIndexDao;
-import com.geektcp.alpha.db.es6.index.bean.Source;
+import com.geektcp.alpha.db.es6.dao.EsIndexDao;
+import com.geektcp.alpha.db.es6.bean.Source;
+import com.geektcp.alpha.db.es6.util.DataUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +29,6 @@ import java.util.Map;
 @ActiveProfiles(profiles = "")
 public class EsIndexDaoTest {
 
-
     @Autowired
     private EsIndexDao esIndexDao;
 
@@ -39,49 +39,46 @@ public class EsIndexDaoTest {
     @Before
     public void init(){
         storeURL = new StoreURL();
-//        storeURL.setUrl("192.168.1.101:9200");
-//        storeURL.setSecurityEnabled(false);
-
-        storeURL.setUrl("192.168.1.223:24148,192.168.1.224:24148,192.168.1.225:24148");
-        storeURL.getFilePath().put("krb5.conf", "/Users/haizhi/git/gp/graph/graph-server/graph-server-es6/src/test/resources/fi/krb5.conf");
-        storeURL.getFilePath().put("jaas.conf", "/Users/haizhi/git/gp/graph/graph-server/graph-server-es6/src/test/resources/fi/jaas.conf");
-        storeURL.getFilePath().put("user.keytab", "/Users/haizhi/git/gp/graph/graph-server/graph-server-es6/src/test/resources/fi/user.keytab");
-        storeURL.setSecurityEnabled(true);
+        storeURL.setUrl("192.168.1.101:9200");
     }
 
     @Test
     public void testConnect(){
-        esIndexDao.testConnect(storeURL);
+        try {
+            esIndexDao.testConnect(storeURL);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Test
     public void existsIndex(){
         boolean ret = esIndexDao.existsIndex(storeURL, index);
-        log.info("existsIndex: {0}", ret);
+        log.info("existsIndex: {}", ret);
     }
 
     @Test
     public void existsType(){
         boolean ret = esIndexDao.existsType(storeURL, index,type);
-        log.info("existsType: {0}", ret);
+        log.info("existsType: {}", ret);
     }
 
     @Test
     public void createIndex(){
         boolean ret = esIndexDao.createIndex(storeURL,index);
-        log.info("createIndex: {0}", ret);
+        log.info("createIndex: {}", ret);
     }
 
     @Test
     public void deleteIndex(){
         boolean ret = esIndexDao.deleteIndex(storeURL,index);
-        log.info("deleteIndex: {0}", ret);
+        log.info("deleteIndex: {}", ret);
     }
 
     @Test
     public void createType(){
         boolean ret = esIndexDao.createType(storeURL,index,type);
-        log.info("createType: {0}", ret);
+        log.info("createType: {}", ret);
     }
 
     @Test
@@ -94,9 +91,27 @@ public class EsIndexDaoTest {
         map.put("reg_address", "shenzhen");
         source.setSource(map);
         sourceList.add(source);
-        log.info("sourceList: {0}", JSON.toJSONString(sourceList,true));
-        Response ret = esIndexDao.bulkUpsert(storeURL,index + "." + type, type,sourceList);
-        log.info("bulkUpsert:\n{0}", JSON.toJSONString(ret,true));
+        log.info("sourceList: {}", JSON.toJSONString(sourceList,true));
+        Response ret = esIndexDao.bulkUpsert(storeURL,index, type,sourceList);
+        log.info("bulkUpsert:\n{}", JSON.toJSONString(ret,true));
+    }
+
+    @Test
+    public void bulkInit(){
+        List<Source> sourceList = new ArrayList<>();
+        for (int i=1;i<=100;i++) {
+            Source source = new Source();
+            source.setId(String.valueOf(i));
+            Map<String, Object> map = new HashMap<>();
+            map.put("name", DataUtil.getRandomString(4));
+            map.put("age", DataUtil.getRandomInt(2));
+            map.put("reg_address", DataUtil.getRandomString(10));
+            source.setSource(map);
+            sourceList.add(source);
+        }
+        log.info("sourceList: {}", JSON.toJSONString(sourceList,true));
+        Response ret = esIndexDao.bulkUpsert(storeURL, index, type, sourceList);
+        log.info("bulkUpsert:\n{}", JSON.toJSONString(ret,true));
     }
 
     @Test
@@ -110,7 +125,7 @@ public class EsIndexDaoTest {
         source.setSource(map);
         sourceList.add(source);
         Response ret =  esIndexDao.delete(storeURL, index, type, sourceList);
-        log.info("delete:\n{0}", JSON.toJSONString(ret,true));
+        log.info("delete:\n{}", JSON.toJSONString(ret,true));
     }
 
 }

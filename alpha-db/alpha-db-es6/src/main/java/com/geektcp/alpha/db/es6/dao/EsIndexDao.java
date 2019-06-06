@@ -1,8 +1,8 @@
-package com.geektcp.alpha.db.es6.index;
+package com.geektcp.alpha.db.es6.dao;
 
 import alpha.common.base.model.Response;
 import com.geektcp.alpha.db.es6.bean.StoreURL;
-import com.geektcp.alpha.db.es6.index.bean.Source;
+import com.geektcp.alpha.db.es6.bean.Source;
 
 import java.util.List;
 

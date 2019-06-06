@@ -1,4 +1,4 @@
-package com.geektcp.alpha.util.rule;
+package com.geektcp.alpha.antlr.rule;
 
 import com.ql.util.express.DefaultContext;
 import com.ql.util.express.ExpressRunner;

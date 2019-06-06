@@ -1,9 +1,7 @@
 package com.geektcp.alpha.db.es6.index.mapping;
 
 import com.alibaba.fastjson.JSON;
-import com.haizhi.graph.common.log.GLog;
-import com.haizhi.graph.common.log.LogFactory;
-import com.haizhi.graph.server.api.es.index.mapping.Analyzers;
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 
@@ -12,9 +10,9 @@ import java.io.IOException;
 /**
  * Created by chengmo on 2017/12/01.
  */
+@Slf4j
 public class Template {
 
-    private static final GLog Log = LogFactory.getLogger(Template.class);
 
     public static XContentBuilder getSettings() {
         XContentBuilder xb = null;
@@ -81,7 +79,7 @@ public class Template {
                 .endArray()
             .endObject();
         } catch (IOException e) {
-            Log.error(e);
+            log.error(e.getMessage());
         }
         return xb;
     }

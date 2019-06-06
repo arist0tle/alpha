@@ -15,7 +15,7 @@ public class Resource {
     public static String getActiveProfile() {
         Environment env = SpringContext.getEnv();
         String activeProfile = env.getActiveProfiles()[0];
-        return MessageFormat.format("application-{0}.properties", activeProfile);
+        return MessageFormat.format("application-{}.properties", activeProfile);
     }
 
     public static String getPath(String resourceLocation) {

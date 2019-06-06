@@ -1,11 +1,12 @@
-package com.geektcp.alpha.db.es6.index;
+package com.geektcp.alpha.db.es6.dao.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.geektcp.alpha.db.es6.bean.Source;
 import com.geektcp.alpha.db.es6.bean.StoreURL;
+import com.geektcp.alpha.db.es6.bean.mapping.Template;
 import com.geektcp.alpha.db.es6.client.EsRestClient;
-import com.geektcp.alpha.db.es6.index.bean.Source;
-import com.geektcp.alpha.db.es6.index.mapping.Template;
+import com.geektcp.alpha.db.es6.dao.EsIndexDao;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
@@ -86,7 +87,7 @@ public class EsIndexDaoImpl implements EsIndexDao {
             String source = request.source().utf8ToString();
             HttpEntity entity = new NStringEntity(source, ContentType.APPLICATION_JSON);
             Response response = client.performRequest(PUT, index, Collections.<String, String>emptyMap(), entity);
-            log.info("response: \n{0}", JSON.toJSONString(response, true));
+            log.info("response: \n{}", JSON.toJSONString(response, true));
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,18 +122,18 @@ public class EsIndexDaoImpl implements EsIndexDao {
             IndexRequest request = new IndexRequest(index, type).source(Template.getTypeMapping());
             request.opType(DocWriteRequest.OpType.CREATE);
             String source = request.source().utf8ToString();
-            log.info("source :\n{0}", JSON.toJSONString(JSONObject.parseObject(source), true));
+            log.info("source :\n{}", JSON.toJSONString(JSONObject.parseObject(source), true));
             HttpEntity entity = new NStringEntity(source, ContentType.APPLICATION_JSON);
             Response response = client.performRequest(PUT, url, Collections.<String, String>emptyMap(), entity);
 
             if (RestStatus.OK.getStatus() == response.getStatusLine().getStatusCode()) {
-                log.info("Success to create type[{0}/{1}]", index, type);
+                log.info("Success to create type[{}/{}]", index, type);
             } else {
                 return false;
             }
             return true;
         } catch (Exception e) {
-            log.error("Failed to create type[{0}/{1}]\n", e, 1, type);
+            log.error("Failed to create type[{}/{}]\n", e, 1, type);
         }
         return false;
     }
@@ -154,21 +155,18 @@ public class EsIndexDaoImpl implements EsIndexDao {
             BulkResponse bulkResponse = highLevelClient.bulk(bulkRequest);
             if (bulkResponse.hasFailures()) {
                 cudResponse.setSuccess(false);
-                log.error("upsert failed {0}|{1}|{2}|{3} ", index, type, bulkResponse.buildFailureMessage(),
+                log.error("upsert failed {}|{}|{}|{3} ", index, type, bulkResponse.buildFailureMessage(),
                         sourceList.size());
             } else {
                 cudResponse.setSuccess(true);
-                log.info("Success to bulk upsert [{0}] records with type[{1}/{2}]", index, type, sourceList.size());
+                log.info("Success to bulk upsert [{}] records with type[{}/{}]", index, type, sourceList.size());
             }
         } catch (Exception e) {
             cudResponse.setSuccess(false);
-            log.error("Failed to bulk upsert with type[{0}/{1}]", e, index, type, JSON.toJSONString(sourceList));
+            log.error("Failed to bulk upsert with type[{}/{}]", e, index, type, JSON.toJSONString(sourceList));
         }
         return cudResponse;
     }
-
-
-
 
     @Override
     public alpha.common.base.model.Response delete(StoreURL storeURL, String index, String type, List<Source> sources) {
@@ -187,15 +185,15 @@ public class EsIndexDaoImpl implements EsIndexDao {
             }
             BulkResponse bulkResponse = highLevelClient.bulk(bulkRequest);
             if (bulkResponse.hasFailures()) {
-                log.error("One or more indexes delete failed with type[{0}/{1}] due to:\n{2}\n{3}",
+                log.error("One or more indexes delete failed with type[{}/{}] due to:\n{}\n{3}",
                         index, type, bulkResponse.buildFailureMessage(), JSON.toJSONString(sources, true));
             } else {
                 cudResponse.setSuccess(true);
-                log.info("Success to bulk delete [{0}] records for type[{1}/{2}].", sources.size(), index, type);
+                log.info("Success to bulk delete [{}] records for type[{}/{}].", sources.size(), index, type);
             }
         } catch (Exception e) {
             cudResponse.setSuccess(false);
-            log.error("Failed to bulk delete [{0}] records with type[{1}/{2}],data:\n{3}", e,
+            log.error("Failed to bulk delete [{}] records with type[{}/{}],data:\n{3}", e,
                     sources.size(), index, type, JSON.toJSONString(sources, true));
         }
         return cudResponse;

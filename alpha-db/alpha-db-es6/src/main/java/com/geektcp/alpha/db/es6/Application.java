@@ -13,8 +13,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableCaching
 @EnableScheduling
-@EntityScan({"com.haizhi.graph"})
-@ComponentScan({"com.haizhi.graph"})
+@EntityScan({"com.geektcp.alpha"})
+@ComponentScan({"com.geektcp.alpha"})
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

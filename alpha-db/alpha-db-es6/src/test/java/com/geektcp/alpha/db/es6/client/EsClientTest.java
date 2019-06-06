@@ -1,5 +1,6 @@
+package com.geektcp.alpha.db.es6.client;
+
 import com.geektcp.alpha.db.es6.Application;
-import com.geektcp.alpha.db.es6.client.EsClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -80,7 +81,7 @@ public class EsClientTest {
         Header[] headers = response.getHeaders();
         HttpEntity httpEntity =  response.getEntity();
         String responseBody = EntityUtils.toString(httpEntity);
-        log.info("responseBody:\n{0}",responseBody);
+        log.info("responseBody:\n{}",responseBody);
         return responseBody;
     }
 

@@ -1,4 +1,4 @@
-package com.geektcp.alpha.db.es6.index.mapping;
+package com.geektcp.alpha.db.es6.bean.mapping;
 
 /**
  * Created by chengmo on 2017/12/28.

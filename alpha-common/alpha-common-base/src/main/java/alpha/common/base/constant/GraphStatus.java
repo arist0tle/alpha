@@ -22,7 +22,7 @@ public enum GraphStatus implements Status {
 
     URL_INVALID_ERROR(310, "无效的URL"),
 
-    CALL_REST_ERROR(311, "调用Rest接口异常,{0}"),
+    CALL_REST_ERROR(311, "调用Rest接口异常,{}"),
 
     REPEAT_ERROR(312, "操作失败，有重复的数据"),;
 

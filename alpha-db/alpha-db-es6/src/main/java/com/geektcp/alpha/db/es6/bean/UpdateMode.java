@@ -1,4 +1,4 @@
-package com.geektcp.alpha.db.es6.index.bean;
+package com.geektcp.alpha.db.es6.bean;
 
 /**
  * Created by chengmo on 2018/1/11.

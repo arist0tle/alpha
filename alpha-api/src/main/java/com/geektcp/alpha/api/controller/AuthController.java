@@ -53,7 +53,7 @@ public class AuthController {
             currentUser.getSession().setAttribute("userID", user.getId());
             long timeout = rememberMe ? 31536000000L : 1800000L; // 1year : 30min
             currentUser.getSession().setTimeout(timeout);
-            log.info("login success!!! user:{0},remember me:{1},timeout:{2}", userNo, rememberMe, timeout);
+            log.info("login success!!! user:{},remember me:{},timeout:{}", userNo, rememberMe, timeout);
         } catch (Exception e) {
             log.error(e.getMessage());
             return Response.error(AuthStatus.PASSWD_MISMATCH);

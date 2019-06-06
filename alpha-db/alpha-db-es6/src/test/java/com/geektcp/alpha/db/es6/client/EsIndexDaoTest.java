@@ -99,29 +99,6 @@ public class EsIndexDaoTest {
         log.info("bulkUpsert:\n{0}", JSON.toJSONString(ret,true));
     }
 
-    /*
-    * do not support
-    * */
-//    @Test
-//    public void bulkScriptUpsert(){
-//        List<ScriptSource> sources = new ArrayList<>();
-//        ScriptSource scriptSource = new ScriptSource();
-//
-//        List<Field> fieldList = new ArrayList<>();
-//        sources.add(scriptSource);
-//        scriptSource.setNormalFields(fieldList);
-//        scriptSource.setId("200");
-//
-//        Field field = new Field();
-//        field.setName("name");
-//        field.setValue("nagle");
-//        field.setUpdateMode(UpdateMode.DECREMENT);
-//        fieldList.add(field);
-//
-//        CudResponse ret = esIndexDao.bulkScriptUpsert(storeURL,index,type,sources);
-//        LOG.info("bulkScriptUpsert:\n{0}", JSON.toJSONString(ret,true));
-//    }
-
     @Test
     public void delete(){
         List<Source> sourceList = new ArrayList<>();

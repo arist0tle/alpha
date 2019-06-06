@@ -1,7 +1,10 @@
 package com.geektcp.alpha.db.es6.client;
 
+import alpha.common.base.model.Response;
 import com.alibaba.fastjson.JSON;
 import com.geektcp.alpha.db.es6.bean.StoreURL;
+import com.geektcp.alpha.db.es6.index.EsIndexDao;
+import com.geektcp.alpha.db.es6.index.bean.Source;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -91,9 +94,9 @@ public class EsIndexDaoTest {
         map.put("reg_address", "shenzhen");
         source.setSource(map);
         sourceList.add(source);
-        LOG.info("sourceList: {0}", JSON.toJSONString(sourceList,true));
-        CudResponse ret = esIndexDao.bulkUpsert(storeURL,index + "." + type, type,sourceList);
-        LOG.info("bulkUpsert:\n{0}", JSON.toJSONString(ret,true));
+        log.info("sourceList: {0}", JSON.toJSONString(sourceList,true));
+        Response ret = esIndexDao.bulkUpsert(storeURL,index + "." + type, type,sourceList);
+        log.info("bulkUpsert:\n{0}", JSON.toJSONString(ret,true));
     }
 
     /*
@@ -129,8 +132,8 @@ public class EsIndexDaoTest {
         map.put("age", 13);
         source.setSource(map);
         sourceList.add(source);
-        CudResponse ret =  esIndexDao.delete(storeURL, index, type, sourceList);
-        LOG.info("delete:\n{0}", JSON.toJSONString(ret,true));
+        Response ret =  esIndexDao.delete(storeURL, index, type, sourceList);
+        log.info("delete:\n{0}", JSON.toJSONString(ret,true));
     }
 
 }

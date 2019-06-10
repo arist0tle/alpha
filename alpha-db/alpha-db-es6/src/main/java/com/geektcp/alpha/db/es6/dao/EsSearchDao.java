@@ -19,6 +19,6 @@ public interface EsSearchDao {
 
     List<EsQueryResult> multiSearch(StoreURL storeURL, List<EsQuery> list);
 
-    List<EsQueryResult> searchByDSL(StoreURL storeURL, String queryDSL);
+    EsQueryResult searchByDSL(StoreURL storeURL, String queryDSL);
 
 }

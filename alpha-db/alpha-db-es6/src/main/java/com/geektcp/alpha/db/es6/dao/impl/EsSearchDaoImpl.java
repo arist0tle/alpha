@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.geektcp.alpha.db.es6.bean.StoreURL;
 import com.geektcp.alpha.db.es6.client.EsRestClient;
-import com.geektcp.alpha.db.es6.constant.METHOD;
+import com.geektcp.alpha.db.es6.constant.HttpMethod;
 import com.geektcp.alpha.db.es6.dao.EsSearchDao;
 import com.geektcp.alpha.db.es6.model.EsQuery;
 import com.geektcp.alpha.db.es6.model.EsQueryResult;
@@ -88,12 +88,12 @@ public class EsSearchDaoImpl implements EsSearchDao {
     }
 
     @Override
-    public List<EsQueryResult> searchByDSL(StoreURL storeURL, String queryDSL) {
+    public EsQueryResult searchByDSL(StoreURL storeURL, String queryDSL) {
         try {
             RestClient restClient = this.getClient(storeURL);
             String url = storeURL.getUrl();
             HttpEntity entity = new NStringEntity(queryDSL, ContentType.APPLICATION_JSON);
-            Response response = restClient.performRequest(METHOD.POST, "/es6_test16/_search", Collections.emptyMap(), entity);
+            Response response = restClient.performRequest(HttpMethod.POST, "/es6_test16/_search", Collections.emptyMap(), entity);
             log.info("response:\n{}", JSON.toJSONString(JSONObject.parseObject(EntityUtils.toString(response.getEntity())),true));
         }catch (Exception e){
             e.printStackTrace();
@@ -103,17 +103,22 @@ public class EsSearchDaoImpl implements EsSearchDao {
 
     //////////////////////////////////
     private EsQueryResult rawSearch(StoreURL storeURL, EsQuery esQuery){
+        EsQueryResult esQueryResult = new EsQueryResult();
         try {
             RestClient restClient = this.getClient(storeURL);
             String url = storeURL.getUrl();
             String queryDSL = "{}";
             HttpEntity entity = new NStringEntity(queryDSL, ContentType.APPLICATION_JSON);
-            Response response = restClient.performRequest(METHOD.POST, "/es6_test16/_search", Collections.emptyMap(), entity);
-            log.info("response:\n{}", JSON.toJSONString(JSONObject.parseObject(EntityUtils.toString(response.getEntity())),true));
+            Response response = restClient.performRequest(HttpMethod.POST, "/es6_test16/_search", Collections.emptyMap(), entity);
+            JSONObject result = JSONObject.parseObject(EntityUtils.toString(response.getEntity()));
+            List<Map<String,Object>> rows = (List<Map<String,Object>>)result.getJSONObject("hits").get("hits");
+            esQueryResult.setRows(rows);
+            esQueryResult.setTotal(rows.size());
+            log.info("response:\n{}", JSON.toJSONString(esQueryResult,true));
         }catch (Exception e){
             e.printStackTrace();
         }
-        return null;
+        return esQueryResult;
     }
 
     private  void wrapEsQuery(EsQuery esQuery){

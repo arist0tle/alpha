@@ -12,8 +12,8 @@
     <artifactId>alpha-cache</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>alpha-cache-redis</module>
         <module>alpha-cache-memcache</module>
+        <module>alpha-cache-redis</module>
     </modules>
 
 

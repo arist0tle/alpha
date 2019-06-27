@@ -10,10 +10,8 @@ import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.ResponseListener;
 import org.elasticsearch.client.RestClient;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -30,15 +28,8 @@ import java.util.Map;
 @Slf4j
 public class EsClientTest {
 
-    @Autowired
-    private EsClient esClient;
-
     private RestClient restClient;
 
-    @Before
-    public void getClient(){
-        restClient = esClient.getRestClient();
-    }
 
     @Test
     public void performRequest() throws Exception{

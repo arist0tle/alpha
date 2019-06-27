@@ -24,11 +24,14 @@ public class CacheBuilderUtil {
     };
 
     /*
-    * expireAfterWrite will clean cache and get default
-    * refreshAfterWrite will delay old cache
+    * expireAfterAccess是指定项在一定时间内没有读写，会移除该key，下次取的时候从loading中取
+    * expireAfterWrite  will clean cache and get default 是在指定项在一定时间内没有创建/覆盖时，会移除该key，下次取的时候从loading中取
+    * refreshAfterWrite will delay old cache 是在指定时间内没有被创建/覆盖，则指定时间过后，再次访问时，会去刷新该缓存，在新值没有到来之前，始终返回旧值
+    * refreshAfterWrite跟expireAfterWrite的区别是，指定时间过后，expireAfterWrite是remove该key，下次访问是同步去获取返回新值
+    * 而refresh则是指定时间后，不会remove该key，下次访问会触发刷新，新值没有回来时返回旧值
     * */
     private static LoadingCache<String, Integer> CACHE = CacheBuilder.newBuilder()
-            .refreshAfterWrite(3, TimeUnit.SECONDS)
+            .refreshAfterWrite(7, TimeUnit.SECONDS)
             .expireAfterWrite(5, TimeUnit.SECONDS)
             .removalListener(myRemovalListener)
             .build(new CacheLoader<String, Integer>() {

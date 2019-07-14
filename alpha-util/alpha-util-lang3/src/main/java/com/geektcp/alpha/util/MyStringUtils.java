@@ -1,12 +1,17 @@
 package com.geektcp.alpha.util;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.primitives.Booleans;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.*;
 import org.apache.commons.lang3.text.WordUtils;
 import org.junit.Test;
 
+import java.io.Serializable;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by TangHaiyang on 2019/7/7.
@@ -112,5 +117,15 @@ public class MyStringUtils {
         System.out.println( RandomStringUtils.randomGraph(10));
 
     }
+
+    @Test
+    public void SerializationUtils(){
+        SerializeObject object =SerializeObject.build().city("shenzhen").age(30).name("nagle");
+        byte[] bytes = SerializationUtils.serialize(object);
+        SerializeObject deObject = SerializationUtils.deserialize(bytes);
+        System.out.println(deObject);
+    }
+
+
 
 }

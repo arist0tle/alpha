@@ -1,9 +1,17 @@
 package util;
 
+import com.google.common.base.*;
 import com.google.common.collect.*;
+import com.google.common.html.HtmlEscapers;
 import com.google.common.primitives.Booleans;
+import com.google.common.reflect.Reflection;
+import com.google.common.xml.XmlEscapers;
+import com.sun.deploy.util.StringUtils;
+import org.aspectj.apache.bcel.util.ClassPath;
+import org.junit.Test;
 
 import java.util.*;
+import java.util.Objects;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -43,4 +51,14 @@ public class GuavaUtils {
     }
 
 
+    @Test
+    public void StringUtils(){
+//        StringUtils.join(", ", " ");
+//        Maps.uniqueIndex();
+        XmlEscapers.xmlAttributeEscaper();
+        HtmlEscapers.htmlEscaper();
+        System.out.println(ClassPath.getClassPath());
+        System.out.println(Reflection.getPackageName(GuavaUtils.class));
+        ImmutableRangeSet.builder();
+}
 }

@@ -1,7 +1,10 @@
 package util.event;
 
+import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.EventBus;
 import org.junit.Test;
+
+import java.util.concurrent.Executors;
 
 /**
  * Created by TangHaiyang on 2019/7/22.
@@ -28,5 +31,15 @@ public class TestEventBus {
 
         System.out.println("LastMessage:"+listener.getLastMessage());
 
+    }
+
+    @Test
+    public void testAysncEventBus() throws Exception{
+        AsyncEventBus eventBus = new AsyncEventBus(Executors.newFixedThreadPool(3));
+        EventListener listener = new EventListener();
+        eventBus.register(listener);
+        eventBus.post(new TestEvent(100));
+        Thread.sleep(10000);
+        System.out.println("==");
     }
 }

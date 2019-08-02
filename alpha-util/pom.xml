@@ -24,6 +24,7 @@
         <module>alpha-util-rule</module>
         <module>alpha-util-antlr</module>
         <module>alpha-util-lang3</module>
+        <module>alpha-util-base</module>
     </modules>
 
 

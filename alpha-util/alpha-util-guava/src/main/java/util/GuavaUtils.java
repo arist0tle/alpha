@@ -1,17 +1,15 @@
 package util;
 
-import com.google.common.base.*;
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
 import com.google.common.collect.*;
 import com.google.common.html.HtmlEscapers;
-import com.google.common.primitives.Booleans;
 import com.google.common.reflect.Reflection;
 import com.google.common.xml.XmlEscapers;
-import com.sun.deploy.util.StringUtils;
 import org.aspectj.apache.bcel.util.ClassPath;
 import org.junit.Test;
 
 import java.util.*;
-import java.util.Objects;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -21,7 +19,8 @@ public class GuavaUtils {
 
 
     public static void main(String[] args) {
-        ArrayList<String> arrayList = Lists.newArrayList("ddd","ffff");;
+        ArrayList<String> arrayList = Lists.newArrayList("ddd", "ffff");
+        ;
 
         Lists.newArrayList();
         Lists.reverse(arrayList);
@@ -39,20 +38,16 @@ public class GuavaUtils {
 
         Sets.union(setA, setB);
 
-        Map<String,String> mapA = new HashMap<>();
-        Map<String,String> mapB = new HashMap<>();
-        Maps.difference(mapA,mapB);
+        Map<String, String> mapA = new HashMap<>();
+        Map<String, String> mapB = new HashMap<>();
+        Maps.difference(mapA, mapB);
 
         Queue<String> queue = new LinkedBlockingQueue<>();
         Queues.newLinkedBlockingDeque();
-
-
-
     }
 
-
     @Test
-    public void StringUtils(){
+    public void StringUtils() {
 //        StringUtils.join(", ", " ");
 //        Maps.uniqueIndex();
         XmlEscapers.xmlAttributeEscaper();
@@ -60,5 +55,15 @@ public class GuavaUtils {
         System.out.println(ClassPath.getClassPath());
         System.out.println(Reflection.getPackageName(GuavaUtils.class));
         ImmutableRangeSet.builder();
-}
+    }
+
+    @Test
+    public void Joiner(){
+        List<String> list = Lists.newArrayList("1", "2", null, "ssss");
+        String str = Joiner.on(",").skipNulls().join(list);
+        System.out.println(str);
+        Iterable<String> list2 = Splitter.on(",").split(str);
+
+
+    }
 }

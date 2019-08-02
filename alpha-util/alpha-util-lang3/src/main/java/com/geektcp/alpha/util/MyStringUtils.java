@@ -120,4 +120,11 @@ public class MyStringUtils {
         System.out.println(deObject);
     }
 
+    @Test
+    public void StringUtitls(){
+        System.out.println(StringUtils.containsAny("aabbccdd", "aa","bb","cc"));
+
+        System.out.println(StringUtils.containsAny("aab1ccdd", "aa","bb"));
+    }
+
 }

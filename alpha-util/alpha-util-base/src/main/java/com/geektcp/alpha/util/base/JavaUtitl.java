@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * Created by TangHaiyang on 2019/8/2.
@@ -38,7 +36,7 @@ public class JavaUtitl {
     }
 
     @Test
-    public void countDown() throws Throwable{
+    public void CountDownLatchTest() throws Throwable{
         final int totalThread = 10;
         CountDownLatch countDownLatch = new CountDownLatch(totalThread);
         ExecutorService executorService = Executors.newCachedThreadPool();
@@ -50,6 +48,46 @@ public class JavaUtitl {
         }
         countDownLatch.await();
         System.out.println("end");
+        executorService.shutdown();
+    }
+
+    @Test
+    public void CyclicBarrierTest(){
+        final int totalThread = 10;
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(totalThread);
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        for (int i = 0; i < totalThread; i++) {
+            executorService.execute(() -> {
+                System.out.print("before..");
+                try {
+                    cyclicBarrier.await();
+                } catch (InterruptedException | BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
+                System.out.print("after..");
+            });
+        }
+        executorService.shutdown();
+    }
+
+    @Test
+    public void SemaphoreTest(){
+        final int clientCount = 3;
+        final int totalRequestCount = 10;
+        Semaphore semaphore = new Semaphore(clientCount);
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        for (int i = 0; i < totalRequestCount; i++) {
+            executorService.execute(()->{
+                try {
+                    semaphore.acquire();
+                    System.out.print(semaphore.availablePermits() + " ");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    semaphore.release();
+                }
+            });
+        }
         executorService.shutdown();
     }
 

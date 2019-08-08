@@ -1,8 +1,10 @@
 package com.geektcp.alpha.util.base;
 
+import org.assertj.core.util.Maps;
 import org.junit.Test;
 import sun.security.krb5.internal.crypto.HmacMd5ArcFourCksumType;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -139,5 +141,12 @@ public class JavaUtitl {
         ba.show(d); // A.show(C)
     }
 
-
+    @Test
+    public void testObject(){
+        HashMap<String,String> map = new HashMap<>();
+        WeakReference<HashMap<String,String>> wf = new WeakReference<HashMap<String,String>>(map);
+        HashMap<String,String> map2 = wf.get();
+        map2.put("ssdsf", "sdfsdfsdf");
+        
+    }
 }

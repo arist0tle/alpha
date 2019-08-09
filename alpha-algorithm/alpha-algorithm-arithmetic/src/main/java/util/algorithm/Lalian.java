@@ -4,13 +4,28 @@ import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by TangHaiyang on 2019/8/8.
  */
-public class Lalian {
+public class Lalian implements HashMap.Entry{
 
+    @Override
+    public Object getKey() {
+        return null;
+    }
+
+    @Override
+    public Object getValue() {
+        return null;
+    }
+
+    @Override
+    public Object setValue(Object value) {
+        return null;
+    }
 
     /**
      * 拉链法求数据集合
@@ -45,7 +60,7 @@ public class Lalian {
         System.out.println("=====================: " + loop);
         System.out.println(JSON.toJSONString(list3, true));
 
-
     }
+
 
 }

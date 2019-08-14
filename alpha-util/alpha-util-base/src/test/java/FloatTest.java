@@ -13,6 +13,7 @@ public class FloatTest {
      */
     @Test
     public void BigDecimalCompareTest(){
+        // 要用字符串构造BigDecimal，如果用1.0F这种浮点数，会失真
         BigDecimal a = new BigDecimal("1.0");
         BigDecimal b = new BigDecimal("0.9");
         BigDecimal c = new BigDecimal("0.8");

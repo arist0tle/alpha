@@ -1,4 +1,4 @@
-package com.geektcp.alpha.util.base.proxy.autoproxy;
+package com.geektcp.alpha.util.base.proxy.dynamicproxy;
 
 import com.geektcp.alpha.util.base.proxy.staticproxy.UserManagerImpl;
 import com.geektcp.alpha.util.base.proxy.staticproxy.UserManagerProxy;

@@ -1,4 +1,4 @@
-package com.geektcp.alpha.util.base;
+package com.geektcp.alpha.util.base.map;
 
 import org.assertj.core.util.Maps;
 import org.junit.Test;

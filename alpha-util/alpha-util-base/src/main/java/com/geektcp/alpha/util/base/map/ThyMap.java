@@ -1,4 +1,4 @@
-package com.geektcp.alpha.util.base;
+package com.geektcp.alpha.util.base.map;
 
 /**
  * Created by TangHaiyang on 2019/8/13.

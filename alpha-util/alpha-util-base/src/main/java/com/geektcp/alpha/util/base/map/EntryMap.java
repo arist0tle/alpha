@@ -1,4 +1,4 @@
-package com.geektcp.alpha.util.base;
+package com.geektcp.alpha.util.base.map;
 
 import java.util.Collection;
 import java.util.Map;

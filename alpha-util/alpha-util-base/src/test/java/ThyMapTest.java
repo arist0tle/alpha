@@ -1,9 +1,7 @@
 import com.alibaba.fastjson.JSON;
-import com.geektcp.alpha.util.base.EntryMap;
-import com.geektcp.alpha.util.base.ThyMap;
+import com.geektcp.alpha.util.base.map.EntryMap;
+import com.geektcp.alpha.util.base.map.ThyMap;
 import org.junit.Test;
-
-import java.util.HashMap;
 
 /**
  * Created by TangHaiyang on 2019/8/13.

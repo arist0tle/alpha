@@ -69,7 +69,7 @@ public class TestUnsafe {
          * 使用Unsafe CAS方法
          * @param cmp 目标值与cmp比较equal方法，如果相等就更新返回true；如果不相等就不更新返回false；
          * @param val 需要更新的值；
-         * @return
+         * @return boolean
          */
         boolean casNext(Node cmp, Node val) {
             /*

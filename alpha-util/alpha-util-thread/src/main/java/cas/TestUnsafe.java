@@ -47,6 +47,11 @@ public class TestUnsafe {
         private static final long nextOffset;
         static {
             try {
+                /*
+                sun.misc.Unsafe.getUnsafe()会得到一个SecurityException,这个类只有被JDK信任的类才能通过这个方法实例化
+                但是可以通过反射拿到对应的实例
+                UNSAFE = sun.misc.Unsafe.getUnsafe();
+                */
                 UNSAFE = getUnsafe();
                 Class<?> k = Node.class;
                 nextOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("next"));
@@ -62,7 +67,7 @@ public class TestUnsafe {
          * @return
          */
         boolean casNext(Node cmp, Node val) {
-            /**
+            /*
              * compareAndSwapObject(Object var1, long var2, Object var3, Object var4)
              * var1 操作的对象
              * var2 操作的对象属性
@@ -75,7 +80,7 @@ public class TestUnsafe {
         /**
          * 获取Unsafe的方法
          * 获取了以后就可以愉快的使用CAS啦
-         * @return
+         * @return Unsafe
          */
         private static Unsafe getUnsafe() {
             try {

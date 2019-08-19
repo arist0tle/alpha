@@ -3,6 +3,7 @@ package cas;
 import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
+import java.util.Objects;
 
 /**
  * Created by TangHaiyang on 2019/8/19.
@@ -54,7 +55,11 @@ public class TestUnsafe {
                 */
                 UNSAFE = getUnsafe();
                 Class<?> k = Node.class;
-                nextOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("next"));
+                if(Objects.isNull(UNSAFE)) {
+                    nextOffset = 0;
+                }else {
+                    nextOffset = UNSAFE.objectFieldOffset(k.getDeclaredField("next"));
+                }
             } catch (Exception e) {
                 throw new Error(e);
             }

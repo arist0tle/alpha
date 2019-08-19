@@ -76,8 +76,8 @@ public class TestUnsafe {
             /*
              * compareAndSwapObject(Object var1, long var2, Object var3, Object var4)
              * var1 操作的对象
-             * var2 操作的对象属性
-             * var3 var2与var3比较，相等才更新
+             * var2 操作的对象属性是个偏离值，对C++的结构体来说，var1是指针，指针加偏离值就能得到结构体成员，相当远java对象属性
+             * var3 var2对应的属性与var3比较，相等才更新
              * var4 更新值
              */
             return UNSAFE.compareAndSwapObject(this, nextOffset, cmp, val);

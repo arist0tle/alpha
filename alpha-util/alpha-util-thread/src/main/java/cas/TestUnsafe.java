@@ -42,7 +42,7 @@ public class TestUnsafe {
         System.out.println(flag3);
     }
 
-    public static class Node{
+    private static class Node{
         volatile Node next;
         volatile int seq;
         private static final sun.misc.Unsafe UNSAFE;

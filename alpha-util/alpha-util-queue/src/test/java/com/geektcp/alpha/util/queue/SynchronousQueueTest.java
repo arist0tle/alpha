@@ -11,13 +11,26 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by TangHaiyang on 2019/8/25.
+ *
+ 线程安全机制
+ 内部TransferQueue的元素添加方法casNext，用到UNSAFE.compareAndSwapObject
+
+ 队列特性
+ 有界阻塞队列
+ 必须开两个以上线程，其中一个用于添加元素，另外一个线程用于获取元素
+
+ 描述
+ 特殊的BlockingQueue, 对其操作必须是放和取交替完成的；
+ 而且必须分别在不同的线程中进行
+
+ SynchronousQueue使用了一个内部类TransferQueue，对数据进行操作。
+ TransferQueue广泛使用了cas机制UNSAFE.compareAndSwapObject
  */
 public class SynchronousQueueTest {
 
     private static class SynchronousQueueProducer implements Runnable {
 
         private BlockingQueue<String> blockingQueue;
-        final Random random = new Random();
 
         private SynchronousQueueProducer(BlockingQueue<String> queue) {
             this.blockingQueue = queue;

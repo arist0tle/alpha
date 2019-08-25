@@ -1,5 +1,7 @@
 package com.geektcp.alpha.util.queue;
 
+import com.sun.istack.internal.NotNull;
+import lombok.Data;
 import org.junit.Test;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -22,7 +24,11 @@ public class DelayQueueTest {
         System.out.println(element);
     }
 
+    @Data
     private class DelayBean implements Delayed {
+        private int age;
+        private String name;
+
         @Override
         public long getDelay(TimeUnit unit) {
             return 0;

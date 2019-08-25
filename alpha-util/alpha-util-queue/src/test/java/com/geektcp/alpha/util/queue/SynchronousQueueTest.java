@@ -4,10 +4,10 @@ import org.junit.Test;
 
 import java.util.Random;
 import java.util.UUID;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.PriorityBlockingQueue;
-import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.*;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.LockSupport;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by TangHaiyang on 2019/8/25.
@@ -62,7 +62,7 @@ public class SynchronousQueueTest {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         final BlockingQueue<String> synchronousQueue = new SynchronousQueue<String>();
 
         SynchronousQueueProducer queueProducer = new SynchronousQueueProducer(synchronousQueue);
@@ -73,6 +73,8 @@ public class SynchronousQueueTest {
 
         SynchronousQueueConsumer queueConsumer2 = new SynchronousQueueConsumer(synchronousQueue);
         new Thread(queueConsumer2).start();
+
+        synchronousQueue.wait();
 
     }
 
@@ -88,5 +90,28 @@ public class SynchronousQueueTest {
         System.out.println("已经陷入休眠状态！");
         String element = queue.take();
         System.out.println(element);
+    }
+
+    @Test
+    public void sleep()throws Exception{
+        System.out.println(0);
+        Thread.sleep(0);
+        System.out.println(111111);
+        String lock = "lock";
+
+        ReentrantLock reentrantLock = new ReentrantLock();
+        Condition condition =  reentrantLock.newCondition();
+        reentrantLock.lock();
+        try{
+            reentrantLock.lock();
+            condition.await(0, TimeUnit.SECONDS);
+            System.out.println(33333);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        System.out.println(444444);
+        LockSupport.parkNanos(0);
+        System.out.println(555555);
     }
 }

@@ -1,5 +1,3 @@
-package pool;
-
 import org.junit.Test;
 
 import java.util.concurrent.CountDownLatch;

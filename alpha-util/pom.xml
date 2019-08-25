@@ -25,6 +25,7 @@
         <module>alpha-util-antlr</module>
         <module>alpha-util-lang3</module>
         <module>alpha-util-base</module>
+        <module>alpha-util-queue</module>
     </modules>
 
 

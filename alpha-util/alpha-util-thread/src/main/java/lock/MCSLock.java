@@ -44,7 +44,6 @@ public class MCSLock {
                 System.out.println(Thread.currentThread().getName() + " 开始自旋....  ");
 //                Thread.sleep(2000);
                 LockSupport.parkNanos(2L*1000*1000*1000*10);
-
             }
         }
         System.out.println(Thread.currentThread().getName() + " 获得了锁....  ");

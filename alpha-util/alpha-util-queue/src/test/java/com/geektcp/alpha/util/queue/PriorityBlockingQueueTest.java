@@ -15,7 +15,9 @@ public class PriorityBlockingQueueTest {
 
     @Test
     public void addAndPoll(){
+        queue.add("cccc");
         queue.add("aaaa");
+        queue.add("bbbb");
         String element = queue.poll();
         System.out.println(element);
     }

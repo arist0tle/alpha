@@ -23,15 +23,13 @@ public class ThyThreadPoolExecutorTest {
      */
     @Test
     public void ThreadPoolExecutorTest(){
-        Executors.newCachedThreadPool();
-        Executors.newSingleThreadExecutor();
+        Executors.newFixedThreadPool(poolSize);
         Executors.newScheduledThreadPool(poolSize);
         Executors.newSingleThreadScheduledExecutor();
+        Executors.newCachedThreadPool();
+        Executors.newSingleThreadExecutor();
+        Executors.newSingleThreadScheduledExecutor();
         Executors.newWorkStealingPool(poolSize);
-        Executors.newFixedThreadPool(poolSize);
-
-
-
     }
 
 }

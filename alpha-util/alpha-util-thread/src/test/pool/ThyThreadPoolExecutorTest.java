@@ -2,10 +2,6 @@ package pool;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.concurrent.*;
 
 /**
@@ -27,19 +23,19 @@ import java.util.concurrent.*;
  */
 public class ThyThreadPoolExecutorTest {
 
-    private static final int poolSize = 10;
+    private static final int corePoolSize = 10;
 
     /**
      * Executors通过包装ThreadPoolExecutor，得到了若干线程池
      */
     @Test
     public void ThreadPoolExecutorTest() {
-        Executors.newCachedThreadPool();                // ThreadPoolExecutor
-        Executors.newFixedThreadPool(poolSize);         // ThreadPoolExecutor
-        Executors.newScheduledThreadPool(poolSize);     // ThreadPoolExecutor
-        Executors.newSingleThreadExecutor();            // ThreadPoolExecutor
-        Executors.newSingleThreadScheduledExecutor();   // ScheduledThreadPoolExecutor -> ThreadPoolExecutor
-        Executors.newWorkStealingPool(poolSize);        // ForkJoinPool
+        Executors.newCachedThreadPool();                // ThreadPoolExecutor maximumPoolSize为Integer.MAX_VALUE， oom
+        Executors.newFixedThreadPool(corePoolSize);     // ThreadPoolExecutor LinkedBlockingQueue长度无限，oom
+        Executors.newScheduledThreadPool(corePoolSize); // ThreadPoolExecutor maximumPoolSize为Integer.MAX_VALUE， oom
+        Executors.newSingleThreadExecutor();            // ThreadPoolExecutor LinkedBlockingQueue长度无限，oom
+        Executors.newSingleThreadScheduledExecutor();   // ScheduledThreadPoolExecutor maximumPoolSize为Integer.MAX_VALUE， oom
+        Executors.newWorkStealingPool(corePoolSize);    // ForkJoinPool
     }
 
     @Test

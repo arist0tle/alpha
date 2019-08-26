@@ -27,6 +27,7 @@ public class ThyThreadPoolExecutorTest {
 
     /**
      * Executors通过包装ThreadPoolExecutor，得到了若干线程池
+     * Executors得到的线程池容易OOM，原因是都没有对线程数量上限进行限制
      */
     @Test
     public void ThreadPoolExecutorTest() {
@@ -35,7 +36,7 @@ public class ThyThreadPoolExecutorTest {
         Executors.newScheduledThreadPool(corePoolSize); // ThreadPoolExecutor maximumPoolSize为Integer.MAX_VALUE， oom
         Executors.newSingleThreadExecutor();            // ThreadPoolExecutor LinkedBlockingQueue长度无限，oom
         Executors.newSingleThreadScheduledExecutor();   // ScheduledThreadPoolExecutor maximumPoolSize为Integer.MAX_VALUE， oom
-        Executors.newWorkStealingPool(corePoolSize);    // ForkJoinPool
+        Executors.newWorkStealingPool();                // ForkJoinPool 固定线程数量，不会因为线程过多导致oom
     }
 
     @Test
@@ -101,6 +102,8 @@ public class ThyThreadPoolExecutorTest {
 
         countDownLatch.await();
     }
+
+
 
 
 }

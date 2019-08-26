@@ -24,6 +24,7 @@ public class GuavaExecutorTest {
         @Override
         public void run() {
             try {
+                System.out.println(Thread.currentThread().getId());
                 Thread.sleep(10000);
             } catch (InterruptedException e) {
                 //do nothing
@@ -35,6 +36,16 @@ public class GuavaExecutorTest {
     public void main() {
         for (int i = 0; i < Integer.MAX_VALUE; i++) {
             pool.execute(new SubThread());
+        }
+    }
+
+
+    private static ExecutorService executor = Executors.newWorkStealingPool();
+
+    @Test
+    public void test1() {
+        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+            executor.execute(new SubThread());
         }
     }
 }

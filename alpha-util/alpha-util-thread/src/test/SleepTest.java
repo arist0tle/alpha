@@ -30,7 +30,7 @@ public class SleepTest {
         }
 
         System.out.println(444444);
-        LockSupport.parkNanos(0);
+        LockSupport.parkNanos(0);   // 1纳秒等于十亿分之一秒
         System.out.println(555555);
 
         CountDownLatch countDownLatch = new CountDownLatch(1);

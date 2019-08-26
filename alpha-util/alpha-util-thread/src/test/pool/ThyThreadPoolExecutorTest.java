@@ -44,7 +44,7 @@ public class ThyThreadPoolExecutorTest {
 
     @Test
     public void PoolTest() throws Exception {
-        CountDownLatch countDownLatch = new CountDownLatch(3);
+        CountDownLatch countDownLatch = new CountDownLatch(5);
         ThreadPoolExecutor pool = new ThreadPoolExecutor(2, 3, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(1));
         //任务1
         pool.execute(new Runnable() {
@@ -90,6 +90,7 @@ public class ThyThreadPoolExecutorTest {
             @Override
             public void run() {
                 System.out.println("-------------helloworld_004---------------" + Thread.currentThread().getName());
+                countDownLatch.countDown();
             }
         });
 
@@ -98,6 +99,7 @@ public class ThyThreadPoolExecutorTest {
             @Override
             public void run() {
                 System.out.println("-------------helloworld_005---------------" + Thread.currentThread().getName());
+                countDownLatch.countDown();
             }
         });
 

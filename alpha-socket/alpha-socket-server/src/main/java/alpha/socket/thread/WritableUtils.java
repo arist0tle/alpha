@@ -16,14 +16,13 @@ public final class WritableUtils {
         byte[] buffer = new byte[length];
         in.readFully(buffer);
 
-        GZIPInputStream gzi = new GZIPInputStream(new ByteArrayInputStream(buffer,
-                0, buffer.length));
-        byte[] outbuf = new byte[length];
+        GZIPInputStream gzi = new GZIPInputStream(new ByteArrayInputStream(buffer, 0, buffer.length));
+        byte[] outBuf = new byte[length];
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
         int len;
-        while ((len = gzi.read(outbuf, 0, outbuf.length)) != -1) {
-            bos.write(outbuf, 0, len);
+        while ((len = gzi.read(outBuf, 0, outBuf.length)) != -1) {
+            bos.write(outBuf, 0, len);
         }
 
         byte[] decompressed = bos.toByteArray();

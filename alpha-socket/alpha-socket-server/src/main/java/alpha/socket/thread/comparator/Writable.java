@@ -1,4 +1,4 @@
-package alpha.socket.thread;
+package alpha.socket.thread.comparator;
 
 import java.io.DataInput;
 import java.io.DataOutput;

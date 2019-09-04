@@ -1,5 +1,6 @@
 package alpha.socket.thread;
 
+import alpha.socket.buffer.DataOutputBuffer;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

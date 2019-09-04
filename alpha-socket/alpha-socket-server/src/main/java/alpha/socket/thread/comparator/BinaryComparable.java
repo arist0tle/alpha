@@ -1,4 +1,4 @@
-package alpha.socket.thread;
+package alpha.socket.thread.comparator;
 
 public abstract class BinaryComparable implements Comparable<BinaryComparable> {
 

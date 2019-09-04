@@ -1,5 +1,8 @@
 package alpha.socket.thread;
 
+import alpha.socket.thread.comparator.BinaryComparable;
+import alpha.socket.thread.comparator.WritableComparable;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;

@@ -1,6 +1,8 @@
 package alpha.socket.thread;
 
-import alpha.socket.buffer.DataOutputBuffer;
+import alpha.socket.thread.buffer.DataOutputBuffer;
+import alpha.socket.thread.text.ConnectionBody;
+import alpha.socket.thread.text.ConnectionHeader;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

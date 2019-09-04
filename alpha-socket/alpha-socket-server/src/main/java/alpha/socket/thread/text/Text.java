@@ -1,7 +1,8 @@
-package alpha.socket.thread;
+package alpha.socket.thread.text;
 
 import alpha.socket.thread.comparator.BinaryComparable;
 import alpha.socket.thread.comparator.WritableComparable;
+import alpha.socket.thread.util.WritableUtils;
 
 import java.io.DataInput;
 import java.io.DataOutput;

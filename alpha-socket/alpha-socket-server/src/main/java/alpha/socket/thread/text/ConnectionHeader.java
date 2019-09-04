@@ -1,4 +1,4 @@
-package alpha.socket.thread;
+package alpha.socket.thread.text;
 
 import alpha.socket.thread.comparator.Writable;
 import lombok.extern.slf4j.Slf4j;

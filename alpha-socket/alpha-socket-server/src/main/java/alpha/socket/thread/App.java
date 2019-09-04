@@ -1,5 +1,7 @@
 package alpha.socket.thread;
 
+import alpha.socket.thread.server.Server;
+
 import java.io.IOException;
 
 /**

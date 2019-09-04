@@ -1,4 +1,4 @@
-package alpha.socket.buffer;
+package alpha.socket.thread.buffer;
 
 import lombok.extern.slf4j.Slf4j;
 

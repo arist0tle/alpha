@@ -1,4 +1,6 @@
-package alpha.socket.thread;
+package alpha.socket.thread.util;
+
+import alpha.socket.thread.text.Text;
 
 import java.io.*;
 import java.util.zip.GZIPInputStream;

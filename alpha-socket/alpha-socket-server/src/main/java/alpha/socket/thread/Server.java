@@ -1,7 +1,7 @@
 package alpha.socket.thread;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.net.*;
@@ -13,10 +13,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
+@Slf4j
 public class Server {
-
-    public static final Log LOG = LogFactory.getLog(Server.class);
-
+    
     volatile private boolean running = true;
 
     private Listener listener = null;
@@ -24,19 +23,19 @@ public class Server {
     private Worker[] workers = null;
 
     private BlockingQueue<Call> callQueue;
-    private int callQueueCapacity = 4096 * 100;
+    private static final int callQueueCapacity = 4096 * 100;
 
     private int port = 8090;
-    private int readThreads = 5;
+    private static final int readThreads = 5;
     private int workerThreads = 10;
     private int numConnections = 0;
-    private int thresholdIdleConnections = 4000;
-    private int maxConnectionsToNuke = 10;
-    private int maxIdleTime = 2000;
-    private final int maxRespSize = 1024 * 1024;
+    private static final int thresholdIdleConnections = 4000;
+    private static final int maxConnectionsToNuke = 10;
+    private static final int maxIdleTime = 2000;
+    private static final int maxRespSize = 1024 * 1024;
 
     private static int NIO_BUFFER_LIMIT = 8192;
-    private static int INITIAL_RESP_BUF_SIZE = 10240;
+    private static final int INITIAL_RESP_BUF_SIZE = 10240;
 
     private List<Connection> connectionList =
             Collections.synchronizedList(new LinkedList<Connection>());
@@ -145,7 +144,7 @@ public class Server {
     }
 
     public synchronized void stop() {
-        LOG.info("Stopping server on " + port);
+        log.info("Stopping server on " + port);
 
         running = false;
 
@@ -214,7 +213,7 @@ public class Server {
         }
 
         public void run() {
-            LOG.info(getName() + " is running on " + port);
+            log.info(getName() + " is running on " + port);
 
             while (running) {
                 SelectionKey key = null;
@@ -243,7 +242,7 @@ public class Server {
                         key = null;
                     }
                 } catch (OutOfMemoryError e) {
-                    LOG.warn(getName() + " got OutOfMemoryError in Listener ", e);
+                    log.warn(getName() + " got OutOfMemoryError in Listener ", e);
 
                     closeCurrentConnection(key);
                     cleanupConnections(true);
@@ -255,7 +254,7 @@ public class Server {
                     }
                 } catch (InterruptedException e) {
                     if (running) {
-                        LOG.info(getName() + " got InterruptedException in Listener "
+                        log.info(getName() + " got InterruptedException in Listener "
                                 + StringUtils.stringifyException(e));
                     }
                 } catch (Exception e) {
@@ -265,7 +264,7 @@ public class Server {
                 cleanupConnections(false);
             }
 
-            LOG.info(getName() + " is stopping");
+            log.info(getName() + " is stopping");
 
             synchronized (this) {
                 try {
@@ -312,12 +311,12 @@ public class Server {
                         numConnections++;
                     }
 
-                    LOG.info("Got connection from " + c.toString()
+                    log.info("Got connection from " + c.toString()
                             + ", active connections: " + numConnections
                             + ", callQueue len: " + callQueue.size());
 
                     if (callQueue.remainingCapacity() < 10) {
-                        LOG.warn("callQueue len is " + callQueue.size()
+                        log.warn("callQueue len is " + callQueue.size()
                                 + ", remaining less than 10");
                     }
                 } finally {
@@ -339,17 +338,17 @@ public class Server {
             try {
                 count = c.readAndProcess();
             } catch (InterruptedException ie) {
-                LOG.info(getName() + " readAndProcess got InterruptedException: ", ie);
+                log.info(getName() + " readAndProcess got InterruptedException: ", ie);
                 throw ie;
             } catch (Exception e) {
-                LOG.info(getName() + " readAndProcess got Exception "
+                log.info(getName() + " readAndProcess got Exception "
                         + ", client: " + c.getHostAddress()
                         + ", read bytes: " + count, e);
                 count = -1;
             }
 
             if (count < 0) {
-                LOG.warn(getName() + ", the client " + c.getHostAddress()
+                log.warn(getName() + ", the client " + c.getHostAddress()
                         + " is closed, active connections: " + numConnections);
                 closeConnection(c);
                 c = null;
@@ -362,7 +361,7 @@ public class Server {
             if (key != null) {
                 Connection c = (Connection) key.attachment();
                 if (c != null) {
-                    LOG.warn(getName() + " closing client: " + c.getHostAddress()
+                    log.warn(getName() + " closing client: " + c.getHostAddress()
                             + ", active connections: " + numConnections);
                     closeConnection(c);
                     c = null;
@@ -436,7 +435,7 @@ public class Server {
                 try {
                     acceptChannel.socket().close();
                 } catch (IOException e) {
-                    LOG.info(getName()
+                    log.info(getName()
                             + " got IOException while closing acceptChannel: "
                             + e);
                 }
@@ -456,7 +455,7 @@ public class Server {
             }
 
             public void run() {
-                LOG.info("SocketReader is starting");
+                log.info("SocketReader is starting");
 
                 synchronized (this) {
                     while (running) {
@@ -483,11 +482,11 @@ public class Server {
                             }
                         } catch (InterruptedException e) {
                             if (running) {
-                                LOG.info(getName() + " got InterruptedException in Reader "
+                                log.info(getName() + " got InterruptedException in Reader "
                                         + StringUtils.stringifyException(e));
                             }
                         } catch (IOException ex) {
-                            LOG.error(getName() + " got IOException in Reader ", ex);
+                            log.error(getName() + " got IOException in Reader ", ex);
                         }
                     }
 
@@ -498,7 +497,7 @@ public class Server {
                     }
                 }
 
-                LOG.info("SocketReader is stopping");
+                log.info("SocketReader is stopping");
             }
 
             public void startAdd() {
@@ -534,7 +533,7 @@ public class Server {
         }
 
         public void run() {
-            LOG.info(getName() + " is starting");
+            log.info(getName() + " is starting");
 
             long lastPurgeTime = 0;
 
@@ -553,7 +552,7 @@ public class Server {
                                 doAsyncWrite(key);
                             }
                         } catch (IOException e) {
-                            LOG.info(getName() + " Got IOException in doAsyncWrite() " + e);
+                            log.info(getName() + " Got IOException in doAsyncWrite() " + e);
                         }
                     }
 
@@ -582,11 +581,11 @@ public class Server {
                         try {
                             doPurge(call, now);
                         } catch (IOException e) {
-                            LOG.warn("Got IOException while purging old calls " + e);
+                            log.warn("Got IOException while purging old calls " + e);
                         }
                     }
                 } catch (OutOfMemoryError e) {
-                    LOG.warn("Got OutOfMemoryError in Responder ", e);
+                    log.warn("Got OutOfMemoryError in Responder ", e);
 
                     try {
                         Thread.sleep(60000);
@@ -594,11 +593,11 @@ public class Server {
 
                     }
                 } catch (Exception e) {
-                    LOG.warn("Got Exception in Responder " + StringUtils.stringifyException(e));
+                    log.warn("Got Exception in Responder " + StringUtils.stringifyException(e));
                 }
             }
 
-            LOG.info(getName() + " is stopping");
+            log.info(getName() + " is stopping");
         }
 
         void doRespond(Call call) throws IOException {
@@ -645,7 +644,7 @@ public class Server {
                     try {
                         key.interestOps(0);
                     } catch (CancelledKeyException e) {
-                        LOG.warn("Exception while changing ops : " + e);
+                        log.warn("Exception while changing ops : " + e);
                     }
                 }
             }
@@ -674,7 +673,7 @@ public class Server {
                         return true;
                     }
 
-                    LOG.info(getName() + ", responding to client "
+                    log.info(getName() + ", responding to client "
                             + call.connection + " done " + numBytes + "bytes");
 
                     if (!call.response.hasRemaining()) {
@@ -707,7 +706,7 @@ public class Server {
                 }
             } finally {
                 if (error && call != null) {
-                    LOG.warn(getName() + " Got error in call: " + call);
+                    log.warn(getName() + " Got error in call: " + call);
                     done = true;
                     closeConnection(call.connection);
                 }
@@ -921,7 +920,7 @@ public class Server {
         }
 
         public void run() {
-            LOG.info(getName() + " is starting");
+            log.info(getName() + " is starting");
 
             ByteArrayOutputStream buf =
                     new ByteArrayOutputStream(INITIAL_RESP_BUF_SIZE);
@@ -930,7 +929,7 @@ public class Server {
                 try {
                     final Call call = callQueue.take();
 
-                    LOG.info(getName() + ", has a call from " + call.connection);
+                    log.info(getName() + ", has a call from " + call.connection);
 
                     String error = null;
                     Writable body = new ConnectionBody("Hello client " + call.str);
@@ -938,7 +937,7 @@ public class Server {
                     try {
                         // process business logic
                     } catch (Throwable e) {
-                        LOG.info(getName() + " call " + call + " error: " + e, e);
+                        log.info(getName() + " call " + call + " error: " + e, e);
                         error = StringUtils.stringifyException(e);
                     }
 
@@ -946,7 +945,7 @@ public class Server {
                             (error == null) ? Status.SUCCESS : Status.ERROR, body, error);
 
                     if (buf.size() > maxRespSize) {
-                        LOG.warn("Large response size " + buf.size() + " for call " +
+                        log.warn("Large response size " + buf.size() + " for call " +
                                 call.toString());
                         buf = new ByteArrayOutputStream(INITIAL_RESP_BUF_SIZE);
                     }
@@ -954,16 +953,16 @@ public class Server {
                     responder.doRespond(call);
                 } catch (InterruptedException e) {
                     if (running) {
-                        LOG.info(getName() + " Got InterruptedException in worker "
+                        log.info(getName() + " Got InterruptedException in worker "
                                 + StringUtils.stringifyException(e));
                     }
                 } catch (Exception e) {
-                    LOG.info(getName() + " Got Exception in worker "
+                    log.info(getName() + " Got Exception in worker "
                             + StringUtils.stringifyException(e));
                 }
             }
 
-            LOG.info(getName() + " is stopping");
+            log.info(getName() + " is stopping");
         }
     }
 }

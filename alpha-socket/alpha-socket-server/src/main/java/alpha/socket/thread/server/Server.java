@@ -47,7 +47,7 @@ public class Server {
             Collections.synchronizedList(new LinkedList<Connection>());
 
     public Server() throws IOException {
-        callQueue = new LinkedBlockingQueue<Call>(callQueueCapacity);
+        callQueue = new LinkedBlockingQueue<>(callQueueCapacity);
         listener = new Listener();
         responder = new Responder();
     }

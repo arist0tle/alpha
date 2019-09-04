@@ -15,7 +15,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 @Slf4j
 public class Server {
-    
+
     volatile private boolean running = true;
 
     private Listener listener = null;
@@ -236,7 +236,7 @@ public class Server {
                                 }
                             }
                         } catch (IOException e) {
-
+                            log.error(e.getMessage());
                         }
 
                         key = null;
@@ -250,7 +250,7 @@ public class Server {
                     try {
                         Thread.sleep(60000);
                     } catch (Exception ie) {
-
+                        log.error(e.getMessage());
                     }
                 } catch (InterruptedException e) {
                     if (running) {
@@ -260,27 +260,22 @@ public class Server {
                 } catch (Exception e) {
                     closeCurrentConnection(key);
                 }
-
                 cleanupConnections(false);
             }
 
             log.info(getName() + " is stopping");
-
             synchronized (this) {
                 try {
                     acceptChannel.close();
                     acceptSelector.close();
                 } catch (IOException e) {
-
+                    log.error(e.getMessage());
                 }
-
                 acceptChannel = null;
                 acceptSelector = null;
-
                 while (!connectionList.isEmpty()) {
                     closeConnection(connectionList.remove(0));
                 }
-
                 readPool.shutdownNow();
             }
         }

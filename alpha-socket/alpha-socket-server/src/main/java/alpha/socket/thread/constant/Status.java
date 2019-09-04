@@ -1,4 +1,4 @@
-package alpha.socket.thread;
+package alpha.socket.thread.constant;
 
 public enum Status {
     SUCCESS(0),

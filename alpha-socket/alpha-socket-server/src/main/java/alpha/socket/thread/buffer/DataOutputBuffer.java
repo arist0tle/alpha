@@ -23,14 +23,14 @@ public class DataOutputBuffer extends DataOutputStream {
         }
 
         public void write(DataInput in, int len) throws IOException {
-            int newcount = count + len;
-            if (newcount > buf.length) {
-                byte newbuf[] = new byte[Math.max(buf.length << 1, newcount)];
+            int newCount = count + len;
+            if (newCount > buf.length) {
+                byte newbuf[] = new byte[Math.max(buf.length << 1, newCount)];
                 System.arraycopy(buf, 0, newbuf, 0, count);
                 buf = newbuf;
             }
             in.readFully(buf, count, len);
-            count = newcount;
+            count = newCount;
         }
     }
 

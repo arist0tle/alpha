@@ -44,8 +44,7 @@ public class Server {
     private static final int maxRespSize = 1024 * 1024;
     private static final int callQueueCapacity = 4096 * 100;
 
-    private List<Connection> connectionList =
-            Collections.synchronizedList(new LinkedList<Connection>());
+    private List<Connection> connectionList = Collections.synchronizedList(new LinkedList<Connection>());
 
     public Server() throws IOException {
         callQueue = new LinkedBlockingQueue<>(callQueueCapacity);

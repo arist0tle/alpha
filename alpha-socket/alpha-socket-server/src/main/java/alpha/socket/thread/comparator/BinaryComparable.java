@@ -1,5 +1,7 @@
 package alpha.socket.thread.comparator;
 
+import java.util.Objects;
+
 public abstract class BinaryComparable implements Comparable<BinaryComparable> {
 
     public abstract int getLength();

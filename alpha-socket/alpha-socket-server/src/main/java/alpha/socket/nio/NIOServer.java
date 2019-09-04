@@ -38,7 +38,7 @@ public class NIOServer {
             Set<SelectionKey> set = selector.selectedKeys();
             Iterator<SelectionKey> ite = set.iterator();
             while(ite.hasNext()){
-                SelectionKey selectionKey = (SelectionKey) ite.next();
+                SelectionKey selectionKey = ite.next();
                 // 删除已选的key 以防重负处理
                 ite.remove();
                 if(selectionKey.isAcceptable()){//如果有客户端连接进来

@@ -13,10 +13,7 @@ import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.util.*;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.*;
 
 @Slf4j
 public class Server {
@@ -197,7 +194,9 @@ public class Server {
             acceptSelector = Selector.open();
 
             readers = new Reader[readThreads];
-            readPool = Executors.newFixedThreadPool(readThreads);
+            readPool = new ThreadPoolExecutor(readThreads, readThreads,
+                    0L, TimeUnit.MILLISECONDS,
+                    new LinkedBlockingQueue<>(1000));
 
             for (int i = 0; i < readThreads; i++) {
                 Selector readSelector = Selector.open();

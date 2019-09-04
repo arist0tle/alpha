@@ -913,8 +913,7 @@ public class Server {
                         error = StringUtils.stringifyException(e);
                     }
 
-                    setupResponse(buf, call,
-                            (error == null) ? Status.SUCCESS : Status.ERROR, body, error);
+                    setupResponse(buf, call, (error == null) ? Status.SUCCESS : Status.ERROR, body, error);
 
                     if (buf.size() > maxRespSize) {
                         log.warn("Large response size " + buf.size() + " for call " +

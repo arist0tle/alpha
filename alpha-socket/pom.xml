@@ -20,7 +20,6 @@
         <module>alpha-socket-jetty</module>
         <module>alpha-socket-akka</module>
         <module>alpha-socket-server</module>
-        <module>alpha-socket-client</module>
     </modules>
 
 

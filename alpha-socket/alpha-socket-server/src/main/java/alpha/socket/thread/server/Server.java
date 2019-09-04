@@ -28,19 +28,21 @@ public class Server {
     private Worker[] workers = null;
 
     private BlockingQueue<Call> callQueue;
-    private static final int callQueueCapacity = 4096 * 100;
 
-    private int port = 8090;
-    private static final int readThreads = 5;
-    private int workerThreads = 10;
     private int numConnections = 0;
+
+    private static final int port = 8090;
+    private static final int readThreads = 5;
+    private static final int workerThreads = 10;
     private static final int thresholdIdleConnections = 4000;
     private static final int maxConnectionsToNuke = 10;
     private static final int maxIdleTime = 2000;
-    private static final int maxRespSize = 1024 * 1024;
 
-    private static int NIO_BUFFER_LIMIT = 8192;
+    private static final int NIO_BUFFER_LIMIT = 8192;
     private static final int INITIAL_RESP_BUF_SIZE = 10240;
+
+    private static final int maxRespSize = 1024 * 1024;
+    private static final int callQueueCapacity = 4096 * 100;
 
     private List<Connection> connectionList =
             Collections.synchronizedList(new LinkedList<Connection>());
@@ -908,6 +910,7 @@ public class Server {
 
                     try {
                         // process business logic
+                        log.info(call.str);
                     } catch (Throwable e) {
                         log.info(getName() + " call " + call + " error: " + e, e);
                         error = StringUtils.stringifyException(e);

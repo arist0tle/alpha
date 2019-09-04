@@ -1,6 +1,5 @@
 package alpha.socket.thread.server;
 
-
 import alpha.socket.thread.text.ConnectionBody;
 import alpha.socket.thread.text.ConnectionHeader;
 import alpha.socket.thread.comparator.Writable;
@@ -52,22 +51,18 @@ public class Server {
         responder = new Responder();
     }
 
-    public static void bind(ServerSocket socket,
-                            InetSocketAddress address, int backlog) throws IOException {
+    public static void bind(ServerSocket socket, InetSocketAddress address, int backlog) throws IOException {
         try {
             socket.bind(address, backlog);
         } catch (BindException e) {
-            BindException bindException =
-                    new BindException("Binding " + address + " error: " + e.getMessage());
+            BindException bindException = new BindException("Binding " + address + " error: " + e.getMessage());
             bindException.initCause(e);
-
             throw bindException;
         } catch (SocketException e) {
             if ("Unresolved address".equals(e.getMessage())) {
-                throw new UnknownHostException("Invalid hostname: "
-                        + address.getHostName());
+                throw new UnknownHostException("Invalid hostname: " + address.getHostName());
             } else {
-                throw e;
+                log.error(e.getMessage());
             }
         }
     }
@@ -82,7 +77,7 @@ public class Server {
         try {
             connection.close();
         } catch (IOException e) {
-
+            log.error(e.getMessage());
         }
     }
 
@@ -462,21 +457,17 @@ public class Server {
 
                         try {
                             readSelector.select();
-
                             while (adding) {
                                 this.wait(1000);
                             }
-
                             Iterator<SelectionKey> iter =
                                     readSelector.selectedKeys().iterator();
                             while (iter.hasNext()) {
                                 key = iter.next();
                                 iter.remove();
-
                                 if (key.isValid() && key.isReadable()) {
                                     doRead(key);
                                 }
-
                                 key = null;
                             }
                         } catch (InterruptedException e) {
@@ -491,8 +482,8 @@ public class Server {
 
                     try {
                         readSelector.close();
-                    } catch (IOException ex) {
-
+                    } catch (IOException e) {
+                        log.error(e.getMessage());
                     }
                 }
 

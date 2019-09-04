@@ -1,4 +1,4 @@
-package nio;
+package alpha.socket.nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * Created by TangHaiyang on 2019/9/3.
  */
-public class NIOServer {
+public class NIOServerSimple {
     public static void main(String[] args) throws IOException {
         Selector selector = Selector.open();
         ServerSocketChannel ssChannel = ServerSocketChannel.open();

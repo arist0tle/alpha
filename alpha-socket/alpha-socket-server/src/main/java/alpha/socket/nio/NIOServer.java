@@ -1,4 +1,4 @@
-package alpha.socket.server.example;
+package alpha.socket.nio;
 
 /**
  * Created by HaiyangHome on 2018/11/25.

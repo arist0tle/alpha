@@ -1,4 +1,4 @@
-package alpha.socket.server.example;
+package alpha.socket.io;
 
 import lombok.extern.slf4j.Slf4j;
 

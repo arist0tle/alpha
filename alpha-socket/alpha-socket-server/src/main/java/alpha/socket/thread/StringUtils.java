@@ -21,12 +21,6 @@ public class StringUtils {
         decimalFormat.applyPattern("#.##");
     }
 
-    /**
-     * Make a string representation of the exception.
-     *
-     * @param e The exception to stringify
-     * @return A string with exception name and call stack.
-     */
     public static String stringifyException(Throwable e) {
         StringWriter stm = new StringWriter();
         PrintWriter wrt = new PrintWriter(stm);
@@ -36,12 +30,6 @@ public class StringUtils {
         return stm.toString();
     }
 
-    /**
-     * Given a full hostname, return the word upto the first dot.
-     *
-     * @param fullHostname the full hostname
-     * @return the hostname to the first dot
-     */
     public static String simpleHostname(String fullHostname) {
         int offset = fullHostname.indexOf('.');
         if (offset != -1) {
@@ -53,14 +41,6 @@ public class StringUtils {
 
     private static DecimalFormat oneDecimal = new DecimalFormat("0.0");
 
-    /**
-     * Given an integer, return a string that is in an approximate, but human
-     * readable format.
-     * It uses the bases 'k', 'm', and 'g' for 1024, 1024**2, and 1024**3.
-     *
-     * @param number the number to format
-     * @return a human readable form of the integer
-     */
     public static String humanReadableInt(long number) {
         long absNumber = Math.abs(number);
         double result = number;
@@ -82,13 +62,6 @@ public class StringUtils {
         return oneDecimal.format(result) + suffix;
     }
 
-    /**
-     * Format a percentage for presentation to the user.
-     *
-     * @param done   the percentage to format (0.0 to 1.0)
-     * @param digits the number of digits past the decimal point
-     * @return a string representation of the percentage
-     */
     public static String formatPercent(double done, int digits) {
         DecimalFormat percentFormat = new DecimalFormat("0.00%");
         double scale = Math.pow(10.0, digits + 2);
@@ -101,13 +74,6 @@ public class StringUtils {
         return percentFormat.format(rounded / scale);
     }
 
-    /**
-     * Given an array of strings, return a comma-separated list of its elements.
-     *
-     * @param strs Array of strings
-     * @return Empty string if strs.length is 0, comma separated list of strings
-     * otherwise
-     */
     public static String arrayToString(String[] strs) {
         if (strs.length == 0) {
             return "";
@@ -123,15 +89,6 @@ public class StringUtils {
         return sbuf.toString();
     }
 
-    /**
-     * Given an array of bytes it will convert the bytes to a hex string
-     * representation of the bytes
-     *
-     * @param bytes
-     * @param start start index, inclusively
-     * @param end   end index, exclusively
-     * @return hex string representation of the byte array
-     */
     public static String byteToHexString(byte[] bytes, int start, int end) {
         if (bytes == null) {
             throw new IllegalArgumentException("bytes == null");
@@ -145,21 +102,10 @@ public class StringUtils {
         return s.toString();
     }
 
-    /**
-     * Same as byteToHexString(bytes, 0, bytes.length).
-     */
     public static String byteToHexString(byte bytes[]) {
         return byteToHexString(bytes, 0, bytes.length);
     }
 
-    /**
-     * Given a hexstring this will return the byte array corresponding to the
-     * string
-     *
-     * @param hex the hex String array
-     * @return a byte array that is a hex string representation of the given
-     * string. The size of the byte array is therefore hex.length/2
-     */
     public static byte[] hexStringToByte(String hex) {
         byte[] bts = new byte[hex.length() / 2];
         for (int i = 0; i < bts.length; i++) {
@@ -200,26 +146,12 @@ public class StringUtils {
         return uris;
     }
 
-    /**
-     * Given a finish and start time in long milliseconds, returns a
-     * String in the format Xhrs, Ymins, Z sec, for the time difference between two times.
-     * If finish time comes before start time then negative valeus of X, Y and Z wil return.
-     *
-     * @param finishTime finish time
-     * @param startTime  start time
-     */
     public static String formatTimeDiff(long finishTime, long startTime) {
         long timeDiff = finishTime - startTime;
 
         return formatTime(timeDiff);
     }
 
-    /**
-     * Given the time in long milliseconds, returns a
-     * String in the format Xhrs, Ymins, Z sec.
-     *
-     * @param timeDiff The time difference to format
-     */
     public static String formatTime(long timeDiff) {
         StringBuffer buf = new StringBuffer();
         long hours = timeDiff / (60 * 60 * 1000);
@@ -244,17 +176,6 @@ public class StringUtils {
         return buf.toString();
     }
 
-    /**
-     * Formats time in ms and appends difference (finishTime - startTime)
-     * as returned by formatTimeDiff().
-     * If finish time is 0, empty string is returned, if start time is 0
-     * then difference is not appended to return value.
-     *
-     * @param dateFormat date format to use
-     * @param finishTime fnish time
-     * @param startTime  start time
-     * @return formatted value.
-     */
     public static String getFormattedTimeWithDiff(DateFormat dateFormat,
                                                   long finishTime, long startTime) {
         StringBuffer buf = new StringBuffer();
@@ -268,12 +189,6 @@ public class StringUtils {
         return buf.toString();
     }
 
-    /**
-     * Returns an arraylist of strings.
-     *
-     * @param str the comma seperated string values
-     * @return the arraylist of the comma seperated string values
-     */
     public static String[] getStrings(String str) {
         Collection<String> values = getStringCollection(str);
         if (values.size() == 0) {
@@ -283,12 +198,6 @@ public class StringUtils {
         return values.toArray(new String[values.size()]);
     }
 
-    /**
-     * Returns a collection of strings.
-     *
-     * @param str comma seperated string values
-     * @return an <code>ArrayList</code> of string values
-     */
     public static Collection<String> getStringCollection(String str) {
         List<String> values = new ArrayList<String>();
         if (str == null) {
@@ -308,23 +217,10 @@ public class StringUtils {
     final public static String COMMA_STR = ",";
     final public static char ESCAPE_CHAR = '\\';
 
-    /**
-     * Split a string using the default separator
-     *
-     * @param str a string that may have escaped separator
-     * @return an array of strings
-     */
     public static String[] split(String str) {
         return split(str, ESCAPE_CHAR, COMMA);
     }
 
-    /**
-     * Split a string using the given separator, with no escaping performed.
-     *
-     * @param str       a string to be split. Note that this may not be null.
-     * @param separator a separator char
-     * @return an array of strings
-     */
     public static String[] split(String str, char separator) {
         if ("".equals(str)) {
             return new String[]{""};
@@ -346,14 +242,6 @@ public class StringUtils {
         return strList.toArray(new String[strList.size()]);
     }
 
-    /**
-     * Split a string using the given separator
-     *
-     * @param str        a string that may have escaped separator
-     * @param escapeChar a char that be used to escape the separator
-     * @param separator  a separator char
-     * @return an array of strings
-     */
     public static String[] split(String str, char escapeChar, char separator) {
         if (str == null) {
             return null;
@@ -376,17 +264,6 @@ public class StringUtils {
         return strList.toArray(new String[strList.size()]);
     }
 
-    /**
-     * Finds the first occurrence of the separator character ignoring the escaped
-     * separators starting from the index. Note the substring between the index
-     * and the position of the separator is passed.
-     *
-     * @param str        the source string
-     * @param separator  the character to find
-     * @param escapeChar character used to escape
-     * @param start      from where to search
-     * @param split      used to pass back the extracted string
-     */
     public static int findNext(String str, char separator, char escapeChar,
                                int start, StringBuilder split) {
         int numPreEscapes = 0;
@@ -405,25 +282,10 @@ public class StringUtils {
         return -1;
     }
 
-    /**
-     * Escape commas in the string using the default escape char
-     *
-     * @param str a string
-     * @return an escaped string
-     */
     public static String escapeString(String str) {
         return escapeString(str, ESCAPE_CHAR, COMMA);
     }
 
-    /**
-     * Escape <code>charToEscape</code> in the string
-     * with the escape char <code>escapeChar</code>
-     *
-     * @param str          string
-     * @param escapeChar   escape char
-     * @param charToEscape the char to be escaped
-     * @return an escaped string
-     */
     public static String escapeString(String str, char escapeChar,
                                       char charToEscape) {
         return escapeString(str, escapeChar, new char[]{charToEscape});
@@ -439,9 +301,6 @@ public class StringUtils {
         return false;
     }
 
-    /**
-     * @param charsToEscape array of characters to be escaped
-     */
     public static String escapeString(String str, char escapeChar,
                                       char[] charsToEscape) {
         if (str == null) {
@@ -460,33 +319,15 @@ public class StringUtils {
         return result.toString();
     }
 
-    /**
-     * Unescape commas in the string using the default escape char
-     *
-     * @param str a string
-     * @return an unescaped string
-     */
     public static String unEscapeString(String str) {
         return unEscapeString(str, ESCAPE_CHAR, COMMA);
     }
 
-    /**
-     * Unescape <code>charToEscape</code> in the string
-     * with the escape char <code>escapeChar</code>
-     *
-     * @param str          string
-     * @param escapeChar   escape char
-     * @param charToEscape the escaped char
-     * @return an unescaped string
-     */
     public static String unEscapeString(String str, char escapeChar,
                                         char charToEscape) {
         return unEscapeString(str, escapeChar, new char[]{charToEscape});
     }
 
-    /**
-     * @param charsToEscape array of characters to unescape
-     */
     public static String unEscapeString(String str, char escapeChar,
                                         char[] charsToEscape) {
         if (str == null) {
@@ -524,11 +365,6 @@ public class StringUtils {
         return result.toString();
     }
 
-    /**
-     * Return hostname without throwing exception.
-     *
-     * @return hostname
-     */
     public static String getHostname() {
         try {
             return "" + InetAddress.getLocalHost();
@@ -537,11 +373,6 @@ public class StringUtils {
         }
     }
 
-    /**
-     * The traditional binary prefixes, kilo, mega, ..., exa,
-     * which can be represented by a 64-bit integer.
-     * TraditionalBinaryPrefix symbol are case insensitive.
-     */
     public static enum TraditionalBinaryPrefix {
         KILO(1024),
         MEGA(KILO.value << 10),
@@ -558,9 +389,6 @@ public class StringUtils {
             this.symbol = toString().charAt(0);
         }
 
-        /**
-         * @return The TraditionalBinaryPrefix object corresponding to the symbol.
-         */
         public static TraditionalBinaryPrefix valueOf(char symbol) {
             symbol = Character.toUpperCase(symbol);
             for (TraditionalBinaryPrefix prefix : TraditionalBinaryPrefix.values()) {
@@ -572,18 +400,6 @@ public class StringUtils {
             throw new IllegalArgumentException("Unknown symbol '" + symbol + "'");
         }
 
-        /**
-         * Convert a string to long.
-         * The input string is first be trimmed
-         * and then it is parsed with traditional binary prefix.
-         * <p>
-         * For example,
-         * "-1230k" will be converted to -1230 * 1024 = -1259520;
-         * "891g" will be converted to 891 * 1024^3 = 956703965184;
-         *
-         * @param s input string
-         * @return a long value represented by the input string.
-         */
         public static long string2long(String s) {
             s = s.trim();
             final int lastpos = s.length() - 1;
@@ -602,12 +418,6 @@ public class StringUtils {
         }
     }
 
-    /**
-     * Escapes HTML Special characters present in the string.
-     *
-     * @param string
-     * @return HTML Escaped String representation
-     */
     public static String escapeHTML(String string) {
         if (string == null) {
             return null;
@@ -650,9 +460,6 @@ public class StringUtils {
         return sb.toString();
     }
 
-    /**
-     * Return an abbreviated English-language desc of the byte length
-     */
     public static String byteDesc(long len) {
         double val = 0.0;
         String ending = "";
@@ -680,13 +487,6 @@ public class StringUtils {
         return decimalFormat.format(d);
     }
 
-    /**
-     * Get the stack trace of a given thread. Works by getting all stack traces
-     * and looking at the specified thread.
-     *
-     * @param t The thread.
-     * @return The newline-delimited stack trace as a single string.
-     */
     public static String stackTraceOfThread(Thread t) {
         StackTraceElement[] stackTraceElements = Thread.getAllStackTraces().get(t);
         String stackTrace = "";

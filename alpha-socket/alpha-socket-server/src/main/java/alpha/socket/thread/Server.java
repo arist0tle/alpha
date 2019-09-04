@@ -80,20 +80,19 @@ public class Server {
         }
     }
 
-    private static int channelRead(ReadableByteChannel channel,
-                                   ByteBuffer buffer) throws IOException {
+    private static int channelRead(ReadableByteChannel channel, ByteBuffer buffer) throws IOException {
         return (buffer.remaining() <= NIO_BUFFER_LIMIT) ?
                 channel.read(buffer) : channelIO(channel, null, buffer);
     }
 
-    private static int channelWrite(WritableByteChannel channel,
-                                    ByteBuffer buffer) throws IOException {
+    private static int channelWrite(WritableByteChannel channel, ByteBuffer buffer) throws IOException {
         return (buffer.remaining() <= NIO_BUFFER_LIMIT) ?
                 channel.write(buffer) : channelIO(null, channel, buffer);
     }
 
     private static int channelIO(ReadableByteChannel readCh,
-                                 WritableByteChannel writeCh, ByteBuffer buf) throws IOException {
+                                 WritableByteChannel writeCh,
+                                 ByteBuffer buf) throws IOException {
         int originalLimit = buf.limit();
         int initialRemaining = buf.remaining();
         int ret = 0;
@@ -117,8 +116,7 @@ public class Server {
         return (nBytes > 0) ? nBytes : ret;
     }
 
-    private void setupResponse(ByteArrayOutputStream response,
-                               Call call, Status status, Writable w, String error)
+    private void setupResponse(ByteArrayOutputStream response, Call call, Status status, Writable w, String error)
             throws IOException {
         response.reset();
         DataOutputStream out = new DataOutputStream(response);
@@ -561,7 +559,7 @@ public class Server {
                     ArrayList<Call> calls;
 
                     synchronized (writeSelector.keys()) {
-                        calls = new ArrayList<Call>(writeSelector.keys().size());
+                        calls = new ArrayList<>(writeSelector.keys().size());
                         iter = writeSelector.keys().iterator();
                         while (iter.hasNext()) {
                             SelectionKey key = iter.next();
@@ -673,17 +671,12 @@ public class Server {
 
                     if (!call.response.hasRemaining()) {
                         call.connection.decConnCount();
-                        if (numElements == 1) {
-                            done = true;
-                        } else {
-                            done = false;
-                        }
+                        done = (numElements == 1);
                     } else {
                         call.connection.responseQueue.addFirst(call);
 
                         if (inHandler) {
                             call.timestamp = System.currentTimeMillis();
-
                             incPending();
 
                             try {
@@ -696,7 +689,6 @@ public class Server {
                             }
                         }
                     }
-
                     error = false;
                 }
             } finally {
@@ -706,7 +698,6 @@ public class Server {
                     closeConnection(call.connection);
                 }
             }
-
             return done;
         }
 
@@ -839,8 +830,6 @@ public class Server {
             DataInputStream in =
                     new DataInputStream(new ByteArrayInputStream(data.array()));
             header.readFields(in);
-
-            // check backlist
         }
 
         private void processBody() throws IOException, InterruptedException {
@@ -857,11 +846,7 @@ public class Server {
         }
 
         private boolean timedOut(long currentTime) {
-            if (isIdle() && currentTime - lastContact > maxIdleTime) {
-                return true;
-            }
-
-            return false;
+            return isIdle() && currentTime - lastContact > maxIdleTime;
         }
 
         private synchronized void close() throws IOException {
@@ -909,23 +894,18 @@ public class Server {
 
     private class Worker extends Thread {
 
-        public Worker(int sn) {
+        Worker(int sn) {
             this.setDaemon(true);
             this.setName("Worker" + sn);
         }
 
         public void run() {
             log.info(getName() + " is starting");
-
-            ByteArrayOutputStream buf =
-                    new ByteArrayOutputStream(INITIAL_RESP_BUF_SIZE);
-
+            ByteArrayOutputStream buf = new ByteArrayOutputStream(INITIAL_RESP_BUF_SIZE);
             while (running) {
                 try {
                     final Call call = callQueue.take();
-
                     log.info(getName() + ", has a call from " + call.connection);
-
                     String error = null;
                     Writable body = new ConnectionBody("Hello client " + call.str);
 

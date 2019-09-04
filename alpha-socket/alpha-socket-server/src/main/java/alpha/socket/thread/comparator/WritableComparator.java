@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class WritableComparator implements RawComparator {
-    private static HashMap<Class, WritableComparator> comparators =
-            new HashMap<Class, WritableComparator>();
+    private static HashMap<Class, WritableComparator> comparators = new HashMap<>();
 
     public static synchronized void define(Class c,
                                            WritableComparator comparator) {

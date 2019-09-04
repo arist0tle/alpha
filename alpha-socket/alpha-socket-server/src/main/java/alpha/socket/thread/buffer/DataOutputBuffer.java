@@ -9,19 +9,16 @@ public class DataOutputBuffer extends DataOutputStream {
 
     private static class Buffer extends ByteArrayOutputStream {
 
-        public byte[] getData() {
+        byte[] getData() {
             return buf;
         }
-
-        public int getLength() {
+        int getLength() {
             return count;
         }
-
-        public Buffer() {
+        Buffer() {
             super();
         }
-
-        public Buffer(int size) {
+        Buffer(int size) {
             super(size);
         }
 

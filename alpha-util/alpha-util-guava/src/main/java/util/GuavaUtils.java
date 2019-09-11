@@ -1,11 +1,13 @@
 package util;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.*;
 import com.google.common.html.HtmlEscapers;
 import com.google.common.reflect.Reflection;
 import com.google.common.xml.XmlEscapers;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.apache.bcel.util.ClassPath;
 import org.junit.Test;
 
@@ -15,6 +17,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * Created by tanghaiyang on 2019/3/11.
  */
+@Slf4j
 public class GuavaUtils {
 
 
@@ -65,5 +68,14 @@ public class GuavaUtils {
         Iterable<String> list2 = Splitter.on(",").split(str);
 
 
+    }
+
+    @Test
+    public void TreeMapTest(){
+        TreeMap<String,Object> treeMap = Maps.newTreeMap();
+        treeMap.put("aaa", 10);
+        treeMap.put("bbb", 22);
+        treeMap.put("ccc", 33);
+        log.info(JSON.toJSONString(treeMap));
     }
 }

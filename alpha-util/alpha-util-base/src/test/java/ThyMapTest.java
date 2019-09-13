@@ -42,7 +42,6 @@ public class ThyMapTest {
     public void EntryMapTest(){
         EntryMap<String, Object> entryMap = new EntryMap<>();
         entryMap.setValue("aaa");
-        String key = entryMap.getKey();
         log.info(JSON.toJSONString(entryMap,true));
     }
 

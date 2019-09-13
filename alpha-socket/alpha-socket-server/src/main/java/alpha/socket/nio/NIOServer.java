@@ -12,7 +12,10 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
-
+/**
+ * nio epoll 异步非阻塞模型
+ *
+ * */
 public class NIOServer {
 
     //通道选择器

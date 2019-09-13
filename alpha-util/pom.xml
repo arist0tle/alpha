@@ -23,7 +23,16 @@
         <module>alpha-util-string</module>
         <module>alpha-util-rule</module>
         <module>alpha-util-antlr</module>
+        <module>alpha-util-lang3</module>
+        <module>alpha-util-base</module>
+        <module>alpha-util-queue</module>
     </modules>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.geektcp.alpha</groupId>
+            <artifactId>alpha-common-base</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
 </project>

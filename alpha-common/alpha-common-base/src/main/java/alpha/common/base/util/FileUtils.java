@@ -72,7 +72,7 @@ public class FileUtils {
         List<File> listFile = new ArrayList<>();
         try {
             File file = new File(filePath);
-            log.info("Start scanning folder: {0} {1}", file.getPath(), file.isDirectory());
+            log.info("Start scanning folder: {} {}", file.getPath(), file.isDirectory());
             if (!file.isDirectory()) {
                 listFile.add(file);
             } else {
@@ -94,7 +94,7 @@ public class FileUtils {
         } catch (Exception e) {
             log.info("Read files has error due to: " + e.getMessage());
         }
-        log.info("File list size: {0}", listFile.size());
+        log.info("File list size: {}", listFile.size());
         return listFile;
     }
 
@@ -124,7 +124,7 @@ public class FileUtils {
                 return size;
             }
         } else {
-            log.warn("File does not exists,{0}", file.getPath());
+            log.warn("File does not exists,{}", file.getPath());
             return 0.0;
         }
     }

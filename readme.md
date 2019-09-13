@@ -2,12 +2,11 @@
 
 ```
 author:
-arist0tle
-geektcp
+arist0tle  
+geektcp   / geektcp@gmail.com
 ```
 
 # Learn
 
 
 # Experience
-

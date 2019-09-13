@@ -28,6 +28,7 @@
         <module>alpha-cache</module>
         <module>alpha-spider</module>
         <module>alpha-sys</module>
+        <module>alpha-queue</module>
     </modules>
 
     <properties>

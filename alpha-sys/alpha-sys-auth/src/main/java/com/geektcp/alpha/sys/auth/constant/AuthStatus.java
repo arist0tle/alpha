@@ -49,7 +49,7 @@ public enum AuthStatus implements Status {
     FIND_SCHEMA_RESOURCE_ERROR(10401,"查询表资源目录失败"),
     FIND_SCHEMA_ERROR(10402,"查询表信息失败"),
     FIND_SCHEMA_FIELD_ERROR(10403,"查询表字段信息失败"),
-    FIND_ROLE_SCHEMA_ERROR(10404,"查询角色:{0}拥有的表信息失败"),
+    FIND_ROLE_SCHEMA_ERROR(10404,"查询角色:{}拥有的表信息失败"),
     EMPLOYEE_IS_NOT_EXISTS(10405,"未查到该员工编号对应的员工信息"),
     LOGINUSER_UPDATE_ERROR(10406, "更新登录用户信息失败"),
     PERMISSIONS_NO_ENOUGH(10407, "权限不足"),

@@ -35,6 +35,11 @@ public class RedBlackTree {
             // do something
         }
 
+
+        public void find(int value){
+            // do something
+        }
+
     }
 
 

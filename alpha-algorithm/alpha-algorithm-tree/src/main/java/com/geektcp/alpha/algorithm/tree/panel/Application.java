@@ -6,13 +6,13 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 import java.awt.*;
 
-public class StartFrame {
+public class Application {
 	private static final String title = "DataStructure2D - v1.0 - create by github.com/gdggfb";
 	private static final String putButtonDesc = "插入";
 	private static final String removeButtonDesc = "删除";
 
 	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> new StartFrame().doDraw());
+		EventQueue.invokeLater(() -> new Application().doDraw());
 	}
 
 	private void action(JTextField textField, JPanel board, RedBlackTree tree, int action) {

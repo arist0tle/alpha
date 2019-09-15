@@ -15,28 +15,28 @@ public class RedBlackTree {
         private TreeNode left;
         private TreeNode right;
 
-        TreeNode(int value){
+        TreeNode(int value) {
             this.value = value;
         }
 
-        public void leftRotate() {
+        void leftRotate() {
             TreeNode rawLeft = left;
             left = parent;
             left.right = rawLeft;
         }
 
-        public void rightRotate() {
+        void rightRotate() {
             TreeNode rawRight = right;
             right = parent;
             right.left = rawRight;
         }
 
-        public void put(TreeNode treeNode){
+        void put(TreeNode treeNode) {
             // do something
         }
 
 
-        public void find(int value){
+        void find(int value) {
             // do something
         }
 
@@ -50,11 +50,9 @@ public class RedBlackTree {
         TreeNode two = new TreeNode(30);
         TreeNode three = new TreeNode(40);
 
-        root.left = one;
-        root.right = two;
-
-
-
+        root.put(one);
+        root.put(two);
+        root.put(three);
 
     }
 

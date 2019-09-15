@@ -1,7 +1,5 @@
 package com.geektcp.alpha.algorithm.tree.binary;
 
-import com.geektcp.alpha.algorithm.tree.AbstractTree;
-
 /**
  * Created by tanghaiyang on 2019/1/21.
  */

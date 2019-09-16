@@ -36,7 +36,6 @@ public class RBTreeTest {
         }
     }
 
-
     private static boolean readFile(String filename, ArrayList<String> words) {
         if (filename == null || words == null) {
             System.out.println("文件名或words不能为空");

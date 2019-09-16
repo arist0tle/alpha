@@ -42,8 +42,8 @@ public class RedBlackTreeTest {
         }
 
         System.out.println("共有不同单词数：" + redBlackTree.getSize());
-        System.out.println("出现pride的次数: " + redBlackTree.get("4"));
-        System.out.println("出现prejudice的次数: " + redBlackTree.get("1"));
+        System.out.println("出现4的次数: " + redBlackTree.get("4"));
+        System.out.println("出现1的次数: " + redBlackTree.get("1"));
     }
 
     @Test

@@ -3,6 +3,13 @@ package com.geektcp.alpha.algorithm.tree.binary;
 /**
  * Created by TangHaiyang on 2019/9/16.
  */
+
+import com.google.common.base.Joiner;
+import org.apache.commons.collections4.CollectionUtils;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 public class RedBlackTree<K extends Comparable<K>, V> {
@@ -306,6 +313,35 @@ public class RedBlackTree<K extends Comparable<K>, V> {
         return size == 0;
     }
 
+    public void print(){
+        List<List<Node>> nodes = new ArrayList<>();
+        List<Node> nodePair = new ArrayList<>();
+        nodePair.add(root);
+        nodes.add(nodePair);
+        print(nodes);
+    }
+
+    private List<Node> getChild(Node node){
+        List<Node> ret = new ArrayList<>();
+        ret.add(node.left);
+        ret.add(node.right);
+        return ret;
+    }
+
+    private void print(List<List<Node>> nodes){
+        StringBuilder sb = new StringBuilder();
+        List<List<Node>> ret = new ArrayList<>();
+        for(List<Node> nodePair: nodes){
+            sb.append("[");
+            sb.append(Joiner.on(",").join(nodePair));
+            sb.append("]");
+            nodePair.forEach(nodeChild -> ret.add(getChild(nodeChild)));
+        }
+        System.out.println(sb.toString());
+        if(CollectionUtils.isNotEmpty(nodes)) {
+            print(ret);
+        }
+    }
 
     /////////////////////
     private int getCompare(Node node, K key) {

@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by tanghaiyang on 2018/1/26.
@@ -65,31 +66,29 @@ public class FileUtils {
     /**
      * Recursive access folder all the files below.
      *
-     * @param filePath
-     * @return
+     * @param filePath  file path
      */
     public static List<File> getFiles(String filePath) {
         List<File> listFile = new ArrayList<>();
         try {
             File file = new File(filePath);
             log.info("Start scanning folder: {} {}", file.getPath(), file.isDirectory());
-            if (!file.isDirectory()) {
-                listFile.add(file);
-            } else {
+            if (file.isDirectory()) {
                 if (!filePath.endsWith(File.separator)) {
                     filePath += File.separator;
                 }
-
                 String[] files = file.list();
-                for (int j = 0; j < files.length; j++) {
-                    String strPath = filePath + files[j];
+                for(String fileStr:files){
+                    String strPath = filePath + fileStr;
                     File tmp = new File(strPath);
-                    if (!tmp.isDirectory()) {
-                        listFile.add(tmp);
-                    } else {
+                    if (tmp.isDirectory()) {
                         getFileList(listFile, tmp);
+                    } else {
+                        listFile.add(tmp);
                     }
                 }
+            } else {
+                listFile.add(file);
             }
         } catch (Exception e) {
             log.info("Read files has error due to: " + e.getMessage());
@@ -100,32 +99,42 @@ public class FileUtils {
 
     private static void getFileList(List<File> list, File dir) {
         File[] files = dir.listFiles();
-        if (files != null) {
-            for (int i = 0; i < files.length; i++) {
-                if (files[i].isDirectory()) {
-                    getFileList(list, files[i]);
-                } else {
-                    list.add(files[i]);
-                }
+        if (Objects.isNull(files)) {
+            return;
+        }
+        for (File file : files) {
+            if (file.isDirectory()) {
+                getFileList(list, file);
+            } else {
+                list.add(file);
             }
         }
+
     }
 
     public static double getDirSize(File file) {
-        if (file.exists()) {
-            if (file.isDirectory()) {
-                File[] children = file.listFiles();
-                double size = 0;
-                for (File f : children)
-                    size += getDirSize(f);
-                return size;
-            } else {
-                double size = (double) file.length() / 1024 / 1024;
-                return size;
-            }
-        } else {
+        double size = 0.0;
+        if (!file.exists()) {
             log.warn("File does not exists,{}", file.getPath());
-            return 0.0;
+            return size;
         }
+        if (!file.isDirectory()) {
+            return (double) file.length() / 1024 / 1024;
+        }
+        File[] children = file.listFiles();
+        if (Objects.isNull(children)) {
+            return size;
+        }
+        for (File f : children) {
+            size += getDirSize(f);
+        }
+        return size;
+    }
+
+    /**
+     * @return get resource absolute path
+     */
+    public static String getResourcePath() {
+        return FileUtils.class.getResource("/").getPath();
     }
 }

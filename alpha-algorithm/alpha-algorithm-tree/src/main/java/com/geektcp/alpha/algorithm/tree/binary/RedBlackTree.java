@@ -323,24 +323,40 @@ public class RedBlackTree<K extends Comparable<K>, V> {
 
     private List<Node> getChild(Node node){
         List<Node> ret = new ArrayList<>();
-        ret.add(node.left);
-        ret.add(node.right);
+        if(Objects.nonNull(node.left)){
+            ret.add(node.left);
+        }
+        if(Objects.nonNull(node.right)){
+            ret.add(node.right);
+        }
         return ret;
     }
 
     private void print(List<List<Node>> nodes){
         StringBuilder sb = new StringBuilder();
         List<List<Node>> ret = new ArrayList<>();
+
         for(List<Node> nodePair: nodes){
             sb.append("[");
-            sb.append(Joiner.on(",").join(nodePair));
+            sb.append(Joiner.on(",").join(getStringPair(nodePair)));
             sb.append("]");
-            nodePair.forEach(nodeChild -> ret.add(getChild(nodeChild)));
+            nodePair.forEach(nodeChild -> {
+                List<Node> children = getChild(nodeChild);
+                if(CollectionUtils.isNotEmpty(children)) {
+                    ret.add(children);
+                }
+            });
         }
         System.out.println(sb.toString());
         if(CollectionUtils.isNotEmpty(nodes)) {
             print(ret);
         }
+    }
+
+    private List<K> getStringPair( List<Node> nodePair){
+        List<K> printStr = new ArrayList<>();
+        nodePair.forEach(node -> printStr.add(node.key));
+        return printStr;
     }
 
     /////////////////////

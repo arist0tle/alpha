@@ -39,7 +39,10 @@ public class RedBlackTreeTest {
             } else {
                 redBlackTree.add(word, 1);
             }
+            redBlackTree.print();
+            System.out.println("===========");
         }
+
 
         System.out.println("共有不同单词数：" + redBlackTree.getSize());
         System.out.println("出现4的次数: " + redBlackTree.get("4"));
@@ -60,6 +63,7 @@ public class RedBlackTreeTest {
                     redBlackTree.add(word, 1);
                 }
             }
+            redBlackTree.print();
             System.out.println("共有不同单词数：" + redBlackTree.getSize());
             System.out.println("出现pride的次数: " + redBlackTree.get("pride"));
             System.out.println("出现prejudice的次数: " + redBlackTree.get("prejudice"));

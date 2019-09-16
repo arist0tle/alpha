@@ -161,7 +161,7 @@ public class RedBlackTree<K extends Comparable<K>, V> {
         if (isRed(node.left) && isRed(node.left.left)) { // 左红并且左节点的左子节点也是红就右旋
             node = rightRotate(node);
         }
-        if (isRed(node.left) && isRed(node.right)) {     // 左右都红就反转，即左右子节点变为黑色，当前节点变为红
+        if (isRed(node.left) && isRed(node.right)) {     // 左右都红就颜色反转，即左右子节点变为黑色，当前节点变为红
             flipColors(node);
         }
 

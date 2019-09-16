@@ -1,6 +1,9 @@
 package com.geektcp.alpha.algorithm.tree.binary;
 
 import alpha.common.base.util.FileUtils;
+import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -13,10 +16,38 @@ import java.util.Scanner;
 /**
  * Created by TangHaiyang on 2019/9/16.
  */
+@Slf4j
 public class RedBlackTreeTest {
 
-    public static void main(String[] args) {
-        System.out.println("傲慢与偏见");
+    @Test
+    public void RedBlackTree() {
+        ArrayList<String> words = new ArrayList<>();
+        words.add("1");
+        words.add("1");
+        words.add("1");
+        words.add("2");
+        words.add("3");
+        words.add("4");
+        words.add("5");
+        words.add("6");
+        words.add("77");
+        words.add("4");
+        RedBlackTree<String, Integer> redBlackTree = new RedBlackTree<>();
+        for (String word : words) {
+            if (redBlackTree.contains(word)) {
+                redBlackTree.set(word, redBlackTree.get(word) + 1);
+            } else {
+                redBlackTree.add(word, 1);
+            }
+        }
+
+        System.out.println("共有不同单词数：" + redBlackTree.getSize());
+        System.out.println("出现pride的次数: " + redBlackTree.get("4"));
+        System.out.println("出现prejudice的次数: " + redBlackTree.get("1"));
+    }
+
+    @Test
+    public void RedBlackTreeFromFile() {
         ArrayList<String> words = new ArrayList<>();
         String path = FileUtils.getResourcePath();
         if (readFile(path + "/" + "pride-and-prejudice.txt", words)) {
@@ -29,17 +60,18 @@ public class RedBlackTreeTest {
                     redBlackTree.add(word, 1);
                 }
             }
-
             System.out.println("共有不同单词数：" + redBlackTree.getSize());
             System.out.println("出现pride的次数: " + redBlackTree.get("pride"));
             System.out.println("出现prejudice的次数: " + redBlackTree.get("prejudice"));
         }
     }
 
+
     /**
      * 读取一个文本文件所有单词，存入List
+     *
      * @param filename 文件的绝对路径
-     * @param words  结果集合
+     * @param words    结果集合
      * @return 是否读取成功
      */
     private static boolean readFile(String filename, ArrayList<String> words) {
@@ -91,7 +123,7 @@ public class RedBlackTreeTest {
     /**
      * 寻找字符串s中，从start的位置开始的第一个字母字符的位置
      *
-     * @param s  目标字符串
+     * @param s     目标字符串
      * @param start 寻找的起始位置
      * @return 从起始位置开始的第一个字母的位置
      */

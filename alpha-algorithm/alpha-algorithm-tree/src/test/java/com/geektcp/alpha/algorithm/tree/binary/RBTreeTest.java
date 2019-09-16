@@ -36,6 +36,12 @@ public class RBTreeTest {
         }
     }
 
+    /**
+     * 读取一个文本文件所有单词，存入List
+     * @param filename 文件的绝对路径
+     * @param words  结果集合
+     * @return 是否读取成功
+     */
     private static boolean readFile(String filename, ArrayList<String> words) {
         if (filename == null || words == null) {
             System.out.println("文件名或words不能为空");
@@ -66,7 +72,6 @@ public class RBTreeTest {
          */
         if (scanner.hasNextLine()) {
             String contents = scanner.useDelimiter("\\A").next();
-
             int start = firstCharacterIndex(contents, 0);
             for (int i = start + 1; i <= contents.length(); ) {
                 if (i == contents.length() || !Character.isLetter(contents.charAt(i))) {
@@ -86,9 +91,9 @@ public class RBTreeTest {
     /**
      * 寻找字符串s中，从start的位置开始的第一个字母字符的位置
      *
-     * @param s
-     * @param start
-     * @return
+     * @param s  目标字符串
+     * @param start 寻找的起始位置
+     * @return 从起始位置开始的第一个字母的位置
      */
     private static int firstCharacterIndex(String s, int start) {
         for (int i = start; i < s.length(); i++) {

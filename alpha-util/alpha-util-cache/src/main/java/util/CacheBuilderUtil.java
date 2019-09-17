@@ -23,7 +23,7 @@ public class CacheBuilderUtil {
         }
     };
 
-    /*
+    /**
     * expireAfterAccess是指定项在一定时间内没有读写，会移除该key，下次取的时候从loading中取
     * expireAfterWrite  will clean cache and get default 是在指定项在一定时间内没有创建/覆盖时，会移除该key，下次取的时候从loading中取
     * refreshAfterWrite will delay old cache 是在指定时间内没有被创建/覆盖，则指定时间过后，再次访问时，会去刷新该缓存，在新值没有到来之前，始终返回旧值
@@ -41,7 +41,7 @@ public class CacheBuilderUtil {
                 }
             });
 
-    /*
+    /**
     * CacheBuilder 完全没有使用任何线程，它的listener是通过回调函数实现的
     * 下面的例子表明当达到listener的时间即第5s，listener函数依然没有执行，除非执行get方法，
     * 这是先执行钩子函数，然后返回get结果。

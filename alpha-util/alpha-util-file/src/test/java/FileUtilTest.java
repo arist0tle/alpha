@@ -1,5 +1,7 @@
+
+
+import alpha.common.base.util.FileUtils;
 import org.junit.Test;
-import util.FileUtil;
 
 import java.io.*;
 
@@ -11,7 +13,7 @@ public class FileUtilTest {
     @Test
     public void listAllFilesTest(){
         File file = new File("F:\\tmp");
-        FileUtil.listAllFiles(file);
+        FileUtils.listAllFiles(file);
     }
 
     @Test

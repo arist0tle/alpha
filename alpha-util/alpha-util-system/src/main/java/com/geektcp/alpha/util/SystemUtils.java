@@ -14,14 +14,30 @@ public class SystemUtils {
 
 
     @Test
-    public void InetAddress() throws Exception{
+    public void getInetAddress() throws Exception{
         InetAddress inetAddress = InetAddress.getLocalHost();
         log.info(inetAddress.toString());
     }
 
     @Test
-    public void getCores(){
+    public void getEnv(){
         int cores = Runtime.getRuntime().availableProcessors();
         log.info("cores: " + cores);
+
+        long totalMemorySize = Runtime.getRuntime().totalMemory();
+        log.info("totalMemorySize: " + totalMemorySize);
+
+        long freeMemorySize = Runtime.getRuntime().freeMemory();
+        log.info("freeMemorySize: " + freeMemorySize);
+
+    }
+
+    /**
+     * System.gc()等价于Runtime.getRuntime().gc()
+     */
+    @Test
+    public void executeGc(){
+        Runtime.getRuntime().gc();
+        System.gc();
     }
 }

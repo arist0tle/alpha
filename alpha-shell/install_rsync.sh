@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # rsync服务端部署
 mkdir -p /etc/rsyncd
 echo "rsync:Rsync_Dataeye_Nagle" > /etc/rsyncd/rsyncd.psw

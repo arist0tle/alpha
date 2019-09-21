@@ -1,4 +1,4 @@
-package com.geektcp.alpha.design.pattern;
+package com.geektcp.alpha.design.pattern.singleton;
 
 import org.junit.Test;
 

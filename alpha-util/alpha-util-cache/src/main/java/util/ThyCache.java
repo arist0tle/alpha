@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by TangHaiyang on 2019/9/10.
+ * 虚引用缓存
  */
 public final class ThyCache<K, V> {
 

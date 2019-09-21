@@ -183,7 +183,7 @@ public class Server {
 
         private Random rand = new Random();
 
-        public Listener() throws IOException {
+        Listener() throws IOException {
             address = new InetSocketAddress(port);
 
             acceptChannel = ServerSocketChannel.open();
@@ -490,17 +490,17 @@ public class Server {
                 log.info("SocketReader is stopping");
             }
 
-            public void startAdd() {
+             void startAdd() {
                 adding = true;
                 readSelector.wakeup();
             }
 
-            public synchronized void finishAdd() {
+             synchronized void finishAdd() {
                 adding = false;
                 this.notify();
             }
 
-            public synchronized SelectionKey registerChannel(SocketChannel channel)
+             synchronized SelectionKey registerChannel(SocketChannel channel)
                     throws IOException {
                 return channel.register(readSelector, SelectionKey.OP_READ);
             }
@@ -715,14 +715,14 @@ public class Server {
 
         private ByteBuffer response;
 
-        public Call(String str, Connection connection, Responder responder) {
+         Call(String str, Connection connection, Responder responder) {
             this.str = str;
             this.connection = connection;
             this.timestamp = System.currentTimeMillis();
             this.response = null;
         }
 
-        public synchronized void setResponse(ByteBuffer response) {
+         synchronized void setResponse(ByteBuffer response) {
             this.response = response;
         }
 
@@ -753,8 +753,8 @@ public class Server {
 
         private LinkedList<Call> responseQueue;
 
-        public Connection(SelectionKey key,
-                          SocketChannel channel, long lastContact) {
+        Connection(SelectionKey key,
+                   SocketChannel channel, long lastContact) {
             this.channel = channel;
             this.lastContact = lastContact;
             this.socket = channel.socket();
@@ -771,11 +771,11 @@ public class Server {
             this.dataLengthBuffer = ByteBuffer.allocate(4);
         }
 
-        public void setLastContact(long lastContact) {
+        void setLastContact(long lastContact) {
             this.lastContact = lastContact;
         }
 
-        public int readAndProcess() throws IOException, InterruptedException {
+        int readAndProcess() throws IOException, InterruptedException {
             while (true) {
                 int count = -1;
                 if (dataLengthBuffer.remaining() > 0) {
@@ -838,7 +838,7 @@ public class Server {
             callQueue.put(call);
         }
 
-        public String getHostAddress() {
+         String getHostAddress() {
             return hostAddress;
         }
 
@@ -854,21 +854,21 @@ public class Server {
             try {
                 socket.shutdownOutput();
             } catch (Exception e) {
-
+                log.error(e.getMessage());
             }
 
             if (channel.isOpen()) {
                 try {
                     channel.close();
                 } catch (Exception e) {
-
+                    log.error(e.getMessage());
                 }
             }
 
             try {
                 socket.close();
             } catch (Exception e) {
-
+                log.error(e.getMessage());
             }
         }
 

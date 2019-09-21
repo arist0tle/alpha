@@ -26,6 +26,7 @@
         <module>alpha-util-lang3</module>
         <module>alpha-util-base</module>
         <module>alpha-util-queue</module>
+        <module>alpha-util-system</module>
     </modules>
 
     <dependencies>

@@ -1,6 +1,7 @@
 import com.alibaba.fastjson.JSON;
 import com.geektcp.alpha.util.base.map.EntryMap;
 import com.geektcp.alpha.util.base.map.ThyMap;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.Map;
@@ -11,6 +12,7 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * Created by TangHaiyang on 2019/8/13.
  */
+@Slf4j
 public class ThyMapTest {
 
     @Test
@@ -39,9 +41,8 @@ public class ThyMapTest {
     @Test
     public void EntryMapTest(){
         EntryMap<String, Object> entryMap = new EntryMap<>();
-
-
-
+        entryMap.setValue("aaa");
+        log.info(JSON.toJSONString(entryMap,true));
     }
 
     @Test

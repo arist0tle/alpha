@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.Set;
 /**
  * nio epoll 异步非阻塞模型
+ * 反应堆模型
  *
  * */
 public class NIOServer {

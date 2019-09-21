@@ -1,4 +1,4 @@
-package com.geektcp.alpha.design.pattern.factory;
+package com.geektcp.alpha.design.pattern.simplefactory;
 
 /**
  * Created by TangHaiyang on 2019/9/21.

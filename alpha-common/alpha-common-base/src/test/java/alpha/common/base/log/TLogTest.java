@@ -32,5 +32,6 @@ public class TLogTest {
         log.info(fieldType);
 
         String constants = Constants.N;
+        log.info(constants);
     }
 }

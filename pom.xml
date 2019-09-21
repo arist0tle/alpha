@@ -29,6 +29,7 @@
         <module>alpha-spider</module>
         <module>alpha-sys</module>
         <module>alpha-queue</module>
+        <module>alpha-design</module>
     </modules>
 
     <properties>

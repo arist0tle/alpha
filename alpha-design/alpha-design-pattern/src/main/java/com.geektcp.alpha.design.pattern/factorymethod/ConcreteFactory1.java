@@ -1,6 +1,5 @@
 package com.geektcp.alpha.design.pattern.factorymethod;
 
-import com.geektcp.alpha.design.pattern.simplefactory.ConcreteProduct;
 import com.geektcp.alpha.design.pattern.simplefactory.ConcreteProduct1;
 import com.geektcp.alpha.design.pattern.simplefactory.Product;
 

@@ -1,20 +1,20 @@
+package com.geektcp.alpha.algorithm.arithmetic;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.extern.slf4j.Slf4j;
-import util.BTreeNode;
-import util.FileParse;
-import util.TreeNode;
+import com.geektcp.alpha.algorithm.arithmetic.BTreeNode;
+import com.geektcp.alpha.algorithm.arithmetic.FileParse;
+import com.geektcp.alpha.algorithm.arithmetic.TreeNode;
 
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by tanghaiyang on 2019/2/21.
  */
 @Slf4j
-public class Main {
+public class Application {
     public static JSONArray result = null;
 
     public static void main(String[] args) {

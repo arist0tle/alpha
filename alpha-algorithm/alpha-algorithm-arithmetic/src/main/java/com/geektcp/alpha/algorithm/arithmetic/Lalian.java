@@ -1,4 +1,4 @@
-package util.algorithm;
+package com.geektcp.alpha.algorithm.arithmetic;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;

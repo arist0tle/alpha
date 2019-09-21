@@ -1,4 +1,4 @@
-package util;
+package com.geektcp.alpha.algorithm.arithmetic;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;

@@ -5,6 +5,7 @@ import alpha.common.base.constant.FieldType;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -33,5 +34,10 @@ public class TLogTest {
 
         String constants = Constants.N;
         log.info(constants);
+
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("key", "value");
+        log.info(map);
+
     }
 }

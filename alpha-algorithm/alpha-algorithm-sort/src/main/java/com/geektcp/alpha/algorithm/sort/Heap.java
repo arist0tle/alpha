@@ -29,4 +29,38 @@ public class Heap<T extends Comparable<T>> {
         heap[i] = heap[j];
         heap[j] = t;
     }
+
+    private void swim(int k) {
+        while (k > 1 && less(k / 2, k)) {
+            swap(k / 2, k);
+            k = k / 2;
+        }
+    }
+
+    private void sink(int k) {
+        while (2 * k <= N) {
+            int j = 2 * k;
+            if (j < N && less(j, j + 1))
+                j++;
+            if (!less(k, j))
+                break;
+            swap(k, j);
+            k = j;
+        }
+    }
+
+    /*
+    public void insert(Comparable v) {
+        heap[++N] = v;
+        swim(N);
+    }
+    */
+
+    public T delMax() {
+        T max = heap[1];
+        swap(1, N--);
+        heap[N + 1] = null;
+        sink(1);
+        return max;
+    }
 }

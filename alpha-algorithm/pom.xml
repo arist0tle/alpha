@@ -17,6 +17,7 @@
         <module>alpha-algorithm-leetcode</module>
         <module>alpha-algorithm-arithmetic</module>
         <module>alpha-algorithm-dynamic</module>
+        <module>alpha-algorithm-sort</module>
     </modules>
 
 

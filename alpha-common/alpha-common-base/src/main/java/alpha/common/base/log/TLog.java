@@ -22,12 +22,40 @@ public class TLog {
         log.info(s);
     }
 
+    public void info(String s, Throwable e){
+        log.info(s, e);
+    }
+
     public void debug(String s){
         log.debug(s);
     }
 
     public void debug(Object obj){
         log.debug(obj.toString());
+    }
+
+    public void error(String s){
+        log.error(s);
+    }
+
+    public void error(Object obj){
+        log.error(obj.toString());
+    }
+
+    public void error(String s, Throwable e){
+        log.error(s, e);
+    }
+
+    public void warn(String s){
+        log.warn(s);
+    }
+
+    public void warn(Object obj){
+        log.warn(obj.toString());
+    }
+
+    public void warn(String s, Throwable e){
+        log.warn(s, e);
     }
 
 }

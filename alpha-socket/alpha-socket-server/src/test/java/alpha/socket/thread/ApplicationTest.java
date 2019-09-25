@@ -1,8 +1,8 @@
 package alpha.socket.thread;
 
-import alpha.socket.thread.buffer.DataOutputBuffer;
-import alpha.socket.thread.text.ConnectionBody;
-import alpha.socket.thread.text.ConnectionHeader;
+import alpha.socket.Reactor.buffer.DataOutputBuffer;
+import alpha.socket.Reactor.text.ConnectionBody;
+import alpha.socket.Reactor.text.ConnectionHeader;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -11,20 +11,19 @@ import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
-import java.net.UnknownHostException;
 
 /**
- * Unit test for simple App.
+ * Unit test for simple Application.
  */
-public class AppTest extends TestCase {
+public class ApplicationTest extends TestCase {
     private Socket socket;
 
-    public AppTest(String testName) {
+    public ApplicationTest(String testName) {
         super(testName);
     }
 
     public static Test suite() {
-        return new TestSuite(AppTest.class);
+        return new TestSuite(ApplicationTest.class);
     }
 
     public void testApp() {

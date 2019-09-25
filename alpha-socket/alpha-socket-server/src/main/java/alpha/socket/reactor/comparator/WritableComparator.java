@@ -1,4 +1,4 @@
-package alpha.socket.thread.comparator;
+package alpha.socket.reactor.comparator;
 
 import java.io.IOException;
 import java.util.HashMap;

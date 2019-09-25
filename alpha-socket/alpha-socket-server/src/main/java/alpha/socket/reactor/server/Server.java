@@ -1,11 +1,11 @@
-package alpha.socket.thread.server;
+package alpha.socket.reactor.server;
 
-import alpha.socket.thread.text.ConnectionBody;
-import alpha.socket.thread.text.ConnectionHeader;
-import alpha.socket.thread.comparator.Writable;
-import alpha.socket.thread.constant.Status;
-import alpha.socket.thread.util.StringUtils;
-import alpha.socket.thread.util.WritableUtils;
+import alpha.socket.reactor.text.ConnectionBody;
+import alpha.socket.reactor.text.ConnectionHeader;
+import alpha.socket.reactor.comparator.Writable;
+import alpha.socket.reactor.constant.Status;
+import alpha.socket.reactor.util.StringUtils;
+import alpha.socket.reactor.util.WritableUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;

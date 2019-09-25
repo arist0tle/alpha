@@ -1,13 +1,13 @@
-package alpha.socket.thread;
+package alpha.socket.reactor;
 
-import alpha.socket.thread.server.Server;
+import alpha.socket.reactor.server.Server;
 
 import java.io.IOException;
 
 /**
  * Hello Server!!!
  */
-public class App {
+public class Application {
     public static void main(String[] args) throws IOException {
         System.out.println("Hello Server!!!");
 

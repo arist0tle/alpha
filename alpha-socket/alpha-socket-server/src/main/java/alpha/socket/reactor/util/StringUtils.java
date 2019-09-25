@@ -1,4 +1,4 @@
-package alpha.socket.thread.util;
+package alpha.socket.reactor.util;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

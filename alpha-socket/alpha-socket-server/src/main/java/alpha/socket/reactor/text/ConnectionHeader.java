@@ -1,6 +1,6 @@
-package alpha.socket.thread.text;
+package alpha.socket.reactor.text;
 
-import alpha.socket.thread.comparator.Writable;
+import alpha.socket.reactor.comparator.Writable;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.DataInput;

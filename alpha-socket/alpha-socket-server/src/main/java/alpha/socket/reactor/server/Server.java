@@ -1,5 +1,7 @@
 package alpha.socket.reactor.server;
 
+import alpha.common.base.log.LogFactory;
+import alpha.common.base.log.TLog;
 import alpha.socket.reactor.text.ConnectionBody;
 import alpha.socket.reactor.text.ConnectionHeader;
 import alpha.socket.reactor.comparator.Writable;
@@ -15,8 +17,8 @@ import java.nio.channels.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-@Slf4j
 public class Server {
+    private static final TLog log = LogFactory.getLogger(Server.class);
 
     volatile private boolean running = true;
 
@@ -215,35 +217,34 @@ public class Server {
             log.info(getName() + " is running on " + port);
 
             while (running) {
-                SelectionKey key = null;
+                SelectionKey acceptKey = null;
 
                 try {
                     acceptSelector.select();
 
-                    Iterator<SelectionKey> iter =
-                            acceptSelector.selectedKeys().iterator();
-                    while (iter.hasNext()) {
-                        key = iter.next();
-                        iter.remove();
+                    Iterator<SelectionKey> acceptIterator = acceptSelector.selectedKeys().iterator();
+                    while (acceptIterator.hasNext()) {
+                        acceptKey = acceptIterator.next();
+                        acceptIterator.remove();
 
                         try {
-                            if (key.isValid()) {
-                                if (key.isAcceptable()) {
-                                    doAccept(key);
-                                } else if (key.isReadable()) {
-                                    doRead(key);
+                            if (acceptKey.isValid()) {
+                                if (acceptKey.isAcceptable()) {
+                                    doAccept(acceptKey);
+                                } else if (acceptKey.isReadable()) {
+                                    doRead(acceptKey);
                                 }
                             }
                         } catch (IOException e) {
                             log.error(e.getMessage());
                         }
 
-                        key = null;
+                        acceptKey = null;
                     }
                 } catch (OutOfMemoryError e) {
                     log.warn(getName() + " got OutOfMemoryError in Listener ", e);
 
-                    closeCurrentConnection(key);
+                    closeCurrentConnection(acceptKey);
                     cleanupConnections(true);
 
                     try {
@@ -257,7 +258,7 @@ public class Server {
                                 + StringUtils.stringifyException(e));
                     }
                 } catch (Exception e) {
-                    closeCurrentConnection(key);
+                    closeCurrentConnection(acceptKey);
                 }
                 cleanupConnections(false);
             }
@@ -280,7 +281,7 @@ public class Server {
         }
 
         void doAccept(SelectionKey key) throws IOException, OutOfMemoryError {
-            Connection c = null;
+            Connection conn = null;
             ServerSocketChannel server = (ServerSocketChannel) key.channel();
 
             for (int i = 0; i < backlog; i++) {
@@ -297,15 +298,15 @@ public class Server {
                 try {
                     reader.startAdd();
                     SelectionKey readKey = reader.registerChannel(channel);
-                    c = new Connection(readKey, channel, System.currentTimeMillis());
-                    readKey.attach(c);
+                    conn = new Connection(readKey, channel, System.currentTimeMillis());
+                    readKey.attach(conn);
 
                     synchronized (connectionList) {
-                        connectionList.add(numConnections, c);
+                        connectionList.add(numConnections, conn);
                         numConnections++;
                     }
 
-                    log.info("Got connection from " + c.toString()
+                    log.info("Got connection from " + conn.toString()
                             + ", active connections: " + numConnections
                             + ", callQueue len: " + callQueue.size());
 
@@ -320,34 +321,33 @@ public class Server {
         }
 
         void doRead(SelectionKey key) throws InterruptedException {
-            Connection c = (Connection) key.attachment();
-            if (c == null) {
+            Connection conn = (Connection) key.attachment();
+            if (conn == null) {
                 return;
             }
 
-            c.setLastContact(System.currentTimeMillis());
+            conn.setLastContact(System.currentTimeMillis());
 
             int count = 0;
 
             try {
-                count = c.readAndProcess();
+                count = conn.readAndProcess();
             } catch (InterruptedException ie) {
                 log.info(getName() + " readAndProcess got InterruptedException: ", ie);
                 throw ie;
             } catch (Exception e) {
-                log.info(getName() + " readAndProcess got Exception "
-                        + ", client: " + c.getHostAddress()
+                log.info(getName() + " readAndProcess got Exception " + ", client: " + conn.getHostAddress()
                         + ", read bytes: " + count, e);
                 count = -1;
             }
 
             if (count < 0) {
-                log.warn(getName() + ", the client " + c.getHostAddress()
+                log.warn(getName() + ", the client " + conn.getHostAddress()
                         + " is closed, active connections: " + numConnections);
-                closeConnection(c);
-                c = null;
+                closeConnection(conn);
+                conn = null;
             } else {
-                c.setLastContact(System.currentTimeMillis());
+                conn.setLastContact(System.currentTimeMillis());
             }
         }
 
@@ -453,22 +453,20 @@ public class Server {
 
                 synchronized (this) {
                     while (running) {
-                        SelectionKey key = null;
-
+                        SelectionKey readKey;
                         try {
                             readSelector.select();
                             while (adding) {
                                 this.wait(1000);
                             }
-                            Iterator<SelectionKey> iter =
-                                    readSelector.selectedKeys().iterator();
-                            while (iter.hasNext()) {
-                                key = iter.next();
-                                iter.remove();
-                                if (key.isValid() && key.isReadable()) {
-                                    doRead(key);
+                            Iterator<SelectionKey> readIterator = readSelector.selectedKeys().iterator();
+                            while (readIterator.hasNext()) {
+                                readKey = readIterator.next();
+                                readIterator.remove();
+                                if (readKey.isValid() && readKey.isReadable()) {
+                                    doRead(readKey);
                                 }
-                                key = null;
+                                readKey = null;
                             }
                         } catch (InterruptedException e) {
                             if (running) {
@@ -532,14 +530,14 @@ public class Server {
                     waitPending();
                     writeSelector.select(PURGE_INTERVAL);
 
-                    Iterator<SelectionKey> iter = writeSelector.selectedKeys().iterator();
-                    while (iter.hasNext()) {
-                        SelectionKey key = iter.next();
-                        iter.remove();
+                    Iterator<SelectionKey> writeIterator = writeSelector.selectedKeys().iterator();
+                    while (writeIterator.hasNext()) {
+                        SelectionKey writeKey = writeIterator.next();
+                        writeIterator.remove();
 
                         try {
-                            if (key.isValid() && key.isWritable()) {
-                                doAsyncWrite(key);
+                            if (writeKey.isValid() && writeKey.isWritable()) {
+                                doAsyncWrite(writeKey);
                             }
                         } catch (IOException e) {
                             log.info(getName() + " Got IOException in doAsyncWrite() " + e);
@@ -557,9 +555,9 @@ public class Server {
 
                     synchronized (writeSelector.keys()) {
                         calls = new ArrayList<>(writeSelector.keys().size());
-                        iter = writeSelector.keys().iterator();
-                        while (iter.hasNext()) {
-                            SelectionKey key = iter.next();
+                        writeIterator = writeSelector.keys().iterator();
+                        while (writeIterator.hasNext()) {
+                            SelectionKey key = writeIterator.next();
                             Call call = (Call) key.attachment();
                             if (call != null && key.channel() == call.connection.channel) {
                                 calls.add(call);
@@ -580,7 +578,7 @@ public class Server {
                     try {
                         Thread.sleep(60000);
                     } catch (Exception ie) {
-
+                        log.error(e.getMessage());
                     }
                 } catch (Exception e) {
                     log.warn("Got Exception in Responder " + StringUtils.stringifyException(e));
@@ -753,20 +751,19 @@ public class Server {
 
         private LinkedList<Call> responseQueue;
 
-        Connection(SelectionKey key,
-                   SocketChannel channel, long lastContact) {
+        Connection(SelectionKey key, SocketChannel channel, long lastContact) {
             this.channel = channel;
             this.lastContact = lastContact;
             this.socket = channel.socket();
-            InetAddress addr = socket.getInetAddress();
-            if (addr == null) {
+            InetAddress address = socket.getInetAddress();
+            if (address == null) {
                 this.hostAddress = "*Unknown*";
             } else {
-                this.hostAddress = addr.getHostAddress();
+                this.hostAddress = address.getHostAddress();
             }
 
             this.remotePort = socket.getPort();
-            this.responseQueue = new LinkedList<Call>();
+            this.responseQueue = new LinkedList<>();
             this.data = null;
             this.dataLengthBuffer = ByteBuffer.allocate(4);
         }

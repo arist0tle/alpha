@@ -917,20 +917,17 @@ public class Server {
                     setupResponse(buf, call, (error == null) ? Status.SUCCESS : Status.ERROR, body, error);
 
                     if (buf.size() > maxRespSize) {
-                        log.warn("Large response size " + buf.size() + " for call " +
-                                call.toString());
+                        log.warn("Large response size " + buf.size() + " for call " + call.toString());
                         buf = new ByteArrayOutputStream(INITIAL_RESP_BUF_SIZE);
                     }
 
                     responder.doRespond(call);
                 } catch (InterruptedException e) {
                     if (running) {
-                        log.info(getName() + " Got InterruptedException in worker "
-                                + StringUtils.stringifyException(e));
+                        log.info(getName() + " Got InterruptedException in worker " + StringUtils.stringifyException(e));
                     }
                 } catch (Exception e) {
-                    log.info(getName() + " Got Exception in worker "
-                            + StringUtils.stringifyException(e));
+                    log.info(getName() + " Got Exception in worker " + StringUtils.stringifyException(e));
                 }
             }
 

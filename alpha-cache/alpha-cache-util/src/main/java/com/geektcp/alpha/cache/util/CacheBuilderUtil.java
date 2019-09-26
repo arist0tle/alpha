@@ -1,8 +1,7 @@
-package util;
-
-import com.google.common.cache.*;
+package com.geektcp.alpha.cache.util;
 
 import java.util.concurrent.TimeUnit;
+import com.google.common.cache.*;
 
 /**
  * Created by tanghaiyang on 2019/3/8.

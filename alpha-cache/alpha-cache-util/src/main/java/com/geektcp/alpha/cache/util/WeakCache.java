@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by TangHaiyang on 2019/9/10.
  * 虚引用缓存
  */
-public final class ThyCache<K, V> {
+public final class WeakCache<K, V> {
 
     private final int size;
 
@@ -16,7 +16,7 @@ public final class ThyCache<K, V> {
 
     private final Map<K, V> longTerm;
 
-    public ThyCache(int size) {
+    public WeakCache(int size) {
         this.size = size;
         this.eden = new ConcurrentHashMap<>(size);
         this.longTerm = new WeakHashMap<>(size);

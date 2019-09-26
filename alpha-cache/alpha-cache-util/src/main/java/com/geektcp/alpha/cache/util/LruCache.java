@@ -6,7 +6,7 @@ import java.util.Iterator;
 /**
  * Created by TangHaiyang on 2019/9/26.
  */
-public class LRU<K, V> implements Iterable<K> {
+public class LruCache<K, V> implements Iterable<K> {
 
     private Node head;
     private Node tail;
@@ -26,7 +26,7 @@ public class LRU<K, V> implements Iterable<K> {
     }
 
 
-    public LRU(int maxSize) {
+    public LruCache(int maxSize) {
         this.maxSize = maxSize;
         this.map = new HashMap<>(maxSize * 4 / 3);
 

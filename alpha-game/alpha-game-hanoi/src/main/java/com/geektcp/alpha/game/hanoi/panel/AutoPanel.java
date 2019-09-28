@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import javax.swing.JButton;
@@ -29,7 +32,12 @@ public class AutoPanel extends JDialog implements ActionListener {
     private Timer time;
     private int i = 0, number = 0;
     private Tower tower;
-    private static int delay = 30;  // ms
+
+    private static final int delay = 0;  // ms
+
+    private static long startTime;
+    private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                                                                .withZone(ZoneId.systemDefault());;
 
     public static AutoPanel getInstance(Container con){
         if (Objects.isNull(uniqueInstance)) {
@@ -89,12 +97,18 @@ public class AutoPanel extends JDialog implements ActionListener {
             if (i <= moveStep.length() - 2) {
                 cStart = moveStep.charAt(i);
                 cEnd = moveStep.charAt(i + 1);
-                showStep.append("(" + number + ")从" + cStart + "座搬一个盘子到" + cEnd + "座\n");
+                showStep.append("(" + String.format("%04d", number) + ")从" + cStart + "座搬一个盘子到" + cEnd + "座\n");
                 autoMoveDisc(cStart, cEnd);
             }
             i = i + 2;
-            if (i >= moveStep.length() - 1)
+            if (i >= moveStep.length() - 1) {
                 time.stop();
+                Instant stopInstant = Instant.now();
+                long stopTime = stopInstant.toEpochMilli();
+                long elapsedTime = stopTime - startTime;
+                showStep.append("结束时间： " + dateFormat.format(stopInstant) + "\n");
+                showStep.append("一共耗时: " + elapsedTime + "(ms)");
+            }
         } else if (e.getSource() == bReset) {
             tower.removeAllDisc();
             tower.putDiscOnTower();
@@ -217,7 +231,9 @@ public class AutoPanel extends JDialog implements ActionListener {
 
     public void autoRun(){
         moveStep.setLength(0);
-        showStep.setText("");
+        Instant startInstant = Instant.now();
+        startTime = startInstant.toEpochMilli();
+        showStep.setText("启动时间： " + dateFormat.format(startInstant) + "\n");
         if (moveStep.length() == 0) {
             if (!time.isRunning()) {
                 i = 0;

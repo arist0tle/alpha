@@ -20,11 +20,11 @@ public class AutoPanel extends JDialog implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
-    private int amountOfDisc = 3;
+    private  int amountOfDisc = 3;
     private TowerPoint[] pointA, pointB, pointC;
-    private char[] towerName;
+    private static char[] towerName;
     private Container con;
-    private StringBuffer moveStep;
+    private  StringBuffer moveStep;
     private JTextArea showStep;
     private JButton bStart, bStop, bContinue, bClose;
     private Timer time;
@@ -82,23 +82,14 @@ public class AutoPanel extends JDialog implements ActionListener {
             if (i >= moveStep.length() - 1)
                 time.stop();
         } else if (e.getSource() == bStart) {
-            if (moveStep.length() == 0) {
-                if (time.isRunning() == false) {
-                    i = 0;
-                    moveStep = new StringBuffer();
-                    setMoveStep(amountOfDisc, towerName[0], towerName[1], towerName[2]);
-                    number = 0;
-                    time.start();
-                }
-            }
+            autoRun();
         } else if (e.getSource() == bStop) {
-            if (time.isRunning() == true) {
+            if (time.isRunning()) {
                 time.stop();
             }
         } else if (e.getSource() == bContinue) {
-            if (time.isRunning() == false) {
+            if (!time.isRunning()) {
                 time.restart();
-                ;
             }
         } else if (e.getSource() == bClose) {
             time.stop();
@@ -127,28 +118,28 @@ public class AutoPanel extends JDialog implements ActionListener {
     private void autoMoveDisc(char cStart, char cEnd) {
         Disc disc = null;
         if (cStart == towerName[0]) {
-            for (int i = 0; i < pointA.length; i++) {
-                if (pointA[i].isHaveDisc() == true) {
-                    disc = pointA[i].getDiscOnPoint();
-                    pointA[i].setHaveDisc(false);
+            for (TowerPoint point : pointA) {
+                if (point.isHaveDisc()) {
+                    disc = point.getDiscOnPoint();
+                    point.setHaveDisc(false);
                     break;
                 }
             }
         }
         if (cStart == towerName[1]) {
-            for (int i = 0; i < pointB.length; i++) {
-                if (pointB[i].isHaveDisc() == true) {
-                    disc = pointB[i].getDiscOnPoint();
-                    pointB[i].setHaveDisc(false);
+            for (TowerPoint point : pointB) {
+                if (point.isHaveDisc()) {
+                    disc = point.getDiscOnPoint();
+                    point.setHaveDisc(false);
                     break;
                 }
             }
         }
         if (cStart == towerName[2]) {
-            for (int i = 0; i < pointC.length; i++) {
-                if (pointC[i].isHaveDisc() == true) {
-                    disc = pointC[i].getDiscOnPoint();
-                    pointC[i].setHaveDisc(false);
+            for (TowerPoint point : pointC) {
+                if (point.isHaveDisc()) {
+                    disc = point.getDiscOnPoint();
+                    point.setHaveDisc(false);
                     break;
                 }
             }
@@ -158,7 +149,7 @@ public class AutoPanel extends JDialog implements ActionListener {
         int i = 0;
         if (cEnd == towerName[0]) {
             for (i = 0; i < pointA.length; i++) {
-                if (pointA[i].isHaveDisc() == true) {
+                if (pointA[i].isHaveDisc()) {
                     if (i > 0) {
                         endPoint = pointA[i - 1];
                         break;
@@ -173,7 +164,7 @@ public class AutoPanel extends JDialog implements ActionListener {
 
         if (cEnd == towerName[1]) {
             for (i = 0; i < pointB.length; i++) {
-                if (pointB[i].isHaveDisc() == true) {
+                if (pointB[i].isHaveDisc()) {
                     if (i > 0) {
                         endPoint = pointB[i - 1];
                         break;
@@ -188,7 +179,7 @@ public class AutoPanel extends JDialog implements ActionListener {
 
         if (cEnd == towerName[2]) {
             for (i = 0; i < pointC.length; i++) {
-                if (pointC[i].isHaveDisc() == true) {
+                if (pointC[i].isHaveDisc()) {
                     if (i > 0) {
                         endPoint = pointC[i - 1];
                         break;
@@ -302,4 +293,16 @@ public class AutoPanel extends JDialog implements ActionListener {
         this.amountOfDisc = amountOfDisc;
     }
 
+    public void autoRun(){
+        showStep.setText("");
+        if (moveStep.length() == 0) {
+            if (!time.isRunning()) {
+                i = 0;
+                moveStep = new StringBuffer();
+                setMoveStep(amountOfDisc, towerName[0], towerName[1], towerName[2]);
+                number = 0;
+                time.start();
+            }
+        }
+    }
 }

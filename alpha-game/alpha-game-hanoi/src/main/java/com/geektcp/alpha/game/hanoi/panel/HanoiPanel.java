@@ -41,7 +41,6 @@ public class HanoiPanel extends JFrame implements ActionListener {
         north.add(towerNumText);
         north.add(renew);
         north.add(autoButton);
-
         String mess = "将全部盘子从" + towerName[0] + "座搬运到" + towerName[1] + "座或" + towerName[2] + "座";
 
         JLabel hintMess = new JLabel(mess, JLabel.CENTER);
@@ -71,12 +70,15 @@ public class HanoiPanel extends JFrame implements ActionListener {
             int y = this.getBounds().y;
             tower.getAutoPanel().setLocation(x, y);
             tower.getAutoPanel().setSize(280, this.getBounds().height);
-            tower.getAutoPanel().setVisible(true);
+            tower.getAutoPanel().autoRun();
+            tower.getAutoPanel().setVisible(true);   // will sleep util listen something
         }else {
             tower.setAmountOfDisc(this.towerSize);
             tower.putDiscOnTower();
         }
         validate();
     }
+
+
 
 }

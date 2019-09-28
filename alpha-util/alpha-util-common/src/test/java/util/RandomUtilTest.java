@@ -1,5 +1,6 @@
 package util;
 
+import com.geektcp.alpha.util.common.util.RandomUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.LinkedList;

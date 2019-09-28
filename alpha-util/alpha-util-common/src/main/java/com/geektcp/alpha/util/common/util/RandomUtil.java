@@ -1,4 +1,4 @@
-package util;
+package com.geektcp.alpha.util.common.util;
 
 import lombok.extern.slf4j.Slf4j;
 import java.util.List;

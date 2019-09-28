@@ -1,9 +1,6 @@
 package com.geektcp.alpha.game.hanoi.panel;
 
-import com.geektcp.alpha.game.hanoi.panel.TowerPoint;
-
 import java.awt.Color;
-
 import javax.swing.JButton;
 
 public class Disc extends JButton {

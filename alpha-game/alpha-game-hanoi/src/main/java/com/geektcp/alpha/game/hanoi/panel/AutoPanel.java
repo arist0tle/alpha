@@ -29,6 +29,7 @@ public class AutoPanel extends JDialog implements ActionListener {
     private JButton bStart, bStop, bContinue, bClose;
     private Timer time;
     private int i = 0, number = 0;
+    private Tower tower;
 
     public AutoPanel(Container con) {
         setModal(true);
@@ -121,7 +122,7 @@ public class AutoPanel extends JDialog implements ActionListener {
             for (TowerPoint point : pointA) {
                 if (point.isExistDisc()) {
                     disc = point.getDiscOnPoint();
-                    point.setHaveDisc(false);
+                    point.setExistDisc(false);
                     break;
                 }
             }
@@ -130,7 +131,7 @@ public class AutoPanel extends JDialog implements ActionListener {
             for (TowerPoint point : pointB) {
                 if (point.isExistDisc()) {
                     disc = point.getDiscOnPoint();
-                    point.setHaveDisc(false);
+                    point.setExistDisc(false);
                     break;
                 }
             }
@@ -139,7 +140,7 @@ public class AutoPanel extends JDialog implements ActionListener {
             for (TowerPoint point : pointC) {
                 if (point.isExistDisc()) {
                     disc = point.getDiscOnPoint();
-                    point.setHaveDisc(false);
+                    point.setExistDisc(false);
                     break;
                 }
             }
@@ -194,15 +195,31 @@ public class AutoPanel extends JDialog implements ActionListener {
 
         if (endPoint != null && disc != null) {
             endPoint.putDisc(disc, con);
-            endPoint.setHaveDisc(true);
+            endPoint.setExistDisc(true);
         }
+    }
 
+    public void autoRun(){
+        showStep.setText("");
+//        tower.putDiscOnTower();
+        if (moveStep.length() == 0) {
+            if (!time.isRunning()) {
+                i = 0;
+                moveStep = new StringBuffer();
+                setMoveStep(amountOfDisc, towerName[0], towerName[1], towerName[2]);
+                number = 0;
+                time.start();
+            }
+        }
     }
 
     public void setPointA(TowerPoint[] pointA) {
         this.pointA = pointA;
     }
 
+    public void setTower(Tower tower) {
+        this.tower = tower;
+    }
 
     public void setPointB(TowerPoint[] pointB) {
         this.pointB = pointB;
@@ -226,21 +243,6 @@ public class AutoPanel extends JDialog implements ActionListener {
         this.amountOfDisc = amountOfDisc;
     }
 
-    public void autoRun(){
-        showStep.setText("");
-        if (moveStep.length() == 0) {
-            if (!time.isRunning()) {
-                i = 0;
-                moveStep = new StringBuffer();
-                setMoveStep(amountOfDisc, towerName[0], towerName[1], towerName[2]);
-                number = 0;
-                time.start();
-            }
-        }
-    }
 
-    public void autoRun(HanoiPanel panel){
-        panel.initTower();
-        autoRun();
-    }
+
 }

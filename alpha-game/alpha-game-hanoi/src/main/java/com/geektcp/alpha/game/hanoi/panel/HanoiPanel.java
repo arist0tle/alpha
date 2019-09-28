@@ -60,10 +60,12 @@ public class HanoiPanel extends JFrame implements ActionListener {
             tower.putDiscOnTower();
             int x = this.getBounds().x + this.getBounds().width;
             int y = this.getBounds().y;
-            tower.getAutoPanel().setLocation(x, y);
-            tower.getAutoPanel().setSize(280, this.getBounds().height);
-            tower.getAutoPanel().autoRun();
-            tower.getAutoPanel().setVisible(true);   // will sleep util listen something
+            AutoPanel autoPanel = tower.getAutoPanel();
+            autoPanel.setLocation(x, y);
+            autoPanel.setSize(280, this.getBounds().height);
+            autoPanel.setTower(tower);
+            autoPanel.autoRun();
+            autoPanel.setVisible(true);   // will sleep util listen something
         }else {
             tower.setAmountOfDisc(this.towerSize);
             tower.putDiscOnTower();
@@ -71,7 +73,7 @@ public class HanoiPanel extends JFrame implements ActionListener {
         validate();
     }
 
-    public void initTower(){
+    private void initTower(){
         tower = new Tower(towerName);
         tower.setAmountOfDisc(towerSize);
         tower.setMaxDiscWidth(120);

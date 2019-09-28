@@ -54,11 +54,11 @@ public class TowerPoint {
     }
 
     public boolean isNotExistDisc() {
-        return existDisc;
+        return !existDisc;
     }
 
-    public void setHaveDisc(boolean haveDisc) {
-        this.existDisc = haveDisc;
+    public void setExistDisc(boolean existDisc) {
+        this.existDisc = existDisc;
     }
 
 }

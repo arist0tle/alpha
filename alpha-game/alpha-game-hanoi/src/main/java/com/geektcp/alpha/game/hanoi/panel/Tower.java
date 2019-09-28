@@ -24,13 +24,6 @@ public class Tower extends JPanel {
         setBackground(new Color(200, 226, 226));
     }
 
-    public void setAutoPanel(int number) {
-        if (number <= 1)
-            amountOfDisc = 1;
-        else
-            amountOfDisc = number;
-    }
-
     public void putDiscOnTower() {
         removeDisc();
         int n = (maxDiscWidth - minDiscWidth) / amountOfDisc;

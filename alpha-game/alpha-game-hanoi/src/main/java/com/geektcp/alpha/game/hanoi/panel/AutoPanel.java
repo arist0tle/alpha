@@ -1,12 +1,11 @@
 package com.geektcp.alpha.game.hanoi.panel;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Objects;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -19,7 +18,7 @@ import javax.swing.Timer;
 public class AutoPanel extends JDialog implements ActionListener {
 
     private static final long serialVersionUID = 1L;
-
+    private static AutoPanel uniqueInstance;
     private  int amountOfDisc = 3;
     private TowerPoint[] pointA, pointB, pointC;
     private static char[] towerName;
@@ -30,6 +29,14 @@ public class AutoPanel extends JDialog implements ActionListener {
     private Timer time;
     private int i = 0, number = 0;
     private Tower tower;
+    private static int delay = 30;  // ms
+
+    public static AutoPanel getInstance(Container con){
+        if (Objects.isNull(uniqueInstance)) {
+            uniqueInstance = new AutoPanel(con);
+        }
+        return uniqueInstance;
+    }
 
     public AutoPanel(Container con) {
         setModal(true);
@@ -53,6 +60,7 @@ public class AutoPanel extends JDialog implements ActionListener {
         bClose.addActionListener(this);
 
         JPanel south = new JPanel();
+        south.setPreferredSize(new Dimension(300, 50));
         south.setLayout(new FlowLayout());
         south.add(bReset);
         south.add(bStart);
@@ -61,6 +69,7 @@ public class AutoPanel extends JDialog implements ActionListener {
         south.add(bClose);
         add(new JScrollPane(showStep), BorderLayout.CENTER);
         add(south, BorderLayout.SOUTH);
+        setSize(400,600);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         towerName = new char[3];
 
@@ -89,7 +98,6 @@ public class AutoPanel extends JDialog implements ActionListener {
         } else if (e.getSource() == bReset) {
             tower.removeAllDisc();
             tower.putDiscOnTower();
-            System.out.println(11111);
         } else if (e.getSource() == bStart) {
             autoRun();
         } else if (e.getSource() == bStop) {
@@ -106,7 +114,7 @@ public class AutoPanel extends JDialog implements ActionListener {
         }
 
         try{
-            Thread.sleep(300);
+            Thread.sleep(delay);
         }catch (Exception ex){
             ex.printStackTrace();
         }

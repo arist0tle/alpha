@@ -64,12 +64,7 @@ public class Tower extends JPanel {
         handleMouse.setPointB(pointB);
         handleMouse.setPointC(pointC);
 
-        autoPanel = new AutoPanel(this);
-        autoPanel.setTowerName(towerName);
-        autoPanel.setAmountOfDisc(amountOfDisc);
-        autoPanel.setPointA(pointA);
-        autoPanel.setPointB(pointB);
-        autoPanel.setPointC(pointC);
+        initAutoPanel();
         validate();
         repaint();
     }
@@ -158,6 +153,15 @@ public class Tower extends JPanel {
 
     public AutoPanel getAutoPanel() {
         return autoPanel;
+    }
+
+    public void initAutoPanel(){
+        autoPanel = AutoPanel.getInstance(this);
+        autoPanel.setTowerName(towerName);
+        autoPanel.setAmountOfDisc(amountOfDisc);
+        autoPanel.setPointA(pointA);
+        autoPanel.setPointB(pointB);
+        autoPanel.setPointC(pointC);
     }
 
 }

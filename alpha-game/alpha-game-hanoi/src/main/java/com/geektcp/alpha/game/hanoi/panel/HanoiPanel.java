@@ -34,7 +34,8 @@ public class HanoiPanel extends JFrame implements ActionListener {
         north.add(towerNumText);
         north.add(renew);
         north.add(autoButton);
-        String mess = "将全部盘子从" + towerName[0] + "座搬运到" + towerName[1] + "座或" + towerName[2] + "座";
+        String mess = "将全部盘子从" + towerName[0] + "座搬运到" +
+                towerName[1] + "座或" + towerName[2] + "座";
 
         JLabel hintMess = new JLabel(mess, JLabel.CENTER);
         north.add(hintMess);
@@ -42,7 +43,7 @@ public class HanoiPanel extends JFrame implements ActionListener {
         add(north, BorderLayout.NORTH);
         setResizable(false);
         setVisible(true);
-        setBounds(60, 60, 460, 410);
+        setBounds(60, 60, 500, 600);
         validate();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
@@ -58,11 +59,10 @@ public class HanoiPanel extends JFrame implements ActionListener {
         if (e.getSource() == autoButton) {
             tower.setAmountOfDisc(this.towerSize);
             tower.putDiscOnTower();
-            int x = this.getBounds().x + this.getBounds().width;
+            int x = this.getBounds().x + this.getBounds().width + 10;
             int y = this.getBounds().y;
-            AutoPanel autoPanel = tower.getAutoPanel();
+            AutoPanel autoPanel = AutoPanel.getInstance(this);
             autoPanel.setLocation(x, y);
-            autoPanel.setSize(280, this.getBounds().height);
             autoPanel.setTower(tower);
             autoPanel.autoRun();
             autoPanel.setVisible(true);   // will sleep util listen something

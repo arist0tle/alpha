@@ -1,8 +1,5 @@
 package com.geektcp.alpha.game.hanoi.panel;
 
-import com.geektcp.alpha.game.hanoi.mouse.Disc;
-import com.geektcp.alpha.game.hanoi.panel.TowerPoint;
-
 import java.awt.Container;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;

@@ -1,7 +1,5 @@
 package com.geektcp.alpha.game.hanoi.panel;
 
-import com.geektcp.alpha.game.hanoi.mouse.Disc;
-
 import java.awt.Component;
 import java.awt.Container;
 

@@ -1,6 +1,4 @@
-package com.geektcp.alpha.game.hanoi.mouse;
-
-import com.geektcp.alpha.game.hanoi.panel.TowerPoint;
+package com.geektcp.alpha.game.hanoi.panel;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -18,7 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
 
-public class AutoMoveDisc extends JDialog implements ActionListener {
+public class AutoPanel extends JDialog implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,9 +30,9 @@ public class AutoMoveDisc extends JDialog implements ActionListener {
     private Timer time;
     private int i = 0, number = 0;
 
-    public AutoMoveDisc(Container con) {
+    public AutoPanel(Container con) {
         setModal(true);
-        setTitle("自动演示半盘子过程");
+        setTitle("自动演示");
         this.con = con;
         moveStep = new StringBuffer();
         time = new Timer(100, this);

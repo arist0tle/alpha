@@ -1,8 +1,5 @@
 package com.geektcp.alpha.game.hanoi.panel;
 
-import com.geektcp.alpha.game.hanoi.mouse.AutoMoveDisc;
-import com.geektcp.alpha.game.hanoi.mouse.Disc;
-
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -18,7 +15,7 @@ public class Tower extends JPanel {
     private TowerPoint[] pointA, pointB, pointC;
 
     private HandleMouse handleMouse;
-    private AutoMoveDisc autoMoveDisc;
+    private AutoPanel autoPanel;
 
     public Tower(char[] towerName) {
         handleMouse = new HandleMouse(this);
@@ -27,7 +24,7 @@ public class Tower extends JPanel {
         setBackground(new Color(200, 226, 226));
     }
 
-    public void setAutoMoveDisc(int number) {
+    public void setAutoPanel(int number) {
         if (number <= 1)
             amountOfDisc = 1;
         else
@@ -41,8 +38,8 @@ public class Tower extends JPanel {
         for (int i = 0; i < disc.length; i++) {
             disc[i] = new Disc();
             disc[i].setNumber(i);
-            int discwidth = minDiscWidth + i * n;
-            disc[i].setSize(discwidth, discHeight);
+            int discWidth = minDiscWidth + i * n;
+            disc[i].setSize(discWidth, discHeight);
             disc[i].addMouseListener(handleMouse);
             disc[i].addMouseMotionListener(handleMouse);
             ;
@@ -51,20 +48,20 @@ public class Tower extends JPanel {
         pointB = new TowerPoint[amountOfDisc];
         pointC = new TowerPoint[amountOfDisc];
 
-        int vertialDistance = discHeight;
+        int verticalDistance = discHeight;
         for (int i = 0; i < pointA.length; i++) {
-            pointA[i] = new TowerPoint(maxDiscWidth, vertialDistance + 100);
-            vertialDistance = vertialDistance + discHeight;
+            pointA[i] = new TowerPoint(maxDiscWidth, verticalDistance + 100);
+            verticalDistance = verticalDistance + discHeight;
         }
-        vertialDistance = discHeight;
+        verticalDistance = discHeight;
         for (int i = 0; i < pointB.length; i++) {
-            pointB[i] = new TowerPoint(2 * maxDiscWidth, vertialDistance + 100);
-            vertialDistance = vertialDistance + discHeight;
+            pointB[i] = new TowerPoint(2 * maxDiscWidth, verticalDistance + 100);
+            verticalDistance = verticalDistance + discHeight;
         }
-        vertialDistance = discHeight;
+        verticalDistance = discHeight;
         for (int i = 0; i < pointC.length; i++) {
-            pointC[i] = new TowerPoint(3 * maxDiscWidth, vertialDistance + 100);
-            vertialDistance = vertialDistance + discHeight;
+            pointC[i] = new TowerPoint(3 * maxDiscWidth, verticalDistance + 100);
+            verticalDistance = verticalDistance + discHeight;
         }
 
         for (int i = 0; i < pointA.length; i++) {
@@ -74,12 +71,12 @@ public class Tower extends JPanel {
         handleMouse.setPointB(pointB);
         handleMouse.setPointC(pointC);
 
-        autoMoveDisc = new AutoMoveDisc(this);
-        autoMoveDisc.setTowerName(towerName);
-        autoMoveDisc.setAmountOfDisc(amountOfDisc);
-        autoMoveDisc.setPointA(pointA);
-        autoMoveDisc.setPointB(pointB);
-        autoMoveDisc.setPointC(pointC);
+        autoPanel = new AutoPanel(this);
+        autoPanel.setTowerName(towerName);
+        autoPanel.setAmountOfDisc(amountOfDisc);
+        autoPanel.setPointA(pointA);
+        autoPanel.setPointB(pointB);
+        autoPanel.setPointC(pointC);
         validate();
         repaint();
     }
@@ -153,12 +150,12 @@ public class Tower extends JPanel {
         this.discHeight = discHeight;
     }
 
-    public void setAutoMoveDisc(AutoMoveDisc autoMoveDisc) {
-        this.autoMoveDisc = autoMoveDisc;
+    public void setAutoMoveDisc(AutoPanel autoPanel) {
+        this.autoPanel = autoPanel;
     }
 
-    public AutoMoveDisc getAutoMoveDisc() {
-        return autoMoveDisc;
+    public AutoPanel getAutoPanel() {
+        return autoPanel;
     }
 
 }

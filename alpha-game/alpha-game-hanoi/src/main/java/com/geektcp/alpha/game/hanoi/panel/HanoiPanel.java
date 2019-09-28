@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import javax.swing.*;
 
-public class HanoiWindow extends JFrame implements ActionListener {
+public class HanoiPanel extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
@@ -17,7 +17,7 @@ public class HanoiWindow extends JFrame implements ActionListener {
     private JButton autoButton = null;
     private JTextField towerNumText;
 
-    public HanoiWindow() {
+    public HanoiPanel() {
         tower = new Tower(towerName);
         tower.setAmountOfDisc(towerSize);
         tower.setMaxDiscWidth(120);
@@ -69,9 +69,9 @@ public class HanoiWindow extends JFrame implements ActionListener {
             tower.putDiscOnTower();
             int x = this.getBounds().x + this.getBounds().width;
             int y = this.getBounds().y;
-            tower.getAutoMoveDisc().setLocation(x, y);
-            tower.getAutoMoveDisc().setSize(280, this.getBounds().height);
-            tower.getAutoMoveDisc().setVisible(true);
+            tower.getAutoPanel().setLocation(x, y);
+            tower.getAutoPanel().setSize(280, this.getBounds().height);
+            tower.getAutoPanel().setVisible(true);
         }else {
             tower.setAmountOfDisc(this.towerSize);
             tower.putDiscOnTower();

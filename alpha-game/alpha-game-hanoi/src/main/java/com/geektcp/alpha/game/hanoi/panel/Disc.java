@@ -1,4 +1,4 @@
-package com.geektcp.alpha.game.hanoi.mouse;
+package com.geektcp.alpha.game.hanoi.panel;
 
 import com.geektcp.alpha.game.hanoi.panel.TowerPoint;
 

@@ -26,7 +26,7 @@ public class AutoPanel extends JDialog implements ActionListener {
     private Container con;
     private  StringBuffer moveStep;
     private JTextArea showStep;
-    private JButton bStart, bStop, bContinue, bClose;
+    private JButton bReset, bStart, bStop, bContinue, bClose;
     private Timer time;
     private int i = 0, number = 0;
     private Tower tower;
@@ -39,11 +39,14 @@ public class AutoPanel extends JDialog implements ActionListener {
         time = new Timer(100, this);
         time.setInitialDelay(10);
         showStep = new JTextArea(10, 12);
-        bStart = new JButton("演示");
+
+        bReset = new JButton("重置");
+        bStart = new JButton("重来");
         bStop = new JButton("暂停");
         bContinue = new JButton("继续");
         bClose = new JButton("关闭");
 
+        bReset.addActionListener(this);
         bStart.addActionListener(this);
         bStop.addActionListener(this);
         bContinue.addActionListener(this);
@@ -51,6 +54,7 @@ public class AutoPanel extends JDialog implements ActionListener {
 
         JPanel south = new JPanel();
         south.setLayout(new FlowLayout());
+        south.add(bReset);
         south.add(bStart);
         south.add(bStop);
         south.add(bContinue);
@@ -82,6 +86,10 @@ public class AutoPanel extends JDialog implements ActionListener {
             i = i + 2;
             if (i >= moveStep.length() - 1)
                 time.stop();
+        } else if (e.getSource() == bReset) {
+            tower.removeAllDisc();
+            tower.putDiscOnTower();
+            System.out.println(11111);
         } else if (e.getSource() == bStart) {
             autoRun();
         } else if (e.getSource() == bStop) {
@@ -200,8 +208,8 @@ public class AutoPanel extends JDialog implements ActionListener {
     }
 
     public void autoRun(){
+        moveStep.setLength(0);
         showStep.setText("");
-//        tower.putDiscOnTower();
         if (moveStep.length() == 0) {
             if (!time.isRunning()) {
                 i = 0;
@@ -242,7 +250,5 @@ public class AutoPanel extends JDialog implements ActionListener {
     public void setAmountOfDisc(int amountOfDisc) {
         this.amountOfDisc = amountOfDisc;
     }
-
-
 
 }

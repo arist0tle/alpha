@@ -30,8 +30,14 @@ public class TowerPoint {
     }
 
     public void removeDisc(Component com, Container con) {
-        if (com != null)
+        if (com != null) {
             con.remove(com);
+        }
+        con.validate();
+    }
+
+    public void removeAllDisc(Container con){
+        con.removeAll();
         con.validate();
     }
 

@@ -35,7 +35,6 @@ public class Tower extends JPanel {
             disc[i].setSize(discWidth, discHeight);
             disc[i].addMouseListener(handleMouse);
             disc[i].addMouseMotionListener(handleMouse);
-            ;
         }
         pointA = new TowerPoint[amountOfDisc];
         pointB = new TowerPoint[amountOfDisc];
@@ -60,6 +59,7 @@ public class Tower extends JPanel {
         for (int i = 0; i < pointA.length; i++) {
             pointA[i].putDisc(disc[i], this);
         }
+
         handleMouse.setPointA(pointA);
         handleMouse.setPointB(pointB);
         handleMouse.setPointC(pointC);
@@ -84,6 +84,15 @@ public class Tower extends JPanel {
         }
     }
 
+    public void removeAllDisc() {
+        if (pointA != null) {
+            for (int i = 0; i < pointA.length; i++) {
+                pointA[i].removeAllDisc(this);
+                pointB[i].removeAllDisc(this);
+                pointC[i].removeAllDisc(this);
+            }
+        }
+    }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         int x1, y1, x2, y2;

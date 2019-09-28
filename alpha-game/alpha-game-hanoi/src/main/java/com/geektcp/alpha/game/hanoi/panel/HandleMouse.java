@@ -41,8 +41,9 @@ public class HandleMouse implements MouseListener, MouseMotionListener {
         int y = e.getY();
         leftX = leftX + x;
         leftY = leftY + y;
-        if (move)
+        if (move) {
             disc.setLocation(leftX - x0, leftY - y0);
+        }
     }
 
 
@@ -158,7 +159,8 @@ public class HandleMouse implements MouseListener, MouseMotionListener {
                 if (i == pointC.length - 1 && endPoint.isNotExistDisc()) {
                     location = true;
                     break;
-                } else if (i < pointC.length - 1 && pointC[i + 1].isExistDisc() &&
+                } else if (i < pointC.length - 1 &&
+                        pointC[i + 1].isExistDisc() &&
                         endPoint.isNotExistDisc() &&
                         pointC[i + 1].getDiscOnPoint().getNumber() > disc.getNumber()) {
                     location = true;
@@ -167,7 +169,7 @@ public class HandleMouse implements MouseListener, MouseMotionListener {
             }
         }
 
-        if (endPoint != null && location == true) {
+        if (endPoint != null && !location) {
             endPoint.putDisc(disc, con);
             startPoint.setExistDisc(false);
         } else {

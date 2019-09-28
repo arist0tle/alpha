@@ -11,32 +11,26 @@ public class ListQueue<Item> implements MyQueue<Item> {
     private Node last;
     int N = 0;
 
-
     private class Node {
         Item item;
         Node next;
     }
-
 
     @Override
     public boolean isEmpty() {
         return N == 0;
     }
 
-
     @Override
     public int size() {
         return N;
     }
 
-
     @Override
     public MyQueue<Item> add(Item item) {
-
         Node newNode = new Node();
         newNode.item = item;
         newNode.next = null;
-
         if (isEmpty()) {
             last = newNode;
             first = newNode;
@@ -44,23 +38,18 @@ public class ListQueue<Item> implements MyQueue<Item> {
             last.next = newNode;
             last = newNode;
         }
-
         N++;
         return this;
     }
 
-
     @Override
     public Item remove() throws Exception {
-
         if (isEmpty()) {
             throw new Exception("queue is empty");
         }
-
         Node node = first;
         first = first.next;
         N--;
-
         if (isEmpty()) {
             last = null;
         }
@@ -71,17 +60,13 @@ public class ListQueue<Item> implements MyQueue<Item> {
 
     @Override
     public Iterator<Item> iterator() {
-
         return new Iterator<Item>() {
-
             Node cur = first;
-
 
             @Override
             public boolean hasNext() {
                 return cur != null;
             }
-
 
             @Override
             public Item next() {

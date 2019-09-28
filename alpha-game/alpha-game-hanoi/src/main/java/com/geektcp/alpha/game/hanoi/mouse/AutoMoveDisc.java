@@ -108,7 +108,7 @@ public class AutoMoveDisc extends JDialog implements ActionListener {
         }
 
         try{
-            Thread.sleep(1000);
+            Thread.sleep(300);
         }catch (Exception ex){
             ex.printStackTrace();
         }

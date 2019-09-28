@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -36,8 +37,9 @@ public class AutoPanel extends JDialog implements ActionListener {
     private static final int delay = 0;  // ms
 
     private static long startTime;
-    private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-                                                                .withZone(ZoneId.systemDefault());;
+    private static final DateTimeFormatter dateFormat = DateTimeFormatter
+                                                            .ofPattern("yyyy-MM-dd HH:mm:ss")
+                                                            .withZone(ZoneId.systemDefault());
 
     public static AutoPanel getInstance(Container con){
         if (Objects.isNull(uniqueInstance)) {

@@ -11,21 +11,14 @@ public class HanoiPanel extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
-    private Tower tower = null;
+    private static Tower tower = null;
     private int towerSize = 3;
     private static char[] towerName = {'A', 'B', 'C'};
     private JButton autoButton = null;
     private JTextField towerNumText;
 
     public HanoiPanel() {
-        tower = new Tower(towerName);
-        tower.setAmountOfDisc(towerSize);
-        tower.setMaxDiscWidth(120);
-        tower.setMinDiscWidth(50);
-        tower.setDiscHeight(16);
-        tower.putDiscOnTower();
-
-        add(tower, BorderLayout.CENTER);
+        initTower();
 
         JButton renew = new JButton("开始");
         renew.addActionListener(this);
@@ -52,7 +45,6 @@ public class HanoiPanel extends JFrame implements ActionListener {
         setBounds(60, 60, 460, 410);
         validate();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
     }
 
     @Override
@@ -79,6 +71,15 @@ public class HanoiPanel extends JFrame implements ActionListener {
         validate();
     }
 
+    public void initTower(){
+        tower = new Tower(towerName);
+        tower.setAmountOfDisc(towerSize);
+        tower.setMaxDiscWidth(120);
+        tower.setMinDiscWidth(50);
+        tower.setDiscHeight(16);
+        tower.putDiscOnTower();
+        this.add(tower, BorderLayout.CENTER);
+    }
 
 
 }

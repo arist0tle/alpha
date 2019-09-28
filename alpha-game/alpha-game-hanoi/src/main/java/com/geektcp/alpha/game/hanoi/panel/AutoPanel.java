@@ -119,7 +119,7 @@ public class AutoPanel extends JDialog implements ActionListener {
         Disc disc = null;
         if (cStart == towerName[0]) {
             for (TowerPoint point : pointA) {
-                if (point.isHaveDisc()) {
+                if (point.isExistDisc()) {
                     disc = point.getDiscOnPoint();
                     point.setHaveDisc(false);
                     break;
@@ -128,7 +128,7 @@ public class AutoPanel extends JDialog implements ActionListener {
         }
         if (cStart == towerName[1]) {
             for (TowerPoint point : pointB) {
-                if (point.isHaveDisc()) {
+                if (point.isExistDisc()) {
                     disc = point.getDiscOnPoint();
                     point.setHaveDisc(false);
                     break;
@@ -137,7 +137,7 @@ public class AutoPanel extends JDialog implements ActionListener {
         }
         if (cStart == towerName[2]) {
             for (TowerPoint point : pointC) {
-                if (point.isHaveDisc()) {
+                if (point.isExistDisc()) {
                     disc = point.getDiscOnPoint();
                     point.setHaveDisc(false);
                     break;
@@ -149,7 +149,7 @@ public class AutoPanel extends JDialog implements ActionListener {
         int i = 0;
         if (cEnd == towerName[0]) {
             for (i = 0; i < pointA.length; i++) {
-                if (pointA[i].isHaveDisc()) {
+                if (pointA[i].isExistDisc()) {
                     if (i > 0) {
                         endPoint = pointA[i - 1];
                         break;
@@ -164,7 +164,7 @@ public class AutoPanel extends JDialog implements ActionListener {
 
         if (cEnd == towerName[1]) {
             for (i = 0; i < pointB.length; i++) {
-                if (pointB[i].isHaveDisc()) {
+                if (pointB[i].isExistDisc()) {
                     if (i > 0) {
                         endPoint = pointB[i - 1];
                         break;
@@ -179,7 +179,7 @@ public class AutoPanel extends JDialog implements ActionListener {
 
         if (cEnd == towerName[2]) {
             for (i = 0; i < pointC.length; i++) {
-                if (pointC[i].isHaveDisc()) {
+                if (pointC[i].isExistDisc()) {
                     if (i > 0) {
                         endPoint = pointC[i - 1];
                         break;
@@ -199,32 +199,17 @@ public class AutoPanel extends JDialog implements ActionListener {
 
     }
 
-    public TowerPoint[] getPointA() {
-        return pointA;
-    }
-
     public void setPointA(TowerPoint[] pointA) {
         this.pointA = pointA;
     }
 
-    public TowerPoint[] getPointB() {
-        return pointB;
-    }
 
     public void setPointB(TowerPoint[] pointB) {
         this.pointB = pointB;
     }
 
-    public TowerPoint[] getPointC() {
-        return pointC;
-    }
-
     public void setPointC(TowerPoint[] pointC) {
         this.pointC = pointC;
-    }
-
-    public char[] getTowerName() {
-        return towerName;
     }
 
     public void setTowerName(char[] name) {
@@ -235,58 +220,6 @@ public class AutoPanel extends JDialog implements ActionListener {
         } else {
             towerName = name;
         }
-    }
-
-    public Container getCon() {
-        return con;
-    }
-
-    public StringBuffer getMoveStep() {
-        return moveStep;
-    }
-
-    public void setMoveStep(StringBuffer moveStep) {
-        this.moveStep = moveStep;
-    }
-
-
-    public void setShowStep(JTextArea showStep) {
-        this.showStep = showStep;
-    }
-
-
-    public void setbStart(JButton bStart) {
-        this.bStart = bStart;
-    }
-
-
-    public void setbStop(JButton bStop) {
-        this.bStop = bStop;
-    }
-
-
-    public void setbContinue(JButton bContinue) {
-        this.bContinue = bContinue;
-    }
-
-
-    public void setbClose(JButton bClose) {
-        this.bClose = bClose;
-    }
-
-
-    public void setTime(Timer time) {
-        this.time = time;
-    }
-
-
-    public void setI(int i) {
-        this.i = i;
-    }
-
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 
     public void setAmountOfDisc(int amountOfDisc) {
@@ -304,5 +237,10 @@ public class AutoPanel extends JDialog implements ActionListener {
                 time.start();
             }
         }
+    }
+
+    public void autoRun(HanoiPanel panel){
+        panel.initTower();
+        autoRun();
     }
 }

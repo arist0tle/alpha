@@ -18,24 +18,12 @@ public class HandleMouse implements MouseListener, MouseMotionListener {
         this.con = con;
     }
 
-    public TowerPoint[] getPointA() {
-        return pointA;
-    }
-
     public void setPointA(TowerPoint[] pointA) {
         this.pointA = pointA;
     }
 
-    public TowerPoint[] getPointB() {
-        return pointB;
-    }
-
     public void setPointB(TowerPoint[] pointB) {
         this.pointB = pointB;
-    }
-
-    public TowerPoint[] getPointC() {
-        return pointC;
     }
 
     public void setPointC(TowerPoint[] pointC) {
@@ -82,7 +70,7 @@ public class HandleMouse implements MouseListener, MouseMotionListener {
         for (int i = 0; i < pointA.length; i++) {
             if (pointA[i].equals(startPoint)) {
                 m = i;
-                if (m > 0 && (pointA[m - 1].isHaveDisc() == false)) {
+                if (m > 0 && pointA[m - 1].isNotExistDisc()) {
                     move = true;
                     break;
                 } else if (m == 0) {
@@ -94,7 +82,7 @@ public class HandleMouse implements MouseListener, MouseMotionListener {
         for (int i = 0; i < pointB.length; i++) {
             if (pointB[i].equals(startPoint)) {
                 m = i;
-                if (m > 0 && (pointB[m - 1].isHaveDisc() == false)) {
+                if (m > 0 && pointB[m - 1].isNotExistDisc()) {
                     move = true;
                     break;
                 } else if (m == 0) {
@@ -106,7 +94,7 @@ public class HandleMouse implements MouseListener, MouseMotionListener {
         for (int i = 0; i < pointC.length; i++) {
             if (pointC[i].equals(startPoint)) {
                 m = i;
-                if (m > 0 && (pointC[m - 1].isHaveDisc() == false)) {
+                if (m > 0 && pointC[m - 1].isNotExistDisc()) {
                     move = true;
                     break;
                 } else if (m == 0) {
@@ -131,10 +119,13 @@ public class HandleMouse implements MouseListener, MouseMotionListener {
             y = pointA[i].getY();
             if (rect.contains(x, y)) {
                 endPoint = pointA[i];
-                if (i == pointA.length - 1 && endPoint.isHaveDisc() == false) {
+                if (i == pointA.length - 1 && endPoint.isNotExistDisc()) {
                     location = true;
                     break;
-                } else if (i < pointA.length - 1 && pointA[i + 1].isHaveDisc() == true && endPoint.isHaveDisc() == false && pointA[i + 1].getDiscOnPoint().getNumber() > disc.getNumber()) {
+                } else if (i < pointA.length - 1 &&
+                        pointA[i + 1].isExistDisc() &&
+                        endPoint.isNotExistDisc() &&
+                        pointA[i + 1].getDiscOnPoint().getNumber() > disc.getNumber()) {
                     location = true;
                     break;
                 }
@@ -146,10 +137,13 @@ public class HandleMouse implements MouseListener, MouseMotionListener {
             y = pointB[i].getY();
             if (rect.contains(x, y)) {
                 endPoint = pointB[i];
-                if (i == pointB.length - 1 && endPoint.isHaveDisc() == false) {
+                if (i == pointB.length - 1 && endPoint.isNotExistDisc()) {
                     location = true;
                     break;
-                } else if (i < pointB.length - 1 && pointB[i + 1].isHaveDisc() == true && endPoint.isHaveDisc() == false && pointB[i + 1].getDiscOnPoint().getNumber() > disc.getNumber()) {
+                } else if (i < pointB.length - 1 &&
+                        pointB[i + 1].isExistDisc() &&
+                        endPoint.isNotExistDisc() &&
+                        pointB[i + 1].getDiscOnPoint().getNumber() > disc.getNumber()) {
                     location = true;
                     break;
                 }
@@ -161,10 +155,12 @@ public class HandleMouse implements MouseListener, MouseMotionListener {
             y = pointC[i].getY();
             if (rect.contains(x, y)) {
                 endPoint = pointC[i];
-                if (i == pointC.length - 1 && endPoint.isHaveDisc() == false) {
+                if (i == pointC.length - 1 && endPoint.isNotExistDisc()) {
                     location = true;
                     break;
-                } else if (i < pointC.length - 1 && pointC[i + 1].isHaveDisc() == true && endPoint.isHaveDisc() == false && pointC[i + 1].getDiscOnPoint().getNumber() > disc.getNumber()) {
+                } else if (i < pointC.length - 1 && pointC[i + 1].isExistDisc() &&
+                        endPoint.isNotExistDisc() &&
+                        pointC[i + 1].getDiscOnPoint().getNumber() > disc.getNumber()) {
                     location = true;
                     break;
                 }

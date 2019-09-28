@@ -6,7 +6,7 @@ import java.awt.Container;
 public class TowerPoint {
 
     private int x, y;
-    private boolean haveDisc;
+    private boolean existDisc;
     private Disc disc = null;
 
     public boolean equals(TowerPoint p) {
@@ -20,7 +20,7 @@ public class TowerPoint {
         int w = disc.getBounds().width;
         int h = disc.getBounds().height;
         disc.setBounds(x - w / 2, y - h / 2, w, h);
-        haveDisc = true;
+        existDisc = true;
         disc.setPoint(this);
         con.validate();
     }
@@ -45,28 +45,20 @@ public class TowerPoint {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public boolean isExistDisc() {
+        return existDisc;
     }
 
-    public boolean isHaveDisc() {
-        return haveDisc;
+    public boolean isNotExistDisc() {
+        return existDisc;
     }
 
     public void setHaveDisc(boolean haveDisc) {
-        this.haveDisc = haveDisc;
-    }
-
-    public void setDisc(Disc disc) {
-        this.disc = disc;
+        this.existDisc = haveDisc;
     }
 
 }

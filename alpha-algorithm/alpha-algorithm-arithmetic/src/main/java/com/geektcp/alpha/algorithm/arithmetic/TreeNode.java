@@ -1,7 +1,7 @@
 package com.geektcp.alpha.algorithm.arithmetic;
 
 /**
- * Created by tanghaiyang on 2019/2/21.
+ * @author tanghaiyang on 2019/2/21.
  */
 public class TreeNode {
     private double data;

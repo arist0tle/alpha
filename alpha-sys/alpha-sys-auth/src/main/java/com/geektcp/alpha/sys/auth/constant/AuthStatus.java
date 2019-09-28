@@ -4,7 +4,7 @@ package com.geektcp.alpha.sys.auth.constant;
 import alpha.common.base.constant.Status;
 
 /**
- * Created by tanghaiyang on 2018/1/4.
+ * @author tanghaiyang on 2018/1/4.
  */
 public enum AuthStatus implements Status {
 

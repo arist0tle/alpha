@@ -10,7 +10,7 @@ import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by TangHaiyang on 2019/8/25.
+ * @author tanghaiyang on 2019/8/25.
  * 队列特性: 无界阻塞队列
  * 线程安全机制: ReentrantLock(单lock:lock)
  *

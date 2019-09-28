@@ -11,7 +11,7 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * Created by tanghaiyang on 2019/6/25.
+ * @author tanghaiyang on 2019/6/25.
  */
 @Configuration
 public class RedisConfig {

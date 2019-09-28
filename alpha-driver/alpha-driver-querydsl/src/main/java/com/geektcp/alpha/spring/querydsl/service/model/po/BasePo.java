@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by tanghaiyang on 2018/5/15.
+ * @author tanghaiyang on 2018/5/15.
  */
 @Data
 @MappedSuperclass

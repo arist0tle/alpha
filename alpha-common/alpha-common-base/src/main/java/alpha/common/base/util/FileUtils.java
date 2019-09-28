@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * Created by tanghaiyang on 2018/1/26.
+ * @author tanghaiyang on 2018/1/26.
  */
 @Slf4j
 public class FileUtils {

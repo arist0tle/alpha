@@ -6,7 +6,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import java.util.Objects;
 
 /**
- * Created by tanghaiyang on 2019/1/8.
+ * @author tanghaiyang on 2019/1/8.
  */
 public class SysResourceTreeVo {
 

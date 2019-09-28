@@ -7,7 +7,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- * Created by tanghaiyang on 2018/1/4.
+ * @author tanghaiyang on 2018/1/4.
  */
 public class UserRolesAuthorizationFilter extends AuthorizationFilter {
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by tanghaiyang on 2019/6/25.
+ * @author tanghaiyang on 2019/6/25.
  */
 @Service
 @Slf4j

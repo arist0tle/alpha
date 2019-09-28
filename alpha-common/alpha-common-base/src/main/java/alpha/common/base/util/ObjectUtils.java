@@ -6,7 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * Created by tanghaiyang on 2019/2/27.
+ * @author tanghaiyang on 2019/2/27.
  */
 public class ObjectUtils {
     public static Object deepCopy(Object object) {

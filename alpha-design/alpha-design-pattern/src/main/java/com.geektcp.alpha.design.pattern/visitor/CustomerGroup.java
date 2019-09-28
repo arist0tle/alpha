@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by TangHaiyang on 2019/9/21.
+ * @author tanghaiyang on 2019/9/21.
  */
 class CustomerGroup {
 

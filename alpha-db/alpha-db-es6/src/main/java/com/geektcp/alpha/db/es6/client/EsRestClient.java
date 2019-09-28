@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by tanghaiyang on 2018/11/5.
+ * @author tanghaiyang on 2018/11/5.
  */
 @Slf4j
 @Repository("esRestClient")

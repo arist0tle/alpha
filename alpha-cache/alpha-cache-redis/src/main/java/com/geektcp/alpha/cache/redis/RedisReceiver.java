@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by tanghaiyang on 2019/6/25.
+ * @author tanghaiyang on 2019/6/25.
  */
 @Service
 @Slf4j

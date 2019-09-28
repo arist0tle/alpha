@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by tanghaiyang on 2019/3/6.
+ * @author tanghaiyang on 2019/3/6.
  */
 public class BeanJsonTest {
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by tanghaiyang on 2019/3/4.
+ * @author tanghaiyang on 2019/3/4.
  */
 @Api(description = "[权限测试]")
 @RestController

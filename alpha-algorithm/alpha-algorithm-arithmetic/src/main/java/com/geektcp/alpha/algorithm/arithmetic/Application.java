@@ -11,7 +11,7 @@ import com.geektcp.alpha.algorithm.arithmetic.TreeNode;
 
 
 /**
- * Created by tanghaiyang on 2019/2/21.
+ * @author tanghaiyang on 2019/2/21.
  */
 @Slf4j
 public class Application {

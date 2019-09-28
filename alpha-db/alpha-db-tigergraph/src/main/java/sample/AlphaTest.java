@@ -1,7 +1,7 @@
 package sample;
 
 /**
- * Created by tanghaiyang on 2019/1/11.
+ * @author tanghaiyang on 2019/1/11.
  */
 public class AlphaTest {
     public static void main(String[] args) {

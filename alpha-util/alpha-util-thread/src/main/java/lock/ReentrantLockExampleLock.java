@@ -3,7 +3,7 @@ package lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Created by TangHaiyang on 2019/8/20.
+ * @author tanghaiyang on 2019/8/20.
  *  lock方法不支持interrupt
  */
 public class ReentrantLockExampleLock implements Runnable{

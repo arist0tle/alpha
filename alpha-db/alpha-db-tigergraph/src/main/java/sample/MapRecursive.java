@@ -3,7 +3,7 @@ package sample;
 import java.util.*;
 
 /**
- * Created by tanghaiyang on 2019/2/11.
+ * @author tanghaiyang on 2019/2/11.
  */
 public class MapRecursive {
     public static void main(String[] args) {

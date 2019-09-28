@@ -3,7 +3,7 @@ package alpha.common.base.collection;
 import java.util.Iterator;
 
 /**
- * Created by TangHaiyang on 2019/9/28.
+ * @author tanghaiyang on 2019/9/28.
  */
 public class ListQueue<Item> implements MyQueue<Item> {
 

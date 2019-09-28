@@ -3,7 +3,7 @@ package com.geektcp.alpha.design.pattern.flyweight;
 import java.util.HashMap;
 
 /**
- * Created by TangHaiyang on 2019/9/21.
+ * @author tanghaiyang on 2019/9/21.
  */
 public class FlyweightFactory {
 

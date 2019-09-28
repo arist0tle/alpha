@@ -7,7 +7,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 
 /**
- * Created by tanghaiyang on 2018/1/4.
+ * @author tanghaiyang on 2018/1/4.
  */
 public class UserCredentialsMatcher implements CredentialsMatcher {
 

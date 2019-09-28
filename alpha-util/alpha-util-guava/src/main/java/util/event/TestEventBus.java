@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.concurrent.Executors;
 
 /**
- * Created by TangHaiyang on 2019/7/22.
+ * @author tanghaiyang on 2019/7/22.
  */
 /*
 * EventBus是guava的一个已经实现好的单进程消息订阅机制。

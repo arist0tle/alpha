@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by tanghaiyang on 2019/2/22.
+ * @author tanghaiyang on 2019/2/22.
  */
 @Slf4j
 public class RandomUtil {

@@ -3,7 +3,7 @@ package com.geektcp.alpha.util.base.proxy.dynamicproxy;
 import com.geektcp.alpha.util.base.proxy.staticproxy.UserManagerProxy;
 
 /**
- * Created by TangHaiyang on 2019/8/15.
+ * @author tanghaiyang on 2019/8/15.
  */
 public class UserManagerImpl implements UserManagerProxy {
 

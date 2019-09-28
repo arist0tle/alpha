@@ -7,7 +7,7 @@ import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Created by TangHaiyang on 2019/8/25.
+ * @author tanghaiyang on 2019/8/25.
  */
 public class SleepTest {
 

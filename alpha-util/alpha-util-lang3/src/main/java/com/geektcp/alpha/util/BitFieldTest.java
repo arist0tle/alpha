@@ -1,7 +1,7 @@
 package com.geektcp.alpha.util;
 
 /**
- * Created by tanghaiyang on 2019/7/15.
+ * @author tanghaiyang on 2019/7/15.
  */
 
 import org.apache.commons.lang3.BitField;

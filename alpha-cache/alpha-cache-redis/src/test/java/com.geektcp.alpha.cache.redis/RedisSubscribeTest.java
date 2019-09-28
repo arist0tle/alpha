@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Created by tanghaiyang on 2019/6/25.
+ * @author tanghaiyang on 2019/6/25.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

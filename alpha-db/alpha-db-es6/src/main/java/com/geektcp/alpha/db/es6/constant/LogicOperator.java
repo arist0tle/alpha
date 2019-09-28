@@ -3,7 +3,7 @@ package com.geektcp.alpha.db.es6.constant;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * Created by tanghaiyang on 2019/5/6.
+ * @author tanghaiyang on 2019/5/6.
  */
 public enum LogicOperator {
     AND("AND","交集"),

@@ -6,7 +6,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * Created by TangHaiyang on 2019/8/25.
+ * @author tanghaiyang on 2019/8/25.
  * 队列特性: 无界非阻塞队列
  * 线程安全机制: cas(UNSAFE.compareAndSwapObject)
  *

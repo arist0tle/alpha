@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 /**
- * Created by tanghaiyang on 2018/4/9.
+ * @author tanghaiyang on 2018/4/9.
  */
 public class MapUtils {
 

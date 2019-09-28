@@ -7,7 +7,7 @@ import com.geektcp.alpha.db.es6.model.EsQueryResult;
 import java.util.List;
 
 /**
- * Created by tanghaiyang on 2019/5/7.
+ * @author tanghaiyang on 2019/5/7.
  */
 public interface EsSearchDao {
 

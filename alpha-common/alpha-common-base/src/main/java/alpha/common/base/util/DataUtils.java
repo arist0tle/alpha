@@ -4,7 +4,7 @@ import alpha.common.base.constant.FieldType;
 import org.apache.commons.lang3.math.NumberUtils;
 
 /**
- * Created by tanghaiyang on 2018/3/16.
+ * @author tanghaiyang on 2018/3/16.
  */
 public class DataUtils {
 

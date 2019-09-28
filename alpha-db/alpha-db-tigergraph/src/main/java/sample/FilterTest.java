@@ -5,7 +5,7 @@ import alpha.common.base.util.FileUtils;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * Created by tanghaiyang on 2019/2/12.
+ * @author tanghaiyang on 2019/2/12.
  */
 public class FilterTest {
     public static void main(String[] args) {

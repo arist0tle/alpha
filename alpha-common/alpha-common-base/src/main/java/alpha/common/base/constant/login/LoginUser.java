@@ -3,7 +3,7 @@ package alpha.common.base.constant.login;
 import lombok.Data;
 
 /**
- * Created by tanghaiyang on 2018/12/26.
+ * @author tanghaiyang on 2018/12/26.
  */
 @Data
 public class LoginUser {

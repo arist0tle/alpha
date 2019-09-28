@@ -4,7 +4,7 @@ import fastjson.MyThread2;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Created by tanghaiyang on 2019/2/25.
+ * @author tanghaiyang on 2019/2/25.
  */
 @Slf4j
 public class Main {

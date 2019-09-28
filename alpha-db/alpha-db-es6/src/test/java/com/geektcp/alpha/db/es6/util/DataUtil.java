@@ -1,5 +1,5 @@
 package com.geektcp.alpha.db.es6.util; /**
- * Created by tanghaiyang on 2019/1/18.
+ * @author tanghaiyang on 2019/1/18.
  */
 
 import sun.misc.BASE64Decoder;

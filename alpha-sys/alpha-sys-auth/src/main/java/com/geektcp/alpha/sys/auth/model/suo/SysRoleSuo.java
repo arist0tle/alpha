@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * Created by tanghaiyang on 2018/1/4.
+ * @author tanghaiyang on 2018/1/4.
  */
 @Data
 @ApiModel(value = "角色新增或更新参数SysRoleSuo",description = "用于角色新增或更新")

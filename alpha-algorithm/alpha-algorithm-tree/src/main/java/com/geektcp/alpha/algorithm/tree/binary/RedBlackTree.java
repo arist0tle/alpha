@@ -1,7 +1,7 @@
 package com.geektcp.alpha.algorithm.tree.binary;
 
 /**
- * Created by TangHaiyang on 2019/9/16.
+ * @author tanghaiyang on 2019/9/16.
  */
 
 import com.google.common.base.Joiner;

@@ -10,7 +10,7 @@ import org.junit.Test;
 import java.util.List;
 
 /**
- * Created by tanghaiyang on 2019/6/10.
+ * @author tanghaiyang on 2019/6/10.
  */
 @Slf4j
 public class QueryBuildersTest {

@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.*;
 
 /**
- * Created by tanghaiyang on 2019/2/11.
+ * @author tanghaiyang on 2019/2/11.
  */
 @Slf4j
 public class MapRecursiveJson {

@@ -11,7 +11,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.junit.Test;
 
 /**
- * Created by tanghaiyang on 2019/6/1.
+ * @author tanghaiyang on 2019/6/1.
  */
 @Slf4j
 public class Main {

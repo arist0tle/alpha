@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ActiveProfiles;
 
 /**
- * Created by tanghaiyang on 2017/12/26.
+ * @author tanghaiyang on 2017/12/26.
  */
 @SpringBootApplication
 @ActiveProfiles(profiles = "")

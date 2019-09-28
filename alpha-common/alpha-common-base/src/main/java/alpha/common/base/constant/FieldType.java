@@ -1,7 +1,7 @@
 package alpha.common.base.constant;
 
 /**
- * Created by tanghaiyang on 2018/8/17.
+ * @author tanghaiyang on 2018/8/17.
  */
 public enum FieldType {
     STRING("字符串"),

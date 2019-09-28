@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedTransferQueue;
 
 /**
- * Created by TangHaiyang on 2019/8/25.
+ * @author tanghaiyang on 2019/8/25.
  队列特性: 无界非阻塞队列
  */
 public class LinkedTransferQueueTest {

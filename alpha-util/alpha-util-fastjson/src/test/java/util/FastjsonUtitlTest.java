@@ -1,7 +1,7 @@
 package util;
 
 /**
- * Created by tanghaiyang on 2018/12/3.
+ * @author tanghaiyang on 2018/12/3.
  */
 
 import com.alibaba.fastjson.JSON;

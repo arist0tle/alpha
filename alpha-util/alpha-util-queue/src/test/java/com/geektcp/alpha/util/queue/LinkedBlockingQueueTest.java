@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * Created by TangHaiyang on 2019/8/25.
+ * @author tanghaiyang on 2019/8/25.
  线程安全机制: ReentrantLock(双lock:takeLock,putLock)
  队列特性: 无界阻塞队列
  描述:

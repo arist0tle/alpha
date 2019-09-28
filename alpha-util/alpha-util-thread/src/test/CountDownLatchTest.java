@@ -3,7 +3,7 @@ import org.junit.Test;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Created by TangHaiyang on 2019/8/25.
+ * @author tanghaiyang on 2019/8/25.
  */
 public class CountDownLatchTest {
 

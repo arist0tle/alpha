@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by TangHaiyang on 2019/9/23.
+ * @author tanghaiyang on 2019/9/23.
  */
 public class QuickSort<T extends Comparable<T>> extends Sort<T> {
 

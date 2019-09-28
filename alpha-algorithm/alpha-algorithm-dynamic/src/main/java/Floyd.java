@@ -1,7 +1,7 @@
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Created by tanghaiyang on 2019/4/24.
+ * @author tanghaiyang on 2019/4/24.
  */
 @Slf4j
 public class Floyd {

@@ -10,7 +10,7 @@ import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Created by TangHaiyang on 2019/8/25.
+ * @author tanghaiyang on 2019/8/25.
  *
  线程安全机制
  内部TransferQueue的元素添加方法casNext，用到UNSAFE.compareAndSwapObject

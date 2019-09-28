@@ -10,7 +10,7 @@ import com.geektcp.alpha.sys.auth.model.vo.SysUserVo;
 import java.util.List;
 
 /**
- * Created by tanghaiyang on 2018/1/4.
+ * @author tanghaiyang on 2018/1/4.
  */
 public interface DemoService {
 

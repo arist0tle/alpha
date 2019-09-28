@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by tanghaiyang on 2019/4/30.
+ * @author tanghaiyang on 2019/4/30.
  */
 @Data
 public class EsQueryResult {

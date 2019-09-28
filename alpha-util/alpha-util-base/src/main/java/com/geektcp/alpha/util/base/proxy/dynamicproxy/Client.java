@@ -4,7 +4,7 @@ import com.geektcp.alpha.util.base.proxy.staticproxy.UserManagerImpl;
 import com.geektcp.alpha.util.base.proxy.staticproxy.UserManagerProxy;
 
 /**
- * Created by TangHaiyang on 2019/8/15.
+ * @author tanghaiyang on 2019/8/15.
  */
 public class Client {
 

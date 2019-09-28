@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by tanghaiyang on 2019/1/8.
+ * @author tanghaiyang on 2019/1/8.
  */
 @Slf4j
 public class AlphaTest {

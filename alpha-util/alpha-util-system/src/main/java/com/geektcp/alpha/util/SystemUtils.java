@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.net.InetAddress;
 
 /**
- * Created by TangHaiyang on 2019/9/18.
+ * @author tanghaiyang on 2019/9/18.
  */
 @Slf4j
 public class SystemUtils {

@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.util.*;
 
 /**
- * Created by tanghaiyang on 2018/3/12.
+ * @author tanghaiyang on 2018/3/12.
  */
 @Slf4j
 public class PropertiesUtils {

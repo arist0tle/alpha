@@ -3,7 +3,7 @@ import org.junit.Test;
 import java.util.*;
 
 /**
- * Created by TangHaiyang on 2019/8/19.
+ * @author tanghaiyang on 2019/8/19.
  */
 public class CollectionTest {
 

@@ -1,7 +1,7 @@
 package alpha.common.base.constant;
 
 /**
- * Created by tanghaiyang on 2017/11/13.
+ * @author tanghaiyang on 2017/11/13.
  */
 public class Constants {
     public static final String Y = "Y";

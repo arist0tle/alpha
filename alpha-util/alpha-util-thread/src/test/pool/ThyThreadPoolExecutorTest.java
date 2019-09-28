@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.concurrent.*;
 
 /**
- * Created by TangHaiyang on 2019/8/20.
+ * @author tanghaiyang on 2019/8/20.
  ThreadPoolExecutor参数说明:
  corePoolSize：      线程池核心线程数，当线程数少于该值是就新建线程，如果大于该值并且队列没有满，就放到队列里面缓冲
  maximumPoolSize：   线程池最大数，只有当队列workQueue满了的时候才会判断当前线程数量是否超过该值，

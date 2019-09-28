@@ -1,7 +1,7 @@
 package com.geektcp.alpha.algorithm.sort;
 
 /**
- * Created by TangHaiyang on 2019/9/23.
+ * @author tanghaiyang on 2019/9/23.
  */
 public abstract class Sort<T extends Comparable<T>> {
 

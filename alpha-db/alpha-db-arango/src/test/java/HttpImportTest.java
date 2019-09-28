@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Created by tanghaiyang on 2019/4/15.
+ * @author tanghaiyang on 2019/4/15.
  */
 @Slf4j
 public class HttpImportTest {

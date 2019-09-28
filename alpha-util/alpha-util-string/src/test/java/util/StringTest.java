@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 
 /**
- * Created by tanghaiyang on 2019/3/13.
+ * @author tanghaiyang on 2019/3/13.
  */
 public class StringTest {
     public static void main(String[] args) {

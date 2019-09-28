@@ -1,5 +1,5 @@
 /**
- * Created by tanghaiyang on 2019/2/20.
+ * @author tanghaiyang on 2019/2/20.
  */
 public class Fraction {
     static class Node implements Cloneable {

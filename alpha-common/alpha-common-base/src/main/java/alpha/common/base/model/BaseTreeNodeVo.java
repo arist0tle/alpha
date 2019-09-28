@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
- * Created by tanghaiyang on 2019/1/8.
+ * @author tanghaiyang on 2019/1/8.
  */
 @Data
 @AllArgsConstructor

@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 /**
- * Created by tanghaiyang on 2017/12/15.
+ * @author tanghaiyang on 2017/12/15.
  */
 public class DateUtils {
 

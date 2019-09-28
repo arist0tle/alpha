@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.concurrent.*;
 
 /**
- * Created by TangHaiyang on 2019/8/2.
+ * @author tanghaiyang on 2019/8/2.
  * 验证基础数据类型
  * 继承的执行顺序
  * CountDownLatch的执行效果

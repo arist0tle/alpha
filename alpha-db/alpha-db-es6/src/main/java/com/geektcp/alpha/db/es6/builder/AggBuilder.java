@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by tanghaiyang on 2019/5/6.
+ * @author tanghaiyang on 2019/5/6.
  */
 public class AggBuilder {
 

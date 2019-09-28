@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * Created by tanghaiyang on 2019/2/21.
+ * @author tanghaiyang on 2019/2/21.
  */
 public class FileParse {
     public static JSONObject buildFilter(String dataFile){

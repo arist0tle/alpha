@@ -3,7 +3,7 @@ package util.event;
 import com.google.common.eventbus.Subscribe;
 
 /**
- * Created by TangHaiyang on 2019/7/21.
+ * @author tanghaiyang on 2019/7/21.
  */
 public class EventListener {
     public int lastMessage = 0;

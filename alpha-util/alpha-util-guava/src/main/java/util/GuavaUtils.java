@@ -15,7 +15,7 @@ import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * Created by tanghaiyang on 2019/3/11.
+ * @author tanghaiyang on 2019/3/11.
  */
 @Slf4j
 public class GuavaUtils {

@@ -11,7 +11,7 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
 /**
- * Created by tanghaiyang on 2019/2/14.
+ * @author tanghaiyang on 2019/2/14.
  */
 public class HttpUtil {
     private static final String APPLICATION_JSON = "application/json";

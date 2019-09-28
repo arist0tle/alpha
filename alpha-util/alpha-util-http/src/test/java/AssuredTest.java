@@ -17,7 +17,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 
 /**
- * Created by tanghaiyang on 2019/3/18.
+ * @author tanghaiyang on 2019/3/18.
  */
 @Slf4j
 public class AssuredTest {

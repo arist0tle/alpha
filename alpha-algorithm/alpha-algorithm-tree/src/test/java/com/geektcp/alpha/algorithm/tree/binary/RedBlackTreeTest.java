@@ -14,7 +14,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 /**
- * Created by TangHaiyang on 2019/9/16.
+ * @author tanghaiyang on 2019/9/16.
  */
 @Slf4j
 public class RedBlackTreeTest {

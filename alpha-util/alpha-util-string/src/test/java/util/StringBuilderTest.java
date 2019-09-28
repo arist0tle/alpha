@@ -3,7 +3,7 @@ package util;
 import org.junit.Test;
 
 /**
- * Created by tanghaiyang on 2019/3/20.
+ * @author tanghaiyang on 2019/3/20.
  */
 public class StringBuilderTest {
 

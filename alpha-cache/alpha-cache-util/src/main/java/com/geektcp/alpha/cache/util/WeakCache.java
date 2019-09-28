@@ -5,7 +5,7 @@ import java.util.WeakHashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by TangHaiyang on 2019/9/10.
+ * @author tanghaiyang on 2019/9/10.
  * 虚引用缓存
  */
 public final class WeakCache<K, V> {

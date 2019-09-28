@@ -30,7 +30,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by tanghaiyang on 2019/5/7.
+ * @author tanghaiyang on 2019/5/7.
  */
 @Slf4j
 @Repository

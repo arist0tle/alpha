@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by tanghaiyang on 2019/2/22.
+ * @author tanghaiyang on 2019/2/22.
  */
 @Slf4j
 public class RandomUtilTest {

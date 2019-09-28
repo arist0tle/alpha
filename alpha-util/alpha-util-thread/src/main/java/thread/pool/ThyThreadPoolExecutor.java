@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by TangHaiyang on 2019/8/19.
+ * @author tanghaiyang on 2019/8/19.
  */
 public class ThyThreadPoolExecutor {
 

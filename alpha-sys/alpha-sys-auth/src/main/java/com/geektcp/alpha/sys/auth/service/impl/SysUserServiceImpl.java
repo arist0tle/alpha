@@ -30,7 +30,7 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 
 /**
- * Created by tanghaiyang on 2018/1/4.
+ * @author tanghaiyang on 2018/1/4.
  */
 @Slf4j
 @Service

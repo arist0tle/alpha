@@ -1,7 +1,7 @@
 package com.geektcp.alpha.design.pattern.chain;
 
 /**
- * Created by TangHaiyang on 2019/9/21.
+ * @author tanghaiyang on 2019/9/21.
  */
 public abstract class Handler {
     protected Handler successor;

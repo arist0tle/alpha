@@ -23,7 +23,7 @@ import java.util.*;
 
 
 /**
- * Created by tanghaiyang on 2019/2/26.
+ * @author tanghaiyang on 2019/2/26.
  */
 @Service
 public class SysRoleServiceImpl extends JpaBase implements SysRoleService {

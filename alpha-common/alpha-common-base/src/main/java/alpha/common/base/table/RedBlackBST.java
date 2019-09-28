@@ -1,7 +1,7 @@
 package alpha.common.base.table;
 
 /**
- * Created by TangHaiYang on 2019/9/28.
+ * @author tanghaiyang on 2019/9/28.
  */
 public class RedBlackBST<Key extends Comparable<Key>, Value> extends BST<Key, Value> {
 

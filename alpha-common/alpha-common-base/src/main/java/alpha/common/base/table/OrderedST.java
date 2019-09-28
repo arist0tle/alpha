@@ -3,7 +3,7 @@ package alpha.common.base.table;
 import java.util.List;
 
 /**
- * Created by TangHaiYang on 2019/9/28.
+ * @author tanghaiyang on 2019/9/28.
  */
 public interface OrderedST<Key extends Comparable<Key>, Value> {
 

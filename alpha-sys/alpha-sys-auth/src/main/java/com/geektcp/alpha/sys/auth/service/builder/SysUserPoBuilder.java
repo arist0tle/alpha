@@ -6,7 +6,7 @@ import com.geektcp.alpha.sys.auth.model.po.SysUserPo;
 import com.geektcp.alpha.sys.auth.model.suo.SysUserSuo;
 
 /**
- * Created by tanghaiyang on 2018/1/4.
+ * @author tanghaiyang on 2018/1/4.
  */
 public class SysUserPoBuilder {
 

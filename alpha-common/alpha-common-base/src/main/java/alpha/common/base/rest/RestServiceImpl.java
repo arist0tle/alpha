@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * Created by tanghaiyang on 2018/5/16.
+ * @author tanghaiyang on 2018/5/16.
  */
 @Component
 public class RestServiceImpl implements RestService {

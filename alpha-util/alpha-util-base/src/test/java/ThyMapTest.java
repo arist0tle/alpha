@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * Created by TangHaiyang on 2019/8/13.
+ * @author tanghaiyang on 2019/8/13.
  */
 @Slf4j
 public class ThyMapTest {

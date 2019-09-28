@@ -3,7 +3,7 @@ package alpha.common.base.jpa;
 import lombok.NonNull;
 
 /**
- * Created by tanghaiyang on 2019/1/3.
+ * @author tanghaiyang on 2019/1/3.
  */
 public class JQL {
 

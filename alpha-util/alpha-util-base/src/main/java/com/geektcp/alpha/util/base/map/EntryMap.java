@@ -8,7 +8,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
- * Created by TangHaiyang on 2019/8/14.
+ * @author tanghaiyang on 2019/8/14.
  */
 public class EntryMap<K,V> implements Map.Entry<K,V>{
     private int size;

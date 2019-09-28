@@ -1,7 +1,7 @@
 package alpha.common.base.constant;
 
 /**
- * Created by tanghaiyang on 2018/8/16.
+ * @author tanghaiyang on 2018/8/16.
  */
 public enum SchemaType {
     VERTEX, VERTEX_MAIN, EDGE;

@@ -3,7 +3,7 @@ package com.geektcp.alpha.util.base.proxy.example.subject;
 import org.junit.Test;
 
 /**
- * Created by TangHaiyang on 2019/8/15.
+ * @author tanghaiyang on 2019/8/15.
  */
 public class TestProxy {
 

@@ -3,7 +3,7 @@ package com.geektcp.alpha.design.pattern.factorymethod;
 import com.geektcp.alpha.design.pattern.simplefactory.Product;
 
 /**
- * Created by TangHaiyang on 2019/9/21.
+ * @author tanghaiyang on 2019/9/21.
  */
 public class ConcreteFactoryTest {
     public static void main(String[] args) {

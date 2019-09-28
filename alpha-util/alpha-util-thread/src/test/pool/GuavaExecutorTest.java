@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.concurrent.*;
 
 /**
- * Created by TangHaiyang on 2019/8/26.
+ * @author tanghaiyang on 2019/8/26.
  */
 public class GuavaExecutorTest {
     private static ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()

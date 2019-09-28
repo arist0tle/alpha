@@ -4,7 +4,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 
 /**
- * Created by TangHaiyang on 2019/8/14.
+ * @author tanghaiyang on 2019/8/14.
  */
 public class FloatTest {
 

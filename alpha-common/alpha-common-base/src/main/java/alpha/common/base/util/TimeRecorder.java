@@ -1,7 +1,7 @@
 package alpha.common.base.util;
 
 /**
- * Created by tanghaiyang on 2017/11/16.
+ * @author tanghaiyang on 2017/11/16.
  */
 public class TimeRecorder {
     private long startTime = 0L;

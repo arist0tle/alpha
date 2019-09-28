@@ -1,7 +1,7 @@
 package com.geektcp.alpha.util.base.map;
 
 /**
- * Created by TangHaiyang on 2019/8/13.
+ * @author tanghaiyang on 2019/8/13.
  */
 
 import java.io.IOException;

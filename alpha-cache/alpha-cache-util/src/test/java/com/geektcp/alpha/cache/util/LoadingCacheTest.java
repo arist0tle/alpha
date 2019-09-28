@@ -5,7 +5,7 @@ import com.google.common.cache.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by TangHaiyang on 2019/9/26.
+ * @author tanghaiyang on 2019/9/26.
  */
 public class LoadingCacheTest {
     private static RemovalListener<String, Integer> myRemovalListener = new RemovalListener<String, Integer>() {

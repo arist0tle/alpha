@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.util.Arrays;
 
 /**
- * Created by TangHaiyang on 2019/7/7.
+ * @author tanghaiyang on 2019/7/7.
  */
 @Slf4j
 public class MyStringUtils {

@@ -1,7 +1,7 @@
 package com.geektcp.alpha.design.pattern.mediator;
 
 /**
- * Created by TangHaiyang on 2019/9/21.
+ * @author tanghaiyang on 2019/9/21.
  */
 public class MediatorTest {
     public static void main(String[] args) {

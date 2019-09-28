@@ -5,7 +5,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Created by TangHaiyang on 2019/8/19.
+ * @author tanghaiyang on 2019/8/19.
  * 只用一把ReentrantLock锁，锁住多个线程，而每个线程可以通过使用同一个lock的不同的Condition对象，来分别进行等待和唤醒
  * 这点用synchronized做不到，因为synchronized锁对应Object，只有一个，不能new出多个Object来锁定同一组线程
  */

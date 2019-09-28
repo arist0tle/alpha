@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * Created by tanghaiyang on 2018/12/26.
+ * @author tanghaiyang on 2018/12/26.
  */
 public final class LoginContext {
 

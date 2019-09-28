@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by TangHaiYang on 2019/9/28.
+ * @author tanghaiyang on 2019/9/28.
  */
 public class BST<Key extends Comparable<Key>, Value> implements OrderedST<Key, Value> {
 

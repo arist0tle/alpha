@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by tanghaiyang on 2019/3/4.
+ * @author tanghaiyang on 2019/3/4.
  */
 @Service
 public class SysPermissionServiceImpl extends JpaBase implements SysPermissionService {

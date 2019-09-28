@@ -4,7 +4,7 @@ import org.junit.Test;
 import javax.jms.*;
 
 /**
- * Created by TangHaiyang on 2019/8/28.
+ * @author tanghaiyang on 2019/8/28.
  */
 public class ProducerTest {
 

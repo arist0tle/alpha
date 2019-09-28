@@ -1,7 +1,7 @@
 package com.geektcp.alpha.design.pattern.facade;
 
 /**
- * Created by TangHaiyang on 2019/9/21.
+ * @author tanghaiyang on 2019/9/21.
  */
 public class Facade {
     private SubSystem subSystem = new SubSystem();

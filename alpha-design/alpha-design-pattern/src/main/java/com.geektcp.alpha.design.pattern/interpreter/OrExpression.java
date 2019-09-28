@@ -1,7 +1,7 @@
 package com.geektcp.alpha.design.pattern.interpreter;
 
 /**
- * Created by TangHaiyang on 2019/9/21.
+ * @author tanghaiyang on 2019/9/21.
  */
 public class OrExpression extends Expression {
     private Expression expression1 = null;

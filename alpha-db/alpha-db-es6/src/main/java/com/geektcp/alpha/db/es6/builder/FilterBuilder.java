@@ -15,7 +15,7 @@ import static com.geektcp.alpha.db.es6.constant.EsKeys.*;
 
 
 /**
- * Created by tanghaiyang on 2019/5/6.
+ * @author tanghaiyang on 2019/5/6.
  */
 public class FilterBuilder {
 

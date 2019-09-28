@@ -1,7 +1,7 @@
 package com.geektcp.alpha.db.es6.constant;
 
 /**
- * Created by tanghaiyang on 2019/5/7.
+ * @author tanghaiyang on 2019/5/7.
  */
 public class EsKeys {
 

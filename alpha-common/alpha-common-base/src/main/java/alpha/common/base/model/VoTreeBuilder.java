@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Created by tanghaiyang on 2019/1/10.
+ * @author tanghaiyang on 2019/1/10.
  */
 public class VoTreeBuilder {
 

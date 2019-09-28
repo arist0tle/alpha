@@ -12,7 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * Created by tanghaiyang on 2018/12/25.
+ * @author tanghaiyang on 2018/12/25.
  */
 @NoRepositoryBean
 public class JpaBase {

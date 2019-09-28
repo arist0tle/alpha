@@ -1,7 +1,7 @@
 package alpha.common.base.collection;
 
 /**
- * Created by TangHaiyang on 2019/9/28.
+ * @author tanghaiyang on 2019/9/28.
  */
 public interface MyStack<Item> extends Iterable<Item> {
 

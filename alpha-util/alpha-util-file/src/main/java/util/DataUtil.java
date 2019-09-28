@@ -1,7 +1,7 @@
 package util;
 
 /**
- * Created by tanghaiyang on 2019/1/18.
+ * @author tanghaiyang on 2019/1/18.
  */
 
 import com.alibaba.fastjson.JSONObject;

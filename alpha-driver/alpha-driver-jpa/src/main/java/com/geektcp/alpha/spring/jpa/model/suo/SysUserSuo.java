@@ -7,7 +7,7 @@ import lombok.Data;
 import javax.validation.Valid;
 
 /**
- * Created by tanghaiyang on 2018/1/4.
+ * @author tanghaiyang on 2018/1/4.
  */
 @Data
 @ApiModel(value = "用户新增或更新参数SysUserSuo",description = "用于用户新增或更新")

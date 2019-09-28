@@ -1,7 +1,7 @@
 package util.event;
 
 /**
- * Created by TangHaiyang on 2019/7/21.
+ * @author tanghaiyang on 2019/7/21.
  */
 public class TestEvent {
     private final int message;

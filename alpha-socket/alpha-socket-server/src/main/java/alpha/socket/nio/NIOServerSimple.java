@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Created by TangHaiyang on 2019/9/3.
+ * @author tanghaiyang on 2019/9/3.
  */
 public class NIOServerSimple {
     public static void main(String[] args) throws IOException {

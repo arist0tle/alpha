@@ -7,7 +7,7 @@ import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 
 /**
- * Created by TangHaiyang on 2019/8/26.
+ * @author tanghaiyang on 2019/8/26.
  */
 public class ForkJoinPoolTest extends RecursiveTask<Long> {
 

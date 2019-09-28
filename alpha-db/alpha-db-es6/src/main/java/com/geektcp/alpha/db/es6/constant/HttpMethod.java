@@ -1,7 +1,7 @@
 package com.geektcp.alpha.db.es6.constant;
 
 /**
- * Created by tanghaiyang on 2019/6/6.
+ * @author tanghaiyang on 2019/6/6.
  */
 public class HttpMethod {
     public static final String PUT = "PUT";

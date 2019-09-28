@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * Created by tanghaiyang on 2019/4/10.
+ * @author tanghaiyang on 2019/4/10.
  *
  * 造一棵树用于图查询结果的遍历
  * arangodb的返回结果中可能带有重复节点，因为结果树中不同的方向的顶点可能和其他方向的顶点最终会重合

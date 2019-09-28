@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Sort;
 
 /**
- * Created by tanghaiyang on 2018/5/3.
+ * @author tanghaiyang on 2018/5/3.
  */
 @Data
 @AllArgsConstructor

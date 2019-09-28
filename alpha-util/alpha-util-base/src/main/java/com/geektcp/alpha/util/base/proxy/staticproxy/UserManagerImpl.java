@@ -1,7 +1,7 @@
 package com.geektcp.alpha.util.base.proxy.staticproxy;
 
 /**
- * Created by TangHaiyang on 2019/8/15.
+ * @author tanghaiyang on 2019/8/15.
  * 具体用户管理实现类
  */
 public class UserManagerImpl implements UserManagerProxy {

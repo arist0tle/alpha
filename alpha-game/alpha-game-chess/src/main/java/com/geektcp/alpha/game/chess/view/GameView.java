@@ -22,7 +22,7 @@ public class GameView {
     private static final int PIECE_WIDTH = 67, PIECE_HEIGHT = 67;
     private static final int SY_COE = 68, SX_COE = 68;
     private static final int SX_OFFSET = 50, SY_OFFSET = 15;
-    private Map<String, JLabel> pieceObjects = new HashMap<String, JLabel>();
+    private Map<String, JLabel> pieceObjects = new HashMap<>();
     private Board board;
     private String selectedPieceKey;
     private JFrame frame;

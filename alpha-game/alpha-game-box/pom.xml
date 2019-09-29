@@ -3,19 +3,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>alpha</artifactId>
+        <artifactId>alpha-game</artifactId>
         <groupId>com.geektcp.alpha</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>alpha-game</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>alpha-game-wuziqi</module>
-        <module>alpha-game-hanoi</module>
-        <module>alpha-game-box</module>
-    </modules>
+    <artifactId>alpha-game-box</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.geektcp.alpha</groupId>
+            <artifactId>alpha-common-base</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
 </project>

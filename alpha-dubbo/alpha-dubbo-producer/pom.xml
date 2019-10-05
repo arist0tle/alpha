@@ -9,8 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>alpha-dubbo-consumer</artifactId>
-
+    <artifactId>alpha-dubbo-producer</artifactId>
 
     <dependencies>
         <dependency>
@@ -22,6 +21,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo-config-spring</artifactId>
@@ -48,7 +48,6 @@
             <version>${dubbo.version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo-rpc-dubbo</artifactId>
@@ -65,5 +64,4 @@
             <version>${dubbo.version}</version>
         </dependency>
     </dependencies>
-
 </project>

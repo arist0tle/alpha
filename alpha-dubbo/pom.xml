@@ -12,7 +12,6 @@
     <artifactId>alpha-dubbo</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>alpha-dubbo-provider</module>
         <module>alpha-dubbo-consumer</module>
         <module>alpha-dubbo-api</module>
     </modules>

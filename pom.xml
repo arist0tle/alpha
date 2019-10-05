@@ -31,6 +31,7 @@
         <module>alpha-queue</module>
         <module>alpha-design</module>
         <module>alpha-game</module>
+        <module>alpha-dubbo</module>
     </modules>
 
     <properties>

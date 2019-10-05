@@ -3,7 +3,7 @@ package com.geektcp.alpha.dubbo.consumer;
 import com.geektcp.alpha.dubbo.api.DemoService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class Consumer {
+public class ContextApplication {
 
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("dubbo-consumer.xml");

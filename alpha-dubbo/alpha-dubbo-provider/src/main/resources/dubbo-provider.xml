@@ -10,13 +10,13 @@
     <dubbo:application name="demo-provider"/>
 
     <!-- 注册中心 -->
-    <dubbo:registry address="multicast://224.5.6.7:1234"/>
+    <!--<dubbo:registry address="multicast://224.5.6.7:1234"/>-->
     <!--<dubbo:registry address="redis://localhost:6379"/>-->
-    <!--<dubbo:registry address="zookeeper://localhost:2181"/>-->
+    <dubbo:registry address="zookeeper://localhost:2181"/>
 
-    <bean id="demoService" class="com.learnDubbo.demo.provider.DemoServiceImpl"/>
+    <bean id="demoService" class="com.geektcp.alpha.dubbo.provider.service.DemoServiceImpl"/>
 
-    <dubbo:service interface="com.geektcp.gamma.api.DemoService" ref="demoService"/>
+    <dubbo:service interface="com.geektcp.alpha.dubbo.api.DemoService" ref="demoService"/>
 
 
 </beans>

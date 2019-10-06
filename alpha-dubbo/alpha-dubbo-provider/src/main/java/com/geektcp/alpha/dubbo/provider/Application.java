@@ -1,4 +1,4 @@
-package com.geektcp.alpha.dubbo.producer;
+package com.geektcp.alpha.dubbo.provider;
 
 import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
 import org.springframework.boot.SpringApplication;

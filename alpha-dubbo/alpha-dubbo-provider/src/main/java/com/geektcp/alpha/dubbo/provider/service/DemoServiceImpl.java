@@ -1,4 +1,4 @@
-package com.geektcp.alpha.dubbo.producer.service;
+package com.geektcp.alpha.dubbo.provider.service;
 
 
 import com.alibaba.dubbo.config.annotation.Service;

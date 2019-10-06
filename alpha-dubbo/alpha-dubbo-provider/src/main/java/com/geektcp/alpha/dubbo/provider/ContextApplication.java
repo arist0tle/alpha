@@ -1,4 +1,4 @@
-package com.geektcp.alpha.dubbo.producer;
+package com.geektcp.alpha.dubbo.provider;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

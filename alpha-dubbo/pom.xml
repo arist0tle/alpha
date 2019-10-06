@@ -14,7 +14,7 @@
     <modules>
         <module>alpha-dubbo-consumer</module>
         <module>alpha-dubbo-api</module>
-        <module>alpha-dubbo-producer</module>
+        <module>alpha-dubbo-provider</module>
     </modules>
 
     <properties>

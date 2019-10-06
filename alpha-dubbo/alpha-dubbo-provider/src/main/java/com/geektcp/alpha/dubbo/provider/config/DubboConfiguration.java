@@ -1,4 +1,4 @@
-package com.geektcp.alpha.dubbo.producer.config;
+package com.geektcp.alpha.dubbo.provider.config;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.RegistryConfig;

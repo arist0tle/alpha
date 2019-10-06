@@ -1,5 +1,9 @@
 package com.geektcp.alpha.spring.querydsl.service.service.impl;
 
+import com.geektcp.alpha.common.spring.jpa.JpaBase;
+import com.geektcp.alpha.common.spring.model.PageQo;
+import com.geektcp.alpha.common.spring.model.PageResponse;
+import com.geektcp.alpha.common.spring.model.TResponse;
 import com.geektcp.alpha.spring.querydsl.service.constant.ServiceStatus;
 import com.geektcp.alpha.spring.querydsl.service.dao.SmGroupDao;
 import com.geektcp.alpha.spring.querydsl.service.model.po.QSmGroupPo;
@@ -13,10 +17,6 @@ import com.querydsl.core.QueryResults;
 import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQuery;
 import alpha.common.base.exception.UnexpectedStatusException;
-import alpha.common.base.jpa.JpaBase;
-import alpha.common.base.model.PageQo;
-import alpha.common.base.model.PageResponse;
-import alpha.common.base.model.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,26 +39,26 @@ public class SmGroupServiceImpl extends JpaBase implements SmGroupService {
     @Autowired
     private SmGroupDao smGroupDao;
 
-    public Response saveOrUpdate(SmGroupSuo suo) {
+    public TResponse saveOrUpdate(SmGroupSuo suo) {
         try {
             SmGroupPo smGroupPo = new SmGroupPo(suo);
             smGroupDao.save(smGroupPo);
         } catch (Exception e) {
             throw new UnexpectedStatusException(ServiceStatus.GROUP_SAVE_ERROR, e);
         }
-        return Response.success();
+        return TResponse.success();
     }
 
-    public Response delete(SmGroupSuo suo) {
+    public TResponse delete(SmGroupSuo suo) {
         try {
             smGroupDao.delete(suo.getId());
         } catch (Exception e) {
             throw new UnexpectedStatusException(ServiceStatus.GROUP_DELETE_ERROR, e);
         }
-        return Response.success();
+        return TResponse.success();
     }
 
-    public Response find(SmGroupQo qo) {
+    public TResponse find(SmGroupQo qo) {
         try {
             QSmGroupPo table = QSmGroupPo.smGroupPo;
             BooleanBuilder builder = new BooleanBuilder();
@@ -71,7 +71,7 @@ public class SmGroupServiceImpl extends JpaBase implements SmGroupService {
             results.forEach((smGroupPo) -> {
                 rows.add(new SmGroupVo(smGroupPo));
             });
-            return Response.success(rows);
+            return TResponse.success(rows);
         } catch (Exception e) {
             throw new UnexpectedStatusException(ServiceStatus.GROUP_FIND_ERROR, e);
         }
@@ -91,7 +91,7 @@ public class SmGroupServiceImpl extends JpaBase implements SmGroupService {
         return PageResponse.success(page.getContent(), page.getTotalPages(), pageQo);
     }
 
-    public Response search(SmGroupQo qo) {
+    public TResponse search(SmGroupQo qo) {
         QSmGroupPo table = QSmGroupPo.smGroupPo;
 //        QSmGroupPo table2 = QSmGroupPo.smGroupPo;
 //        QSmGroupPo table3 = QSmGroupPo.smGroupPo;
@@ -119,7 +119,7 @@ public class SmGroupServiceImpl extends JpaBase implements SmGroupService {
 
         System.out.println(results.getResults());
 //        System.out.println(TResponse.success(results.getResults()));
-        return Response.success(results.getResults());
+        return TResponse.success(results.getResults());
 
     }
 

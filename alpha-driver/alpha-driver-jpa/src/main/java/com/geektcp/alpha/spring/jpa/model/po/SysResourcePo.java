@@ -1,6 +1,6 @@
 package com.geektcp.alpha.spring.jpa.model.po;
 
-import alpha.common.base.model.BasePo;
+import com.geektcp.alpha.common.spring.model.BasePo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

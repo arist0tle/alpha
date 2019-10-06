@@ -7,8 +7,8 @@ import com.google.common.collect.*;
 import com.google.common.html.HtmlEscapers;
 import com.google.common.reflect.Reflection;
 import com.google.common.xml.XmlEscapers;
+import com.sun.org.apache.bcel.internal.util.ClassPath;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.apache.bcel.util.ClassPath;
 import org.junit.Test;
 
 import java.util.*;

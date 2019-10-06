@@ -1,10 +1,10 @@
 package com.geektcp.alpha.spring.querydsl.service.controller;
 
+import com.geektcp.alpha.common.spring.model.PageResponse;
+import com.geektcp.alpha.common.spring.model.TResponse;
 import com.geektcp.alpha.spring.querydsl.service.model.qo.SmGroupQo;
 import com.geektcp.alpha.spring.querydsl.service.model.suo.SmGroupSuo;
 import com.geektcp.alpha.spring.querydsl.service.service.SmGroupService;
-import alpha.common.base.model.PageResponse;
-import alpha.common.base.model.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,25 +29,25 @@ public class SmGroupController {
 
     @ApiOperation(value = "增加或编辑")
     @PostMapping(value = "/saveOrUpdate")
-    public Response saveOrUpdate(@RequestBody @Valid SmGroupSuo smGroupSuo) {
+    public TResponse saveOrUpdate(@RequestBody @Valid SmGroupSuo smGroupSuo) {
         return smGroupService.saveOrUpdate(smGroupSuo);
     }
 
     @ApiOperation(value = "删除")
     @PostMapping(value = "/delete")
-    public Response delete(@RequestBody @Valid SmGroupSuo smGroupSuo) {
+    public TResponse delete(@RequestBody @Valid SmGroupSuo smGroupSuo) {
         return smGroupService.delete(smGroupSuo);
     }
 
     @ApiOperation(value = "修改")
     @PostMapping(value = "/update")
-    public Response update(@RequestBody @Valid SmGroupSuo smGroupSuo) {
+    public TResponse update(@RequestBody @Valid SmGroupSuo smGroupSuo) {
         return smGroupService.saveOrUpdate(smGroupSuo);
     }
 
     @ApiOperation(value = "查询")
     @PostMapping(value = "/find")
-    public Response find(@RequestBody @Valid SmGroupQo smGroupQo) {
+    public TResponse find(@RequestBody @Valid SmGroupQo smGroupQo) {
         return smGroupService.find(smGroupQo);
     }
 
@@ -59,7 +59,7 @@ public class SmGroupController {
 
     @ApiOperation(value = "查询")
     @PostMapping(value = "/search")
-    public Response search(@RequestBody @Valid SmGroupQo smGroupQo) {
+    public TResponse search(@RequestBody @Valid SmGroupQo smGroupQo) {
         return smGroupService.search(smGroupQo);
     }
 

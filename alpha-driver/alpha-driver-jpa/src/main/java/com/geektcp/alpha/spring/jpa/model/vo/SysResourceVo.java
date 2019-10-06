@@ -1,7 +1,7 @@
 package com.geektcp.alpha.spring.jpa.model.vo;
 
-import alpha.common.base.model.BaseTreeNodeVo;
 import com.alibaba.fastjson.annotation.JSONField;
+import com.geektcp.alpha.common.spring.model.BaseTreeNodeVo;
 import com.geektcp.alpha.spring.jpa.model.po.SysResourcePo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

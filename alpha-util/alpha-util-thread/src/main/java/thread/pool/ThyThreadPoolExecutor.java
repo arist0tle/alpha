@@ -1,6 +1,5 @@
 package thread.pool;
 
-import org.apache.tomcat.util.threads.ThreadPoolExecutor;
 import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;

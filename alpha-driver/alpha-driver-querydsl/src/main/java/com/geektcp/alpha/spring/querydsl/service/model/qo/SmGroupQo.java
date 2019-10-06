@@ -1,6 +1,6 @@
 package com.geektcp.alpha.spring.querydsl.service.model.qo;
 
-import alpha.common.base.model.PageQoBase;
+import com.geektcp.alpha.common.spring.model.PageQoBase;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

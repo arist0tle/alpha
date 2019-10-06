@@ -1,6 +1,6 @@
 package com.geektcp.alpha.spring.querydsl.service.dao;
 
-import alpha.common.base.jpa.JpaRepo;
+import com.geektcp.alpha.common.spring.jpa.JpaRepo;
 import com.geektcp.alpha.spring.querydsl.service.model.po.SmGroupPo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

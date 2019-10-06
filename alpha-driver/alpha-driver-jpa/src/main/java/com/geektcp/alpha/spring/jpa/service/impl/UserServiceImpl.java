@@ -1,6 +1,6 @@
 package com.geektcp.alpha.spring.jpa.service.impl;
 
-import alpha.common.base.jpa.JpaBase;
+import com.geektcp.alpha.common.spring.jpa.JpaBase;
 import com.geektcp.alpha.spring.jpa.domain.User;
 import com.geektcp.alpha.spring.jpa.model.po.QSysResourcePo;
 import com.geektcp.alpha.spring.jpa.model.po.QSysRoleResourcePo;

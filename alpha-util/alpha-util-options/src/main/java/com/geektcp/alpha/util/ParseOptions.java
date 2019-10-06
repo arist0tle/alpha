@@ -1,14 +1,11 @@
-package util;
+package com.geektcp.alpha.util;
 
 /* Created by Haiyang on 2017/5/2. */
 
 import org.apache.commons.cli.*;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 
 public class ParseOptions {
     public static void main(String[] args) throws Exception {
-        Logger.getRootLogger().setLevel(Level.OFF);
 
         // 自定义系统变量添加方法：
         // 在idea的Run/Debug Configuration界面的VM options栏添加(不是Program arguments界面)：

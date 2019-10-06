@@ -2,7 +2,7 @@ package com.geektcp.alpha.api.controller;
 
 
 import alpha.common.base.constant.Constants;
-import alpha.common.base.model.Response;
+import com.geektcp.alpha.common.spring.model.TResponse;
 import com.geektcp.alpha.sys.auth.constant.AuthStatus;
 import com.geektcp.alpha.sys.auth.service.SysUserService;
 import com.geektcp.alpha.sys.auth.shiro.model.LoginQo;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 
+
 /**
  * @author tanghaiyang on 2018/05/22.
  */
@@ -34,15 +35,15 @@ public class AuthController {
 
     @ApiOperation(value = "用户登录", notes = "用户登录 输入参数 {\"userNo\": \"admin\",\"password\": \"123456\",\"autoLogin\": \"N\"}")
     @PostMapping(value = "login")
-    public Response login(@RequestBody @Valid LoginQo loginQo) {
+    public TResponse login(@RequestBody @Valid LoginQo loginQo) {
         String userNo = loginQo.getUserNo();
         String password = loginQo.getPassword();
         if(StringUtils.isAnyBlank(userNo, password)){
-            return Response.error(AuthStatus.BLANK_NAME_OR_PWD);
+            return TResponse.error(AuthStatus.BLANK_NAME_OR_PWD);
         }
         boolean rememberMe = Constants.Y.equals(loginQo.getAutoLogin());
         if (!sysUserService.existsUser(userNo)) {
-            return Response.error(AuthStatus.USER_NOTEXISTS);
+            return TResponse.error(AuthStatus.USER_NOT_EXISTS);
         }
         try {
             Subject currentUser = SecurityUtils.getSubject();
@@ -56,14 +57,14 @@ public class AuthController {
             log.info("login success!!! user:{},remember me:{},timeout:{}", userNo, rememberMe, timeout);
         } catch (Exception e) {
             log.error(e.getMessage());
-            return Response.error(AuthStatus.PASSWD_MISMATCH);
+            return TResponse.error(AuthStatus.PASSWORD_MISMATCH);
         }
-        return Response.success();
+        return TResponse.success();
     }
 
     @ApiOperation(value = "用户登出", notes = "用户登出")
     @RequestMapping(value = "logout", method = RequestMethod.GET)
-    public Response logout() {
+    public TResponse logout() {
         try {
             Subject currentUser = SecurityUtils.getSubject();
             if (currentUser != null && currentUser.getPrincipal() != null) {
@@ -71,56 +72,56 @@ public class AuthController {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
-            return Response.error(AuthStatus.USER_LOGOUT_FAIL);
+            return TResponse.error(AuthStatus.USER_LOGOUT_FAIL);
         }
-        return Response.success();
+        return TResponse.success();
     }
 
     @ApiOperation("未授权警告")
     @RequestMapping(value = "unauth", method = RequestMethod.GET)
-    public Response unauth() {
-        return Response.error(AuthStatus.USER_UNAUTH);
+    public TResponse unauth() {
+        return TResponse.error(AuthStatus.USER_UOT_AUTH);
     }
 
     @ApiOperation(value = "查询用户信息", notes = "查询用户信息")
     @RequestMapping(value = "info", method = RequestMethod.GET)
-    public Response info() {
-        Response info = sysUserService.detail();
+    public TResponse info() {
+        TResponse info = sysUserService.detail();
         if (info != null) {
             return info;
         }
-        return Response.error().setMessage(AuthStatus.USER_NOT_LOGINED);
+        return TResponse.error().setMessage(AuthStatus.USER_NOT_LOGINED);
     }
 
     @ApiOperation(value = "重新加载权限", notes = "重新加载权限")
     @RequestMapping(value = "reloadPermissions", method = RequestMethod.GET)
-    public Response reloadPermissions() {
+    public TResponse reloadPermissions() {
         try {
             //userService.loginAsGuestForAnon();
             //userService.reloadPermission();
         } catch (Exception e) {
-            Response.error(AuthStatus.USER_RELOAD_PERMISSION_FAIL);
+            TResponse.error(AuthStatus.USER_RELOAD_PERMISSION_FAIL);
         }
-        return Response.success();
+        return TResponse.success();
     }
 
     /*@ApiOperation(value = "页面渲染-查询用户资源权限")
     @GetMapping(value = "findPermissions")
-    public Response findPermissions(@RequestParam Long parentId, @RequestParam(required = false) String companyKey) {
+    public TResponse findPermissions(@RequestParam Long parentId, @RequestParam(required = false) String companyKey) {
         userService.loginAsGuestForAnon();
         return userService.findPermissions(parentId, companyKey);
     }
 
     @ApiOperation(value = "页面渲染-查询用户资源权限")
     @GetMapping(value = "findPermissionsByParentId")
-    public Response findPermissionsByParentId(@RequestParam Long parentId, String companyKey) {
+    public TResponse findPermissionsByParentId(@RequestParam Long parentId, String companyKey) {
         userService.loginAsGuestForAnon();
         return userService.findPermissionsByParentId(parentId, companyKey);
     }*/
 
     @ApiOperation(value = "确认密码-公用")
     @GetMapping(value = "confirmPassword")
-    public Response confirmPassword(@RequestParam String password) {
+    public TResponse confirmPassword(@RequestParam String password) {
         return sysUserService.confirmPassword(password);
     }
 }

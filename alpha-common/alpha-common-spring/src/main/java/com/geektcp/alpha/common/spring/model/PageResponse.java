@@ -1,8 +1,8 @@
-package alpha.common.base.model;
+package com.geektcp.alpha.common.spring.model;
 
+import alpha.common.base.exception.BaseException;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import alpha.common.base.exception.BaseException;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-import static alpha.common.base.model.Response.buildMessage;
+import static com.geektcp.alpha.common.spring.model.TResponse.buildMessage;
 
 
 /**
@@ -60,7 +60,7 @@ public class PageResponse<T> {
     public static PageResponse error(BaseException ex) {
         PageResponse response = new PageResponse();
         response.setSuccess(false);
-        response.setMessage(buildMessage(ex));
+        response.setMessage(TResponse.buildMessage(ex));
         return response;
     }
 

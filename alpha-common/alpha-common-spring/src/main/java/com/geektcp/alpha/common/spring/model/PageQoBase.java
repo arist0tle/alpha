@@ -1,4 +1,4 @@
-package alpha.common.base.model;
+package com.geektcp.alpha.common.spring.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

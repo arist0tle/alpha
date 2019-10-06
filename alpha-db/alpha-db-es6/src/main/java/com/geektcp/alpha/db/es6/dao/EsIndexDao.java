@@ -1,6 +1,6 @@
 package com.geektcp.alpha.db.es6.dao;
 
-import alpha.common.base.model.Response;
+import com.geektcp.alpha.common.spring.model.TResponse;
 import com.geektcp.alpha.db.es6.bean.StoreURL;
 import com.geektcp.alpha.db.es6.bean.Source;
 
@@ -23,7 +23,7 @@ public interface EsIndexDao {
 
     boolean createType(StoreURL storeURL, String index, String type);
 
-    Response bulkUpsert(StoreURL storeURL, String index, String type, List<Source> sourceList);
+    TResponse bulkUpsert(StoreURL storeURL, String index, String type, List<Source> sourceList);
 
-    Response delete(StoreURL storeURL, String index, String type, List<Source> sources);
+    TResponse delete(StoreURL storeURL, String index, String type, List<Source> sources);
 }

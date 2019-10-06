@@ -1,4 +1,4 @@
-package alpha.common.base.rest;
+package com.geektcp.alpha.common.spring.rest;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;

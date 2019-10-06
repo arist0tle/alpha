@@ -1,4 +1,4 @@
-package alpha.common.base.rest;
+package com.geektcp.alpha.common.spring.rest;
 
 /**
  * @author tanghaiyang on 2018/5/16.

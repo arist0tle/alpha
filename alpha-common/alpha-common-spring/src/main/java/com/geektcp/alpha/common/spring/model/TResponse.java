@@ -1,9 +1,9 @@
-package alpha.common.base.model;
+package com.geektcp.alpha.common.spring.model;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import alpha.common.base.constant.Status;
 import alpha.common.base.exception.BaseException;
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ import java.util.Map;
 @Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value = "接口响应数据", description = "用于返回接口响应的内容")
-public class Response<T> {
+public class TResponse<T> {
 
     @ApiModelProperty(value = "请求是否成功：true（成功）；false（失败）", example = "true")
     private boolean success = true;
@@ -33,54 +33,54 @@ public class Response<T> {
     @ApiModelProperty(value = "请求响应数据")
     private Payload<T> payload;
 
-    public Response() {
+    public TResponse() {
         this(null);
     }
 
-    public Response(T data) {
+    public TResponse(T data) {
         this.setData(data);
     }
 
-    public static Response success() {
-        return new Response();
+    public static TResponse success() {
+        return new TResponse();
     }
 
-    public static <T> Response success(T data) {
-        return new Response(data);
+    public static <T> TResponse success(T data) {
+        return new TResponse(data);
     }
 
-    public static Response error() {
-        Response response = new Response();
-        response.setSuccess(false);
-        return response;
+    public static TResponse error() {
+        TResponse TResponse = new TResponse();
+        TResponse.setSuccess(false);
+        return TResponse;
     }
 
-    public static Response error(String message) {
-        Response response = new Response();
-        response.setSuccess(false);
-        response.setMessage(message);
-        return response;
+    public static TResponse error(String message) {
+        TResponse TResponse = new TResponse();
+        TResponse.setSuccess(false);
+        TResponse.setMessage(message);
+        return TResponse;
     }
 
-    public static Response error(BaseException ex) {
-        Response response = new Response();
-        response.setSuccess(false);
-        response.setMessage(buildMessage(ex));
-        return response;
+    public static TResponse error(BaseException ex) {
+        TResponse TResponse = new TResponse();
+        TResponse.setSuccess(false);
+        TResponse.setMessage(buildMessage(ex));
+        return TResponse;
     }
 
-    public static Response error(Status status) {
-        Response response = new Response();
-        response.setSuccess(false);
-        response.setMessage(buildMessage(status));
-        return response;
+    public static TResponse error(Status status) {
+        TResponse TResponse = new TResponse();
+        TResponse.setSuccess(false);
+        TResponse.setMessage(buildMessage(status));
+        return TResponse;
     }
 
-    public static Response error(Status status, Object... args) {
-        Response response = new Response();
-        response.setSuccess(false);
-        response.setMessage(buildMessage(status, args));
-        return response;
+    public static TResponse error(Status status, Object... args) {
+        TResponse TResponse = new TResponse();
+        TResponse.setSuccess(false);
+        TResponse.setMessage(buildMessage(status, args));
+        return TResponse;
     }
 
     protected static Map<String, Object> buildMessage(BaseException ex) {
@@ -108,12 +108,12 @@ public class Response<T> {
         return MessageFormat.format(pattern, arguments);
     }
 
-    public Response setErrorInfo(Status status) {
+    public TResponse setErrorInfo(Status status) {
         this.setMessage(status);
         return this;
     }
 
-    public Response setData(T data) {
+    public TResponse setData(T data) {
         if (payload == null) {
             payload = new Payload(data);
         }

@@ -1,7 +1,7 @@
-package alpha.common.base.jpa;
+package com.geektcp.alpha.common.spring.jpa;
 
 import alpha.common.base.constant.login.LoginContext;
-import alpha.common.base.model.BasePo;
+import com.geektcp.alpha.common.spring.model.BasePo;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

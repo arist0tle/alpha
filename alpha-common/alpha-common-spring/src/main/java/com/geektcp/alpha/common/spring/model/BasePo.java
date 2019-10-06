@@ -1,7 +1,7 @@
-package alpha.common.base.model;
+package com.geektcp.alpha.common.spring.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import alpha.common.base.constant.Constants;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;

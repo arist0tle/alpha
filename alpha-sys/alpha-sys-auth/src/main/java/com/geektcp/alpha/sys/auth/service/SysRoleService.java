@@ -1,7 +1,7 @@
 package com.geektcp.alpha.sys.auth.service;
 
 
-import alpha.common.base.model.Response;
+import com.geektcp.alpha.common.spring.model.TResponse;
 import com.geektcp.alpha.sys.auth.model.uo.SysRoleResourceUo;
 
 /**
@@ -9,7 +9,7 @@ import com.geektcp.alpha.sys.auth.model.uo.SysRoleResourceUo;
  */
 public interface SysRoleService {
 
-    Response grantResources(SysRoleResourceUo uo);
+    TResponse grantResources(SysRoleResourceUo uo);
 
-    Response findAllResources(Long roleId);
+    TResponse findAllResources(Long roleId);
 }

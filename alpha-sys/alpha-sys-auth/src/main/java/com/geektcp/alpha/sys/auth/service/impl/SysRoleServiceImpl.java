@@ -2,10 +2,10 @@ package com.geektcp.alpha.sys.auth.service.impl;
 
 
 import alpha.common.base.exception.UnexpectedStatusException;
-import alpha.common.base.jpa.JpaBase;
-import alpha.common.base.model.BaseTreeNodeVo;
-import alpha.common.base.model.Response;
-import alpha.common.base.model.VoTreeBuilder;
+import com.geektcp.alpha.common.spring.jpa.JpaBase;
+import com.geektcp.alpha.common.spring.model.BaseTreeNodeVo;
+import com.geektcp.alpha.common.spring.model.TResponse;
+import com.geektcp.alpha.common.spring.model.VoTreeBuilder;
 import com.geektcp.alpha.sys.auth.constant.AuthStatus;
 import com.geektcp.alpha.sys.auth.dao.SysRoleResourceDao;
 import com.geektcp.alpha.sys.auth.model.po.QSysResourcePo;
@@ -32,10 +32,10 @@ public class SysRoleServiceImpl extends JpaBase implements SysRoleService {
     private SysRoleResourceDao sysRoleResourceDao;
 
     @Override
-    public Response grantResources(SysRoleResourceUo uo) {
+    public TResponse grantResources(SysRoleResourceUo uo) {
         Long roleId = uo.getRoleId();
         if(Objects.isNull(roleId)){
-            throw new UnexpectedStatusException(AuthStatus.ROLERESOURCE_SAVE_ERROR);
+            throw new UnexpectedStatusException(AuthStatus.ROLE_RESOURCE_SAVE_ERROR);
         }
         try {
             Set<SysRoleResourcePo> list = new HashSet<>();
@@ -53,14 +53,14 @@ public class SysRoleServiceImpl extends JpaBase implements SysRoleService {
             });
             sysRoleResourceDao.save(list);
         } catch (Exception e) {
-            throw new UnexpectedStatusException(AuthStatus.ROLERESOURCE_SAVE_ERROR, e);
+            throw new UnexpectedStatusException(AuthStatus.ROLE_RESOURCE_SAVE_ERROR, e);
         }
-        return Response.success();
+        return TResponse.success();
     }
 
     @Override
     @SuppressWarnings("all")
-    public Response findAllResources(Long roleId){
+    public TResponse findAllResources(Long roleId){
         try {
             Set<SysResourcePo> listResources = findResources(roleId);
             List<SysResourceVo> result = new LinkedList<>();
@@ -68,9 +68,9 @@ public class SysRoleServiceImpl extends JpaBase implements SysRoleService {
                 result.add(new SysResourceVo(row));
             }
             List<BaseTreeNodeVo> treeList = VoTreeBuilder.createTreeList(result, SysResourceVo.class);
-            return Response.success(treeList);
+            return TResponse.success(treeList);
         }catch (Exception e){
-            throw new UnexpectedStatusException(AuthStatus.ROLERESOURCE_TREE_ERROR, e);
+            throw new UnexpectedStatusException(AuthStatus.ROLE_RESOURCE_TREE_ERROR, e);
         }
     }
 
@@ -90,7 +90,7 @@ public class SysRoleServiceImpl extends JpaBase implements SysRoleService {
             }
             return result;
         }catch (Exception e){
-            throw new UnexpectedStatusException(AuthStatus.ROLERESOURCE_FIND_ERROR, e);
+            throw new UnexpectedStatusException(AuthStatus.ROLE_RESOURCE_FIND_ERROR, e);
         }
     }
 

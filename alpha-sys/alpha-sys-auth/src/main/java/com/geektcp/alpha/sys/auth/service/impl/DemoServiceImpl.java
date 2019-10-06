@@ -2,10 +2,10 @@ package com.geektcp.alpha.sys.auth.service.impl;
 
 
 import alpha.common.base.exception.UnexpectedStatusException;
-import alpha.common.base.jpa.JpaBase;
 import alpha.common.base.json.JSONUtils;
-import alpha.common.base.model.PageResponse;
-import alpha.common.base.model.Response;
+import com.geektcp.alpha.common.spring.jpa.JpaBase;
+import com.geektcp.alpha.common.spring.model.PageResponse;
+import com.geektcp.alpha.common.spring.model.TResponse;
 import com.geektcp.alpha.sys.auth.constant.AuthStatus;
 import com.geektcp.alpha.sys.auth.dao.SysUserDao;
 import com.geektcp.alpha.sys.auth.model.po.QSysRolePo;
@@ -67,7 +67,7 @@ public class DemoServiceImpl extends JpaBase implements DemoService {
     }
 
     @Override
-    public Response<SysUserVo> findUserRoles(SysUserQo qo) {
+    public TResponse<SysUserVo> findUserRoles(SysUserQo qo) {
         /*
         * select t.*,r.id, r.name from sys_user t
             left join `sys_user_role` ur on ur.`user_id`= t.id
@@ -93,7 +93,7 @@ public class DemoServiceImpl extends JpaBase implements DemoService {
             System.out.println(JSON.toJSONString(rolePo1));*/
             rows.add(new SysUserVo(row.get(userPo), row.get(rolePo)));
         }
-        return Response.success(rows);
+        return TResponse.success(rows);
     }
 
     @Override
@@ -127,23 +127,23 @@ public class DemoServiceImpl extends JpaBase implements DemoService {
     }
 
     @Override
-    public Response saveOrUpdate(SysUserSuo suo) {
+    public TResponse saveOrUpdate(SysUserSuo suo) {
         try {
             SysUserPo po = this.setUpdateBy(JSONUtils.copy(suo, SysUserPo.class));
             sysUserDao.save(po);
         } catch (Exception e) {
             throw new UnexpectedStatusException(AuthStatus.USER_SAVE_ERROR, e);
         }
-        return Response.success();
+        return TResponse.success();
     }
 
     @Override
-    public Response delete(Long userId) {
+    public TResponse delete(Long userId) {
         try {
             sysUserDao.delete(userId);
         } catch (Exception e) {
             throw new UnexpectedStatusException(AuthStatus.USER_DELETE_ERROR, e);
         }
-        return Response.success();
+        return TResponse.success();
     }
 }

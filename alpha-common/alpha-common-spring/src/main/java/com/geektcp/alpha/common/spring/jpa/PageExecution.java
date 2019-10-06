@@ -1,4 +1,4 @@
-package alpha.common.base.jpa;
+package com.geektcp.alpha.common.spring.jpa;
 
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.data.domain.Page;

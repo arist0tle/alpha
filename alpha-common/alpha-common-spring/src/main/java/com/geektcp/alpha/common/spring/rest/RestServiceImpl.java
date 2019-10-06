@@ -1,7 +1,7 @@
-package alpha.common.base.rest;
+package com.geektcp.alpha.common.spring.rest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import alpha.common.base.json.JSONUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;

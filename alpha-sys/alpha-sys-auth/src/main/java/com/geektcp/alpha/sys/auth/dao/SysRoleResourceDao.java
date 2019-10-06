@@ -1,6 +1,6 @@
 package com.geektcp.alpha.sys.auth.dao;
 
-import alpha.common.base.jpa.JpaRepo;
+import com.geektcp.alpha.common.spring.jpa.JpaRepo;
 import com.geektcp.alpha.sys.auth.model.po.SysRoleResourcePo;
 import org.springframework.stereotype.Repository;
 

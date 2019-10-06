@@ -114,11 +114,11 @@ public class SmGroupServiceImpl extends JpaBase implements SmGroupService {
 //
 //        List<SmGroupVo> rows = new ArrayList<>();
 //        results.getResults().forEach((smGroupPo) -> {rows.add(new SmGroupVo(smGroupPo));});
-//        return Response.success(rows);
+//        return TResponse.success(rows);
 
 
         System.out.println(results.getResults());
-//        System.out.println(Response.success(results.getResults()));
+//        System.out.println(TResponse.success(results.getResults()));
         return Response.success(results.getResults());
 
     }

@@ -2,6 +2,7 @@ package com.geektcp.alpha.db.es6.dao.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.geektcp.alpha.common.spring.model.TResponse;
 import com.geektcp.alpha.db.es6.bean.Source;
 import com.geektcp.alpha.db.es6.bean.StoreURL;
 import com.geektcp.alpha.db.es6.bean.mapping.Template;
@@ -139,12 +140,12 @@ public class EsIndexDaoImpl implements EsIndexDao {
     }
 
     @Override
-    public alpha.common.base.model.Response bulkUpsert(StoreURL storeURL, String index, String type, List<Source> sourceList) {
-        alpha.common.base.model.Response cudResponse = new alpha.common.base.model.Response();
+    public TResponse bulkUpsert(StoreURL storeURL, String index, String type, List<Source> sourceList) {
+        TResponse cudTResponse = new TResponse();
         if (sourceList == null || sourceList.isEmpty()) {
             log.error("It cannot upsert index with a EMPTY Source set:" + sourceList);
-            cudResponse.setMessage("sourceList is null or empty");
-            return cudResponse;
+            cudTResponse.setMessage("sourceList is null or empty");
+            return cudTResponse;
         }
         try {
             RestHighLevelClient highLevelClient = esRestClient.getRestHighLevelClient(storeURL);
@@ -154,23 +155,23 @@ public class EsIndexDaoImpl implements EsIndexDao {
             }
             BulkResponse bulkResponse = highLevelClient.bulk(bulkRequest);
             if (bulkResponse.hasFailures()) {
-                cudResponse.setSuccess(false);
+                cudTResponse.setSuccess(false);
                 log.error("upsert failed {}|{}|{}|{3} ", index, type, bulkResponse.buildFailureMessage(),
                         sourceList.size());
             } else {
-                cudResponse.setSuccess(true);
+                cudTResponse.setSuccess(true);
                 log.info("Success to bulk upsert [{}] records with type[{}/{}]", index, type, sourceList.size());
             }
         } catch (Exception e) {
-            cudResponse.setSuccess(false);
+            cudTResponse.setSuccess(false);
             log.error("Failed to bulk upsert with type[{}/{}]", e, index, type, JSON.toJSONString(sourceList));
         }
-        return cudResponse;
+        return cudTResponse;
     }
 
     @Override
-    public alpha.common.base.model.Response delete(StoreURL storeURL, String index, String type, List<Source> sources) {
-        alpha.common.base.model.Response cudResponse = new alpha.common.base.model.Response();
+    public TResponse delete(StoreURL storeURL, String index, String type, List<Source> sources) {
+        TResponse cudResponse = new TResponse();
         if (sources == null || sources.isEmpty()) {
             log.error("It cannot delete index with a EMPTY Source set:" + sources);
             cudResponse.setSuccess(false);

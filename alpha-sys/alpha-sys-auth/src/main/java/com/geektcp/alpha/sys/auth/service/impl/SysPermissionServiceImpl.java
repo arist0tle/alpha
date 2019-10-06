@@ -2,7 +2,7 @@ package com.geektcp.alpha.sys.auth.service.impl;
 
 
 import alpha.common.base.exception.UnexpectedStatusException;
-import alpha.common.base.jpa.JpaBase;
+import com.geektcp.alpha.common.spring.jpa.JpaBase;
 import com.geektcp.alpha.sys.auth.constant.AuthStatus;
 import com.geektcp.alpha.sys.auth.model.po.*;
 import com.geektcp.alpha.sys.auth.model.vo.SysPermissionVo;

@@ -1,6 +1,6 @@
 package com.geektcp.alpha.sys.auth.model.vo;
 
-import alpha.common.base.model.BaseTreeNodeVo;
+import com.geektcp.alpha.common.spring.model.BaseTreeNodeVo;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.geektcp.alpha.sys.auth.model.po.SysResourcePo;
 import io.swagger.annotations.ApiModel;

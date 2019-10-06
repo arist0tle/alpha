@@ -1,4 +1,4 @@
-package alpha.common.base.jpa;
+package com.geektcp.alpha.common.spring.jpa;
 
 import lombok.NonNull;
 

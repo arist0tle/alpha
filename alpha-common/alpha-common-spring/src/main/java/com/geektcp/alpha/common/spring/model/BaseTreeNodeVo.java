@@ -1,4 +1,4 @@
-package alpha.common.base.model;
+package com.geektcp.alpha.common.spring.model;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;

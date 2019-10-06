@@ -1,8 +1,8 @@
 package com.geektcp.alpha.sys.auth.service;
 
 
-import alpha.common.base.model.PageResponse;
-import alpha.common.base.model.Response;
+import com.geektcp.alpha.common.spring.model.PageResponse;
+import com.geektcp.alpha.common.spring.model.TResponse;
 import com.geektcp.alpha.sys.auth.model.qo.SysUserQo;
 import com.geektcp.alpha.sys.auth.model.suo.SysUserSuo;
 import com.geektcp.alpha.sys.auth.model.vo.SysUserVo;
@@ -18,11 +18,11 @@ public interface DemoService {
 
     PageResponse<SysUserVo> findPage(SysUserQo qo);
 
-    Response<SysUserVo> findUserRoles(SysUserQo qo);
+    TResponse<SysUserVo> findUserRoles(SysUserQo qo);
 
     PageResponse<SysUserVo> findPageUserRoles(SysUserQo qo);
 
-    Response saveOrUpdate(SysUserSuo suo);
+    TResponse saveOrUpdate(SysUserSuo suo);
 
-    Response delete(Long userId);
+    TResponse delete(Long userId);
 }

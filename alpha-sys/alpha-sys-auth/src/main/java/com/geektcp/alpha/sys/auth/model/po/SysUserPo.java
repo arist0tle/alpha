@@ -1,6 +1,6 @@
 package com.geektcp.alpha.sys.auth.model.po;
 
-import alpha.common.base.model.BasePo;
+import com.geektcp.alpha.common.spring.model.BasePo;
 import com.geektcp.alpha.sys.auth.model.suo.SysUserSuo;
 import com.geektcp.alpha.sys.auth.util.AuthUtils;
 import lombok.Data;

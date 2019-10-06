@@ -2,11 +2,11 @@ package com.geektcp.alpha.sys.auth.service.impl;
 
 
 import alpha.common.base.exception.UnexpectedStatusException;
-import alpha.common.base.jpa.JQL;
-import alpha.common.base.jpa.JpaBase;
-import alpha.common.base.model.PageQo;
-import alpha.common.base.model.PageResponse;
-import alpha.common.base.model.Response;
+import com.geektcp.alpha.common.spring.jpa.JQL;
+import com.geektcp.alpha.common.spring.jpa.JpaBase;
+import com.geektcp.alpha.common.spring.model.PageQo;
+import com.geektcp.alpha.common.spring.model.PageResponse;
+import com.geektcp.alpha.common.spring.model.TResponse;
 import com.geektcp.alpha.sys.auth.constant.AuthStatus;
 import com.geektcp.alpha.sys.auth.dao.SysUserDao;
 import com.geektcp.alpha.sys.auth.dao.SysUserRoleDao;
@@ -56,7 +56,7 @@ public class SysUserServiceImpl extends JpaBase implements SysUserService {
             Page<SysUserPo> page = sysUserDao.findAll(builder, pageRequest);
             return PageResponse.success(page.getContent(), page.getTotalPages(), pageQo);
         } catch (Exception e) {
-            throw new UnexpectedStatusException(AuthStatus.USER_FINDPAGE_ERROR, e);
+            throw new UnexpectedStatusException(AuthStatus.USER_FIND_PAGE_ERROR, e);
         }
     }
 
@@ -71,30 +71,30 @@ public class SysUserServiceImpl extends JpaBase implements SysUserService {
     }
 
     @Override
-    public Response confirmPassword(String password) {
+    public TResponse confirmPassword(String password) {
         try {
             SysUserPo userPo = sysUserDao.findOne(ShiroUtils.getUserID());
             if (null == userPo) {
-                throw new UnexpectedStatusException(AuthStatus.USER_NOTEXISTS);
+                throw new UnexpectedStatusException(AuthStatus.USER_NOT_EXISTS);
             }
             String dbPassword = userPo.getPassword();
             boolean success = AuthUtils.validPassword(password, dbPassword);
             if (success) {
-                return Response.success();
+                return TResponse.success();
             }
         } catch (UnexpectedStatusException e) {
             log.error(e.getMessage());
         }
-        return Response.error();
+        return TResponse.error();
     }
 
     @Override
-    public Response detail(){
+    public TResponse detail(){
         return null;
     }
 
     @Override
-    public Response save(SysUserSuo suo) {
+    public TResponse save(SysUserSuo suo) {
         try {
             Long roleId = suo.getRoleId();
             SysUserPo po = new SysUserPo();
@@ -111,11 +111,11 @@ public class SysUserServiceImpl extends JpaBase implements SysUserService {
         } catch (Exception e) {
             throw new UnexpectedStatusException(AuthStatus.USER_SAVE_ERROR, e);
         }
-        return Response.success();
+        return TResponse.success();
     }
 
     @Override
-    public Response update(SysUserSuo suo) {
+    public TResponse update(SysUserSuo suo) {
         try {
             Long id = suo.getId();
             if(Objects.isNull(id)){
@@ -130,22 +130,22 @@ public class SysUserServiceImpl extends JpaBase implements SysUserService {
         } catch (Exception e) {
             throw new UnexpectedStatusException(AuthStatus.USER_SAVE_ERROR, e);
         }
-        return Response.success();
+        return TResponse.success();
     }
 
     @Override
-    public Response delete(SysUserSuo suo) {
+    public TResponse delete(SysUserSuo suo) {
         try {
             Long userId = suo.getId();
             sysUserDao.delete(userId);
         } catch (Exception e) {
             throw new UnexpectedStatusException(AuthStatus.USER_DELETE_ERROR, e);
         }
-        return Response.success();
+        return TResponse.success();
     }
 
     @Override
-    public Response updatePassword(SysUserSuo suo) {
+    public TResponse updatePassword(SysUserSuo suo) {
         String userNo = suo.getUserNo();
         if(Objects.isNull(userNo)){
             throw new UnexpectedStatusException(AuthStatus.USER_UPDATE_ERROR);
@@ -163,7 +163,7 @@ public class SysUserServiceImpl extends JpaBase implements SysUserService {
         } catch (Exception e) {
             throw new UnexpectedStatusException(AuthStatus.USER_RESET_ERROR, e);
         }
-        return Response.success();
+        return TResponse.success();
     }
 
 }

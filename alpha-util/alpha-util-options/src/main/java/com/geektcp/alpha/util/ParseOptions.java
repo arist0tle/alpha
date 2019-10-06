@@ -51,9 +51,9 @@ public class ParseOptions {
         optOffset.setRequired(false);
         options.addOption(optOffset);
 
-        Option optLogsize = new Option("l", "logsize", true, "get kafka logsize");
-        optLogsize.setRequired(false);
-        options.addOption(optLogsize);
+        Option optLogSize = new Option("l", "logsize", true, "get kafka logsize");
+        optLogSize.setRequired(false);
+        options.addOption(optLogSize);
 
         Option optDeltaOffset = new Option("d", "deltaoffset", true, "get kafka delta offset");
         optDeltaOffset.setRequired(false);
@@ -72,8 +72,8 @@ public class ParseOptions {
         CommandLine cmd = null;
 
         if (args.length == 0) {
-            formatter.printHelp("\n获取kafka偏离值，缓存大小，kafka在zk的注册信息" +
-                    "\njava -jar kafkaTools.jar --offset 0", options);
+            String msg = "\n获取kafka偏离值，缓存大小，kafka在zk的注册信息\n" + "java -jar kafkaTools.jar --offset 0";
+            formatter.printHelp(msg, options);
             System.exit(2);
         } else {
             try {

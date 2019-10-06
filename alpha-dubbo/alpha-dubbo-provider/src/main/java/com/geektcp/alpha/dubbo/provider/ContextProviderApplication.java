@@ -2,7 +2,7 @@ package com.geektcp.alpha.dubbo.provider;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class ContextApplication {
+public class ContextProviderApplication {
 
     public static void main(String[] args) throws Exception {
 

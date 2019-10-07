@@ -1,6 +1,6 @@
 package com.geektcp.alpha.dubbo.api;
 
-public interface DemoService {
+public interface ThyService {
 
     String sayHello(String name);
 

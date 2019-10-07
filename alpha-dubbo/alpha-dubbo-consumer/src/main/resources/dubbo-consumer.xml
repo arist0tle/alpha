@@ -13,7 +13,7 @@
     <!--<dubbo:registry address="redis://localhost:6379"/>-->
     <dubbo:registry address="zookeeper://localhost:2181"/>
 
-    <dubbo:reference id="demoService" interface="com.geektcp.alpha.dubbo.api.DemoService"/>
+    <dubbo:reference id="thyService" interface="com.geektcp.alpha.dubbo.api.ThyService"/>
 
 </beans>
 

@@ -46,12 +46,6 @@
 
         <java.version>1.8</java.version>
         <sonar.java.binaries>${project.basedir}\target\</sonar.java.binaries>
-        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-        <jacoco.version>0.7.9</jacoco.version>
-        <jacoco.outputDir>${project.basedir}\target</jacoco.outputDir>
-        <jacoco.out.ut.file>jacoco-ut.exec</jacoco.out.ut.file>
-        <sonar.jacoco.reportPath>${jacoco.outputDir}/${jacoco.out.ut.file}</sonar.jacoco.reportPath>
-
     </properties>
 
     <dependencies>

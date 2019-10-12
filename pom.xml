@@ -33,6 +33,7 @@
         <module>alpha-game</module>
         <module>alpha-dubbo</module>
         <module>alpha-swing</module>
+        <module>alpha-cloud</module>
     </modules>
 
     <properties>

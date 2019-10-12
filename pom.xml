@@ -34,6 +34,7 @@
         <module>alpha-dubbo</module>
         <module>alpha-swing</module>
         <module>alpha-cloud</module>
+        <module>alpha-agent</module>
     </modules>
 
     <properties>

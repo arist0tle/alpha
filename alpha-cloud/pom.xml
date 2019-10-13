@@ -15,7 +15,22 @@
         <module>alpha-cloud-config</module>
         <module>alpha-cloud-eureka</module>
         <module>alpha-cloud-zipkin</module>
+        <module>alpha-cloud-feign</module>
     </modules>
 
 
+
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Dalston.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

@@ -16,6 +16,7 @@
         <module>alpha-cloud-eureka</module>
         <module>alpha-cloud-zipkin</module>
         <module>alpha-cloud-feign</module>
+        <module>alpha-cloud-hystrix</module>
     </modules>
 
 

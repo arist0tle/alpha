@@ -17,6 +17,7 @@
         <module>alpha-cloud-zipkin</module>
         <module>alpha-cloud-feign</module>
         <module>alpha-cloud-hystrix</module>
+        <module>alpha-cloud-ribbon</module>
     </modules>
 
 

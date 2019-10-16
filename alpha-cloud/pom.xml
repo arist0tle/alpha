@@ -14,11 +14,11 @@
     <modules>
         <module>alpha-cloud-config</module>
         <module>alpha-cloud-eureka</module>
-        <module>alpha-cloud-zipkin</module>
         <module>alpha-cloud-feign</module>
         <module>alpha-cloud-hystrix</module>
         <module>alpha-cloud-ribbon</module>
         <module>alpha-cloud-zuul</module>
+        <module>alpha-cloud-zipkin</module>
     </modules>
 
 

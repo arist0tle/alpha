@@ -18,6 +18,7 @@
         <module>alpha-cloud-feign</module>
         <module>alpha-cloud-hystrix</module>
         <module>alpha-cloud-ribbon</module>
+        <module>alpha-cloud-zuul</module>
     </modules>
 
 

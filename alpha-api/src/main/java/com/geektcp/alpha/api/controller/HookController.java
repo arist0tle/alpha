@@ -32,7 +32,7 @@ public class HookController {
     @RequestMapping("/hook")
     public String hook(@RequestBody String body) {
         //处理预警信息(邮件、短信、钉钉)
-        log.info("web hook警报系统,body:{}",body);
+        log.info("web hook警报系统,body:\n{}",body);
         return "success";
     }
 }

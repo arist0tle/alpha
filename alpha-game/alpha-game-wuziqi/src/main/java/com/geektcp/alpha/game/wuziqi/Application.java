@@ -1,7 +1,7 @@
 package com.geektcp.alpha.game.wuziqi;
 
 
-import com.geektcp.alpha.game.wuziqi.panel.AI;
+import com.geektcp.alpha.game.wuziqi.panel.AI30;
 import com.geektcp.alpha.game.wuziqi.panel.DrawingPanel;
 import com.geektcp.alpha.game.wuziqi.panel.QiMouseEvent;
 
@@ -14,7 +14,7 @@ public class Application {
         DrawingPanel panel = new DrawingPanel(700, 700);
         QiMouseEvent qiMouseEvent = new QiMouseEvent();
         panel.addMouseListener(qiMouseEvent);
-        AI.init(panel);
-        AI.initChessBoard();
+        AI30.init(panel);
+        AI30.initChessBoard();
     }
 }

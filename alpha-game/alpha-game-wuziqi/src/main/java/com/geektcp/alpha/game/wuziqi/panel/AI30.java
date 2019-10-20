@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class AI3 {
+public class AI30 {
     //
     private static DrawingPanel panel;
     private static Graphics g;
@@ -75,7 +75,7 @@ public class AI3 {
         g.fillOval(x - 22, y - 22, 45, 45);
         chessBoard[y / 45][x / 45] = isBlack ? 1 : -1;
         if (isEnd(x / 45, y / 45)) {
-            String s = AI.isBlack ? "黑子胜" : "白子胜";
+            String s = AI30.isBlack ? "黑子胜" : "白子胜";
             JOptionPane.showMessageDialog(null, s);
             isBlack = true;
             initChessBoard();

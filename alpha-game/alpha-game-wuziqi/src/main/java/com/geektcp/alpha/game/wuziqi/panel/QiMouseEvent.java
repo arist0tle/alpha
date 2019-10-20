@@ -9,13 +9,13 @@ import java.awt.event.MouseListener;
 public class QiMouseEvent implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         int x = round(e.getX()), y = round(e.getY());
-        if (x >= 45 && x <= 675 && y >= 45 && y <= 675 && AI.chessBoard[y / 45][x / 45] == 0 && AI.isBlack == false) {
-            AI.putChess(x, y);
-            if (!AI.isFinished) {
-                AI.isBlack = true;
-                AI.myAI();
+        if (x >= 45 && x <= 675 && y >= 45 && y <= 675 && AI30.chessBoard[y / 45][x / 45] == 0 && AI30.isBlack == false) {
+            AI30.putChess(x, y);
+            if (!AI30.isFinished) {
+                AI30.isBlack = true;
+                AI30.myAI();
             }
-            AI.isFinished = false;
+            AI30.isFinished = false;
         }
     }
 

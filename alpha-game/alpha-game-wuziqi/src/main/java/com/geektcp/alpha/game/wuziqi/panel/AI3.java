@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class AI {
+public class AI3 {
     //
     private static DrawingPanel panel;
     private static Graphics g;

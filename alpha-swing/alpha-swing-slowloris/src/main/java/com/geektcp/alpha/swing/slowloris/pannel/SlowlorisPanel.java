@@ -1,4 +1,4 @@
-package com.geektcp.alpha.slowloris;
+package com.geektcp.alpha.swing.slowloris.pannel;
 
 /**
  * @author tanghaiyang on 2019/10/13 9:43.
@@ -6,7 +6,7 @@ package com.geektcp.alpha.slowloris;
 
 import javax.swing.*;
 
-public class Panel {
+public class SlowlorisPanel {
     /**
      * {
      * 创建并显示GUI。出于线程安全的考虑，

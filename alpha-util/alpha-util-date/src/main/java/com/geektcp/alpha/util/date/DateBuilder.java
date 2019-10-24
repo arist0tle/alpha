@@ -15,22 +15,10 @@ public class DateBuilder {
     private static final String pattern_gmt = "EEE, d MMM yyyy HH:mm:ss 'GMT'";
     private static ThreadLocal<DateFormat> localDateFormat = new ThreadLocal<>();
     private static ThreadLocal<DateFormat> localDateFormatDefault = new ThreadLocal<>();
-
-    public static DateFormat getDateFormat() {
-        DateFormat df = new SimpleDateFormat(pattern_cst);
-        localDateFormat.set(df);
-        return df;
-    }
-
-    private static DateFormat getDateFormat(String pattern, Locale locale) {
-        DateFormat df = new SimpleDateFormat(pattern, locale);
-        localDateFormat.set(df);
-        return df;
-    }
-
-
-    public static Date transform(String strDate) throws ParseException {
-        return getDateFormat().parse(strDate.replaceAll("T"," "));
+    
+    public static Date transform(String dateStr) throws ParseException {
+        String dateStrReplaced = dateStr.replaceAll("T", " ").replaceAll("Z", "");
+        return getDateFormat().parse(dateStrReplaced);
     }
 
     public static Date transform(String parsePattern, String strDate) throws ParseException {
@@ -50,7 +38,7 @@ public class DateBuilder {
     }
 
     public static String format(String parsePattern, String strDate) throws ParseException {
-        Date date = transform(parsePattern,strDate);
+        Date date = transform(parsePattern, strDate);
         return getDateFormat().format(date);
     }
 
@@ -59,6 +47,18 @@ public class DateBuilder {
         return getDateFormat().format(date);
     }
 
+    ////////////////////////////////////////
+    private static DateFormat getDateFormat() {
+        DateFormat df = new SimpleDateFormat(pattern_cst);
+        localDateFormat.set(df);
+        return df;
+    }
+
+    private static DateFormat getDateFormat(String pattern, Locale locale) {
+        DateFormat df = new SimpleDateFormat(pattern, locale);
+        localDateFormat.set(df);
+        return df;
+    }
 
     /**
      * @author haiyang.tang on 10.24 024 10:58:40.
@@ -73,7 +73,5 @@ public class DateBuilder {
         MST,
         PST,
         ;
-
-
     }
 }

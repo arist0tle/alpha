@@ -27,17 +27,17 @@ public class DateBuilderTest {
         String pattern3 = "EEE, d MMM yyyy HH:mm:ss zzz";
 
         String time4 = "2019-10-22T10:29:26.540210169+08:00";
-//        String pattern4 = "yyyy-MM-dd HH:mm:ssz";
         String pattern4 = "yyyy-MM-dd'T'HH:mm:ss";
 
-//        System.out.println(DateBuilder.transform(pattern4,time4));
-//        System.out.println(DateBuilder.transform(pattern5,time5));
+        System.out.println(DateBuilder.transform(pattern4,time4));
 
-//        System.out.println(DateBuilder.format(pattern1, time1));
-//        System.out.println(DateBuilder.format(pattern2, time2));
-//        System.out.println(DateBuilder.format(pattern3, time3));
+        System.out.println(DateBuilder.format(pattern1, time1));
+        System.out.println(DateBuilder.format(pattern2, time2));
+        System.out.println(DateBuilder.format(pattern3, time3));
 
         System.out.println(DateBuilder.format(pattern4, time4));
+
+        System.out.println(DateBuilder.format(time2));
         System.out.println(DateBuilder.format(time4));
     }
 

@@ -35,7 +35,7 @@ public class DateBuilder {
 
     public static Date transform(String parsePattern, String strDate) throws ParseException {
         Locale locale = Locale.US;
-        if (strDate.contains("GMT")) {
+        if (strDate.contains(TimeZone.GMT.toString())) {
             locale = Locale.ENGLISH;
         }
         return getDateFormat(parsePattern, locale).parse(strDate);
@@ -73,5 +73,7 @@ public class DateBuilder {
         MST,
         PST,
         ;
+
+
     }
 }

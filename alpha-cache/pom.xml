@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>alpha-cache-memcache</module>
-        <module>alpha-cache-redis</module>
         <module>alpha-cache-util</module>
     </modules>
 

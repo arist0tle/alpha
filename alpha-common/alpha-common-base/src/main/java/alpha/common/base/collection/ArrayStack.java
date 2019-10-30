@@ -19,7 +19,7 @@ public class ArrayStack<Item> implements MyStack<Item> {
     }
 
     @Override
-    public Item pop() throws Exception {
+    public Item pop() {
         if (isEmpty()) {
             return null;
         }

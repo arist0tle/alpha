@@ -21,7 +21,7 @@ public class ArrayStack<Item> implements MyStack<Item> {
     @Override
     public Item pop() throws Exception {
         if (isEmpty()) {
-            throw new Exception("stack is empty");
+            return null;
         }
 
         Item item = a[--N];

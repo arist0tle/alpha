@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>alpha-swing-slowloris</module>
+        <module>alpha-swing-ftp</module>
     </modules>
 
 

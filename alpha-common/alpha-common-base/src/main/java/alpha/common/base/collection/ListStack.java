@@ -1,6 +1,9 @@
 package alpha.common.base.collection;
 
+import com.sun.istack.internal.NotNull;
+
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * @author tanghaiyang on 2019/9/28.
@@ -60,6 +63,9 @@ public class ListStack<Item> implements MyStack<Item> {
 
             @Override
             public Item next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
                 Item item = cur.item;
                 cur = cur.next;
                 return item;

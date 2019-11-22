@@ -16,7 +16,6 @@
         <module>alpha-util-fastjson</module>
         <module>alpha-util-file</module>
         <module>alpha-util-http</module>
-        <module>alpha-util-common</module>
         <module>alpha-util-thread</module>
         <module>alpha-util-guava</module>
         <module>alpha-util-string</module>

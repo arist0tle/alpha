@@ -3,6 +3,7 @@ package alpha.common.base.util;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.util.Lists;
 
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -17,27 +18,53 @@ import java.util.Objects;
  */
 @Slf4j
 public class FileUtils {
-    public static String CHARSET = "utf-8";
+
+    private static final String CHARSET = "utf-8";
+
+    private FileUtils() {
+    }
 
     public static <T> T readJSONObject(String fileName, Class<T> cls) {
-        String path = FileUtils.class.getResource("/" + fileName).getPath();
-        return JSON.parseObject(readTxt(path), cls);
+        String str = readTxt(fileName);
+        return JSON.parseObject(str, cls);
     }
 
     public static List<Map<String, Object>> readListMap(String fileName) {
-        String path = FileUtils.class.getResource("/" + fileName).getPath();
-        return JSON.parseObject(readTxt(path), new TypeReference<List<Map<String, Object>>>() {
+        return JSON.parseObject(readTxt(fileName), new TypeReference<List<Map<String, Object>>>() {
         });
     }
+
+//    @Deprecated
+//    public static String readTxt(String filePath) {
+//        StringBuilder result = new StringBuilder();
+//        try {
+//            File file = new File(filePath);
+//            if (!checkFile(file)) {
+//                return "";
+//            }
+//            InputStreamReader read = new InputStreamReader(new FileInputStream(file), CHARSET);
+//            BufferedReader bufferedReader = new BufferedReader(read);
+//
+//            String lineTxt;
+//            while ((lineTxt = bufferedReader.readLine()) != null) {
+//                result.append(lineTxt);
+//                result.append("\n");
+//            }
+//            read.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return result.toString();
+//    }
 
     public static String readTxt(String filePath) {
         StringBuilder result = new StringBuilder();
         try {
-            File file = new File(filePath);
-            if (!file.isFile() || !file.exists()) {
-                return "";
+            InputStream readInputStream = FileUtils.class.getClassLoader().getResourceAsStream(filePath);
+            if(Objects.isNull(readInputStream)){
+                log.error("resource file is not exit: {}", filePath);
             }
-            InputStreamReader read = new InputStreamReader(new FileInputStream(file), CHARSET);
+            InputStreamReader read = new InputStreamReader(readInputStream, CHARSET);
             BufferedReader bufferedReader = new BufferedReader(read);
 
             String lineTxt;
@@ -47,25 +74,21 @@ public class FileUtils {
             }
             read.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
         return result.toString();
     }
 
-    public static String readTxtFile(String fileName) {
-        String path = FileUtils.class.getResource("/" + fileName).getPath();
-        return readTxt(path);
-    }
+
 
     public static <T> T readObject(String fileName, Class<T> objectType) {
-        String path = FileUtils.class.getResource("/" + fileName).getPath();
-        return JSON.parseObject(readTxt(path), objectType);
+        return JSON.parseObject(readTxt(fileName), objectType);
     }
 
     /**
      * Recursive access folder all the files below.
      *
-     * @param filePath  file path
+     * @param filePath file path
      */
     public static List<File> getFiles(String filePath) {
         List<File> listFile = new ArrayList<>();
@@ -77,7 +100,10 @@ public class FileUtils {
                     filePath += File.separator;
                 }
                 String[] files = file.list();
-                for(String fileStr:files){
+                if(Objects.isNull(files)){
+                    return Lists.newArrayList();
+                }
+                for (String fileStr : files) {
                     String strPath = filePath + fileStr;
                     File tmp = new File(strPath);
                     if (tmp.isDirectory()) {
@@ -142,7 +168,7 @@ public class FileUtils {
             return;
         }
         if (dir.isFile()) {
-            System.out.println(dir.getName());
+            log.debug("dirname: {}",dir.getName());
             return;
         }
         File[] files = dir.listFiles();
@@ -155,55 +181,55 @@ public class FileUtils {
     }
 
     public static void copyFile(String src, String dist) throws IOException {
-        FileInputStream in = new FileInputStream(src);
-        FileOutputStream out = new FileOutputStream(dist);
-
-        byte[] buffer = new byte[20 * 1024];
-        int cnt;
+        try (FileInputStream in = new FileInputStream(src);
+             FileOutputStream out = new FileOutputStream(dist);){
+            byte[] buffer = new byte[20 * 1024];
+            int cnt;
         /* read() 最多读取 buffer.length 个字节
           返回的是实际读取的个数
           返回 -1 的时候表示读到 eof，即文件尾
         */
-        while ((cnt = in.read(buffer, 0, buffer.length)) != -1) {
-            out.write(buffer, 0, cnt);
+            while ((cnt = in.read(buffer, 0, buffer.length)) != -1) {
+                out.write(buffer, 0, cnt);
+            }
+        }catch (Exception e){
+            log.error(e.getMessage());
         }
-        in.close();
-        out.close();
     }
 
     public static void fastCopy(String src, String dist) throws IOException {
-        /* 获得源文件的输入字节流 */
-        FileInputStream fin = new FileInputStream(src);
-
-        /* 获取输入字节流的文件通道 */
-        FileChannel fcin = fin.getChannel();
-
-        /* 获取目标文件的输出字节流 */
-        FileOutputStream fout = new FileOutputStream(dist);
-
-        /* 获取输出字节流的文件通道 */
-        FileChannel fcout = fout.getChannel();
-
-        /* 为缓冲区分配 1024 个字节 */
-        ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
-
-        while (true) {
-            /* 从输入通道中读取数据到缓冲区中 */
-            int r = fcin.read(buffer);
-
-            /* read() 返回 -1 表示 EOF */
-            if (r == -1) {
-                break;
+        try(FileInputStream fin = new FileInputStream(src);
+            FileOutputStream fout = new FileOutputStream(dist);
+        ) {
+            FileChannel fileChannelIn = fin.getChannel();
+            FileChannel fileChannelOut = fout.getChannel();
+            ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
+            while (true) {
+                int r = fileChannelIn.read(buffer);
+                if (r == -1) {
+                    break;
+                }
+                buffer.flip();
+                fileChannelOut.write(buffer);
+                buffer.clear();
             }
-
-            /* 切换读写 */
-            buffer.flip();
-
-            /* 把缓冲区的内容写入输出文件中 */
-            fcout.write(buffer);
-
-            /* 清空缓冲区 */
-            buffer.clear();
+        }catch (Exception e){
+            log.error(e.getMessage());
         }
+    }
+
+
+    ////////////////////////////
+    private static boolean checkFile(File file) {
+        if (!file.isFile()) {
+            log.error("file is not a normal file: {}", file.getAbsoluteFile());
+            return false;
+        }
+        if (!file.exists()) {
+            log.error("file is not exist: {}", file.getAbsoluteFile());
+            return false;
+        }
+
+        return true;
     }
 }

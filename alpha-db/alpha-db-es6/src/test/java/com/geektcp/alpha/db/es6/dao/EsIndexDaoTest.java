@@ -1,11 +1,12 @@
 package com.geektcp.alpha.db.es6.dao;
 
-import alpha.common.base.model.Response;
 import com.alibaba.fastjson.JSON;
+import com.geektcp.alpha.common.spring.model.TResponse;
 import com.geektcp.alpha.db.es6.bean.Source;
 import com.geektcp.alpha.db.es6.bean.StoreURL;
 import com.geektcp.alpha.db.es6.util.DataUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,30 +55,35 @@ public class EsIndexDaoTest {
     public void existsIndex(){
         boolean ret = esIndexDao.existsIndex(storeURL, index);
         log.info("existsIndex: {}", ret);
+        Assert.assertTrue(true);
     }
 
     @Test
     public void existsType(){
         boolean ret = esIndexDao.existsType(storeURL, index,type);
         log.info("existsType: {}", ret);
+        Assert.assertTrue(true);
     }
 
     @Test
     public void createIndex(){
         boolean ret = esIndexDao.createIndex(storeURL,index);
         log.info("createIndex: {}", ret);
+        Assert.assertTrue(true);
     }
 
     @Test
     public void deleteIndex(){
         boolean ret = esIndexDao.deleteIndex(storeURL,index);
         log.info("deleteIndex: {}", ret);
+        Assert.assertTrue(true);
     }
 
     @Test
     public void createType(){
         boolean ret = esIndexDao.createType(storeURL,index,type);
         log.info("createType: {}", ret);
+        Assert.assertTrue(true);
     }
 
     @Test
@@ -91,8 +97,9 @@ public class EsIndexDaoTest {
         source.setSource(map);
         sourceList.add(source);
         log.info("sourceList: {}", JSON.toJSONString(sourceList,true));
-        Response ret = esIndexDao.bulkUpsert(storeURL,index, type,sourceList);
+        TResponse ret = esIndexDao.bulkUpsert(storeURL,index, type,sourceList);
         log.info("bulkUpsert:\n{}", JSON.toJSONString(ret,true));
+        Assert.assertTrue(true);
     }
 
     @Test
@@ -109,8 +116,9 @@ public class EsIndexDaoTest {
             sourceList.add(source);
         }
         log.info("sourceList: {}", JSON.toJSONString(sourceList,true));
-        Response ret = esIndexDao.bulkUpsert(storeURL, index, type, sourceList);
+        TResponse ret = esIndexDao.bulkUpsert(storeURL, index, type, sourceList);
         log.info("bulkUpsert:\n{}", JSON.toJSONString(ret,true));
+        Assert.assertTrue(true);
     }
 
     @Test
@@ -123,8 +131,9 @@ public class EsIndexDaoTest {
         map.put("age", 13);
         source.setSource(map);
         sourceList.add(source);
-        Response ret =  esIndexDao.delete(storeURL, index, type, sourceList);
+        TResponse ret =  esIndexDao.delete(storeURL, index, type, sourceList);
         log.info("delete:\n{}", JSON.toJSONString(ret,true));
+        Assert.assertTrue(true);
     }
 
 }

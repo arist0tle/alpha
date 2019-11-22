@@ -1,7 +1,5 @@
 package alpha.common.base.collection;
 
-import com.sun.istack.internal.NotNull;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

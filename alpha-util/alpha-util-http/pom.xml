@@ -14,6 +14,16 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.geektcp.alpha</groupId>
+            <artifactId>alpha-common-base</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.geektcp.alpha</groupId>
+            <artifactId>alpha-common-spring</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>3.0.5</version>

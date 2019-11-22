@@ -9,7 +9,7 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class FilterTest {
     public static void main(String[] args) {
-        String jsonStr = FileUtils.readTxtFile("expand_graph.json");
+        String jsonStr = FileUtils.readTxt("expand_graph.json");
         System.out.println(jsonStr);
 
         JSONObject json = JSONObject.parseObject(jsonStr);

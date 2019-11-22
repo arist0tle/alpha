@@ -9,11 +9,11 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class FileParse {
     public static JSONObject buildFilter(String dataFile){
-        return JSONObject.parseObject(FileUtils.readTxtFile(dataFile));
+        return JSONObject.parseObject(FileUtils.readTxt(dataFile));
     }
 
 
     public static JSONArray buildResult(String dataFile){
-        return JSONArray.parseArray(FileUtils.readTxtFile(dataFile));
+        return JSONArray.parseArray(FileUtils.readTxt(dataFile));
     }
 }

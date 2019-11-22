@@ -1,11 +1,14 @@
 package lock;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author tanghaiyang on 2019/8/20.
  * lockInterruptibly支持中断
  */
+@Slf4j
 public class ReentrantLockExampleInterrupt implements Runnable{
 
     //重入锁ReentrantLock
@@ -36,6 +39,8 @@ public class ReentrantLockExampleInterrupt implements Runnable{
             }
         } catch (Exception e) {
             // TODO: handle exception
+
+
         }finally{
             if(lock1.isHeldByCurrentThread()){
                 lock1.unlock();//释放锁

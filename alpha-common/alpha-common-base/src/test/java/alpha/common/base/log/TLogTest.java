@@ -3,6 +3,7 @@ package alpha.common.base.log;
 import alpha.common.base.constant.Constants;
 import alpha.common.base.constant.FieldType;
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * Created by HaiyangServer on 2019/9/21.
  */
+@Log4j2
 public class TLogTest {
     private static TLog log = LogFactory.getLogger(TLogTest.class);
 

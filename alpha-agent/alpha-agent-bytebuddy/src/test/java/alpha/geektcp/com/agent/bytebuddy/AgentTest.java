@@ -1,20 +1,12 @@
 package alpha.geektcp.com.agent.bytebuddy;
 
-import alpha.geektcp.com.agent.bytebuddy.example.LoggerAdvisor;
-import alpha.geektcp.com.agent.bytebuddy.example.Service;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.NamingStrategy;
 import net.bytebuddy.asm.Advice;
-import net.bytebuddy.description.type.TypeDescription;
-import net.bytebuddy.dynamic.ClassFileLocator;
 import net.bytebuddy.dynamic.DynamicType;
-import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
 import net.bytebuddy.implementation.FixedValue;
 import net.bytebuddy.matcher.ElementMatchers;
-import net.bytebuddy.pool.TypePool;
 import org.junit.Test;
-
-import javax.validation.constraints.AssertTrue;
 
 import static net.bytebuddy.matcher.ElementMatchers.is;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -62,7 +54,7 @@ public class AgentTest {
     public void serviceTest() {
 //        DynamicType.Unloaded<?> dynamicType = new ByteBuddy()
 //                .subclass(Object.class)
-//                .name("example.Type")
+//                .name("annotation.Type")
 //                .make();
 
 //        DynamicType.Unloaded<?> dynamicType2 = new ByteBuddy()
@@ -89,7 +81,7 @@ public class AgentTest {
 //
 //        DynamicType.Unloaded<?> dynamicType2 = new ByteBuddy()
 //                .subclass(Object.class)
-//                .name("example.Type")
+//                .name("annotation.Type")
 //                .make();
 //
 //        DynamicType.Unloaded<?> dynamicType3 = new ByteBuddy()

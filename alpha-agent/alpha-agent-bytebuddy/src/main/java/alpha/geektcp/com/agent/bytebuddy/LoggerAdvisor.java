@@ -1,6 +1,6 @@
-package alpha.geektcp.com.agent.bytebuddy.example;
+package alpha.geektcp.com.agent.bytebuddy;
 
-import lombok.extern.slf4j.Slf4j;
+import alpha.geektcp.com.agent.bytebuddy.annotation.Log;
 import net.bytebuddy.asm.Advice;
 
 import java.lang.annotation.Annotation;

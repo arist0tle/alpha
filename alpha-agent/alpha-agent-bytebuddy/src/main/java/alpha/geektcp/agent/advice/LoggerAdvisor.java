@@ -1,6 +1,6 @@
-package alpha.geektcp.com.agent.bytebuddy;
+package alpha.geektcp.agent.advice;
 
-import alpha.geektcp.com.agent.bytebuddy.annotation.Log;
+import alpha.geektcp.agent.annotation.Log;
 import net.bytebuddy.asm.Advice;
 
 import java.lang.annotation.Annotation;

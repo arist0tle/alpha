@@ -1,4 +1,4 @@
-package alpha.geektcp.com.agent.bytebuddy.annotation;
+package alpha.geektcp.agent.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

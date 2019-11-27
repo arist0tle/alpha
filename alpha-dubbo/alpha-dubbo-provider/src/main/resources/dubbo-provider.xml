@@ -14,9 +14,9 @@
     <!--<dubbo:registry address="redis://localhost:6379"/>-->
     <dubbo:registry address="zookeeper://localhost:2181"/>
 
-    <bean id="thyService" class="com.geektcp.alpha.dubbo.provider.service.ThyServiceImpl"/>
+    <bean id="thyService" class="com.geektcp.alpha.dubbo.provider.myService.ThyServiceImpl"/>
 
-    <dubbo:service interface="com.geektcp.alpha.dubbo.api.ThyService" ref="thyService"/>
+    <dubbo:myService interface="com.geektcp.alpha.dubbo.api.ThyService" ref="thyService"/>
 
 
 </beans>

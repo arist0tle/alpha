@@ -1,5 +1,7 @@
-package alpha.geektcp.com.agent.bytebuddy;
+package alpha.geektcp.agent.bytebuddy;
 
+import alpha.geektcp.agent.service.MyService;
+import alpha.geektcp.agent.advice.LoggerAdvisor;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.NamingStrategy;
 import net.bytebuddy.asm.Advice;
@@ -19,8 +21,8 @@ public class AgentTest {
 
     @Test
     public void ServiceTest() throws Exception{
-        Service service = new ByteBuddy()
-                .subclass(Service.class)
+        MyService myService = new ByteBuddy()
+                .subclass(MyService.class)
 //                .method(ElementMatchers.any())
                 .defineField("aaa", String.class)
                 .defineField("bbb", boolean.class)
@@ -29,11 +31,11 @@ public class AgentTest {
 //                .method(ElementMatchers.any())
 //                .intercept(Advice.to(LoggerAdvisor.class))
                 .make()
-                .load(Service.class.getClassLoader())
+                .load(MyService.class.getClassLoader())
                 .getLoaded()
                 .newInstance();
-        service.bar(123);
-        service.foo(456);
+        myService.bar(123);
+        myService.foo(456);
     }
 
     @Test

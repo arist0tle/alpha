@@ -19,6 +19,11 @@
             <version>1.0</version>
         </dependency>
         <dependency>
+            <groupId>com.geektcp.alpha</groupId>
+            <artifactId>alpha-common-spring</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.arangodb</groupId>
             <artifactId>arangodb-java-driver</artifactId>
             <version>4.2.5</version>

@@ -1,3 +1,5 @@
+package com.geektcp.alpha.db.arango;
+
 import com.arangodb.ArangoDB;
 import com.arangodb.ArangoDBException;
 import com.arangodb.entity.BaseDocument;

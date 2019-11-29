@@ -14,10 +14,10 @@ vim /etc/hosts
 
 
 
-rm -rf /home/dig/service/hadoop-2.6.4/lib/native/libhadoop.so
-rm -rf /home/dig/service/hadoop-2.6.4/lib/native/libhdfs.so
-ln -s /home/dig/service/hadoop-2.6.4/lib/native/libhadoop.so.1.0.0 /home/dig/service/hadoop-2.6.4/lib/native/libhadoop.so
-ln -s /home/dig/service/hadoop-2.6.4/lib/native/libhdfs.so.0.0.0 /home/dig/service/hadoop-2.6.4/lib/native/libhdfs.so
+rm -rf /home/dig/myService/hadoop-2.6.4/lib/native/libhadoop.so
+rm -rf /home/dig/myService/hadoop-2.6.4/lib/native/libhdfs.so
+ln -s /home/dig/myService/hadoop-2.6.4/lib/native/libhadoop.so.1.0.0 /home/dig/myService/hadoop-2.6.4/lib/native/libhadoop.so
+ln -s /home/dig/myService/hadoop-2.6.4/lib/native/libhdfs.so.0.0.0 /home/dig/myService/hadoop-2.6.4/lib/native/libhdfs.so
 
 
 zk环境搭建：
@@ -27,15 +27,15 @@ echo 1 > /home/dig/zoodata/myid
 echo 2 > /home/dig/zoodata/myid
 echo 3 > /home/dig/zoodata/myid
 
-ln -s /home/dig/service/zookeeper-3.4.6/ /home/dig/service/zookeeper
+ln -s /home/dig/myService/zookeeper-3.4.6/ /home/dig/myService/zookeeper
 chown -R dig.dig /home/dig/
 
 su - dig
 vim ~/.bashrc
 export ZOOKEEPER_HOME=/home/hadoop/software/zookeeper
 export PATH=$PATH:$ZOOKEEPER_HOME/bin
-export PATH=$PATH:/home/dig/service/zookeeper/bin
-export HADOOP_HOME=/home/dig/service/hadoop
+export PATH=$PATH:/home/dig/myService/zookeeper/bin
+export HADOOP_HOME=/home/dig/myService/hadoop
 export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
 export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib:$HADOOP_HOME/lib/native"
 export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native
@@ -43,17 +43,17 @@ export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
 
 启动zk:
-chmod u+x /home/dig/service/zookeeper/bin/*.sh
+chmod u+x /home/dig/myService/zookeeper/bin/*.sh
 
-/home/dig/service/zookeeper/bin/zkServer.sh start
-
-
-vim /home/dig/service/hadoop-2.6.4/etc/hadoop/hadoop-env.sh
-
-mkdir -p /home/dig/service && cp -rf /home/hadoop/software/hadoop-2.6.4/ /home/dig/service/hadoop
+/home/dig/myService/zookeeper/bin/zkServer.sh start
 
 
-mkdir -p /data/mapred /home/dig/service /home/dig/hdfs/journal/data /data/hdfs/{name,data}
+vim /home/dig/myService/hadoop-2.6.4/etc/hadoop/hadoop-env.sh
+
+mkdir -p /home/dig/myService && cp -rf /home/hadoop/software/hadoop-2.6.4/ /home/dig/myService/hadoop
+
+
+mkdir -p /data/mapred /home/dig/myService /home/dig/hdfs/journal/data /data/hdfs/{name,data}
 chown -R dig.dig /data/  /home/dig/hdfs/journal/data
 chmod -R 755 /home/dig/ 
 chmod 700 ~/.ssh
@@ -64,7 +64,7 @@ chmod 600 ~/.ssh/id_rsa
 格式化准备工作：
 rm -rf ~/hdfs/journal/data/hdcluster/current/VERSION
 rm -rf ~/hdfs/journal/data/hdcluster/current/VERSION
-rm -rf /home/dig/service/hadoop-hdfs/dn_socket
+rm -rf /home/dig/myService/hadoop-hdfs/dn_socket
 rm -rf /data/hdfs/*
 
 
@@ -146,7 +146,7 @@ alter database hive_meta character set latin1;
 flush PRIVILEGES;
 
 安装完一个mysql：
-nohup hive --service metastore -p 9012 2>&1 &
+nohup hive --myService metastore -p 9012 2>&1 &
 
 有时候可能提示不能创建临时目录/tmp/hive，解决办法：
 hdfs dfsadmin -safemode leave
@@ -156,17 +156,17 @@ hdfs dfsadmin -safemode get
 
 
 登录hive:
-/home/dig/service/hive/bin/hive
+/home/dig/myService/hive/bin/hive
 
 
 vim hive-env.sh
 确认如下内容：
-HADOOP_HOME=/home/dig/service/hadoop
-export HIVE_CONF_DIR=/home/dig/service/hive/conf
+HADOOP_HOME=/home/dig/myService/hadoop
+export HIVE_CONF_DIR=/home/dig/myService/hive/conf
 
 
-cp /home/dig/service/hive/lib/jline-2.12.jar \
-/home/dig/service/hadoop/share/hadoop/yarn/lib/jline-0.9.94.jar 
+cp /home/dig/myService/hive/lib/jline-2.12.jar \
+/home/dig/myService/hadoop/share/hadoop/yarn/lib/jline-0.9.94.jar
 
 
 
@@ -180,7 +180,7 @@ vim hive-site.xml
 </property>
 
 
-/home/dig/service/hive/bin/hive --service hwi
+/home/dig/myService/hive/bin/hive --myService hwi
 打开网站：
 http://20.20.1.241:9999/hwi
 
@@ -220,11 +220,11 @@ mkdir -p /data0/spark /data1/spark /data2/spark
 chown -R dig.dig /data0  /data1  /data2
 
 
-/home/dig/service/spark/sbin/start-all.sh
+/home/dig/myService/spark/sbin/start-all.sh
 
-/home/dig/service/spark/sbin/stop-all.sh
+/home/dig/myService/spark/sbin/stop-all.sh
 
-/home/dig/service/spark/bin/spark-shell
+/home/dig/myService/spark/bin/spark-shell
 
 
 
@@ -235,14 +235,14 @@ tailf /home/dig/logs_hadoop/hadoop-dig-datanode-bdp-001.log
 日志结果如下：
 2016-07-25 02:43:12,540 INFO org.apache.hadoop.hdfs.server.datanode.DataNode: Shutdown complete.
 2016-07-25 02:43:12,541 FATAL org.apache.hadoop.hdfs.server.datanode.DataNode: Exception in secureMain
-java.net.BindException: bind(2) error: Address already in use when trying to bind to '/home/dig/service/hadoop-hdfs/dn_socket'
+java.net.BindException: bind(2) error: Address already in use when trying to bind to '/home/dig/myService/hadoop-hdfs/dn_socket'
 	at org.apache.hadoop.net.unix.DomainSocket.bind0(Native Method)
 	at org.apache.hadoop.net.unix.DomainSocket.bindAndListen(DomainSocket.java:191)
 
 
 解决：
 直接删除对应套接字文件目录，可能存在隐藏文件或临时文件，导致datanode无法监听对应的端口
-rm -rf /home/dig/service/hadoop-hdfs/dn_socket
+rm -rf /home/dig/myService/hadoop-hdfs/dn_socket
 
 
 

@@ -42,7 +42,7 @@ public class BuddyAgentBuilder {
 
 //        ElementMatcher.Junction<TypeDescription> filter = nameStartsWith("com.casstime");
 
-        ElementMatcher.Junction<TypeDescription> filter = nameStartsWith("com.casstime")
+        ElementMatcher.Junction<TypeDescription> filter = nameStartsWith("com.geektcp")
                 .and(ElementMatchers.declaresAnnotation(ElementMatchers.annotationType(RestController.class)));
 
         AgentBuilder.InitializationStrategy.SelfInjection.Eager eager = new AgentBuilder.InitializationStrategy.SelfInjection.Eager();

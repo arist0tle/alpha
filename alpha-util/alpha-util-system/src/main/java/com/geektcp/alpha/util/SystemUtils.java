@@ -16,7 +16,7 @@ public class SystemUtils {
     @Test
     public void getInetAddress() throws Exception{
         InetAddress inetAddress = InetAddress.getLocalHost();
-        log.info(inetAddress.toString());
+        System.out.println(inetAddress.getHostAddress());
     }
 
     @Test

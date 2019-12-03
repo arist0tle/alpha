@@ -3,6 +3,7 @@ package alpha.common.base.util;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -16,6 +17,10 @@ public class DateUtils {
 
     private static final String ISO_8601_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     private static final String LOCAL_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+    public static Timestamp getTimeStamp(){
+        return new Timestamp(System.currentTimeMillis());
+    }
 
     public static String getToday() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

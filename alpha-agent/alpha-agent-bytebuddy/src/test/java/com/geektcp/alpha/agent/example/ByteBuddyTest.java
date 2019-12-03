@@ -54,6 +54,7 @@ public class ByteBuddyTest {
 //                    .newInstance();
 
             service.exception(123);
+            service.bar(422);
         } catch (Exception e) {
             e.printStackTrace();
         }

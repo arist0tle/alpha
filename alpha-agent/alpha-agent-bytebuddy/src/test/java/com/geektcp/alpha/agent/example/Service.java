@@ -14,4 +14,9 @@ public class Service {
         System.out.println("bar: " + value);
         return value;
     }
+
+    public int exception(int value) {
+        System.out.println("bar: " + value);
+        throw new RuntimeException();
+    }
 }

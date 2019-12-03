@@ -1,5 +1,6 @@
 package com.geektcp.alpha.agent.example;
 
+import com.google.common.annotations.VisibleForTesting;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.asm.Advice;
 import net.bytebuddy.matcher.ElementMatchers;
@@ -10,6 +11,11 @@ import net.bytebuddy.matcher.ElementMatchers;
 public class ByteBuddyTest {
 
     public static void main(String[] args) {
+//        testByteBuddy();
+        testException();
+    }
+
+    private static void testByteBuddy(){
         try {
             Service service = new ByteBuddy()
                     .subclass(Service.class)
@@ -26,4 +32,21 @@ public class ByteBuddyTest {
         }
     }
 
+    private static void testException(){
+        try {
+            Service service = new ByteBuddy()
+                    .subclass(Service.class)
+                    .method(ElementMatchers.any())
+                    .intercept(Advice.to(ExceptionAdvisor.class))
+                    .make()
+                    .load(Service.class.getClassLoader())
+                    .getLoaded()
+                    .newInstance();
+
+            service.exception(123);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

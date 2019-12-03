@@ -3,6 +3,7 @@ package com.geektcp.alpha.agent.example;
 import com.google.common.annotations.VisibleForTesting;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.asm.Advice;
+import net.bytebuddy.implementation.ExceptionMethod;
 import net.bytebuddy.matcher.ElementMatchers;
 
 /**
@@ -42,6 +43,15 @@ public class ByteBuddyTest {
                     .load(Service.class.getClassLoader())
                     .getLoaded()
                     .newInstance();
+
+//            Service service = new ByteBuddy()
+//                    .subclass(Service.class)
+//                    .method(ElementMatchers.any())
+//                    .intercept(ExceptionAdvisor.class,"ddd")
+//                    .make()
+//                    .load(Service.class.getClassLoader())
+//                    .getLoaded()
+//                    .newInstance();
 
             service.exception(123);
         } catch (Exception e) {

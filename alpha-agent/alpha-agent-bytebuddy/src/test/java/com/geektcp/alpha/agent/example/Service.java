@@ -17,6 +17,6 @@ public class Service {
 
     public int exception(int value) {
         System.out.println("bar: " + value);
-        throw new RuntimeException();
+        throw new RuntimeException("this is throw RuntimeException by thy");
     }
 }

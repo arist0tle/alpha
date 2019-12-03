@@ -17,7 +17,7 @@ public class PostMappingAdvisor {
 
     @Advice.OnMethodEnter
     public static void onMethodEnter(@Advice.Origin Method method,
-                                     @Advice.AllArguments Object[] arguments) {
+                                     @Advice.AllArguments Object[] arguments){
         PostMapping annotation = method.getAnnotation(PostMapping.class);
         getMappingHandle(annotation);
         if (Objects.nonNull(annotation)) {

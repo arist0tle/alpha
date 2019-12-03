@@ -1,8 +1,8 @@
 package com.geektcp.alpha.agent.advice;
 
+import net.bytebuddy.asm.Advice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import net.bytebuddy.asm.Advice;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -52,7 +52,7 @@ public class MappingAdvisor {
             pathArr = wrapMapping.value();
             params = wrapMapping.params();
         }
-//        CacheRepository.put("metric", pathArr );
+//        GuavaCacheBuilder.put("metric", pathArr );
         System.out.println("||||||MappingAdvisor||||||||" +  "annotation: " + Arrays.toString(pathArr) + " | " + Arrays.toString(params));
         return true;
     }

@@ -8,6 +8,8 @@ import net.bytebuddy.matcher.ElementMatcher;
 import net.bytebuddy.matcher.ElementMatchers;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.instrument.Instrumentation;
 
@@ -20,17 +22,7 @@ import static net.bytebuddy.matcher.ElementMatchers.nameStartsWith;
  */
 public class BuddyAgentBuilder {
 
-    /*
-     * invalid:
-     *  AgentBuilder agentBuilder = new AgentBuilder.Default();
-     *  agentBuilder.with(eager).type(ElementMatchers.nameStartsWith("com.casstime")).transform(transformer);
-     *
-     *  invalid:
-     *  AgentBuilder agentBuilder = new AgentBuilder.Default().with(eager);
-     *  agentBuilder.type(ElementMatchers.nameStartsWith("com.casstime")).transform(transformer);
-     * */
     public static void build(Instrumentation instrumentation) {
-
         ElementMatcher.Junction<TypeDescription> ignore = nameStartsWith("com.sun.")
                 .or(nameStartsWith("com.sun."))
                 .or(nameStartsWith("sun."))
@@ -48,12 +40,10 @@ public class BuddyAgentBuilder {
                 .or(nameContains(".asm.")
                 );
 
-        ElementMatcher.Junction<TypeDescription> filter = nameStartsWith("com.casstime");
-//        ElementMatcher.Junction<TypeDescription> filter = ElementMatchers.declaresAnnotation(
-//                ElementMatchers.annotationType(RestController.class)
-//                .or(ElementMatchers.annotationType(GetMapping.class)
-//                        .or(ElementMatchers.annotationType(GetMapping.class))
-//        );
+//        ElementMatcher.Junction<TypeDescription> filter = nameStartsWith("com.casstime");
+
+        ElementMatcher.Junction<TypeDescription> filter = nameStartsWith("com.casstime")
+                .and(ElementMatchers.declaresAnnotation(ElementMatchers.annotationType(RestController.class)));
 
         AgentBuilder.InitializationStrategy.SelfInjection.Eager eager = new AgentBuilder.InitializationStrategy.SelfInjection.Eager();
 
@@ -61,7 +51,12 @@ public class BuddyAgentBuilder {
                 builder.method(ElementMatchers.declaresAnnotation(ElementMatchers.annotationType(PostMapping.class)))
                         .intercept(Advice.to(PostMappingAdvisor.class))
                         .method(ElementMatchers.declaresAnnotation(ElementMatchers.annotationType(GetMapping.class)))
-                        .intercept(Advice.to(GetMappingAdvisor.class));
+                        .intercept(Advice.to(GetMappingAdvisor.class))
+                        .method(ElementMatchers.declaresAnnotation(ElementMatchers.annotationType(RequestMapping.class)))
+                        .intercept(Advice.to(RequestMappingAdvisor.class));
+//                        .method(ElementMatchers.declaresAnnotation(ElementMatchers.annotationType(PostMapping.class)))
+//                        .intercept(ExceptionMethod.throwing(RuntimeException.class, "agent exception"));
+
 
 //        AgentBuilder.Transformer transformerGetMapping = (builder, typeDescription, classLoader, module) ->
 //                builder.method(ElementMatchers.declaresAnnotation(ElementMatchers.annotationType(GetMapping.class)))
@@ -83,11 +78,27 @@ public class BuddyAgentBuilder {
 //                builder.method(ElementMatchers.declaresAnnotation(ElementMatchers.annotationType(RequestMapping.class)))
 //                        .intercept(Advice.to(RequestMappingAdvisor.class));
 
+//                AgentBuilder.Transformer transformerAny = (builder, typeDescription, classLoader, module) ->
+//                        builder.method(ElementMatchers.any())
+//                        .intercept(Advice.to(AnyAdvice.class));
+
+        AgentBuilder.Transformer transformerException = (builder, typeDescription, classLoader, module) ->
+                builder.method(ElementMatchers.any())
+                        .intercept(Advice.to(ExceptionAdvice.class));
+
+//        AgentBuilder.Transformer transformerException = new AgentBuilder.Transformer.ForAdvice()
+//                .with(AgentBuilder.LocationStrategy.ForClassLoader.STRONG)
+//                .include(RequestMapping.class.getClassLoader())
+//                .with(Assigner.DEFAULT)
+//                .withExceptionHandler(new Advice.ExceptionHandler.Simple(Removal.SINGLE))
+//                .advice(named("toString"), BarAdvice.class.getName());
+//
         AgentBuilder agentBuilder = new AgentBuilder.Default()
                 .with(eager)
-//                .ignore(ignore)
+                .ignore(ignore)
                 .type(filter)
-                .transform(transformerMapping);
+                .transform(transformerException);
+
 
         agentBuilder.installOn(instrumentation);
     }

@@ -1,6 +1,6 @@
 package com.geektcp.alpha.agent.advice;
 
-import com.geektcp.alpha.agent.repository.CacheRepository;
+import com.geektcp.alpha.agent.builder.ThyCacheBuilder;
 import net.bytebuddy.asm.Advice;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -8,6 +8,9 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
+
+import static com.geektcp.alpha.agent.constant.Metrics.*;
+
 
 /**
  * @author tanghaiyang on 2019/11/24 20:54.
@@ -47,17 +50,18 @@ public class GetMappingAdvisor {
         try {
             String[] pathArr = annotation.value();
             String[] params = annotation.params();
-            System.out.println("annotation: " + Arrays.toString(pathArr) + " | " + Arrays.toString(params));
-            String keyCount = String.format("CASS_API_REQUEST_COUNT { path = \"%s\"}", pathArr[0]);
-            AtomicLong valueCount = CacheRepository.get(keyCount);
-            valueCount.incrementAndGet();
-            CacheRepository.put(keyCount, valueCount);
+            System.out.println("GetMapping annotation: " + Arrays.toString(pathArr) + " | " + Arrays.toString(params));
+            if(pathArr.length > 0) {
+                String keyCount = String.format( "%s { path = \"%s\"}", CASS_API_REQUEST_COUNT, pathArr[0]);
+                AtomicLong valueCount = ThyCacheBuilder.incrementAndGet(keyCount);
+                ThyCacheBuilder.put(keyCount, valueCount);
+            }
 
             long end = System.currentTimeMillis();
             long timeCost = end - start;
-            String keyPath = String.format("CASS_API_COST_TIME { path = \"%s\"}", pathArr[0]);
+            String keyPath = String.format("%s { path = \"%s\"}",CASS_API_COST_TIME_MILLISECONDS, pathArr[0]);
             System.out.println("||||||GetMappingAdvisor||||||||" + timeCost + " took " + timeCost + " milliseconds ");
-            CacheRepository.put(keyPath, new AtomicLong(timeCost));
+            ThyCacheBuilder.put(keyPath, new AtomicLong(timeCost));
         } catch (Exception e) {
             System.out.println(e);
         }

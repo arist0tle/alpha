@@ -1,9 +1,9 @@
 package com.geektcp.alpha.agent.advice;
 
+import com.geektcp.alpha.agent.builder.ThyCacheBuilder;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import com.geektcp.alpha.agent.repository.CacheRepository;
 import net.bytebuddy.asm.Advice;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -14,6 +14,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author tanghaiyang on 2019/11/24 20:54.
  */
 public class ApiOperationAdvisor {
+
     private ApiOperationAdvisor() {
     }
 
@@ -50,15 +51,14 @@ public class ApiOperationAdvisor {
             String note = annotation.notes();
             System.out.println("annotation: " + desc + " | " + note);
             String keyCount = String.format("CASS_API_REQUEST_COUNT { desc = \"%s\"}", desc);
-            AtomicLong valueCount = CacheRepository.get(keyCount);
-            valueCount.incrementAndGet();
-            CacheRepository.put(keyCount, valueCount);
+            AtomicLong valueCount = ThyCacheBuilder.incrementAndGet(keyCount);
+            ThyCacheBuilder.put(keyCount, valueCount);
 
             long end = System.currentTimeMillis();
             long timeCost = end - start;
             String keyPath = String.format("CASS_API_COST_TIME { desc = \"%s\"}", desc);
             System.out.println("||||||ApiOperationAdvisor||||||||" + timeCost + " took " + timeCost + " milliseconds ");
-            CacheRepository.put(keyPath, new AtomicLong(timeCost));
+            ThyCacheBuilder.put(keyPath, new AtomicLong(timeCost));
         } catch (Exception e) {
             System.out.println(e);
         }

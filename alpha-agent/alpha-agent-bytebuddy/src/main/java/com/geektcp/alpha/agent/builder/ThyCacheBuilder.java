@@ -2,12 +2,16 @@ package com.geektcp.alpha.agent.builder;
 
 import com.google.common.collect.Lists;
 
+import java.lang.management.*;
+import java.net.InetAddress;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
+
+import static com.geektcp.alpha.agent.constant.Metrics.*;
 
 /**
  * @author haiyang.tang on 12.02 002 18:00:19.
@@ -18,7 +22,6 @@ public class ThyCacheBuilder {
 
     private ThyCacheBuilder() {
     }
-
 
     private static ThyCacheBuilder singleton = null;
 
@@ -37,14 +40,28 @@ public class ThyCacheBuilder {
         thyCache.put(key, value);
     }
 
+    public static void incrementAndGet(String key, long delta) {
+        AtomicLong value = get(key);
+        value.addAndGet(delta);
+        put(key, value);
+    }
+
     public static void clear() {
         thyCache.clear();
     }
 
-    public static AtomicLong incrementAndGet(String key) {
+    public static void init(){
+        ThyCacheBuilder.put(CASS_AGENT_VERSION, new AtomicLong(1));
+        ThyCacheBuilder.put(CASS_REQUEST_COUNT_TOTAL, new AtomicLong(0));
+        ThyCacheBuilder.put(CASS_REQUEST_COUNT_ERR, new AtomicLong(0));
+        ThyCacheBuilder.put(CASS_REQUEST_COST_MILLISECONDS, new AtomicLong(0));
+        ThyCacheBuilder.put(CASS_REQUEST_AVERAGE_COST_MILLISECONDS, new AtomicLong(0));
+    }
+
+    public static void incrementAndGet(String key) {
         AtomicLong value = get(key);
         value.incrementAndGet();
-        return value;
+        put(key, value);
     }
 
     public static List<String> listCache() {
@@ -57,9 +74,71 @@ public class ThyCacheBuilder {
                 }
                 list.add(key + " " + thyCache.getOrDefault(key, new AtomicLong(0)));
             }
+
+            long cost = thyCache.get(CASS_REQUEST_COST_MILLISECONDS).get();
+            long count = thyCache.get(CASS_REQUEST_COUNT_TOTAL).get();
+            long average = cost/count;
+            if(count>0){
+                list.add(CASS_REQUEST_AVERAGE_COST_MILLISECONDS + " " + average );
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return list;
+    }
+
+    public static List<String> listSystem() {
+        List<String> list = Lists.newArrayList();
+        try {
+            OperatingSystemMXBean system = ManagementFactory.getOperatingSystemMXBean();
+            StringBuilder systemMetric = new StringBuilder();
+            systemMetric.append(CASS_SYSTEM_CORES).append("{")
+                    .append(SYSTEM_OS).append(buildValue(system.getName())).append(",")
+                    .append(SYSTEM_ARCH).append(buildValue(system.getArch())).append(",")
+                    .append(SYSTEM_JDK_VERSION).append(buildValue(System.getProperty("java.version"))).append(",")
+                    .append(SYSTEM_IP).append(buildValue(getLocalIP()))
+                    .append("}").append(" ").append(system.getAvailableProcessors());
+            list.add(systemMetric.toString());
+
+            MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
+            MemoryUsage heapMemoryUsage = memoryMXBean.getHeapMemoryUsage();
+            list.add(buildMetric(CASS_JVM_MAX_MEMORY, heapMemoryUsage.getMax()));
+            list.add(buildMetric(CASS_JVM_COMMITTED_MEMORY, heapMemoryUsage.getCommitted()));
+            list.add(buildMetric(CASS_JVM_USED_MEMORY, heapMemoryUsage.getUsed()));
+
+            MemoryUsage nonHeapMemoryUsage = memoryMXBean.getNonHeapMemoryUsage();
+            list.add(buildMetric(CASS_JVM_MAX_MEMORY_NON_HEAP, nonHeapMemoryUsage.getMax()));
+            list.add(buildMetric(CASS_JVM_COMMITTED_MEMORY_NON_HEAP, nonHeapMemoryUsage.getCommitted()));
+            list.add(buildMetric(CASS_JVM_USED_MEMORY_NON_HEAP, nonHeapMemoryUsage.getUsed()));
+
+            ThreadMXBean tmx = ManagementFactory.getThreadMXBean();
+            list.add(buildMetric(CASS_JVM_THREAD_COUNT, tmx.getThreadCount()));
+            list.add(buildMetric(CASS_JVM_DAEMON_THREAD_COUNT, tmx.getThreadCount()));
+            list.add(buildMetric(CASS_JVM_TOTAL_STARTED_THREAD_COUNT, tmx.getThreadCount()));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return list;
     }
+
+    private static String getLocalIP() {
+        String ip = "";
+        try {
+            ip = InetAddress.getLocalHost().getHostAddress();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return ip;
+    }
+
+    private static String buildMetric(String key, Object value) {
+        return key + " " + value;
+    }
+
+    private static String buildValue(String value) {
+        return "=\"" + value + "\"";
+    }
+
 }

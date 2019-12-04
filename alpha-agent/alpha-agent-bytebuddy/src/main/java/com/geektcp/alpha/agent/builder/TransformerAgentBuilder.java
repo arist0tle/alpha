@@ -13,6 +13,9 @@ import java.security.ProtectionDomain;
  */
 public class TransformerAgentBuilder {
 
+    private TransformerAgentBuilder() {
+    }
+
     public static void build(Instrumentation instrumentation){
         instrumentation.addTransformer(new ClassTransformer());
     }

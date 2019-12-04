@@ -1,68 +1,46 @@
 package com.geektcp.alpha.agent.advice;
 
 import net.bytebuddy.asm.Advice;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.Objects;
+
+import static com.geektcp.alpha.agent.constant.Metrics.*;
 
 /**
  * @author tanghaiyang on 2019/11/24 20:54.
  */
 public class MappingAdvisor {
 
-    @Advice.OnMethodEnter
-    public static void onMethodEnter(@Advice.Origin Method method,
-                                     @Advice.AllArguments Object[] arguments) {
-
-        boolean isGet = getMappingHandle(method, GetMapping.class);
-//        boolean isPost = getMappingHandle(method, PostMapping.class);
-        if (isGet ) {
-            System.out.println("Enter " + method.getName() + " with arguments: " + Arrays.toString(arguments));
-        }
+    private MappingAdvisor() {
     }
 
-    @Advice.OnMethodExit
+    @Advice.OnMethodEnter
+    public static long onMethodEnter(@Advice.Origin Method method,
+                                     @Advice.AllArguments Object[] arguments) {
+        long start = System.currentTimeMillis();
+        String path = AdviceUtil.getPath(method);
+        String methodStr = AdviceUtil.getMethod(method);
+        if(path.length()==0){
+            return start;
+        }
+        AdviceUtil.handleCount(path, methodStr, CASS_REQUEST_COUNT_TOTAL);
+        return start;
+    }
+
+    @Advice.OnMethodExit(onThrowable = Exception.class)
     public static void onMethodExit(@Advice.Origin Method method,
                                     @Advice.AllArguments Object[] arguments,
-                                    @Advice.Return Object ret) {
-        GetMapping annotation = method.getAnnotation(GetMapping.class);
-        if (Objects.nonNull(annotation)) {
-            System.out.println("Exit " + method.getName() + " with arguments: " + Arrays.toString(arguments) + " return: " + ret);
+                                    @Advice.Return Object ret,
+                                    @Advice.Thrown Throwable throwable,
+                                    @Advice.Enter long start) {
+        String path = AdviceUtil.getPath(method);
+        String methodStr = AdviceUtil.getMethod(method);
+        if (Objects.nonNull(throwable)) {
+            AdviceUtil.handleCount(path, methodStr, CASS_REQUEST_COUNT_ERR);
+            return;
         }
-    }
-
-    public static <T extends Annotation> boolean getMappingHandle(Method method, Class<T> annotationClass) {
-        Object mapping = method.getAnnotation(annotationClass);
-        if (checkAnnotation(method, annotationClass)) {
-            return false;
-        }
-        String[] pathArr = null;
-        String[] params = null;
-        if (mapping instanceof GetMapping) {
-            GetMapping wrapMapping = (GetMapping) mapping;
-            pathArr = wrapMapping.value();
-            params = wrapMapping.params();
-        }
-        if (mapping instanceof PostMapping) {
-            PostMapping wrapMapping = (PostMapping) mapping;
-            pathArr = wrapMapping.value();
-            params = wrapMapping.params();
-        }
-//        GuavaCacheBuilder.put("metric", pathArr );
-        System.out.println("||||||MappingAdvisor||||||||" +  "annotation: " + Arrays.toString(pathArr) + " | " + Arrays.toString(params));
-        return true;
-    }
-
-    public static  <T extends Annotation>  boolean checkAnnotation(Method method, Class<T> annotationClass){
-        Object mapping = method.getAnnotation(annotationClass);
-        if (Objects.isNull(mapping)) {
-            return false;
-        }
-        return true;
+        AdviceUtil.handleExit(path, start, CASS_REQUEST_COST_MILLISECONDS);
     }
 
 }

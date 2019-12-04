@@ -1,6 +1,6 @@
 package com.geektcp.alpha.agent.util;
 
-import com.casstime.agent.example.bean.Person;
+import com.geektcp.alpha.agent.example.bean.Person;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

@@ -1,8 +1,8 @@
 package com.geektcp.alpha.agent;
 
-import com.casstime.agent.example.TestService;
-import com.casstime.agent.example.advisor.ExceptionAdvisor;
-import com.casstime.agent.example.advisor.LoggerAdvisor;
+import com.geektcp.alpha.agent.example.TestService;
+import com.geektcp.alpha.agent.example.advisor.ExceptionAdvisor;
+import com.geektcp.alpha.agent.example.advisor.LoggerAdvisor;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.asm.Advice;
 import net.bytebuddy.description.annotation.AnnotationDescription;
@@ -21,13 +21,13 @@ public class ByteBuddyTest {
 //        testException();
 
         try {
-            Class cls = Class.forName("com.casstime.agent.annotation.GetMapping");
+            Class cls = Class.forName("com.geektcp.alpha.agent.annotation.GetMapping");
 
             System.out.println(cls.getName());
             System.out.println(cls.getSimpleName());
             System.out.println(cls.getAnnotations());
             System.out.println(cls.getFields());
-            Class cls3 = Class.forName("com.casstime.agent.annotation.GetMapping");
+            Class cls3 = Class.forName("com.geektcp.alpha.agent.annotation.GetMapping");
             Annotation[] annotations = cls.getAnnotations();
             System.out.println(annotations);
 
@@ -78,7 +78,7 @@ public class ByteBuddyTest {
 
     private static void testAnnotation() {
         try {
-            Class cls = Class.forName("com.casstime.agent.annotation.GetMapping");
+            Class cls = Class.forName("com.geektcp.alpha.agent.annotation.GetMapping");
             AnnotationDescription annotationDescription = (AnnotationDescription) cls.newInstance();
             AnnotationDescription annotations = (AnnotationDescription) cls.getAnnotation(AnnotationDescription.class);
             AnnotationDescription tt = null;

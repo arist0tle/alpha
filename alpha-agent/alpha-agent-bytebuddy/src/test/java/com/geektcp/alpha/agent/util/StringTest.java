@@ -5,8 +5,8 @@ package com.geektcp.alpha.agent.util;
  */
 public class StringTest {
     public static void main(String[] args) {
-        String a = "com.casstime.dingtalk.controller.TestController.test";
-        if (a.startsWith("com.casstime.dingtalk.controller")) {
+        String a = "com.geektcp.alpha.dingtalk.controller.TestController.test";
+        if (a.startsWith("com.geektcp.alpha.dingtalk.controller")) {
             System.out.println(1111111);
         }
     }

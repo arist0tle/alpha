@@ -1,6 +1,6 @@
 package com.geektcp.alpha.agent.example;
 
-import com.casstime.agent.example.annotation.Prometheus;
+import com.geektcp.alpha.agent.example.annotation.Prometheus;
 
 /**
  * @author haiyang.tang on 12.03 003 15:10:20.

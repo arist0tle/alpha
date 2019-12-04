@@ -1,6 +1,6 @@
 package com.geektcp.alpha.agent.builder;
 
-import com.casstime.agent.advice.MappingAdvisor;
+import com.geektcp.alpha.agent.advice.MappingAdvisor;
 import net.bytebuddy.agent.builder.AgentBuilder;
 import net.bytebuddy.asm.Advice;
 import net.bytebuddy.matcher.ElementMatchers;
@@ -26,13 +26,13 @@ public class BuddyAgentBuilderTest {
         System.out.println("agentBuilder22:" + agentBuilder22);
 
         agentBuilder.with(eager)
-                .type(ElementMatchers.nameStartsWith("com.casstime"))
+                .type(ElementMatchers.nameStartsWith("com.geektcp.alpha.))
                 .transform(transformer);
         agentBuilder.installOn(instrumentation);
 
         AgentBuilder agentBuilder2 = new AgentBuilder.Default()
                 .with(eager)
-                .type(ElementMatchers.nameStartsWith("com.casstime"))
+                .type(ElementMatchers.nameStartsWith("com.geektcp.alpha.))
                 .transform(transformer);
 
         agentBuilder2.installOn(instrumentation);

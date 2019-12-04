@@ -1,6 +1,6 @@
 package com.geektcp.alpha.agent.example.advisor;
 
-import com.casstime.agent.example.annotation.Prometheus;
+import com.geektcp.alpha.agent.example.annotation.Prometheus;
 import net.bytebuddy.asm.Advice;
 
 import java.lang.reflect.Method;

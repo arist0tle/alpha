@@ -1,7 +1,7 @@
-package com.geektcp.alpha.agent.advice;//package com.casstime.agent.advice;
+package com.geektcp.alpha.agent.advice;//package com.geektcp.alpha.agent.advice;
 //
-//import com.casstime.agent.annotation.*;
-//import com.casstime.agent.builder.ThyCacheBuilder;
+//import com.geektcp.alpha.agent.annotation.*;
+//import com.geektcp.alpha.agent.builder.ThyCacheBuilder;
 //import net.bytebuddy.asm.Advice;
 //
 //import java.lang.reflect.Method;

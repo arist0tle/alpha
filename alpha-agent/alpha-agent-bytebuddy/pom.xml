@@ -19,13 +19,11 @@
             <artifactId>javassist</artifactId>
             <version>3.21.0-GA</version>
         </dependency>
-
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
             <version>1.7.9</version>
         </dependency>
-
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-http</artifactId>
@@ -36,31 +34,13 @@
             <artifactId>jetty-servlet</artifactId>
             <version>9.3.14.v20161028</version>
         </dependency>
-
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>18.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.0.4.RELEASE</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                    <groupId>org.springframework.boot</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>1.5.13</version>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>

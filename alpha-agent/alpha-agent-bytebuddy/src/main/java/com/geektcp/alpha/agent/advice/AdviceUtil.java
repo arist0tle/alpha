@@ -7,7 +7,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
-import static com.casstime.agent.constant.AgentMethod.*;
+import static com.geektcp.alpha.agent.constant.AgentMethod.*;
 
 /**
  * @author haiyang.tang on 12.03 003 16:40:22.

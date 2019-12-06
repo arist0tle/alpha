@@ -25,8 +25,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RestApplication {
 
     public static void main(String[] args) {
-        // TODO: Currently need to create Tracer directly under need 'tracer resolver' mechanism is available
-        APMTracer tracer=new APMTracer();
+        APMTracer tracer = new APMTracer();
         GlobalTracer.register(tracer);
         SpringApplication.run(RestApplication.class, args);
     }

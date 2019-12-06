@@ -26,13 +26,13 @@ public class BuddyAgentBuilderTest {
         System.out.println("agentBuilder22:" + agentBuilder22);
 
         agentBuilder.with(eager)
-                .type(ElementMatchers.nameStartsWith("com.geektcp.alpha"))
+                .type(ElementMatchers.nameStartsWith("com.casstime"))
                 .transform(transformer);
         agentBuilder.installOn(instrumentation);
 
         AgentBuilder agentBuilder2 = new AgentBuilder.Default()
                 .with(eager)
-                .type(ElementMatchers.nameStartsWith("com.geektcp.alpha"))
+                .type(ElementMatchers.nameStartsWith("com.casstime"))
                 .transform(transformer);
 
         agentBuilder2.installOn(instrumentation);

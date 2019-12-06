@@ -7,7 +7,7 @@ package com.geektcp.alpha.agent.advice;//package com.geektcp.alpha.agent.advice;
 //import java.util.Arrays;
 //import java.util.Objects;
 //
-//import static com.geektcp.alpha.agent.constant.Metrics.*;
+//import static com.geektcp.alpha.agent.constant.AgentMetrics.*;
 //
 ///**
 // * @author tanghaiyang on 2019/11/24 20:54.

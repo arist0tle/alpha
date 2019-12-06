@@ -7,7 +7,7 @@ package com.geektcp.alpha.agent.advice;//package com.geektcp.alpha.agent.advice;
 //import java.util.Arrays;
 //import java.util.Objects;
 //
-//import static com.geektcp.alpha.agent.constant.Metrics.*;
+//import static com.geektcp.alpha.agent.constant.AgentMetrics.*;
 //
 ///**
 // * @author tanghaiyang on 2019/11/24 20:54.
@@ -26,7 +26,7 @@ package com.geektcp.alpha.agent.advice;//package com.geektcp.alpha.agent.advice;
 //            return start;
 //        }
 //        String path = AdviceUtil.getPath(annotation);
-//        AdviceUtil.handleCount(path, RequestMethod.GET.toString(), CASS_REQUEST_COUNT_TOTAL);
+//        AdviceUtil.handleCount(path, RequestMethod.METHOD_GET.toString(), CASS_REQUEST_COUNT_TOTAL);
 //        System.out.println("Enter " + method.getName() + " with arguments: " + Arrays.toString(arguments));
 //
 //        return start;
@@ -44,7 +44,7 @@ package com.geektcp.alpha.agent.advice;//package com.geektcp.alpha.agent.advice;
 //        }
 //        String path = AdviceUtil.getPath(annotation);
 //        if (Objects.nonNull(throwable)) {
-//            AdviceUtil.handleCount(path, RequestMethod.GET.toString(), CASS_REQUEST_COUNT_ERR);
+//            AdviceUtil.handleCount(path, RequestMethod.METHOD_GET.toString(), CASS_REQUEST_COUNT_ERR);
 //            return;
 //        }
 //        AdviceUtil.handleExit(path, start, CASS_REQUEST_COST_MILLISECONDS);

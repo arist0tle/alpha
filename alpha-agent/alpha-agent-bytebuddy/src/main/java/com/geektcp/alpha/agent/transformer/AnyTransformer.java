@@ -20,6 +20,14 @@ public class AnyTransformer implements AgentBuilder.Transformer {
                                             JavaModule module) {
         return builder.method(
                 ElementMatchers.any())
-                .intercept(Advice.to(AnyAdvice.class));
+                .intercept(Advice.to(AnyAdvice.class))
+               ;
+
+//        return builder.method(
+//                ElementMatchers.any())
+//                .intercept(MethodDelegation.to(AnyAdvice.class));
     }
+
 }
+
+

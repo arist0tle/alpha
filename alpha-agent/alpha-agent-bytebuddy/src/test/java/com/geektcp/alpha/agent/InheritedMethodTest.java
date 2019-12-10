@@ -17,12 +17,10 @@ import net.bytebuddy.implementation.MethodDelegation;
 import net.bytebuddy.implementation.bind.annotation.Default;
 import net.bytebuddy.implementation.bind.annotation.SuperCall;
 import net.bytebuddy.matcher.ElementMatchers;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class InheritedMethodTest {
 
-    @Test
+
     public void testInterface() throws Exception {
         DynamicType.Loaded<?> loaded = new ByteBuddy()
                 .subclass(TestServiceImpl.class)
@@ -37,10 +35,8 @@ public class InheritedMethodTest {
 //        instance.bar(123);
 //        instance.foo(456);
         System.out.println(instance.thy());
-        Assert.assertTrue(true);
     }
 
-    @Test(expected = AbstractMethodError.class)
     public void testNoDefaultInterface() throws Exception {
         DynamicType.Loaded<?> loaded = new ByteBuddy()
                 .subclass(Object.class)
@@ -82,7 +78,8 @@ public class InheritedMethodTest {
     public static class DelegationNoDefaultInterfaceInterceptor {
 
         public static String intercept(@Default DelegationNoDefaultInterface proxy) {
-            return proxy.foo();
+//            return proxy.foo();
+            return null;
         }
     }
 }

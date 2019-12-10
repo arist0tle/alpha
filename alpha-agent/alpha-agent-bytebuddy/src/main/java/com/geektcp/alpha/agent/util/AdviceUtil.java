@@ -1,7 +1,6 @@
 package com.geektcp.alpha.agent.util;
 
 import com.geektcp.alpha.agent.builder.AgentCacheBuilder;
-import net.bytebuddy.asm.Advice;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -19,13 +18,10 @@ public class AdviceUtil {
     private AdviceUtil() {
     }
 
-    public static void handleExit(String path, @Advice.Enter long start, String metric) {
+    public static void handleExit(String path, long timeCost, String metric) {
         try {
-            long end = System.currentTimeMillis();
-            long timeCost = end - start;
             String keyPath = String.format("%s { path = \"%s\"}", metric, path);
             AgentCacheBuilder.incrementAndGet(keyPath, timeCost);
-            AgentCacheBuilder.incrementAndGet(metric, timeCost);
         } catch (Exception e) {
             log(String.format("handleExit[path:%s] has exception: %s",path, e.getMessage()));
         }

@@ -1,6 +1,6 @@
 package com.geektcp.alpha.agent.builder;
 
-import com.geektcp.alpha.agent.transformer.MappingTransformer;
+import com.geektcp.alpha.agent.transformer.AnyTransformer;
 import net.bytebuddy.agent.builder.AgentBuilder;
 import net.bytebuddy.description.type.TypeDescription;
 import net.bytebuddy.matcher.ElementMatcher;
@@ -28,22 +28,26 @@ public class BuddyBuilder {
                     .or(nameStartsWith("org.aspectj."))
                     .or(nameStartsWith("org.groovy."))
                     .or(nameStartsWith("com.p6spy."))
+                    .or(nameStartsWith("com.netflix."))
+                    .or(nameStartsWith("io.netty."))
+                    .or(nameStartsWith("javax."))
+                    .or(nameStartsWith("io.swagger."))
+                    .or(nameStartsWith("springfox.documentation."))
                     .or(nameStartsWith("net.bytebuddy."))
-                    .or(nameStartsWith("org.springframework"))
-                    .or(nameStartsWith("org.slf4j"))
-                    .or(nameStartsWith("org.apache.logging.log4j"))
-                    .or(nameStartsWith("com.casstime.job.core.rpc"))
+                    .or(nameStartsWith("com.geektcp.job.core.rpc."))
+                    .or(nameStartsWith("com.geektcp.ec.cloud.uniqueId."))
+                    .or(nameStartsWith("com.geektcp.ec.cloud.quote.message."))
                     .or(nameContains("slf4j"))
                     .or(nameContains("log4j"))
                     .or(nameContains("javassist"))
-                    .or(nameContains(".asm.")
-                    );
+                    .or(nameContains(".asm."))
+                    ;
 
-            ElementMatcher.Junction<TypeDescription> filter = nameStartsWith("com.geektcp");
+            ElementMatcher.Junction<TypeDescription> filter = nameStartsWith("org.springframework.web.servlet.FrameworkServlet");
             AgentBuilder.InitializationStrategy.SelfInjection.Eager eager = new AgentBuilder.InitializationStrategy.SelfInjection.Eager();
 
-            AgentBuilder.Transformer transformer = new MappingTransformer();
-//            AgentBuilder.Transformer transformer = new AnyTransformer();
+//            AgentBuilder.Transformer transformer = new MappingTransformer();
+            AgentBuilder.Transformer transformer = new AnyTransformer();
 //            AgentBuilder.Transformer transformer = new TimeTransformer();
 //            AgentBuilder.Transformer transformer = new ExceptionTransformer();
 
@@ -53,7 +57,7 @@ public class BuddyBuilder {
                     .type(filter)
                     .transform(transformer);
             agentBuilder.installOn(instrumentation);
-        }catch (Exception e){
+        } catch (Exception e) {
             log(e.getMessage());
         }
     }

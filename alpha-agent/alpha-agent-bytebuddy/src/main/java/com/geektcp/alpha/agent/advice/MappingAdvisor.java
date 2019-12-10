@@ -1,5 +1,6 @@
 package com.geektcp.alpha.agent.advice;
 
+import com.geektcp.alpha.agent.builder.AgentCacheBuilder;
 import com.geektcp.alpha.agent.util.AdviceUtil;
 import net.bytebuddy.asm.Advice;
 
@@ -22,7 +23,8 @@ public class MappingAdvisor {
         String path = AdviceUtil.getPath(method);
         if (path.length() > 0) {
             String methodStr = AdviceUtil.getMethod(method);
-            AdviceUtil.handleCount(path, methodStr, CASS_REQUEST_COUNT_TOTAL);
+            AgentCacheBuilder.incrementAndGet(CASS_REQUEST_COUNT_TOTAL);
+            AdviceUtil.handleCount(path, methodStr, CASS_REQUEST_COUNT);
         }
         return start;
     }
@@ -36,10 +38,14 @@ public class MappingAdvisor {
         String path = AdviceUtil.getPath(method);
         String methodStr = AdviceUtil.getMethod(method);
         if (Objects.nonNull(throwable)) {
-            AdviceUtil.handleCount(path, methodStr, CASS_REQUEST_COUNT_ERR);
+            AgentCacheBuilder.incrementAndGet(CASS_REQUEST_ERR_COUNT_TOTAL);
+            AdviceUtil.handleCount(path, methodStr, CASS_REQUEST_ERR_COUNT);
             return;
         }
-        AdviceUtil.handleExit(path, start, CASS_REQUEST_COST_MILLISECONDS);
+        long end = System.currentTimeMillis();
+        long timeCost = end - start;
+        AgentCacheBuilder.incrementAndGet(CASS_REQUEST_COST_TOTAL_MILLISECONDS, timeCost);
+        AdviceUtil.handleExit(path, timeCost, CASS_REQUEST_COST_MILLISECONDS);
     }
 
 }

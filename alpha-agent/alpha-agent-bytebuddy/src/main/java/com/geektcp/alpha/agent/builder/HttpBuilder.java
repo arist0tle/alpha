@@ -14,7 +14,7 @@ import static com.geektcp.alpha.agent.util.LogUtil.log;
  */
 public class HttpBuilder {
 
-    private static final String GREETING = "# agent exporter 1.2";
+    private static final String GREETING = "# agent exporter";
 
     private static final String WELCOME = GREETING + ": " + "http://localhost:3300/prmetheus/metrics";
 
@@ -22,6 +22,7 @@ public class HttpBuilder {
     }
 
     public static void build() {
+        AgentCacheBuilder.init();
         try (ServerSocket serverSocket = new ServerSocket(3300);) {
             log(WELCOME);
             long count = 0;
@@ -46,7 +47,6 @@ public class HttpBuilder {
                 printWriter.close();
                 socket.close();
                 if (url.contains("clear")) {
-                    AgentCacheBuilder.clear();
                     AgentCacheBuilder.init();
                 }
                 count++;

@@ -1,13 +1,13 @@
 package com.geektcp.alpha.agent.advice;//package com.geektcp.alpha.agent.advice;
 //
-//import com.geektcp.alpha.agent.annotation.*;
+//import com.casstime.agent.annotation.*;
 //import net.bytebuddy.asm.Advice;
 //
 //import java.lang.reflect.Method;
 //import java.util.Arrays;
 //import java.util.Objects;
 //
-//import static com.geektcp.alpha.agent.constant.AgentMetrics.*;
+//import static com.casstime.agent.constant.AgentMetrics.*;
 //
 ///**
 // * @author tanghaiyang on 2019/11/24 20:54.
@@ -40,7 +40,7 @@ package com.geektcp.alpha.agent.advice;//package com.geektcp.alpha.agent.advice;
 //        String requestMethod =  AdviceUtil.getMethod(annotation);
 //        String path = AdviceUtil.getPath(annotation);
 //        if (Objects.nonNull(throwable)) {
-//            AdviceUtil.handleCount(path, requestMethod, CASS_REQUEST_COUNT_ERR);
+//            AdviceUtil.handleCount(path, requestMethod, CASS_REQUEST_ERR_COUNT);
 //            return;
 //        }
 //        AdviceUtil.handleExit(path, start, CASS_REQUEST_COST_MILLISECONDS);

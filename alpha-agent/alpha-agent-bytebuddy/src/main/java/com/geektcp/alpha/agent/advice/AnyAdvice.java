@@ -45,9 +45,6 @@ public class AnyAdvice {
         return enterRet;
     }
 
-    /*
-     * 异常时，不能正常获取到
-     * */
     @Advice.OnMethodExit(onThrowable = Exception.class)
     public static void end(@Advice.Origin Method method,
                            @Advice.Thrown Throwable throwable,

@@ -1,33 +1,32 @@
 package com.geektcp.alpha.agent.builder;
 
-import com.google.common.collect.Lists;
-
 import java.lang.management.*;
 import java.net.InetAddress;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-import static com.geektcp.alpha.agent.constant.Metrics.*;
+import static com.geektcp.alpha.agent.constant.AgentMetrics.*;
+import static com.geektcp.alpha.agent.util.LogUtil.log;
 
 /**
  * @author haiyang.tang on 12.02 002 18:00:19.
  */
-public class ThyCacheBuilder {
+public class AgentCacheBuilder {
+
+    private static Random random = new Random(1000);
 
     private static ConcurrentMap<String, AtomicLong> thyCache = new ConcurrentHashMap<>(10000);
 
-    private ThyCacheBuilder() {
+    private AgentCacheBuilder() {
     }
 
-    private static ThyCacheBuilder singleton = null;
+    private static AgentCacheBuilder singleton = null;
 
-    public static ThyCacheBuilder getInstance() {
+    public static AgentCacheBuilder getInstance() {
         if (singleton == null) {
-            singleton = new ThyCacheBuilder();
+            singleton = new AgentCacheBuilder();
         }
         return singleton;
     }
@@ -46,16 +45,20 @@ public class ThyCacheBuilder {
         put(key, value);
     }
 
-    public static void clear() {
+    public static void init() {
+//        log("clear and init cache!");
         thyCache.clear();
-    }
+        AgentCacheBuilder.put(CASS_SYSTEM_AGENT_VERSION, new AtomicLong(1));
 
-    public static void init(){
-        ThyCacheBuilder.put(CASS_AGENT_VERSION, new AtomicLong(1));
-        ThyCacheBuilder.put(CASS_REQUEST_COUNT_TOTAL, new AtomicLong(0));
-        ThyCacheBuilder.put(CASS_REQUEST_COUNT_ERR, new AtomicLong(0));
-        ThyCacheBuilder.put(CASS_REQUEST_COST_MILLISECONDS, new AtomicLong(0));
-        ThyCacheBuilder.put(CASS_REQUEST_AVERAGE_COST_MILLISECONDS, new AtomicLong(0));
+        AgentCacheBuilder.put(CASS_REQUEST_COUNT_TOTAL, new AtomicLong(1));
+        AgentCacheBuilder.put(CASS_REQUEST_ERR_COUNT_TOTAL, new AtomicLong(0));
+        AgentCacheBuilder.put(CASS_REQUEST_COST_TOTAL_MILLISECONDS, new AtomicLong(0));
+
+//        AgentCacheBuilder.put(CASS_REQUEST_COUNT_TOTAL, new AtomicLong(random.nextInt(500)));
+//        AgentCacheBuilder.put(CASS_REQUEST_ERR_COUNT_TOTAL, new AtomicLong(random.nextInt(100)));
+//        AgentCacheBuilder.put(CASS_REQUEST_COST_TOTAL_MILLISECONDS, new AtomicLong(random.nextInt(10000)));
+//        AgentCacheBuilder.put(CASS_REQUEST_AVERAGE_COST_MILLISECONDS, new AtomicLong(random.nextInt(1000)));
+//        AgentCacheBuilder.put(CASS_DB_POOL_COUNT_TOTAL, new AtomicLong(random.nextInt(200)));
     }
 
     public static void incrementAndGet(String key) {
@@ -65,7 +68,7 @@ public class ThyCacheBuilder {
     }
 
     public static List<String> listCache() {
-        List<String> list = Lists.newArrayList();
+        List<String> list = new ArrayList<>();
         Set<String> keys = thyCache.keySet();
         try {
             for (String key : keys) {
@@ -74,23 +77,20 @@ public class ThyCacheBuilder {
                 }
                 list.add(key + " " + thyCache.getOrDefault(key, new AtomicLong(0)));
             }
-
-            long cost = thyCache.get(CASS_REQUEST_COST_MILLISECONDS).get();
-            long count = thyCache.get(CASS_REQUEST_COUNT_TOTAL).get();
-            long average = cost/count;
-            if(count>0){
-                list.add(CASS_REQUEST_AVERAGE_COST_MILLISECONDS + " " + average );
+            long cost = thyCache.getOrDefault(CASS_REQUEST_COST_TOTAL_MILLISECONDS, new AtomicLong(0)).get();
+            long count = thyCache.getOrDefault(CASS_REQUEST_COUNT_TOTAL, new AtomicLong(0)).get();
+            if (count > 0) {
+                long average = cost / count;
+                list.add(CASS_REQUEST_AVERAGE_COST_MILLISECONDS + " " + average);
             }
-
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log("listCache: " + e.getMessage());
         }
-
         return list;
     }
 
     public static List<String> listSystem() {
-        List<String> list = Lists.newArrayList();
+        List<String> list = new ArrayList<>();
         try {
             OperatingSystemMXBean system = ManagementFactory.getOperatingSystemMXBean();
             StringBuilder systemMetric = new StringBuilder();
@@ -118,7 +118,7 @@ public class ThyCacheBuilder {
             list.add(buildMetric(CASS_JVM_DAEMON_THREAD_COUNT, tmx.getThreadCount()));
             list.add(buildMetric(CASS_JVM_TOTAL_STARTED_THREAD_COUNT, tmx.getThreadCount()));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log(e.getMessage());
         }
         return list;
     }
@@ -128,7 +128,7 @@ public class ThyCacheBuilder {
         try {
             ip = InetAddress.getLocalHost().getHostAddress();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log(e.getMessage());
         }
         return ip;
     }

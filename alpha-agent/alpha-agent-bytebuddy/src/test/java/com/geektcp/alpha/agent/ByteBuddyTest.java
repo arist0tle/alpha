@@ -1,8 +1,8 @@
 package com.geektcp.alpha.agent;
 
-import com.geektcp.alpha.agent.example.TestService;
 import com.geektcp.alpha.agent.example.advisor.ExceptionAdvisor;
 import com.geektcp.alpha.agent.example.advisor.LoggerAdvisor;
+import com.geektcp.alpha.agent.service.impl.TestServiceImpl;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.asm.Advice;
 import net.bytebuddy.description.annotation.AnnotationDescription;
@@ -16,18 +16,28 @@ import java.lang.annotation.Annotation;
  */
 public class ByteBuddyTest {
 
-    public static void main(String[] args) {
+
+    private static final String DEFAULT_INTERFACE = "com.casstime.webforagent.controller.ThyControllerInterface";
+
+    public static void main(String[] args) throws Exception {
 //        testByteBuddy();
 //        testException();
+        System.out.println(Integer.MAX_VALUE);
+        System.out.println(Long.MAX_VALUE);
 
+    }
+
+
+
+    private static void testClassForName() {
         try {
-            Class cls = Class.forName("com.geektcp.alpha.agent.annotation.GetMapping");
+            Class cls = Class.forName("com.casstime.agent.annotation.GetMapping");
 
             System.out.println(cls.getName());
             System.out.println(cls.getSimpleName());
             System.out.println(cls.getAnnotations());
             System.out.println(cls.getFields());
-            Class cls3 = Class.forName("com.geektcp.alpha.agent.annotation.GetMapping");
+            Class cls3 = Class.forName("com.casstime.agent.annotation.GetMapping");
             Annotation[] annotations = cls.getAnnotations();
             System.out.println(annotations);
 
@@ -36,21 +46,20 @@ public class ByteBuddyTest {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     private static void testByteBuddy() {
         try {
-            TestService testService = new ByteBuddy()
-                    .subclass(TestService.class)
+            TestServiceImpl testServiceImpl = new ByteBuddy()
+                    .subclass(TestServiceImpl.class)
                     .method(ElementMatchers.any())
                     .intercept(Advice.to(LoggerAdvisor.class))
                     .make()
-                    .load(TestService.class.getClassLoader())
+                    .load(TestServiceImpl.class.getClassLoader())
                     .getLoaded()
                     .newInstance();
-            testService.bar(123);
-            testService.foo(456);
+            testServiceImpl.bar(123);
+            testServiceImpl.foo(456);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -58,42 +67,41 @@ public class ByteBuddyTest {
 
     private static void testException() {
         try {
-            TestService testService = new ByteBuddy()
-                    .subclass(TestService.class)
+            TestServiceImpl testServiceImpl = new ByteBuddy()
+                    .subclass(TestServiceImpl.class)
                     .method(ElementMatchers.any())
                     .intercept(Advice.to(ExceptionAdvisor.class))
                     .make()
-                    .load(TestService.class.getClassLoader())
+                    .load(TestServiceImpl.class.getClassLoader())
                     .getLoaded()
                     .newInstance();
 
-            testService.exception(123);
-            testService.bar(422);
+            testServiceImpl.exception(123);
+            testServiceImpl.bar(422);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 
     private static void testAnnotation() {
         try {
-            Class cls = Class.forName("com.geektcp.alpha.agent.annotation.GetMapping");
+            Class cls = Class.forName("com.casstime.agent.annotation.GetMapping");
             AnnotationDescription annotationDescription = (AnnotationDescription) cls.newInstance();
             AnnotationDescription annotations = (AnnotationDescription) cls.getAnnotation(AnnotationDescription.class);
             AnnotationDescription tt = null;
 //            ElementMatchers.annotationType();
-            TestService testService = new ByteBuddy()
-                    .subclass(TestService.class)
+            TestServiceImpl testServiceImpl = new ByteBuddy()
+                    .subclass(TestServiceImpl.class)
                     .method(ElementMatchers.isAnnotatedWith(ElementMatchers.isAnnotation()))
 //                    .method(ElementMatchers.declaresAnnotation)
                     .intercept(Advice.to(LoggerAdvisor.class))
                     .make()
-                    .load(TestService.class.getClassLoader())
+                    .load(TestServiceImpl.class.getClassLoader())
                     .getLoaded()
                     .newInstance();
-            testService.bar(123);
-            testService.foo(456);
+            testServiceImpl.bar(123);
+            testServiceImpl.foo(456);
         } catch (Exception e) {
             e.printStackTrace();
         }

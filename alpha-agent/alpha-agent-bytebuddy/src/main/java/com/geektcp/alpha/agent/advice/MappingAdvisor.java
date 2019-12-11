@@ -1,11 +1,13 @@
 package com.geektcp.alpha.agent.advice;
 
+import com.geektcp.alpha.agent.builder.AgentCacheBuilder;
+import com.geektcp.alpha.agent.util.AdviceUtil;
 import net.bytebuddy.asm.Advice;
 
 import java.lang.reflect.Method;
 import java.util.Objects;
 
-import static com.geektcp.alpha.agent.constant.Metrics.*;
+import static com.geektcp.alpha.agent.constant.AgentMetrics.*;
 
 /**
  * @author tanghaiyang on 2019/11/24 20:54.
@@ -16,15 +18,14 @@ public class MappingAdvisor {
     }
 
     @Advice.OnMethodEnter
-    public static long onMethodEnter(@Advice.Origin Method method,
-                                     @Advice.AllArguments Object[] arguments) {
+    public static long onMethodEnter(@Advice.Origin Method method) {
         long start = System.currentTimeMillis();
         String path = AdviceUtil.getPath(method);
-        String methodStr = AdviceUtil.getMethod(method);
-        if(path.length()==0){
-            return start;
+        if (path.length() > 0) {
+            String methodStr = AdviceUtil.getMethod(method);
+            AgentCacheBuilder.incrementAndGet(CASS_REQUEST_COUNT_TOTAL);
+            AdviceUtil.handleCount(path, methodStr, CASS_REQUEST_COUNT);
         }
-        AdviceUtil.handleCount(path, methodStr, CASS_REQUEST_COUNT_TOTAL);
         return start;
     }
 
@@ -37,10 +38,14 @@ public class MappingAdvisor {
         String path = AdviceUtil.getPath(method);
         String methodStr = AdviceUtil.getMethod(method);
         if (Objects.nonNull(throwable)) {
-            AdviceUtil.handleCount(path, methodStr, CASS_REQUEST_COUNT_ERR);
+            AgentCacheBuilder.incrementAndGet(CASS_REQUEST_ERR_COUNT_TOTAL);
+            AdviceUtil.handleCount(path, methodStr, CASS_REQUEST_ERR_COUNT);
             return;
         }
-        AdviceUtil.handleExit(path, start, CASS_REQUEST_COST_MILLISECONDS);
+        long end = System.currentTimeMillis();
+        long timeCost = end - start;
+        AgentCacheBuilder.incrementAndGet(CASS_REQUEST_COST_TOTAL_MILLISECONDS, timeCost);
+        AdviceUtil.handleExit(path, timeCost, CASS_REQUEST_COST_MILLISECONDS);
     }
 
 }

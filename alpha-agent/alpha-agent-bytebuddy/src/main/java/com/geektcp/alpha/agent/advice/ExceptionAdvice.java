@@ -1,6 +1,7 @@
 package com.geektcp.alpha.agent.advice;
 
 import net.bytebuddy.asm.Advice;
+import static com.geektcp.alpha.agent.util.LogUtil.log;
 
 public class ExceptionAdvice {
 
@@ -8,16 +9,16 @@ public class ExceptionAdvice {
     }
 
     @Advice.OnMethodEnter
-    static long enter(@Advice.Origin String method) throws Exception {
-        System.out.println("before");
+    static long enter(@Advice.Origin String method)  {
+        log("before");
         return System.currentTimeMillis();
     }
 
     @Advice.OnMethodExit
     static void exit(@Advice.Origin String method, @Advice.Enter long start) throws Exception {
-        System.out.println("end");
+        log("end");
         long end = System.currentTimeMillis();
-        System.out.println("ExceptionAdvice: " + method + " took " + (end - start) + " milliseconds ");
+        log("ExceptionAdvice: " + method + " took " + (end - start) + " milliseconds ");
     }
 
 }

@@ -1,7 +1,7 @@
 package com.geektcp.alpha.agent.advice;//package com.geektcp.alpha.agent.advice;
 //
-//import com.geektcp.alpha.agent.annotation.*;
-//import com.geektcp.alpha.agent.builder.ThyCacheBuilder;
+//import com.casstime.agent.annotation.*;
+//import com.geektcp.alpha.agent.builder.AgentCacheBuilder;
 //import net.bytebuddy.asm.Advice;
 //
 //import java.lang.reflect.Method;
@@ -50,12 +50,12 @@ package com.geektcp.alpha.agent.advice;//package com.geektcp.alpha.agent.advice;
 //            String note = annotation.notes();
 //            System.out.println("annotation: " + desc + " | " + note);
 //            String keyCount = String.format("CASS_API_REQUEST_COUNT { desc = \"%s\"}", desc);
-//            ThyCacheBuilder.incrementAndGet(keyCount);
+//            AgentCacheBuilder.incrementAndGet(keyCount);
 //            long end = System.currentTimeMillis();
 //            long timeCost = end - start;
 //            String keyPath = String.format("CASS_API_COST_TIME { desc = \"%s\"}", desc);
 //            System.out.println("||||||ApiOperationAdvisor||||||||" + timeCost + " took " + timeCost + " milliseconds ");
-//            ThyCacheBuilder.put(keyPath, new AtomicLong(timeCost));
+//            AgentCacheBuilder.put(keyPath, new AtomicLong(timeCost));
 //        } catch (Exception e) {
 //            System.out.println(e);
 //        }

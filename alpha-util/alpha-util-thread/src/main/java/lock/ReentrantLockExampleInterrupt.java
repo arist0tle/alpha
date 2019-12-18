@@ -22,25 +22,22 @@ public class ReentrantLockExampleInterrupt implements Runnable{
 
     @Override
     public void run() {
-        // TODO Auto-generated method stub
         try {
             if(lock==1){
                 lock1.lockInterruptibly();
-                System.out.println("等待1秒");
+                log.info("等待1秒");
                 Thread.sleep(1000);
                 lock2.lockInterruptibly();
-                System.out.println("线程1执行完毕: " + Thread.currentThread().getId());
+                log.info("线程1执行完毕: " + Thread.currentThread().getId());
             }else{
                 lock2.lockInterruptibly();
-                System.out.println("等待1秒");
+                log.info("等待1秒");
                 Thread.sleep(1000);
                 lock1.lockInterruptibly();
-                System.out.println("线程2执行完毕: " + Thread.currentThread().getId());
+                log.info("线程2执行完毕: " + Thread.currentThread().getId());
             }
         } catch (Exception e) {
-            // TODO: handle exception
-
-
+            log.error(e.getMessage());
         }finally{
             if(lock1.isHeldByCurrentThread()){
                 lock1.unlock();//释放锁
@@ -48,7 +45,7 @@ public class ReentrantLockExampleInterrupt implements Runnable{
             if(lock2.isHeldByCurrentThread()){
                 lock2.unlock();
             }
-            System.out.println(Thread.currentThread().getId() + "：线程退出");
+            log.info(Thread.currentThread().getId() + "：线程退出");
         }
     }
 
@@ -60,7 +57,7 @@ public class ReentrantLockExampleInterrupt implements Runnable{
         t1.start();
         t2.start();
         Thread.sleep(5000);
-        System.out.println("主线程等待5s后");
+        log.info("主线程等待5s后");
         //t2线程被中断，放弃锁申请，释放已获得的lock2，这个操作使得t1线程顺利获得lock2继续执行下去；
         //若没有此段代码，t2线程没有中断，那么会出现t1获取lock1，请求lock2，而t2获取lock2，请求lock1的相互等待死锁情况
         t2.interrupt();

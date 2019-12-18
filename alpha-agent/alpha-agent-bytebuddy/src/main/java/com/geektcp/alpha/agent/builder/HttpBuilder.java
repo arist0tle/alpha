@@ -15,8 +15,10 @@ import static com.geektcp.alpha.agent.util.LogUtil.log;
 public class HttpBuilder {
 
     private static final String GREETING = "# agent exporter";
+    private static final String URL = "http://localhost:3300";
+    private static final String URI = "/prometheus/metrics";
 
-    private static final String WELCOME = GREETING + ": " + "http://localhost:3300/prmetheus/metrics";
+    private static final String WELCOME = GREETING + ": " + URL + URI;
 
     private HttpBuilder() {
     }
@@ -35,7 +37,7 @@ public class HttpBuilder {
                 printWriter.println("HTTP/1.1 200 OK");
                 printWriter.println("Content-Type:text/plain;charset=utf-8");
                 printWriter.println();
-                if (!url.startsWith("/prometheus/metrics")) {
+                if (!url.startsWith(URI)) {
                     count++;
                     socket.close();
                 }

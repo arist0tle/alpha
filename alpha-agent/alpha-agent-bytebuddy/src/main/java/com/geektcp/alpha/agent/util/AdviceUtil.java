@@ -31,7 +31,6 @@ public class AdviceUtil {
         try {
             String keyPath = String.format("%s { method = \"%s\" , path = \"%s\"}", metric, method, path);
             AgentCacheBuilder.incrementAndGet(keyPath);
-            AgentCacheBuilder.incrementAndGet(metric);
         } catch (Exception e) {
             log(String.format("handleCount[method:%s] has exception: %s",method, e.getMessage()));
         }

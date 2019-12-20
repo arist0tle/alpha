@@ -1,3 +1,5 @@
+package com.geektcp.alpha.queue.activemq;
+
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.junit.Test;
 
@@ -6,10 +8,10 @@ import javax.jms.*;
 /**
  * @author tanghaiyang on 2019/8/28.
  */
-public class ProducerTest {
+public class ConsumerTest {
 
     @Test
-    public void testMQProducerQueue() throws Exception{
+    public void TestMQConsumerQueue() throws Exception{
         //1、创建工厂连接对象，需要制定ip和端口号
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://127.0.0.1:61616");
 
@@ -26,19 +28,32 @@ public class ProducerTest {
         Queue queue = session.createQueue("test-queue");
 
         //6、使用会话对象创建生产者对象
-        MessageProducer producer = session.createProducer(queue);
+        MessageConsumer consumer = session.createConsumer(queue);
 
-        //7、使用会话对象创建一个消息对象
-        TextMessage textMessage = session.createTextMessage("hello!test-queue");
+        //7、向consumer对象中设置一个messageListener对象，用来接收消息
+        consumer.setMessageListener(new MessageListener() {
+            @Override
+            public void onMessage(Message message) {
+                if(message instanceof TextMessage){
+                    TextMessage textMessage = (TextMessage)message;
+                    try {
+                        System.out.println(textMessage.getText());
+                    } catch (JMSException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
 
-        //8、发送消息
-        producer.send(textMessage);
+        //8、程序等待接收用户消息
+//        System.in.read();
+
 
         //9、关闭资源
-        producer.close();
+        consumer.close();
         session.close();
         connection.close();
     }
-
 
 }

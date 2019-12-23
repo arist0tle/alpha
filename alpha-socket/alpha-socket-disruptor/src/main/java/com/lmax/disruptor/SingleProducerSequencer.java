@@ -134,7 +134,7 @@ public final class SingleProducerSequencer extends SingleProducerSequencerFields
             long minSequence;
             while (wrapPoint > (minSequence = Util.getMinimumSequence(gatingSequences, nextValue)))
             {
-                LockSupport.parkNanos(1L); // TODO: Use waitStrategy to spin?
+                LockSupport.parkNanos(1L);
             }
 
             this.cachedValue = minSequence;

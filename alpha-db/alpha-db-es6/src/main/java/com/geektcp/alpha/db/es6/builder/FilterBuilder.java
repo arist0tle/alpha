@@ -121,7 +121,6 @@ public class FilterBuilder {
                     filterBuilder.must(childQueryBuilder);
                     break;
             }
-            // TODO: 2019/5/5
             return filterBuilder;
         } else {
             return null;

@@ -82,7 +82,7 @@ public class EsIndexDaoImpl implements EsIndexDao {
     public boolean createIndex(StoreURL storeURL, String index) {
         try {
             RestClient client = esRestClient.getClient(storeURL);
-            Map map = new HashMap<>(); // TODO: 2019/5/8 create index
+            Map map = new HashMap<>();
             IndexRequest request = new IndexRequest(index).source(map);
             request.opType(DocWriteRequest.OpType.CREATE);
             String source = request.source().utf8ToString();

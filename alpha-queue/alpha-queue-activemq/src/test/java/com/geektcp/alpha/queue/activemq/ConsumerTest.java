@@ -39,8 +39,7 @@ public class ConsumerTest {
                     try {
                         System.out.println(textMessage.getText());
                     } catch (JMSException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                        // do nothing
                     }
                 }
             }

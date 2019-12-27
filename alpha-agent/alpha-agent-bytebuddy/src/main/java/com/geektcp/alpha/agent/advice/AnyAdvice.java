@@ -29,7 +29,9 @@ public class AnyAdvice {
         try {
             Object httpServletRequest = arguments[0];
             Class<?> clsHttpServletRequest = httpServletRequest.getClass();
-            if (clsHttpServletRequest.getSimpleName().equals(FILTER_PARAMETER_REQUEST_FACADE)) {
+            String requestClsName = clsHttpServletRequest.getSimpleName();
+            if (FILTER_PARAMETER_REQUEST_FACADE.equals(requestClsName)||
+                    FILTER_PARAMETER_APPLICATION_HTTP_REQUEST.equals(requestClsName)) {
                 String httpPath = (String) clsHttpServletRequest.getMethod(FILTER_METHOD_GET_REQUEST_URI).invoke(httpServletRequest);
                 String httpMethod = (String) clsHttpServletRequest.getMethod(FILTER_METHOD_GET_METHOD).invoke(httpServletRequest);
                 enterRet.put(FILTER_METRIC_HTTP_PATH, httpPath);

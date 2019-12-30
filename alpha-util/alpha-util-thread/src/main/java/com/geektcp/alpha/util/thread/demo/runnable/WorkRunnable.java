@@ -3,8 +3,8 @@ package com.geektcp.alpha.util.thread.demo.runnable;
 /* Created by Haiyang on 2017/3/16. */
 
 
-class hello_runnable implements Runnable {
-    public hello_runnable(String name) {
+class WorkRunnable implements Runnable {
+    public WorkRunnable(String name) {
         this.name = name;
     }
 
@@ -20,9 +20,9 @@ class hello_runnable implements Runnable {
     }
 
     public static void main(String[] args) {
-        hello_runnable h1 = new hello_runnable("线程A");
+        WorkRunnable h1 = new WorkRunnable("线程A");
         Thread demo = new Thread(h1);
-        hello_runnable h2 = new hello_runnable("线程Ｂ");
+        WorkRunnable h2 = new WorkRunnable("线程Ｂ");
         Thread demo1 = new Thread(h2);
         demo.start();
         demo1.start();

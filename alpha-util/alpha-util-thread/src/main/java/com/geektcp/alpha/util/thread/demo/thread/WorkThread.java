@@ -4,10 +4,10 @@ package com.geektcp.alpha.util.thread.demo.thread;
 
 
 
-class hello_thread extends Thread {
+class WorkThread extends Thread {
     private String name;
 
-    public hello_thread(String name) {
+    public WorkThread(String name) {
         this.name = name;
     }
 
@@ -24,8 +24,8 @@ class hello_thread extends Thread {
 
 
     public static void main(String[] args) {
-        hello_thread h1 = new hello_thread("A");
-        hello_thread h2 = new hello_thread("B");
+        WorkThread h1 = new WorkThread("A");
+        WorkThread h2 = new WorkThread("B");
 
         h1.start();
         System.out.println("==============");

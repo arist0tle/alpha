@@ -10,7 +10,7 @@ import java.util.UUID;
 public class RunnableImpl implements Runnable {
     private int taskNum;
 
-    RunnableImpl(int taskNum) {
+    public RunnableImpl(int taskNum) {
         this.taskNum = taskNum;
     }
 

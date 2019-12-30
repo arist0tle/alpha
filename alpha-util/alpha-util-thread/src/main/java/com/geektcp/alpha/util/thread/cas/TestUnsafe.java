@@ -1,4 +1,4 @@
-package cas;
+package com.geektcp.alpha.util.thread.cas;
 
 import sun.misc.Unsafe;
 

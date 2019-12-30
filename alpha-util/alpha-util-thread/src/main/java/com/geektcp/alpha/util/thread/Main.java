@@ -1,6 +1,8 @@
-import fastjson.DeltaMonitor;
-import fastjson.MyThread;
-import fastjson.MyThread2;
+package com.geektcp.alpha.util.thread;
+
+import com.geektcp.alpha.util.thread.fastjson.DeltaMonitor;
+import com.geektcp.alpha.util.thread.fastjson.MyThread;
+import com.geektcp.alpha.util.thread.fastjson.MyThread2;
 import lombok.extern.slf4j.Slf4j;
 
 /**

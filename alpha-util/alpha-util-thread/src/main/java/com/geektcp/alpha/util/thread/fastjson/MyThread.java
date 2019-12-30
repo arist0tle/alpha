@@ -1,4 +1,4 @@
-package fastjson;
+package com.geektcp.alpha.util.thread.fastjson;
 
 /* Created by Haiyang on 2017/3/16. */
 

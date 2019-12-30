@@ -1,4 +1,4 @@
-package fastjson;
+package com.geektcp.alpha.util.thread.fastjson;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -82,7 +82,7 @@ public class DeltaMonitor extends  Thread {
 
                 Hashtable<String, AtomicLong> monitorTable = getCurrentMonitor();
 
-                // cas
+                // com.geektcp.alpha.util.thread.cas
 //                swap();
 
 //                log.info("thread id: {} | monitorTable.size {} | monitorTable: {} ",

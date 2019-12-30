@@ -1,7 +1,6 @@
-package lock;
+package com.geektcp.alpha.util.thread.lock;
 
 import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**

@@ -1,4 +1,4 @@
-package thread.excutor.callable;
+package com.geektcp.alpha.util.thread.demo.excutor.runnable;
 
 /**
  * Created by Administrator on 2017/2/17.
@@ -7,13 +7,16 @@ package thread.excutor.callable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * 有返回值的线程
  */
 @SuppressWarnings("unchecked")
-public class PoolStartCallable {
+public class PoolStartRunnable {
     public static void main(String[] args) throws ExecutionException,
             InterruptedException {
         System.out.println("----程序开始运行----");
@@ -32,20 +35,25 @@ public class PoolStartCallable {
         // 创建多个有返回值的任务
         List<Future> list = new ArrayList<Future>();
         for (int i = 0; i < taskSize; i++) {
-            Callable r = new CallableImpl(i);
-            Future f = pool.submit(r);
-
-            list.add(f);
+            Runnable r = new RunnableImpl(i);
+            pool.submit(r);
         }
+
 
         // 关闭线程池
         pool.shutdown();
-
-        // 获取所有并发任务的运行结果
-        for (Future f : list) {
-            //传入Callable类型的类给submit时，可以从Future对象上获取任务的返回值，并输出到控制台
-            System.out.println(">>>f.get() | " + f.get().toString());
+        while (true){
+            if( pool.isTerminated()) {
+                System.out.println("任务完成关闭线程池");
+                break;
+            }else {
+                Thread.sleep(1000);
+            }
         }
+
+        System.out.println("pool: " + pool);
+        System.out.println(pool.isShutdown());
+        System.out.println(pool.isTerminated());
 
         Date date2 = new Date();
         System.out.println("----程序结束运行----，程序运行时间【"

@@ -1,4 +1,4 @@
-package fastjson;
+package com.geektcp.alpha.util.thread.fastjson;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.atomic.AtomicInteger;

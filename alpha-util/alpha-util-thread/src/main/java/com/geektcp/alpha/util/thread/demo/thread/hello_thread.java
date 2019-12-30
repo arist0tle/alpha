@@ -1,4 +1,4 @@
-package thread.thread;
+package com.geektcp.alpha.util.thread.demo.thread;
 
 /* Created by Haiyang on 2017/3/16. */
 

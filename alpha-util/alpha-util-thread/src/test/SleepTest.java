@@ -16,7 +16,7 @@ public class SleepTest {
         System.out.println(0);
         Thread.sleep(0);
         System.out.println(111111);
-        String lock = "lock";
+        String lock = "com/geektcp/alpha/util/thread/lock";
 
         ReentrantLock reentrantLock = new ReentrantLock();
         Condition condition =  reentrantLock.newCondition();

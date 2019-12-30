@@ -1,4 +1,4 @@
-package thread.runnable;
+package com.geektcp.alpha.util.thread.demo.runnable;
 
 /* Created by Haiyang on 2017/3/16. */
 

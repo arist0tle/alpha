@@ -12,7 +12,6 @@
     <artifactId>alpha-agent</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>alpha-agent-prober</module>
         <module>alpha-agent-client</module>
         <module>alpha-agent-bytebuddy</module>
         <module>alpha-agent-web</module>

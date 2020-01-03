@@ -6,7 +6,7 @@ http://my.oschina.net/ifeixiang/blog/369833
 
 安装mysql：
 ########################################################
-yum -y install ncurses-devel cmake wget perl gcc gcc-c++ &&
+yum -y install ncurses-devel cmake wget perl gcc gcc-c++ autoconf &&
 cd /usr/local/src && 
 wget  http://192.168.1.173:8000/mysql-5.6.23.tar.gz  &&
 groupadd mysql && useradd mysql -g mysql 
@@ -51,40 +51,40 @@ wget  http://192.168.1.173:8000/my.cnf -O ${MYSQL_INSTALL}/my.cnf
 ln -s /usr/local/mysql/my.cnf /etc/my.cnf
 
 
-mkdir -p /kvm/mysql/{log-bin3306,log-bin3307,log-bin3308,log-bin3309}
-mkdir -p /kvm/mysql/{log3306,log3307,log3308,log3309}
-mkdir -p /kvm/mysql/{data3306,data3307,data3308,data3309}
+mkdir -p /data/mysql/{log-bin3306,log-bin3307,log-bin3308,log-bin3309}
+mkdir -p /data/mysql/{log3306,log3307,log3308,log3309}
+mkdir -p /data/mysql/{data3306,data3307,data3308,data3309}
 
 
 
 初始化实例文件：
 ########################################################
-rm -rf /kvm/mysql/data3306/*
+rm -rf /data/mysql/data3306/*
 /usr/local/mysql/scripts/mysql_install_db \
 --basedir=/usr/local/mysql \
---datadir=/kvm/mysql/data3306
+--datadir=/data/mysql/data3306
 
 
-rm -rf /kvm/mysql/data3307/*
+rm -rf /data/mysql/data3307/*
 /usr/local/mysql/scripts/mysql_install_db \
 --basedir=/usr/local/mysql \
---datadir=/kvm/mysql/data3307
+--datadir=/data/mysql/data3307
 
 
-rm -rf /kvm/mysql/data3308/*
+rm -rf /data/mysql/data3308/*
 /usr/local/mysql/scripts/mysql_install_db \
 --basedir=/usr/local/mysql \
---datadir=/kvm/mysql/data3308
+--datadir=/data/mysql/data3308
 
 
-rm -rf /kvm/mysql/data3309/*
+rm -rf /data/mysql/data3309/*
 /usr/local/mysql/scripts/mysql_install_db \
 --basedir=/usr/local/mysql \
---datadir=/kvm/mysql/data3309
+--datadir=/data/mysql/data3309
 
 
 
-chown -R mysql.mysql /usr/local/mysql/ /kvm/mysql
+chown -R mysql.mysql /usr/local/mysql/ /data/mysql
 
 启动多实例：
 ########################################################
@@ -117,10 +117,10 @@ start 3309
 
 关闭多实例：
 ########################################################
-mysqladmin -uroot -S /kvm/mysql/data3306/mysql.sock shutdown
-mysqladmin -uroot -S /kvm/mysql/data3307/mysql.sock shutdown
-mysqladmin -uroot -S /kvm/mysql/data3308/mysql.sock shutdown
-mysqladmin -uroot -S /kvm/mysql/data3309/mysql.sock shutdown
+mysqladmin -uroot -S /data/mysql/data3306/mysql.sock shutdown
+mysqladmin -uroot -S /data/mysql/data3307/mysql.sock shutdown
+mysqladmin -uroot -S /data/mysql/data3308/mysql.sock shutdown
+mysqladmin -uroot -S /data/mysql/data3309/mysql.sock shutdown
 
 
 强行关闭多实例：
@@ -134,18 +134,18 @@ netstat -antp |grep LIST|grep 3309 |awk '{printf $NF}'|awk -F / '{print $1}'|xar
 netstat -antp |grep LIST|grep mysql
 
 
-cat /kvm/mysql/data3306/error.log
-cat /kvm/mysql/data3307/error.log
-cat /kvm/mysql/data3308/error.log
-cat /kvm/mysql/data3309/error.log
+cat /data/mysql/data3306/error.log
+cat /data/mysql/data3307/error.log
+cat /data/mysql/data3308/error.log
+cat /data/mysql/data3309/error.log
 
 
 登录多实例：
 ########################################################
-mysql -uroot -S /kvm/mysql/data3306/mysql.sock
-mysql -uroot -S /kvm/mysql/data3307/mysql.sock
-mysql -uroot -S /kvm/mysql/data3308/mysql.sock
-mysql -uroot -S /kvm/mysql/data3309/mysql.sock
+mysql -uroot -S /data/mysql/data3306/mysql.sock
+mysql -uroot -S /data/mysql/data3307/mysql.sock
+mysql -uroot -S /data/mysql/data3308/mysql.sock
+mysql -uroot -S /data/mysql/data3309/mysql.sock
 
 
 初始化账号：

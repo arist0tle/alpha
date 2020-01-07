@@ -19,7 +19,6 @@ public class ReentrantLockExampleLock implements Runnable{
 
     @Override
     public void run() {
-        // TODO Auto-generated method stub
         try {
             if(lock==1){
                 lock1.lock();

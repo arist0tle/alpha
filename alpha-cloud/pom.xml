@@ -19,11 +19,8 @@
         <module>alpha-cloud-ribbon</module>
         <module>alpha-cloud-zuul</module>
         <module>alpha-cloud-zipkin</module>
+        <module>alpha-cloud-example</module>
     </modules>
-
-
-
-
 
     <dependencyManagement>
         <dependencies>

@@ -446,7 +446,6 @@ public final class DrawingPanel extends FileFilter
     // 如果有必要，构造并初始化JFileChooser对象
     private void checkChooser() {
         if (chooser == null) {
-            // TODO: fix security on applet mode
             chooser = new JFileChooser(System.getProperty("user.dir"));
             chooser.setMultiSelectionEnabled(false);
             chooser.setFileFilter(this);

@@ -8,10 +8,9 @@ spring:
   application:
     name: projectA
   sleuth:
-    enabled: ${TRACE_ENABLED:true}
     sampler:
-      percentage: 1 #采样率100%，参考 SamplerProperties
+      percentage: 1
+    enabled: true
   zipkin:
-    enabled: ${TRACE_ENABLED:true}
-    base-url: ${TRACE_BACKEND_SERVICES:http://127.0.0.1:9411}
-    discoveryClientEnabled: true
+    base-url: http://127.0.0.1:9411
+    enabled: true

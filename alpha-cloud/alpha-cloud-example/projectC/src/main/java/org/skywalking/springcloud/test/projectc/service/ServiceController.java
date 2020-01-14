@@ -19,7 +19,7 @@ public class ServiceController {
     @Trace
     @RequestMapping("/projectC/{value}")
     public String home(@PathVariable("value") String value) throws InterruptedException, IOException {
-        Thread.sleep(new Random().nextInt(2) * 1000);
+//        Thread.sleep(new Random().nextInt(2) * 1000);
         httpClientCaller.call("http://www.baidu.com");
         return value + "-" + UUID.randomUUID().toString();
     }

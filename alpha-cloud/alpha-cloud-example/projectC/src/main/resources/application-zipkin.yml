@@ -1,0 +1,17 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8763
+spring:
+  application:
+    name: projectC
+  sleuth:
+    enabled: ${TRACE_ENABLED:true}
+    sampler:
+      percentage: 1 #采样率100%，参考 SamplerProperties
+  zipkin:
+    enabled: ${TRACE_ENABLED:true}
+    base-url: ${TRACE_BACKEND_SERVICES:http://127.0.0.1:9411}
+    discoveryClientEnabled: true

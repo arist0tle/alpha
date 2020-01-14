@@ -8,7 +8,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>eureka-service</artifactId>
+    <artifactId>alpha-cloud-example-eureka</artifactId>
     <packaging>jar</packaging>
 
     <name>alpha-cloud-example-eureka</name>

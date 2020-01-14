@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>projectC</artifactId>
+    <artifactId>alpha-cloud-example-three</artifactId>
 
     <dependencies>
         <dependency>

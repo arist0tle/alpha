@@ -11,7 +11,7 @@
     <artifactId>eureka-service</artifactId>
     <packaging>jar</packaging>
 
-    <name>eureka-service</name>
+    <name>alpha-cloud-example-eureka</name>
     <description>Demo project for Spring Boot</description>
 
     <dependencies>

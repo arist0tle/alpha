@@ -23,10 +23,10 @@
     </properties>
 
     <modules>
-        <module>eureka-service</module>
-        <module>projectA</module>
-        <module>projectB</module>
-        <module>projectC</module>
+        <module>alpha-cloud-example-eureka</module>
+        <module>alpha-cloud-example-one</module>
+        <module>alpha-cloud-example-two</module>
+        <module>alpha-cloud-example-three</module>
     </modules>
 
     <dependencies>

@@ -6,8 +6,8 @@ package com.chenshuyi.demo;
 public class App {
     public static void main(String[] args) {
         testMp3Parser();    //success
-//        testMp4Parser();    //success
-//        testRmvbParser();
+        testMp4Parser();    //success
+        testRmvbParser();   //success
     }
 
     /**

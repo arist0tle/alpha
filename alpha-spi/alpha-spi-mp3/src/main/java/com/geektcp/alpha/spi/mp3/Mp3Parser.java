@@ -1,8 +1,8 @@
-package com.xiaohei.demo;
+package com.geektcp.alpha.spi.mp3;
 
-import com.chenshuyi.demo.ParserManager;
-import com.chenshuyi.demo.Song;
-import com.chenshuyi.demo.Parser;
+import com.geektcp.alpha.spi.parser.ParserManager;
+import com.geektcp.alpha.spi.parser.Song;
+import com.geektcp.alpha.spi.parser.Parser;
 
 import java.util.Arrays;
 
@@ -17,7 +17,7 @@ public class Mp3Parser implements Parser {
 
     static {
         try {
-            ParserManager.registerParser(new com.xiaohei.demo.Mp3Parser());
+            ParserManager.registerParser(new Mp3Parser());
         } catch (Exception e) {
             throw new RuntimeException("Can't register parser!");
         }

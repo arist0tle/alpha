@@ -1,4 +1,4 @@
-package com.chenshuyi.demo;
+package com.geektcp.alpha.spi.demo;
 
 import static org.junit.Assert.assertTrue;
 

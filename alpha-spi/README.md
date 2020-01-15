@@ -83,7 +83,7 @@ This project contains four separate modules which can divide into three main par
 
 * "song-parser" module, define the unified interaface that every parser will use.
 * "song-parser-mp3" module, define the mp3 parser.
-* "song-parser-demo" module, provide a quicks start example, you can just run the "com.chenshuyi.demo.App.main" and result comes.
+* "song-parser-demo" module, provide a quicks start example, you can just run the "com.geektcp.alpha.spi.demo.App.main" and result comes.
 
 ## how to add a new Parser
 
@@ -102,13 +102,13 @@ and then create a class called "Parser" in the root of package:
 ```
 package com.anonymous.demo;
 
-import com.chenshuyi.demo.ParserManager;
+import com.geektcp.alpha.spi.parser.ParserManager;
 
 /**
  * @author chenyr
  * @date 2018.04.19
  */
-public class Parser extends RmvbParser implements com.chenshuyi.demo.Parser {
+public class Parser extends RmvbParser implements com.geektcp.alpha.spi.parser.Parser {
     static
     {
         try
@@ -128,7 +128,7 @@ and then create the RmvbParser which do the data parse work:
 ```
 package com.anonymous.demo;
 
-import com.chenshuyi.demo.Song;
+import com.geektcp.alpha.spi.parser.Song;
 
 import java.util.Arrays;
 
@@ -136,7 +136,7 @@ import java.util.Arrays;
  * @author chenyr
  * @date 2018.04.19
  */
-public class RmvbParser implements com.chenshuyi.demo.Parser {
+public class RmvbParser implements com.geektcp.alpha.spi.parser.Parser {
 
     public final byte[] FORMAT = "RMVB".getBytes();
 
@@ -158,7 +158,7 @@ public class RmvbParser implements com.chenshuyi.demo.Parser {
 }
 ```
 
-finanly add a description file `resources/META-INF/services/com.chenshuyi.demo.Parser`:
+finanly add a description file `resources/META-INF/services/com.geektcp.alpha.spi.parser.Parser`:
 
 ```
 com.anonymous.demo.Parser

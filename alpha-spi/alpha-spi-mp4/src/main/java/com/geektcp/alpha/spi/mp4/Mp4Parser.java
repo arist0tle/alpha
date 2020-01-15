@@ -1,8 +1,8 @@
-package com.xiaoshu.demo;
+package com.geektcp.alpha.spi.mp4;
 
-import com.chenshuyi.demo.Parser;
-import com.chenshuyi.demo.ParserManager;
-import com.chenshuyi.demo.Song;
+import com.geektcp.alpha.spi.parser.Parser;
+import com.geektcp.alpha.spi.parser.ParserManager;
+import com.geektcp.alpha.spi.parser.Song;
 
 import java.util.Arrays;
 

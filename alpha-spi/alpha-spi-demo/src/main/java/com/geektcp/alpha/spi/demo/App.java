@@ -7,10 +7,13 @@ import com.geektcp.alpha.spi.parser.Song;
  * @author tanghaiyang on 2020/1/14.
  */
 public class App {
+    /**
+    * Every time will scan all implement class
+    * */
     public static void main(String[] args) {
-        testMp3Parser();    //success
-        testMp4Parser();    //success
-        testRmvbParser();   //success
+//        testMp3Parser();    //success, scan Mp3Parser,Mp4Parser
+        testMp4Parser();    //success, scan Mp3Parser,Mp4Parser
+//        testRmvbParser();   //success, scan Mp3Parser,Mp4Parser,RmvbParser
     }
 
     /**

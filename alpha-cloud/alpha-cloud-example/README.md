@@ -1,7 +1,8 @@
 # spring-cloud-example
 
-##Quick Start
 
-1. Deploy skywalking agent for projectA, projectB and ProjectC
-2. Start projectA, projectB and ProjectC
-3. Open browser and visit `http://localhost:8764/projectA/test`
+# skywalking para
+-javaagent:/share/install/skywalking/agent/skywalking-agent.jar -Dskywalking.agent.service_name=eureka -Dlogging.file_name=/share/install/skywalking/agent/logs/eureka.log
+-javaagent:/share/install/skywalking/agent/skywalking-agent.jar -Dskywalking.agent.service_name=agenta -Dlogging.file_name=/share/install/skywalking/agent/logs/agenta.log
+-javaagent:/share/install/skywalking/agent/skywalking-agent.jar -Dskywalking.agent.service_name=agentb -Dlogging.file_name=/share/install/skywalking/agent/logs/agentb.log
+-javaagent:/share/install/skywalking/agent/skywalking-agent.jar -Dskywalking.agent.service_name=agentc -Dlogging.file_name=/share/install/skywalking/agent/logs/agentc.log

@@ -2,14 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>alpha-cloud</artifactId>
-        <groupId>com.geektcp.alpha</groupId>
-        <version>1.0</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>alpha-cloud-example</artifactId>
+    <groupId>org.skywalking</groupId>
+    <artifactId>spring-cloud-example</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
@@ -23,10 +20,10 @@
     </properties>
 
     <modules>
-        <module>alpha-cloud-example-eureka</module>
-        <module>alpha-cloud-example-one</module>
-        <module>alpha-cloud-example-two</module>
-        <module>alpha-cloud-example-three</module>
+        <module>eureka-service</module>
+        <module>projectA</module>
+        <module>projectB</module>
+        <module>projectC</module>
     </modules>
 
     <dependencies>

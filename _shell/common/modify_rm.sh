@@ -1,3 +1,5 @@
+#!/bin/sh
+
 mkdir -p /usr/local/src/shell /opt/.trash
 cd /usr/local/src/shell
 /bin/rm -rf remove.sh

@@ -1,3 +1,4 @@
+#!/bin/sh
 
 cd /usr/local/src
 wget https://archive.cloudera.com/cdh5/cdh/5/zookeeper-3.4.5-cdh5.5.0.tar.gz

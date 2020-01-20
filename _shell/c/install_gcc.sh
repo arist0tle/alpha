@@ -1,3 +1,5 @@
+#!/bin/sh
+
 yum -y install glibc-devel.i686
 
 cd /usr/local/src

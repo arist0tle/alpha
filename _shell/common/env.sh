@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 LOGFILE=/tmp/$0.log
 function print() {
         now=`date +"%Y-%m-%d %H:%M:%S"`

@@ -1,4 +1,4 @@
-#!/bins/sh
+#!/bin/sh
 # guacamole-server下的guacd是一个远程连接代理程序，
 # guacamole.war是运行在tomcat下面在web控制台，用于通过web页面远程访问服务器
 # 支持远程桌面，ssh，vnc等

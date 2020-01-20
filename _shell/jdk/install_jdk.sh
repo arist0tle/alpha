@@ -1,3 +1,4 @@
+#!/bin/sh
 #配置java环境：
 cd /usr/local/src && 
 wget http://ftp.geektcp.com/jdk-7u79-linux-x64.tar.gz && 

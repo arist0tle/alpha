@@ -1,5 +1,5 @@
 #!/bin/bash
-# usage  : 
+# usage  :
 #       /usr/local/bin/realserver.sh 192.168.4.181 start
 #       /usr/local/bin/realserver.sh 192.168.4.181 stop
 
@@ -10,8 +10,8 @@
 VIP=$1
 
 if [ $# = 0 ] ; then
-        echo "´«Èë²ÎÊý´íÎó£¡"
-        echo "USAGE: $0 VIP start|stop" 
+        echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+        echo "USAGE: $0 VIP start|stop"
         echo "/usr/local/bin/realserver.sh 192.168.4.181 start"
         echo "/usr/local/bin/realserver.sh 192.168.4.181 stop"
         exit 1;

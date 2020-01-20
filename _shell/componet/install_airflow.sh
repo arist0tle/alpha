@@ -1,3 +1,4 @@
+#!/bin/sh
 
 # 先安装docker
 yum -y update device-mapper-libs

@@ -1,3 +1,4 @@
+#!/bin/sh
 # arangodb3  install doc
 wget https://download.arangodb.com/arangodb34/Community/Linux/arangodb3-3.4.4-1.0.x86_64.rpm
 rpm -ivh arangodb3-3.4.4-1.0.x86_64.rpm 

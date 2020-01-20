@@ -1,10 +1,12 @@
-多实例参考文档：
+#!/bin/sh
+
+# 多实例参考文档：
 http://www.cnblogs.com/huangzhen/archive/2012/10/11/2720261.html
 http://my.oschina.net/ifeixiang/blog/369833
 
 
 
-安装mysql：
+# 安装mysql：
 ########################################################
 yum -y install ncurses-devel cmake wget perl gcc gcc-c++ autoconf &&
 cd /usr/local/src && 
@@ -12,11 +14,11 @@ wget  http://192.168.1.173:8000/mysql-5.6.23.tar.gz  &&
 groupadd mysql && useradd mysql -g mysql 
 
 
-小心确认如下目录可以删除：
+# 小心确认如下目录可以删除：
 rm -r /usr/local/mysql
 
 
-在mysql解压包目录下，执行如下编译安装脚本：
+# 在mysql解压包目录下，执行如下编译安装脚本：
 export MYSQL_INSTALL=/usr/local/mysql-5.6.23 &&
 export MYSQL_DATADIR=/usr/local/mysql-5.6.23/mysql_data &&
 cd /usr/local/src &&
@@ -57,7 +59,7 @@ mkdir -p /data/mysql/{data3306,data3307,data3308,data3309}
 
 
 
-初始化实例文件：
+# 初始化实例文件：
 ########################################################
 rm -rf /data/mysql/data3306/*
 /usr/local/mysql/scripts/mysql_install_db \
@@ -86,7 +88,7 @@ rm -rf /data/mysql/data3309/*
 
 chown -R mysql.mysql /usr/local/mysql/ /data/mysql
 
-启动多实例：
+# 启动多实例：
 ########################################################
 mysqld_multi --defaults-file=/usr/local/mysql/my.cnf report
 
@@ -115,7 +117,7 @@ mysqld_multi \
 start 3309
 
 
-关闭多实例：
+# 关闭多实例：
 ########################################################
 mysqladmin -uroot -S /data/mysql/data3306/mysql.sock shutdown
 mysqladmin -uroot -S /data/mysql/data3307/mysql.sock shutdown
@@ -123,7 +125,7 @@ mysqladmin -uroot -S /data/mysql/data3308/mysql.sock shutdown
 mysqladmin -uroot -S /data/mysql/data3309/mysql.sock shutdown
 
 
-强行关闭多实例：
+# 强行关闭多实例：
 ########################################################
 netstat -antp |grep LIST|grep 3306 |awk '{printf $NF}'|awk -F / '{print $1}'|xargs -t -i kill -9 {}
 netstat -antp |grep LIST|grep 3307 |awk '{printf $NF}'|awk -F / '{print $1}'|xargs -t -i kill -9 {}
@@ -140,7 +142,7 @@ cat /data/mysql/data3308/error.log
 cat /data/mysql/data3309/error.log
 
 
-登录多实例：
+# 登录多实例：
 ########################################################
 mysql -uroot -S /data/mysql/data3306/mysql.sock
 mysql -uroot -S /data/mysql/data3307/mysql.sock
@@ -148,7 +150,7 @@ mysql -uroot -S /data/mysql/data3308/mysql.sock
 mysql -uroot -S /data/mysql/data3309/mysql.sock
 
 
-初始化账号：
+# 初始化账号：
 ########################################################
 select * from mysql.user;
 
@@ -167,10 +169,10 @@ update mysql.user set password=Password('password') where user='dbuser' and host
 flush privileges;
 
 
-配置双主环境：
+# 配置双主环境：
 ###################master################################
 vim /usr/local/mysql/my.cnf
-添加如下内容：
+# 添加如下内容：
 server-id=10000
 log-bin=mysql-bin
 innodb_flush_log_at_trx_commit=1
@@ -188,22 +190,22 @@ replicate-ignore-db=test,mysql,information_schema
 
 
 
-登录数据库，执行如下内容：
+# 登录数据库，执行如下内容：
 ########################################################
-先通过
+# 先通过
 show master status \G
-确定同步起始位置
+# 确定同步起始位置
 
 
 
-在两个实例上分别执行(GRANT操作会改变MASTER_LOG_POS的值，所以要reset master重置):
+# 在两个实例上分别执行(GRANT操作会改变MASTER_LOG_POS的值，所以要reset master重置):
 GRANT REPLICATION SLAVE ON *.* TO 'master_master'@'%' IDENTIFIED BY 'YldGemRHVn';
 flush privileges; 
 stop slave; 
 reset master;
 
 
-在3307实例上执行：
+# 在3307实例上执行：
 flush tables with read lock; 
 CHANGE MASTER TO MASTER_HOST='192.168.1.209',\
 MASTER_PORT=3308,\
@@ -218,7 +220,7 @@ show slave status \G
 show master status \G
 
 -------------------------------------------
-在3308实例上执行(注意MASTER_LOG_POS可能有所变化)：
+# 在3308实例上执行(注意MASTER_LOG_POS可能有所变化)：
 flush tables with read lock; 
 CHANGE MASTER TO MASTER_HOST='192.168.1.209',\
 MASTER_PORT=3307,\
@@ -233,7 +235,7 @@ show slave status \G
 show master status \G
 
 
-查看节点信息：
+# 查看节点信息：
 show slave status \G
 show master status \G
 show slave hosts \G
@@ -249,27 +251,24 @@ show variables like 'innodb_data_file_path' \G
 show variables like 'innodb_force_recovery' \G
 
 
-锁表(无论是锁读，还锁写，当前会话的对应表的读和写都不受影响)：
+# 锁表(无论是锁读，还锁写，当前会话的对应表的读和写都不受影响)：
 flush tables with read lock; 
 
 
-锁多张表：
+# 锁多张表：
 LOCK TABLES t1 WRITE, t2 READ;
 
 
-解锁：
+# 解锁：
 UNLOCK TABLES;
 
 
-清空节点主从配置：
+# 清空节点主从配置：
 reset master;
 stop slave;
 reset slave;
 
-
 show table status;
 
-=================================================================
-
-其他配置记录：
+# 其他配置记录：
 #mysqld_multi --defaults-extra-file=/usr/local/mysql/my.cnf report

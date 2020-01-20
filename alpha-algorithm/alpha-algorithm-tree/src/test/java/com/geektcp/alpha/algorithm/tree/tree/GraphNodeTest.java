@@ -20,7 +20,7 @@ import java.util.Stack;
  * 最后寻找最短路径或者全路径，只需要判断终点的id是否是目的id即可
  */
 @Slf4j
-public class TreeTest {
+public class GraphNodeTest {
     /*
     * path: 1,2,5,7
     * */

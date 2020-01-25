@@ -53,7 +53,7 @@ public class Tetris extends JPanel {
         this.addKeyListener(this.KeyListener);
     }
 
-    public void setMode(String mode) {
+    private void setMode(String mode) {
         if (mode.equals("v6")) {
             Tetris.shape = BlockV6.Shape;
         } else {

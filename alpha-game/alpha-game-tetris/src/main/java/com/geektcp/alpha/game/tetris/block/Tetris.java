@@ -48,9 +48,9 @@ public class Tetris extends JPanel {
 
     public Tetris() {
         this.initial();
-        timer = new Timer(Tetris.TIME_DELAY, this.TimerListener);
+        timer = new Timer(Tetris.TIME_DELAY, this.timerListener);
         timer.start();
-        this.addKeyListener(this.KeyListener);
+        this.addKeyListener(this.keyListener);
     }
 
     public void setMode(String mode) {
@@ -341,39 +341,39 @@ public class Tetris extends JPanel {
         }
     }
 
-    /**
-     * @return
-     */
-    private int ClearLines() {
-        int lines = 0;
-        for (int i = 0; i < this.blockMap.length; i++) {
-            boolean IsLine = true;
-            for (int j = 0; j < this.blockMap[i].length; j++) {
-                if (!this.blockMap[i][j]) {
-                    IsLine = false;
-                    break;
-                }
-            }
-            if (IsLine) {
-                for (int k = i; k > 0; k--) {
-                    this.blockMap[k] = this.blockMap[k - 1];
-                }
-                this.blockMap[0] = new boolean[Tetris.BLOCK_WIDTH];
-                lines++;
-            }
-        }
-        return lines;
-    }
 
     // 定时器监听
-    ActionListener TimerListener = new ActionListener() {
+    private ActionListener timerListener = new ActionListener() {
+        /**
+         * @return
+         */
+        private int clearLines() {
+            int lines = 0;
+            for (int i = 0; i < blockMap.length; i++) {
+                boolean isLine = true;
+                for (int j = 0; j < blockMap[i].length; j++) {
+                    if (!blockMap[i][j]) {
+                        isLine = false;
+                        break;
+                    }
+                }
+                if (isLine) {
+                    for (int k = i; k > 0; k--) {
+                        blockMap[k] = blockMap[k - 1];
+                    }
+                    blockMap[0] = new boolean[Tetris.BLOCK_WIDTH];
+                    lines++;
+                }
+            }
+            return lines;
+        }
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
             // TODO 自动生成的方法存根
             if (Tetris.this.isTouch(Tetris.this.nowBlockMap, new Point(Tetris.this.nowBlockPos.x, Tetris.this.nowBlockPos.y + 1))) {
                 if (Tetris.this.fixBlock()) {
-                    Tetris.this.score += Tetris.this.ClearLines() * 10;
+                    Tetris.this.score += clearLines() * 10;
                     Tetris.this.getNextBlock();
                 } else {
                     JOptionPane.showMessageDialog(Tetris.this.getParent(), "GAME OVER");
@@ -387,8 +387,7 @@ public class Tetris extends JPanel {
     };
 
     //按键监听
-    java.awt.event.KeyListener KeyListener = new java.awt.event.KeyListener() {
-
+    java.awt.event.KeyListener keyListener = new java.awt.event.KeyListener() {
         @Override
         public void keyPressed(KeyEvent e) {
             // TODO 自动生成的方法存根
@@ -438,4 +437,159 @@ public class Tetris extends JPanel {
         }
 
     };
+
+
+    static class BlockV4 {
+        private BlockV4() {
+        }
+
+        static final boolean[][][] Shape = {
+                // I
+                {
+                        {false, false, false, false},
+                        {true, true, true, true},
+                        {false, false, false, false},
+                        {false, false, false, false}
+                },
+                // J
+                {
+                        {true, false, false},
+                        {true, true, true},
+                        {false, false, false}
+                },
+                // L
+                {
+                        {false, false, true},
+                        {true, true, true},
+                        {false, false, false}
+                },
+                // O
+                {
+                        {true, true},
+                        {true, true}
+                },
+                // S
+                {
+                        {false, true, true},
+                        {true, true, false},
+                        {false, false, false}
+                },
+                // T
+                {
+                        {false, true, false},
+                        {true, true, true},
+                        {false, false, false}
+                },
+                // Z
+                {
+                        {true, true, false},
+                        {false, true, true},
+                        {false, false, false}
+                }};
+    }
+
+    static class BlockV6 {
+        private BlockV6() {
+        }
+
+        static final boolean[][][] Shape = {
+                /*
+                 * oooooo
+                 */
+                {
+                        {false, false, false, false, false, false},
+                        {false, false, false, false, false, false},
+                        {true, true, true, true, true, true},
+                        {false, false, false, false, false, false},
+                        {false, false, false, false, false, false},
+                        {false, false, false, false, false, false}
+                },
+                /*
+                 * ooo
+                 * ooo
+                 */
+                {
+                        {true, true, true},
+                        {true, true, true},
+                        {false, false, false}
+                },
+                /*
+                 * ooo
+                 *   o
+                 *   o
+                 *   o
+                 */
+                {
+                        {true, true, true, false},
+                        {false, false, true, false},
+                        {false, false, true, false},
+                        {false, false, true, false}
+                },
+                /*
+                 * ooo
+                 * o
+                 * o
+                 * o
+                 */
+                {
+                        {false, true, true, true},
+                        {false, true, false, false},
+                        {false, true, false, false},
+                        {false, true, false, false}
+                },
+                /*
+                 *  o
+                 *  o
+                 * oo
+                 * o
+                 * o
+                 */
+                {
+                        {false, false, true, false, false},
+                        {false, false, true, false, false},
+                        {false, true, true, false, false},
+                        {false, true, false, false, false},
+                        {false, true, false, false, false}
+                },
+                /*
+                 * o
+                 * o
+                 * oo
+                 *  o
+                 *  o
+                 */
+                {
+                        {false, true, false, false, false},
+                        {false, true, false, false, false},
+                        {false, true, true, false, false},
+                        {false, false, true, false, false},
+                        {false, false, true, false, false}
+                },
+                /*
+                 * ooo
+                 *  o
+                 *  o
+                 *  o
+                 */
+                {
+                        {false, true, true, true},
+                        {false, false, true, false},
+                        {false, false, true, false},
+                        {false, false, true, false}
+                },
+                /*
+                 * ooooo
+                 *   o
+                 */
+                {
+                        {false, false, false, false, false},
+                        {true, true, true, true, true},
+                        {false, false, true, false, false},
+                        {false, false, true, false, false},
+                        {false, false, false, false, false}
+                }
+        };
+    }
+
+
 }

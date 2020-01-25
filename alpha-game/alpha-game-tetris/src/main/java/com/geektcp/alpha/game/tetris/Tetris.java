@@ -46,7 +46,7 @@ public class Tetris extends JPanel {
     //¼ÆÊ±Æ÷
     private Timer timer;
 
-    public Tetris() {
+    private Tetris() {
         this.initial();
         timer = new Timer(Tetris.TIME_DELAY, this.TimerListener);
         timer.start();
@@ -230,20 +230,20 @@ public class Tetris extends JPanel {
         }
         int heigth = shape.length;
         int width = shape[0].length;
-        boolean[][] ResultMap = new boolean[heigth][width];
+        boolean[][] resultMap = new boolean[heigth][width];
         int tmpH = heigth - 1, tmpW = 0;
         for (int i = 0; i < heigth && tmpW < width; i++) {
             for (int j = 0; j < width && tmpH > -1; j++) {
-                ResultMap[i][j] = shape[tmpH][tmpW];
+                resultMap[i][j] = shape[tmpH][tmpW];
                 tmpH--;
             }
             tmpH = heigth - 1;
             tmpW++;
         }
         for (int i = 1; i < time; i++) {
-            ResultMap = RotateBlock(ResultMap, 0);
+            resultMap = RotateBlock(resultMap, 0);
         }
-        return ResultMap;
+        return resultMap;
     }
 
     /**
@@ -251,9 +251,9 @@ public class Tetris extends JPanel {
      *
      * @param args
      */
-    static public void main(String... args) {
-        boolean[][] SrcMap = Tetris.shape[3];
-        Tetris.ShowMap(SrcMap);
+    public static void main(String... args) {
+        boolean[][] srcMap = Tetris.shape[3];
+        Tetris.ShowMap(srcMap);
 		/*
 		for (int i = 0;i < 7;i ++){
 			System.out.println(i);
@@ -262,7 +262,7 @@ public class Tetris extends JPanel {
 		*/
 
         Tetris tetris = new Tetris();
-        boolean[][] result = tetris.RotateBlock(SrcMap, 1);
+        boolean[][] result = tetris.RotateBlock(srcMap, 1);
         Tetris.ShowMap(result);
 
     }

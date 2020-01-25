@@ -1,4 +1,4 @@
-package com.geektcp.alpha.game.tetris;
+package com.geektcp.alpha.game.tetris.block;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,14 +46,14 @@ public class Tetris extends JPanel {
     //¼ÆÊ±Æ÷
     private Timer timer;
 
-    private Tetris() {
+    public Tetris() {
         this.initial();
         timer = new Timer(Tetris.TIME_DELAY, this.TimerListener);
         timer.start();
         this.addKeyListener(this.KeyListener);
     }
 
-    private void setMode(String mode) {
+    public void setMode(String mode) {
         if (mode.equals("v6")) {
             Tetris.shape = BlockV6.Shape;
         } else {

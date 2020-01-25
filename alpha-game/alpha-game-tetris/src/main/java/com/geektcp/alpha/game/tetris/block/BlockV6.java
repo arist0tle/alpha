@@ -1,4 +1,4 @@
-package com.geektcp.alpha.game.tetris;
+package com.geektcp.alpha.game.tetris.block;
 
 public class BlockV6 {
     static final boolean[][][] Shape = {

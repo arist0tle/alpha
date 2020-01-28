@@ -1,11 +1,14 @@
 package com.geektcp.alpha.game.tetris.block;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+@Slf4j
 public class Tetris extends JPanel {
 
     private static final long serialVersionUID = -807909536278284335L;
@@ -172,7 +175,7 @@ public class Tetris extends JPanel {
     private boolean[][] getBlockMap(int BlockState) {
         int Shape = BlockState / 4;
         int Arc = BlockState % 4;
-        System.out.println(BlockState + "," + Shape + "," + Arc);
+        log.info(BlockState + "," + Shape + "," + Arc);
         return this.RotateBlock(Tetris.shape[Shape], Arc);
     }
 
@@ -206,8 +209,8 @@ public class Tetris extends JPanel {
     float ResultX = (float) (Math.cos(angel) * RelativeX - Math.sin(angel) * RelativeY);
     float ResultY = (float) (Math.cos(angel) * RelativeY + Math.sin(angel) * RelativeX);
     // 调试信息
-    //System.out.println("RelativeX:" + RelativeX + "RelativeY:" + RelativeY);
-    //System.out.println("ResultX:" + ResultX + "ResultY:" + ResultY);
+    //log.info("RelativeX:" + RelativeX + "RelativeY:" + RelativeY);
+    //log.info("ResultX:" + ResultX + "ResultY:" + ResultY);
 
     //将结果坐标还原
     Point OrginPoint = new Point(Math.round(CenterX + ResultX), Math.round(CenterY + ResultY));
@@ -256,7 +259,7 @@ public class Tetris extends JPanel {
         Tetris.ShowMap(srcMap);
 		/*
 		for (int i = 0;i < 7;i ++){
-			System.out.println(i);
+			log.info(i);
 			Tetris.ShowMap(Tetris.shape[i]);
 		}
 		*/
@@ -273,7 +276,7 @@ public class Tetris extends JPanel {
      * @param SrcMap
      */
     static private void ShowMap(boolean[][] SrcMap) {
-        System.out.println("-----");
+        log.info("-----");
         for (int i = 0; i < SrcMap.length; i++) {
             for (int j = 0; j < SrcMap[i].length; j++) {
                 if (SrcMap[i][j])
@@ -281,9 +284,9 @@ public class Tetris extends JPanel {
                 else
                     System.out.print(" ");
             }
-            System.out.println();
+            log.info("");
         }
-        System.out.println("-----");
+        log.info("-----");
     }
 
     /**
@@ -419,7 +422,7 @@ public class Tetris extends JPanel {
                         }
                         break;
                 }
-                //System.out.println(Tetris.this.nowBlockPos);
+                //log.info(Tetris.this.nowBlockPos);
                 repaint();
             }
         }

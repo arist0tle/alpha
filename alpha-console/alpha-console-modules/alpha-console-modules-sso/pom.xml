@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>alpha-console-modules-ssoclient</artifactId>
+    <artifactId>alpha-console-modules-sso</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>alpha-console-modules-ssoclient</name>
+    <name>alpha-console-modules-sso</name>
     <description>Demo project sso client</description>
 
     <parent>
@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.geektcp.alpha</groupId>
-            <artifactId>vole-common</artifactId>
+            <artifactId>alpha-console-common</artifactId>
             <version>1.0.0</version>
         </dependency>
         <!--启用eureka client-->

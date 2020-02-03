@@ -20,7 +20,7 @@
 
         <dependency>
             <groupId>com.geektcp.alpha</groupId>
-            <artifactId>vole-passport-common</artifactId>
+            <artifactId>alpha-console-passport-common</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>

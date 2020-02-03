@@ -7,7 +7,7 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
-    <name>vole-modules</name>
+    <name>alpha-console-modules</name>
 
     <parent>
         <groupId>com.geektcp.alpha</groupId>
@@ -25,8 +25,8 @@
         <module>alpha-console-modules-job</module>
         <module>alpha-console-modules-mq</module>
         <module>alpha-console-modules-message</module>
-        <module>alpha-console-modules-ssoclient</module>
-        <module>alpha-console-modules-casclient</module>
+        <module>alpha-console-modules-sso</module>
+        <module>alpha-console-modules-cas</module>
     </modules>
 
 </project>

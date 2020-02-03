@@ -34,7 +34,7 @@
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.geektcp.alpha.xjzrc.spring.boot</groupId>
+            <groupId>com.github.xjzrc.spring.boot</groupId>
             <artifactId>elastic-job-lite-spring-boot-starter</artifactId>
             <version>2.0.0</version>
             <exclusions>

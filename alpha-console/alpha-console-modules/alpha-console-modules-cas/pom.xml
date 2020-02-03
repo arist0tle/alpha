@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>alpha-console-modules-casclient</artifactId>
-    <version>0.0.1</version>
+    <artifactId>alpha-console-modules-cas</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>alpha-console-modules-casclient</name>
+    <name>alpha-console-modules-cas</name>
     <description>cas client demo</description>
 
     <parent>

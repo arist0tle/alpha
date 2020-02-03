@@ -31,7 +31,7 @@
 
         <dependency>
             <groupId>com.geektcp.alpha</groupId>
-            <artifactId>vole-common</artifactId>
+            <artifactId>alpha-console-common</artifactId>
             <version>1.0.0</version>
         </dependency>
 

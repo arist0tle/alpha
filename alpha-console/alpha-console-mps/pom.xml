@@ -20,7 +20,7 @@
 
         <dependency>
             <groupId>com.geektcp.alpha</groupId>
-            <artifactId>vole-portal-common</artifactId>
+            <artifactId>alpha-console-portal-common</artifactId>
             <version>1.0.0</version>
         </dependency>
 
@@ -81,7 +81,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.geektcp.alpha.axet</groupId>
+            <groupId>com.github.axet</groupId>
             <artifactId>kaptcha</artifactId>
             <version>${kaptcha.version}</version>
         </dependency>

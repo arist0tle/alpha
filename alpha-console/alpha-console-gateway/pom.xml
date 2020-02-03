@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>vole-gateway</artifactId>
+    <artifactId>alpha-console-gateway</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>vole-gateway</name>
+    <name>alpha-console-gateway</name>
     <description>gateway</description>
 
     <parent>
@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.geektcp.alpha</groupId>
-            <artifactId>vole-common</artifactId>
+            <artifactId>alpha-console-common</artifactId>
             <version>1.0.0</version>
         </dependency>
         <!--启用eureka client-->

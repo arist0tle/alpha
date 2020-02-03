@@ -7,7 +7,7 @@
 
     <groupId>com.geektcp.alpha</groupId>
     <artifactId>alpha-console</artifactId>
-    <version>0.0.1</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
 
     <name>alpha-console</name>

@@ -35,6 +35,7 @@
         <module>alpha-cloud</module>
         <module>alpha-agent</module>
         <module>alpha-spi</module>
+        <module>alpha-console</module>
     </modules>
 
     <properties>

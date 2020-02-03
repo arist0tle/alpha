@@ -5,12 +5,12 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github</groupId>
-    <artifactId>vole</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <groupId>com.geektcp.alpha</groupId>
+    <artifactId>alpha-console</artifactId>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
-    <name>vole</name>
+    <name>alpha-console</name>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -40,19 +40,19 @@
     </properties>
 
     <modules>
-        <module>vole-eureka</module>
-        <module>vole-config</module>
-        <module>vole-common</module>
-        <module>vole-auth</module>
-        <module>vole-gateway</module>
-        <module>vole-mps</module>
-        <module>vole-passport-common</module>
-        <module>vole-passport</module>
-        <module>vole-portal</module>
-        <module>vole-portal-common</module>
-        <module>vole-portal-data</module>
-        <module>vole-modules</module>
-        <module>vole-demo</module>
+        <module>alpha-console-eureka</module>
+        <module>alpha-console-config</module>
+        <module>alpha-console-common</module>
+        <module>alpha-console-auth</module>
+        <module>alpha-console-gateway</module>
+        <module>alpha-console-mps</module>
+        <module>alpha-console-passport-common</module>
+        <module>alpha-console-passport</module>
+        <module>alpha-console-portal</module>
+        <module>alpha-console-portal-common</module>
+        <module>alpha-console-portal-data</module>
+        <module>alpha-console-modules</module>
+        <module>alpha-console-demo</module>
     </modules>
 
     <dependencies>

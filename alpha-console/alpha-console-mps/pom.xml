@@ -20,7 +20,7 @@
 
         <dependency>
             <groupId>com.geektcp.alpha</groupId>
-            <artifactId>alpha-console-portal-common</artifactId>
+            <artifactId>alpha-console-common-portal</artifactId>
             <version>1.0.0</version>
         </dependency>
 

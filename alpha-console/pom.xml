@@ -46,21 +46,14 @@
         <module>alpha-console-auth</module>
         <module>alpha-console-gateway</module>
         <module>alpha-console-mps</module>
-        <module>alpha-console-passport-common</module>
         <module>alpha-console-passport</module>
         <module>alpha-console-portal</module>
-        <module>alpha-console-portal-common</module>
-        <module>alpha-console-portal-data</module>
+        <module>alpha-console-data</module>
         <module>alpha-console-modules</module>
         <module>alpha-console-demo</module>
     </modules>
 
     <dependencies>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>

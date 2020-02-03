@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>alpha-console-modules-sso</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <name>alpha-console-modules-sso</name>
@@ -13,14 +13,14 @@
     <parent>
         <groupId>com.geektcp.alpha</groupId>
         <artifactId>alpha-console-modules</artifactId>
-        <version>1.0.0</version>
+        <version>0.0.1</version>
     </parent>
 
     <dependencies>
         <dependency>
             <groupId>com.geektcp.alpha</groupId>
             <artifactId>alpha-console-common-core</artifactId>
-            <version>1.0.0</version>
+            <version>0.0.1</version>
         </dependency>
         <!--启用eureka client-->
         <dependency>

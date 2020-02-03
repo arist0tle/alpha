@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>alpha-console-eureka</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <name>alpha-console-eureka</name>
@@ -13,7 +13,7 @@
     <parent>
         <groupId>com.geektcp.alpha</groupId>
         <artifactId>alpha-console</artifactId>
-        <version>1.0.0</version>
+        <version>0.0.1</version>
     </parent>
 
     <dependencies>

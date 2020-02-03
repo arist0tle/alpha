@@ -39,6 +39,22 @@
         <javadoc.version>3.0.0</javadoc.version>
     </properties>
 
+    <modules>
+        <module>vole-eureka</module>
+        <module>vole-config</module>
+        <module>vole-common</module>
+        <module>vole-auth</module>
+        <module>vole-gateway</module>
+        <module>vole-mps</module>
+        <module>vole-passport-common</module>
+        <module>vole-passport</module>
+        <module>vole-portal</module>
+        <module>vole-portal-common</module>
+        <module>vole-portal-data</module>
+        <module>vole-modules</module>
+        <module>vole-demo</module>
+    </modules>
+
     <dependencies>
 
         <dependency>

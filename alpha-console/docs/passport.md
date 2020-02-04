@@ -5,7 +5,7 @@ Passport
 ![](./images/passport.png)
 
 # 接入方式
-1)引用vole-passport-common
+1)引用alpha-passport-common
 2)使用注解@EnablePassportSso
 
 # 接入系统

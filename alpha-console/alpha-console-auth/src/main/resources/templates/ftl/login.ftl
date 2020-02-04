@@ -24,7 +24,7 @@
       </form>
     </div>
     <footer>
-      <p>support by: vole</p>
+      <p>support by: alpha</p>
       <p>email: <a href="mailto:61444803@qq.com">61444803@qq.com</a>.</p>
     </footer>
   </body>

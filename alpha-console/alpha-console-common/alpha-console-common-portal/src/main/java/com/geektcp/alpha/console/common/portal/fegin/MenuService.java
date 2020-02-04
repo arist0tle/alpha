@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import java.util.Set;
 
-@FeignClient(name = "vole-portal-data",  fallback = MenuServiceFallbackImpl.class)
+@FeignClient(name = "alpha-portal-data",  fallback = MenuServiceFallbackImpl.class)
 public interface MenuService {
 
     @GetMapping("/menu/findTreeMenusByUserId/{id}")

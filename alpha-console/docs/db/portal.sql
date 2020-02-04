@@ -191,10 +191,10 @@ CREATE TABLE `sys_setting` (
 -- Records of sys_setting
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_setting` VALUES (1, '统一用户管理平台', 'PT', 'vole-portal', 1, '2017-12-21 11:06:45', '2018-11-16 16:34:58');
-INSERT INTO `sys_setting` VALUES (2, '抢购系统', 'QG', 'vole-qianggou', 0, '2018-11-16 12:45:04', NULL);
-INSERT INTO `sys_setting` VALUES (3, '验证码中心', 'IDC', 'vole-identity', 0, '2018-11-16 12:47:03', NULL);
-INSERT INTO `sys_setting` VALUES (4, '会员管理平台', 'MPS', 'vole-mps', 0, '2018-11-20 16:35:35', '2018-11-27 17:22:48');
+INSERT INTO `sys_setting` VALUES (1, '统一用户管理平台', 'PT', 'alpha-portal', 1, '2017-12-21 11:06:45', '2018-11-16 16:34:58');
+INSERT INTO `sys_setting` VALUES (2, '抢购系统', 'QG', 'alpha-qianggou', 0, '2018-11-16 12:45:04', NULL);
+INSERT INTO `sys_setting` VALUES (3, '验证码中心', 'IDC', 'alpha-identity', 0, '2018-11-16 12:47:03', NULL);
+INSERT INTO `sys_setting` VALUES (4, '会员管理平台', 'MPS', 'alpha-mps', 0, '2018-11-20 16:35:35', '2018-11-27 17:22:48');
 COMMIT;
 
 -- ----------------------------

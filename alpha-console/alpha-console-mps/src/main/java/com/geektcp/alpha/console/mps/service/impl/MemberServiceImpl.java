@@ -174,7 +174,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         String code = RandomStringUtils.random(4);
         JSONObject contextJson = new JSONObject();
         contextJson.put("code", code);
-        contextJson.put("product", "Vole4Cloud");
+        contextJson.put("product", "Alpha4Cloud");
         log.info("短信发送请求消息中心 -> 手机号:{} -> 验证码：{}", mobile, code);
 //        rabbitTemplate.convertAndSend(MqQueueConstant.MOBILE_CODE_QUEUE,
 //                new MobileMsgTemplate(

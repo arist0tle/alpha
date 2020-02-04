@@ -1,6 +1,6 @@
 package com.github.vole.portal.common.util;
 
-import com.github.vole.passport.common.auth.PassportAuthentication;
+import com.geektcp.alpha.console.common.passport.auth.PassportAuthentication;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

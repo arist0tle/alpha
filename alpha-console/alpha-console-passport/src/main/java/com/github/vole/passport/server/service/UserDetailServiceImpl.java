@@ -1,7 +1,7 @@
 package com.github.vole.passport.server.service;
 
 
-import com.github.vole.passport.common.details.PassportUserDetails;
+import com.geektcp.alpha.console.common.passport.details.PassportUserDetails;
 import com.github.vole.passport.server.entity.vo.SysRoleVO;
 import com.github.vole.passport.server.entity.vo.SysUserVO;
 import com.github.vole.passport.server.fegin.UserService;

@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.github.vole.common.utils.R;
+import com.geektcp.alpha.console.common.core.utils.R;
 import com.geektcp.alpha.console.portal.controller.BaseController;
 import com.geektcp.alpha.console.portal.model.entity.SysRole;
 import com.geektcp.alpha.console.portal.model.entity.SysRoleMenu;

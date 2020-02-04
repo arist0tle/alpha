@@ -1,6 +1,6 @@
 package com.github.vole.portal.common.controller;
 
-import com.github.vole.common.utils.R;
+import com.geektcp.alpha.console.common.core.utils.R;
 import org.springframework.ui.Model;
 
 import java.util.List;

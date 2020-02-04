@@ -18,7 +18,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableHystrix                // 开启断路器
 @EnableHystrixDashboard
-@SpringBootApplication(scanBasePackages = {"com.github.vole.gateway", "com.github.vole.common.bean"})
+@SpringBootApplication(scanBasePackages = {"com.github.vole.gateway", "com.geektcp.alpha.console.common.core.bean"})
 public class VoleGatewayApplication {
 
     public static void main(String[] args) {

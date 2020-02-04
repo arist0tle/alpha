@@ -1,7 +1,7 @@
 package com.github.vole.gateway.filter;
 
-import com.github.vole.common.constants.SecurityConstants;
-import com.github.vole.common.security.B64Encrypter;
+import com.geektcp.alpha.console.common.core.constants.SecurityConstants;
+import com.geektcp.alpha.console.common.core.security.B64Encrypter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import io.netty.util.CharsetUtil;

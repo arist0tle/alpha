@@ -14,7 +14,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @EnableHystrix                // 开启断路器
 @EnableHystrixDashboard
-@SpringBootApplication(scanBasePackages = {"com.geektcp.alpha.console.auth", "com.github.vole.common.bean"})
+@SpringBootApplication(scanBasePackages = {"com.geektcp.alpha.console.auth", "com.geektcp.alpha.console.common.core.bean"})
 public class ConsoleAuthApplication {
 
     public static void main(String[] args) {

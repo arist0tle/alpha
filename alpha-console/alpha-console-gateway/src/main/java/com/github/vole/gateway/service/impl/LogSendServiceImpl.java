@@ -1,8 +1,7 @@
 package com.github.vole.gateway.service.impl;
 
-import com.github.vole.common.constants.CommonConstant;
-import com.github.vole.common.constants.MqQueueConstant;
-import com.github.vole.common.utils.IOUtils;
+import com.geektcp.alpha.console.common.core.constants.CommonConstant;
+import com.geektcp.alpha.console.common.core.utils.IOUtils;
 import com.github.vole.gateway.entity.SysLog;
 import com.github.vole.gateway.entity.vo.LogVO;
 import com.github.vole.gateway.service.LogSendService;
@@ -14,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpStatus;
 //import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

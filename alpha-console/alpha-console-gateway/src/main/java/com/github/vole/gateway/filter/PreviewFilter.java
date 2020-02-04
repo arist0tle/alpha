@@ -2,7 +2,7 @@ package com.github.vole.gateway.filter;
 
 import com.alibaba.fastjson.JSONObject;
 
-import com.github.vole.common.utils.R;
+import com.geektcp.alpha.console.common.core.utils.R;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 

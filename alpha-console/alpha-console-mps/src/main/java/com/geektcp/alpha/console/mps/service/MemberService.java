@@ -1,7 +1,7 @@
 package com.geektcp.alpha.console.mps.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.github.vole.common.utils.R;
+import com.geektcp.alpha.console.common.core.utils.R;
 import com.geektcp.alpha.console.mps.model.dto.MemberInfo;
 import com.geektcp.alpha.console.mps.model.entity.Member;
 import com.geektcp.alpha.console.mps.model.vo.MemberVO;

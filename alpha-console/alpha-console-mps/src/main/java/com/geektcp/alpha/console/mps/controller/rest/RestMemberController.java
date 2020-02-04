@@ -1,8 +1,8 @@
 package com.geektcp.alpha.console.mps.controller.rest;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.github.vole.common.constants.CommonConstant;
-import com.github.vole.common.utils.R;
+import com.geektcp.alpha.console.common.core.constants.CommonConstant;
+import com.geektcp.alpha.console.common.core.utils.R;
 import com.geektcp.alpha.console.mps.model.dto.MemberDTO;
 import com.geektcp.alpha.console.mps.model.dto.MemberInfo;
 import com.geektcp.alpha.console.mps.model.entity.Member;

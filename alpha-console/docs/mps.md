@@ -9,3 +9,5 @@ mps
 * 客户端账号管理
 * 路由配置管理
 
+http://localhost:6001/login
+http://localhost:6001/mps/member/list/1?p=12&t=13

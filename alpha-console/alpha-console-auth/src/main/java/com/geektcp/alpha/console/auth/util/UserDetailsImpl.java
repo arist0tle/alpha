@@ -2,8 +2,8 @@ package com.geektcp.alpha.console.auth.util;
 
 import com.geektcp.alpha.console.auth.vo.MemberVO;
 import com.geektcp.alpha.console.auth.vo.RoleVO;
-import com.github.vole.common.constants.CommonConstant;
-import com.github.vole.common.constants.SecurityConstants;
+import com.geektcp.alpha.console.common.core.constants.CommonConstant;
+import com.geektcp.alpha.console.common.core.constants.SecurityConstants;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

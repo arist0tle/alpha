@@ -1,6 +1,6 @@
 package com.geektcp.alpha.console.mps.config;
 
-import com.github.vole.common.constants.SecurityConstants;
+import com.geektcp.alpha.console.common.core.constants.SecurityConstants;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 import org.springframework.context.annotation.Bean;

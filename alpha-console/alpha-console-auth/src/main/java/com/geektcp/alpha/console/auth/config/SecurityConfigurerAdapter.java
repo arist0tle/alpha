@@ -2,7 +2,7 @@ package com.geektcp.alpha.console.auth.config;
 
 import com.geektcp.alpha.console.auth.mobile.MobileSecurityConfigurer;
 import com.geektcp.alpha.console.auth.util.message.*;
-import com.github.vole.common.bean.config.FilterIgnorePropertiesConfig;
+import com.geektcp.alpha.console.common.core.bean.config.FilterIgnorePropertiesConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;

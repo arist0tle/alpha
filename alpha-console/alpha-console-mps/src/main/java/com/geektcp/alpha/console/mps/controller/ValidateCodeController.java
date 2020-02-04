@@ -1,9 +1,9 @@
 package com.geektcp.alpha.console.mps.controller;
 
 
-import com.github.vole.common.constants.SecurityConstants;
-import com.github.vole.common.utils.R;
-import com.github.vole.common.validate.Assert;
+import com.geektcp.alpha.console.common.core.constants.SecurityConstants;
+import com.geektcp.alpha.console.common.core.utils.R;
+import com.geektcp.alpha.console.common.core.validate.Assert;
 import com.geektcp.alpha.console.mps.service.MemberService;
 import com.google.code.kaptcha.Producer;
 import org.springframework.beans.factory.annotation.Autowired;

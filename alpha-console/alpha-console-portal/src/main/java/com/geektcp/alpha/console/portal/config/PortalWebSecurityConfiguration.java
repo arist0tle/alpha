@@ -3,7 +3,7 @@ package com.geektcp.alpha.console.portal.config;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.vole.common.bean.config.FilterIgnorePropertiesConfig;
+import com.geektcp.alpha.console.common.core.bean.config.FilterIgnorePropertiesConfig;
 import com.github.vole.passport.common.config.EnablePassportSso;
 import com.github.vole.passport.common.cookie.DefaultPassportCookieServices;
 import com.github.vole.passport.common.cookie.PassportCookieServices;

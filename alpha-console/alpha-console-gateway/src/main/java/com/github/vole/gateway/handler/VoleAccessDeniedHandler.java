@@ -1,8 +1,8 @@
 package com.github.vole.gateway.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.vole.common.constants.CommonConstant;
-import com.github.vole.common.utils.R;
+import com.geektcp.alpha.console.common.core.constants.CommonConstant;
+import com.geektcp.alpha.console.common.core.utils.R;
 import com.github.vole.gateway.exception.VoleDeniedException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;

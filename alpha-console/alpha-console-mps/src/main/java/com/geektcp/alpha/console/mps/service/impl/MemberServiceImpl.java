@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.github.vole.common.constants.SecurityConstants;
-import com.github.vole.common.utils.R;
+import com.geektcp.alpha.console.common.core.constants.SecurityConstants;
+import com.geektcp.alpha.console.common.core.utils.R;
 import com.geektcp.alpha.console.mps.mapper.MemberMapper;
 import com.geektcp.alpha.console.mps.mapper.MemberRoleMapper;
 import com.geektcp.alpha.console.mps.model.dto.MemberInfo;

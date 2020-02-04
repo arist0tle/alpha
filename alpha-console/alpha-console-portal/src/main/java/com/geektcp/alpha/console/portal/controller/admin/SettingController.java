@@ -1,7 +1,7 @@
 package com.geektcp.alpha.console.portal.controller.admin;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.github.vole.common.utils.R;
+import com.geektcp.alpha.console.common.core.utils.R;
 import com.github.vole.portal.common.controller.AbstractController;
 import com.geektcp.alpha.console.portal.model.entity.SysSetting;
 import com.geektcp.alpha.console.portal.model.entity.SysSettingMenu;

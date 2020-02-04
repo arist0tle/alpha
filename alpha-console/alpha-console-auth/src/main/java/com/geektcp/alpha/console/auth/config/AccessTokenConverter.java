@@ -1,6 +1,6 @@
 package com.geektcp.alpha.console.auth.config;
 
-import com.github.vole.common.constants.SecurityConstants;
+import com.geektcp.alpha.console.common.core.constants.SecurityConstants;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;

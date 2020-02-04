@@ -1,8 +1,8 @@
 package com.github.vole.message.handler;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.vole.common.utils.httpclient.HttpContacter;
-import com.github.vole.common.utils.httpclient.HttpFeedback;
+import com.geektcp.alpha.console.common.core.utils.httpclient.HttpContacter;
+import com.geektcp.alpha.console.common.core.utils.httpclient.HttpFeedback;
 import com.github.vole.message.config.DingTalkPropertiesConfig;
 import com.github.vole.message.template.DingTalkMsgTemplate;
 import lombok.extern.slf4j.Slf4j;

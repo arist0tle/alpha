@@ -2,7 +2,7 @@ package com.geektcp.alpha.console.mps.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.github.vole.common.validate.Assert;
+import com.geektcp.alpha.console.common.core.validate.Assert;
 import com.geektcp.alpha.console.mps.mapper.PermissionMapper;
 import com.geektcp.alpha.console.mps.model.entity.Permission;
 import com.geektcp.alpha.console.mps.model.vo.PermissionVO;

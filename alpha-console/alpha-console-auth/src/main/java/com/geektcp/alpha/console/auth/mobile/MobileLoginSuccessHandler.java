@@ -1,8 +1,8 @@
 package com.geektcp.alpha.console.auth.mobile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.vole.common.constants.CommonConstant;
-import com.github.vole.common.utils.AuthUtils;
+import com.geektcp.alpha.console.common.core.constants.CommonConstant;
+import com.geektcp.alpha.console.common.core.utils.AuthUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;

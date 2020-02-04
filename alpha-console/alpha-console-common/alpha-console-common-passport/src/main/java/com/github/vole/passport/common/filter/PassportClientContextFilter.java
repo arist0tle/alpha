@@ -34,31 +34,31 @@ public class PassportClientContextFilter implements Filter, InitializingBean {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
 
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
-        request.setAttribute(PassportConstants.CURRENT_URI, calculateCurrentUri(request));
-
-        try {
-            chain.doFilter(servletRequest, servletResponse);
-        } catch (IOException ex) {
-            throw ex;
-        } catch (Exception ex) {
-            Throwable[] causeChain = throwableAnalyzer.determineCauseChain(ex);
-            ClientRedirectRequiredException redirect = (ClientRedirectRequiredException) throwableAnalyzer
-                    .getFirstThrowableOfType(
-                            ClientRedirectRequiredException.class, causeChain);
-            if (redirect != null) {
-                redirectUser(redirect, request, response);
-            } else {
-                if (ex instanceof ServletException) {
-                    throw (ServletException) ex;
-                }
-                if (ex instanceof RuntimeException) {
-                    throw (RuntimeException) ex;
-                }
-                throw new NestedServletException("Unhandled exception", ex);
-            }
-        }
+//        HttpServletRequest request = (HttpServletRequest) servletRequest;
+//        HttpServletResponse response = (HttpServletResponse) servletResponse;
+//        request.setAttribute(PassportConstants.CURRENT_URI, calculateCurrentUri(request));
+//
+//        try {
+//            chain.doFilter(servletRequest, servletResponse);
+//        } catch (IOException ex) {
+//            throw ex;
+//        } catch (Exception ex) {
+//            Throwable[] causeChain = throwableAnalyzer.determineCauseChain(ex);
+//            ClientRedirectRequiredException redirect = (ClientRedirectRequiredException) throwableAnalyzer
+//                    .getFirstThrowableOfType(
+//                            ClientRedirectRequiredException.class, causeChain);
+//            if (redirect != null) {
+//                redirectUser(redirect, request, response);
+//            } else {
+//                if (ex instanceof ServletException) {
+//                    throw (ServletException) ex;
+//                }
+//                if (ex instanceof RuntimeException) {
+//                    throw (RuntimeException) ex;
+//                }
+//                throw new NestedServletException("Unhandled exception", ex);
+//            }
+//        }
     }
 
 

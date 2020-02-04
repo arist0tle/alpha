@@ -1,6 +1,6 @@
 package com.geektcp.alpha.console.mps.config;
 
-import com.github.vole.common.bean.config.FilterIgnorePropertiesConfig;
+import com.geektcp.alpha.console.common.core.bean.config.FilterIgnorePropertiesConfig;
 import com.github.vole.portal.common.interceptor.GlobalInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

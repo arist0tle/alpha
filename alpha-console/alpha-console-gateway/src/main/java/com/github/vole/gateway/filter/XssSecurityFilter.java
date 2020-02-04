@@ -1,6 +1,6 @@
 package com.github.vole.gateway.filter;
 
-import com.github.vole.common.bean.xss.XssHttpServletRequestWrapper;
+import com.geektcp.alpha.console.common.core.bean.xss.XssHttpServletRequestWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;

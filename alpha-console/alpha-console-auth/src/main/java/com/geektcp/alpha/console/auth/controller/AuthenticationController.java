@@ -1,7 +1,7 @@
 package com.geektcp.alpha.console.auth.controller;
 
-import com.github.vole.common.constants.SecurityConstants;
-import com.github.vole.common.utils.R;
+import com.geektcp.alpha.console.common.core.constants.SecurityConstants;
+import com.geektcp.alpha.console.common.core.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.CacheEvict;

@@ -3,7 +3,7 @@ package com.github.vole.passport.server.config;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.vole.common.bean.config.FilterIgnorePropertiesConfig;
+import com.geektcp.alpha.console.common.core.bean.config.FilterIgnorePropertiesConfig;
 import com.github.vole.passport.common.config.server.EnablePassportServer;
 import com.github.vole.passport.common.utils.jackson2.PassportJackson2Module;
 import com.github.vole.passport.common.tokenstore.PassportTokenStore;

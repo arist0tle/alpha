@@ -2,7 +2,7 @@ package com.geektcp.alpha.console.mps.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.github.vole.common.constants.CommonConstant;
+import com.geektcp.alpha.console.common.core.constants.CommonConstant;
 import com.geektcp.alpha.console.mps.mapper.SysZuulRouteMapper;
 import com.geektcp.alpha.console.mps.model.entity.SysZuulRoute;
 import com.geektcp.alpha.console.mps.service.SysZuulRouteService;

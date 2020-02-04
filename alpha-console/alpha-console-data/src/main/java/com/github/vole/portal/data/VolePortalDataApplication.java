@@ -14,7 +14,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @EnableHystrix                // 开启断路器
 @EnableHystrixDashboard
-@SpringBootApplication(scanBasePackages = {"com.github.vole.portal.data", "com.github.vole.common.bean"})
+@SpringBootApplication(scanBasePackages = {"com.github.vole.portal.data", "com.geektcp.alpha.console.common.core.bean"})
 public class VolePortalDataApplication {
 
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
 package com.github.vole.passport.common.details;
 
-import com.github.vole.common.constants.CommonConstant;
+import com.geektcp.alpha.console.common.core.constants.CommonConstant;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

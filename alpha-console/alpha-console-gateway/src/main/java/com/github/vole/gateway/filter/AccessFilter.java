@@ -1,6 +1,6 @@
 package com.github.vole.gateway.filter;
 
-import com.github.vole.common.constants.SecurityConstants;
+import com.geektcp.alpha.console.common.core.constants.SecurityConstants;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.apache.commons.lang.StringUtils;

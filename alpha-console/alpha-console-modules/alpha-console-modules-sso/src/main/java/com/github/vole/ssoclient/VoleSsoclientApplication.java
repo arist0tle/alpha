@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 
 @Slf4j
 @EnableDiscoveryClient
-@SpringBootApplication(scanBasePackages = {"com.github.vole.ssoclient", "com.github.vole.common.bean"})
+@SpringBootApplication(scanBasePackages = {"com.github.vole.ssoclient", "com.geektcp.alpha.console.common.core.bean"})
 public class VoleSsoclientApplication {
 
     public static void main(String[] args) {

@@ -1,7 +1,7 @@
 package com.github.vole.gateway.config;
 
-import com.github.vole.common.constants.CommonConstant;
-import com.github.vole.common.vo.SysZuulRouteVO;
+import com.geektcp.alpha.console.common.core.constants.CommonConstant;
+import com.geektcp.alpha.console.common.core.vo.SysZuulRouteVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;

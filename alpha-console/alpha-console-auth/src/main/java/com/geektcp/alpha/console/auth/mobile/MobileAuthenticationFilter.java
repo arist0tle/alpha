@@ -1,6 +1,6 @@
 package com.geektcp.alpha.console.auth.mobile;
 
-import com.github.vole.common.constants.SecurityConstants;
+import com.geektcp.alpha.console.common.core.constants.SecurityConstants;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;

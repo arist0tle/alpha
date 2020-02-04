@@ -1,6 +1,6 @@
 package com.github.vole.ssoclient.config;
 
-import com.github.vole.common.bean.config.FilterIgnorePropertiesConfig;
+import com.geektcp.alpha.console.common.core.bean.config.FilterIgnorePropertiesConfig;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

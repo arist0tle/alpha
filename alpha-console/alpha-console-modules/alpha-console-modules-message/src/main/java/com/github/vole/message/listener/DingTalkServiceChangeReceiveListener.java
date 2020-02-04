@@ -1,6 +1,6 @@
 package com.github.vole.message.listener;
 
-import com.github.vole.common.constants.MqQueueConstant;
+import com.geektcp.alpha.console.common.core.constants.MqQueueConstant;
 import com.github.vole.message.handler.DingTalkMessageHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;

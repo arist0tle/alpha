@@ -1,8 +1,8 @@
 package com.geektcp.alpha.console.mps.listener;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.github.vole.common.constants.CommonConstant;
-import com.github.vole.common.vo.SysZuulRouteVO;
+import com.geektcp.alpha.console.common.core.constants.CommonConstant;
+import com.geektcp.alpha.console.common.core.vo.SysZuulRouteVO;
 import com.geektcp.alpha.console.mps.model.entity.SysZuulRoute;
 import com.geektcp.alpha.console.mps.service.SysZuulRouteService;
 import lombok.extern.slf4j.Slf4j;

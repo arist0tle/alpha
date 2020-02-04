@@ -2,10 +2,10 @@ package com.github.vole.gateway.filter;
 
 import com.alibaba.fastjson.JSONObject;
 
-import com.github.vole.common.bean.config.FilterIgnorePropertiesConfig;
-import com.github.vole.common.constants.SecurityConstants;
-import com.github.vole.common.utils.AuthUtils;
-import com.github.vole.common.utils.R;
+import com.geektcp.alpha.console.common.core.bean.config.FilterIgnorePropertiesConfig;
+import com.geektcp.alpha.console.common.core.constants.SecurityConstants;
+import com.geektcp.alpha.console.common.core.utils.AuthUtils;
+import com.geektcp.alpha.console.common.core.utils.R;
 import com.github.vole.gateway.exception.ValidateCodeException;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;

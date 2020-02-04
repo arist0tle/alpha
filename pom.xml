@@ -67,7 +67,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <sonar.host.url>http://43.247.68.115:9000</sonar.host.url>
+                <sonar.host.url>http://thyserver:9000</sonar.host.url>
             </properties>
 
         </profile>

@@ -1,7 +1,7 @@
 #加密配置
 jasypt:
   encryptor:
-    password: 12345678
+    password: root
 
 server:
   tomcat:
@@ -10,10 +10,11 @@ server:
 
 spring:
   redis:
-    host: 127.0.0.1
+    host: thyserver
     port: 6379
     timeout: 3000ms
     database: 0
+    password: 111111
     jedis:
       pool:
         max-idle: 50

@@ -15,11 +15,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableHystrix                // 开启断路器
 @EnableHystrixDashboard
 @SpringBootApplication(scanBasePackages = {"com.geektcp.alpha.console.auth", "com.github.vole.common.bean"})
-public class VoleAuthApplication {
+public class ConsoleAuthApplication {
 
     public static void main(String[] args) {
         log.debug("VoleAuthApplication startup main");
-        SpringApplication application = new SpringApplication(VoleAuthApplication.class);
+        SpringApplication application = new SpringApplication(ConsoleAuthApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
     }

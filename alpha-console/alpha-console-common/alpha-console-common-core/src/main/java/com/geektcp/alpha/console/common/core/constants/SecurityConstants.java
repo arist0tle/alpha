@@ -14,7 +14,7 @@ public interface SecurityConstants {
     /**
      * 项目的license
      */
-    String Vole_LICENSE = "made by vole";
+    String Alpha_LICENSE = "made by alpha";
     /**
      * 基础角色
      */

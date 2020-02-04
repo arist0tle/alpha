@@ -1,7 +1,7 @@
 package com.geektcp.alpha.console.gateway.config;
 
 import com.geektcp.alpha.console.common.core.bean.config.FilterIgnorePropertiesConfig;
-import com.geektcp.alpha.console.gateway.handler.VoleAccessDeniedHandler;
+import com.geektcp.alpha.console.gateway.handler.AlphaAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +32,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Autowired
     private OAuth2WebSecurityExpressionHandler expressionHandler;
     @Autowired
-    private VoleAccessDeniedHandler voleAccessDeniedHandler;
+    private AlphaAccessDeniedHandler alphaAccessDeniedHandler;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -42,13 +42,13 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .authorizeRequests();
         filterIgnorePropertiesConfig.getUrls().forEach(url -> registry.antMatchers(url).permitAll());
         //registry.anyRequest().authenticated();
-        registry.anyRequest().access("@volePermissionService.hasPermission(request,authentication)");
+        registry.anyRequest().access("@alphaPermissionService.hasPermission(request,authentication)");
     }
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
         resources.expressionHandler(expressionHandler);
-        resources.accessDeniedHandler(voleAccessDeniedHandler);
+        resources.accessDeniedHandler(alphaAccessDeniedHandler);
     }
 
     /**

@@ -38,7 +38,7 @@ Vole 是一个基于最新的SpringCloud2.0的微服务商业开发脚手架->(�
 
 
 ## 组件
-vole由`eureka`, `auth`,`config`,`gateway`,`mps`,`passport`,`portal`,`modules`组成
+alpha由`eureka`, `auth`,`config`,`gateway`,`mps`,`passport`,`portal`,`modules`组成
 
 ### Eureka
 Eureka服务发现管理,支持高可用配置[更多](./docs/eureka.md)。

@@ -7,10 +7,10 @@ public interface ServiceNameConstant {
     /**
      * 认证服务的SERVICEID（zuul 配置的对应）
      */
-    String AUTH_SERVICE = "vole-auth";
+    String AUTH_SERVICE = "alpha-auth";
 
     /**
      * MPS模块
      */
-    String MPS_SERVICE = "vole-mps";
+    String MPS_SERVICE = "alpha-mps";
 }

@@ -1,5 +1,5 @@
 # Roadmap
-这个文档定义了vole的roadmap.
+这个文档定义了alpha的roadmap.
 
 ## Features
 - [x] 基于springcloud2.0的微服务脚手架

@@ -52,9 +52,9 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Vole Swagger API ")
-                .description("https://github.com/gavenwangcn/vole")
-                .termsOfServiceUrl("https://github.com/gavenwangcn/vole")
+                .title("Alpha Swagger API ")
+                .description("https://github.com/gavenwangcn/alpha")
+                .termsOfServiceUrl("https://github.com/gavenwangcn/alpha")
                 .version("1.0")
                 .build();
     }

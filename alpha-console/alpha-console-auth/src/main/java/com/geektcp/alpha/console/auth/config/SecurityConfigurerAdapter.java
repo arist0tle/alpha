@@ -40,7 +40,7 @@ public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
                         .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
-                        .deleteCookies("vole")
+                        .deleteCookies("alpha")
                         .and()
                         .authorizeRequests();
         filterIgnorePropertiesConfig.getUrls().forEach(url -> registry.antMatchers(url).permitAll());

@@ -5,7 +5,7 @@
 <mapper namespace="com.geektcp.alpha.mps.mapper.MemberRoleMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.geektcp.alpha.mps.model.entity.MemberRole">
+	<resultMap id="BaseResultMap" type="com.geektcp.alpha.console.mps.model.entity.MemberRole">
 		<id column="id" property="id" />
 		<result column="member_id" property="memberId" />
 		<result column="role_id" property="roleId" />

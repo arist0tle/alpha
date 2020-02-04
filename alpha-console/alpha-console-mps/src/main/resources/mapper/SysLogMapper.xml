@@ -3,7 +3,7 @@
 <mapper namespace="com.geektcp.alpha.mps.mapper.SysLogMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.geektcp.alpha.mps.model.entity.SysLog">
+    <resultMap id="BaseResultMap" type="com.geektcp.alpha.console.mps.model.entity.SysLog">
         <id column="id" property="id"/>
         <result column="type" property="type"/>
         <result column="title" property="title"/>

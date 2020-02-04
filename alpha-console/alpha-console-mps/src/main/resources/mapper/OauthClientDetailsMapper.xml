@@ -4,7 +4,7 @@
 <mapper namespace="com.geektcp.alpha.mps.mapper.OauthClientDetailsMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.geektcp.alpha.mps.model.entity.OauthClientDetails">
+    <resultMap id="BaseResultMap" type="com.geektcp.alpha.console.mps.model.entity.OauthClientDetails">
         <id column="id" property="id" />
         <result column="client_id" property="clientId" />
         <result column="resource_ids" property="resourceIds" />

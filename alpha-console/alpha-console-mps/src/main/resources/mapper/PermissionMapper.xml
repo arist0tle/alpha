@@ -4,7 +4,7 @@
 <mapper namespace="com.geektcp.alpha.mps.mapper.PermissionMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.geektcp.alpha.mps.model.entity.Permission">
+    <resultMap id="BaseResultMap" type="com.geektcp.alpha.console.mps.model.entity.Permission">
         <id column="permission_id" property="permissionId" />
         <result column="permission" property="permission" />
         <result column="url" property="url" />

@@ -3,7 +3,7 @@
 <mapper namespace="com.geektcp.alpha.mps.mapper.RolePermissionMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.geektcp.alpha.mps.model.entity.RolePermission">
+	<resultMap id="BaseResultMap" type="com.geektcp.alpha.console.mps.model.entity.RolePermission">
 		<id column="id" property="id" />
 		<result column="role_id" property="roleId" />
 		<result column="permission_id" property="permissionId" />

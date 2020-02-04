@@ -5,5 +5,5 @@
     	2.0.0
   </div>
   <!-- Default to the left -->
-  <strong>${(bottomCopyright)!'Copyright © 2018 Vole Company. All rights reserved.'}</strong>
+  <strong>${(bottomCopyright)!'Copyright © 2018 Alpha Company. All rights reserved.'}</strong>
 </footer>

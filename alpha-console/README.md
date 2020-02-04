@@ -2,9 +2,9 @@
 
 [![ASF2](http://img.shields.io/badge/license-ASF2-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-Vole
+Alpha
 -------
-Vole 是一个基于最新的SpringCloud2.0的微服务商业开发脚手架->(非教学版),支持公司全方位应用架构搭建
+Alpha 是一个基于最新的SpringCloud2.0的微服务商业开发脚手架->(非教学版),支持公司全方位应用架构搭建
 
 ## Features
 * 基于Eureka的服务管理

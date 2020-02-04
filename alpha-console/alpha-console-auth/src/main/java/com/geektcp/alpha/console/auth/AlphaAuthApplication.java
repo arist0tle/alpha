@@ -15,11 +15,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableHystrix                // 开启断路器
 @EnableHystrixDashboard
 @SpringBootApplication(scanBasePackages = {"com.geektcp.alpha.console.auth", "com.geektcp.alpha.console.common.core.bean"})
-public class ConsoleAuthApplication {
+public class AlphaAuthApplication {
 
     public static void main(String[] args) {
         log.debug("AlphaAuthApplication startup main");
-        SpringApplication application = new SpringApplication(ConsoleAuthApplication.class);
+        SpringApplication application = new SpringApplication(AlphaAuthApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
     }

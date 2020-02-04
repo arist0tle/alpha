@@ -1,4 +1,4 @@
-package com.github.alpha.common;
+package com.geektcp.alpha.console.common.core;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

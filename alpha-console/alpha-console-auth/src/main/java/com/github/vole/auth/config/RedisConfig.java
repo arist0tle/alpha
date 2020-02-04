@@ -1,39 +1,38 @@
 package com.github.vole.auth.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnection;
-import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
-import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import redis.clients.jedis.JedisPoolConfig;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-@Configuration
-@EnableCaching
+@Component
+@ConfigurationProperties
 public class RedisConfig {
 
-    @Autowired
-    JedisConfig jedisConfig;
+    @Value("${spring.redis.host}")
+    public String host;
 
-    @Bean
-    public JedisConnectionFactory jedisConnectionFactory () {
-        RedisStandaloneConfiguration rf = new RedisStandaloneConfiguration();
-        rf.setDatabase(jedisConfig.database);
-        rf.setHostName(jedisConfig.host);
-        rf.setPort(jedisConfig.port);
-        int to = Integer.parseInt(jedisConfig.timeout.substring(0, jedisConfig.timeout.length() - 2));
-        JedisClientConfiguration.JedisPoolingClientConfigurationBuilder jpb =
-                (JedisClientConfiguration.JedisPoolingClientConfigurationBuilder) JedisClientConfiguration.builder();
-        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        jedisPoolConfig.setMaxIdle(jedisConfig.maxIdle);
-        jedisPoolConfig.setMinIdle(jedisConfig.minIdle);
-        jedisPoolConfig.setMaxTotal(jedisConfig.maxActive);
-        int l = Integer.parseInt(jedisConfig.maxWait.substring(0, jedisConfig.maxWait.length() - 2));
-        jedisPoolConfig.setMaxWaitMillis(l);
-        jpb.poolConfig(jedisPoolConfig);
-        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(rf, jpb.build());
-        return jedisConnectionFactory;
-    }
+    @Value("${spring.redis.port}")
+    public int port;
+
+    @Value("${spring.redis.password}")
+    public String password;
+
+    @Value("${spring.redis.database}")
+    public int database;
+
+    @Value("${spring.redis.jedis.pool.max-idle}")
+    public int maxIdle;
+
+    @Value("${spring.redis.jedis.pool.min-idle}")
+    public int minIdle;
+
+    @Value("${spring.redis.jedis.pool.max-active}")
+    public int maxActive;
+
+    @Value("${spring.redis.jedis.pool.max-wait}")
+    public String maxWait;
+
+    @Value("${spring.redis.timeout}")
+    public String timeout;
+
 }

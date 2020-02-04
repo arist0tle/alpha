@@ -1,4 +1,4 @@
-package com.github.vole.gateway;
+package com.github.alpha.gateway;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VoleGatewayApplicationTests {
+public class AlphaGatewayApplicationTests {
 
     @Test
     public void contextLoads() {

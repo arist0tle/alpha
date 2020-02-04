@@ -1,4 +1,4 @@
-package com.github.vole.monitor;
+package com.github.alpha.monitor;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VoleMonitorApplicationTests {
+public class AlphaMonitorApplicationTests {
 
     @Test
     public void contextLoads() {

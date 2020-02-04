@@ -13,11 +13,11 @@ import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 @Slf4j
 @EnableDiscoveryClient
 @SpringBootApplication(scanBasePackages = {"com.geektcp.alpha.console.modules.sso", "com.geektcp.alpha.console.common.core.bean"})
-public class VoleSsoApplication {
+public class AlphaSsoApplication {
 
     public static void main(String[] args) {
-        log.debug("VoleSsoclientApplication startup main");
-        SpringApplication application = new SpringApplication(VoleSsoApplication.class);
+        log.debug("AlphaSsoclientApplication startup main");
+        SpringApplication application = new SpringApplication(AlphaSsoApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
     }

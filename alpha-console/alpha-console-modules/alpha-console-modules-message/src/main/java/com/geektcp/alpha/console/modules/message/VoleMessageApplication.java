@@ -9,11 +9,11 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @Slf4j
 @EnableDiscoveryClient
 @SpringBootApplication
-public class VoleMessageApplication {
+public class AlphaMessageApplication {
 
     public static void main(String[] args) {
-        log.debug("VoleMessageApplication startup main");
-        SpringApplication application = new SpringApplication(VoleMessageApplication.class);
+        log.debug("AlphaMessageApplication startup main");
+        SpringApplication application = new SpringApplication(AlphaMessageApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
     }

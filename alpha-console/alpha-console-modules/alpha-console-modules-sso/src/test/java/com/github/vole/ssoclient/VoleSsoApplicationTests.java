@@ -1,4 +1,4 @@
-package com.github.vole.ssoclient;
+package com.github.alpha.ssoclient;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VoleSsoApplicationTests {
+public class AlphaSsoApplicationTests {
 
     @Test
     public void contextLoads() {

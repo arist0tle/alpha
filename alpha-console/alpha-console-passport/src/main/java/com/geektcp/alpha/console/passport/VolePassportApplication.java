@@ -15,11 +15,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableHystrix                // 开启断路器
 @EnableHystrixDashboard
 @SpringBootApplication(scanBasePackages = {"com.geektcp.alpha.console.passport", "com.geektcp.alpha.console.common.core.bean"})
-public class VolePassportApplication {
+public class AlphaPassportApplication {
 
     public static void main(String[] args) {
-        log.debug("VolePassportApplication startup main");
-        SpringApplication application = new SpringApplication(VolePassportApplication.class);
+        log.debug("AlphaPassportApplication startup main");
+        SpringApplication application = new SpringApplication(AlphaPassportApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
     }

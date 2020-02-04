@@ -17,11 +17,11 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableAdminServer        // 启用Admin模块
 @EnableDiscoveryClient    // 用于服务注册和发现
 @SpringBootApplication
-public class VoleMonitorApplication {
+public class AlphaMonitorApplication {
 
     public static void main(String[] args) {
-        log.debug("VoleMonitorApplication startup main");
-        SpringApplication application = new SpringApplication(VoleMonitorApplication.class);
+        log.debug("AlphaMonitorApplication startup main");
+        SpringApplication application = new SpringApplication(AlphaMonitorApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
     }

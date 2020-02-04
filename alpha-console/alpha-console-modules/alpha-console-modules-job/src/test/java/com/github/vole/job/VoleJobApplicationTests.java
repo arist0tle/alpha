@@ -1,4 +1,4 @@
-package com.github.vole.job;
+package com.github.alpha.job;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VoleJobApplicationTests {
+public class AlphaJobApplicationTests {
 
     @Test
     public void contextLoads() {

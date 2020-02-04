@@ -1,4 +1,4 @@
-package com.github.vole.message;
+package com.github.alpha.message;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VoleMessageApplicationTests {
+public class AlphaMessageApplicationTests {
 
     @Test
     public void contextLoads() {

@@ -1,4 +1,4 @@
-package com.github.vole.eureka;
+package com.github.alpha.eureka;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VoleEurekaApplicationTests {
+public class AlphaEurekaApplicationTests {
 
     @Test
     public void contextLoads() {

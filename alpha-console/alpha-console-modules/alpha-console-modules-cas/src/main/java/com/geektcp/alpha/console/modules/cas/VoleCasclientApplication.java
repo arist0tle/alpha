@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class VoleCasclientApplication {
+public class AlphaCasclientApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(VoleCasclientApplication.class, args);
+        SpringApplication.run(AlphaCasclientApplication.class, args);
     }
 }

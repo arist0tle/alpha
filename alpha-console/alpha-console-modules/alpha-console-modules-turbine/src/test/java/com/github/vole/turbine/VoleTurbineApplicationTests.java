@@ -1,4 +1,4 @@
-package com.github.vole.turbine;
+package com.github.alpha.turbine;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VoleTurbineApplicationTests {
+public class AlphaTurbineApplicationTests {
 
     @Test
     public void contextLoads() {

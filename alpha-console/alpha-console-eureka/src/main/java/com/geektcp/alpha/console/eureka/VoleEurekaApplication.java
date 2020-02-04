@@ -9,11 +9,11 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 @Slf4j
 @EnableEurekaServer
 @SpringBootApplication
-public class VoleEurekaApplication {
+public class AlphaEurekaApplication {
 
     public static void main(String[] args) {
-        log.debug("VoleEurekaApplication startup main");
-        SpringApplication application = new SpringApplication(VoleEurekaApplication.class);
+        log.debug("AlphaEurekaApplication startup main");
+        SpringApplication application = new SpringApplication(AlphaEurekaApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
     }

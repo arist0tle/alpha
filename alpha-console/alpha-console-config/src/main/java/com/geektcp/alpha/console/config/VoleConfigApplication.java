@@ -11,11 +11,11 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 @EnableDiscoveryClient
 @EnableConfigServer
 @SpringBootApplication
-public class VoleConfigApplication {
+public class AlphaConfigApplication {
 
     public static void main(String[] args) {
-        log.debug("VoleConfigApplication startup main");
-        SpringApplication application = new SpringApplication(VoleConfigApplication.class);
+        log.debug("AlphaConfigApplication startup main");
+        SpringApplication application = new SpringApplication(AlphaConfigApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
     }

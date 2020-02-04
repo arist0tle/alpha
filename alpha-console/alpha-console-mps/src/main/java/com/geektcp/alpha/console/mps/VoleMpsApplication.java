@@ -14,12 +14,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients(basePackages = {"com.geektcp.alpha.console.common.portal.fegin"})
 @EnableHystrix                // 开启断路器
 @EnableHystrixDashboard
-@SpringBootApplication(scanBasePackages = {"com.geektcp.alpha.console.mps", "com.geektcp.alpha.console.common.core.bean","com.github.vole.portal.common"})
-public class VoleMpsApplication {
+@SpringBootApplication(scanBasePackages = {"com.geektcp.alpha.console.mps", "com.geektcp.alpha.console.common.core.bean","com.github.alpha.portal.common"})
+public class AlphaMpsApplication {
 
     public static void main(String[] args) {
-        log.debug("VoleMpsApplication startup main");
-        SpringApplication application = new SpringApplication(VoleMpsApplication.class);
+        log.debug("AlphaMpsApplication startup main");
+        SpringApplication application = new SpringApplication(AlphaMpsApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
     }

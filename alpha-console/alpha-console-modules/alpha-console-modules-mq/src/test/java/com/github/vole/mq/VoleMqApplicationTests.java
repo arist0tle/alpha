@@ -1,4 +1,4 @@
-package com.github.vole.mq;
+package com.github.alpha.mq;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VoleMqApplicationTests {
+public class AlphaMqApplicationTests {
 
     @Test
     public void contextLoads() {

@@ -3,7 +3,7 @@ package com.geektcp.alpha.console.gateway.handler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.geektcp.alpha.console.common.core.constants.CommonConstant;
 import com.geektcp.alpha.console.common.core.utils.R;
-import com.geektcp.alpha.console.gateway.exception.VoleDeniedException;
+import com.geektcp.alpha.console.gateway.exception.AlphaDeniedException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +19,11 @@ import java.io.PrintWriter;
 
 /**
  * 授权拒绝处理器，覆盖默认的OAuth2AccessDeniedHandler
- * 包装失败信息到VoleDeniedException
+ * 包装失败信息到AlphaDeniedException
  */
 @Slf4j
 @Component
-public class VoleAccessDeniedHandler extends OAuth2AccessDeniedHandler {
+public class AlphaAccessDeniedHandler extends OAuth2AccessDeniedHandler {
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -41,7 +41,7 @@ public class VoleAccessDeniedHandler extends OAuth2AccessDeniedHandler {
         log.info("授权失败，禁止访问 {}", request.getRequestURI());
         response.setCharacterEncoding(CommonConstant.UTF8);
         response.setContentType(CommonConstant.CONTENT_TYPE);
-        R<String> result = new R<>(new VoleDeniedException("授权失败，禁止访问"));
+        R<String> result = new R<>(new AlphaDeniedException("授权失败，禁止访问"));
         response.setStatus(HttpStatus.SC_FORBIDDEN);
         PrintWriter printWriter = response.getWriter();
         printWriter.append(objectMapper.writeValueAsString(result));

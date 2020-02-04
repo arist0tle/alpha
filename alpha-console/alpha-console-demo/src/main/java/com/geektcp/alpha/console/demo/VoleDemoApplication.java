@@ -14,9 +14,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableHystrix                // 开启断路器
 @EnableHystrixDashboard
 @SpringBootApplication
-public class VoleDemoApplication {
+public class AlphaDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(VoleDemoApplication.class, args);
+        SpringApplication.run(AlphaDemoApplication.class, args);
     }
 }

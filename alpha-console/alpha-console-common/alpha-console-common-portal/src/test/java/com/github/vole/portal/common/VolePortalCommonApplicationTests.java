@@ -1,4 +1,4 @@
-package com.github.vole.portal.common;
+package com.github.alpha.portal.common;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VolePortalCommonApplicationTests {
+public class AlphaPortalCommonApplicationTests {
 
     @Test
     public void contextLoads() {

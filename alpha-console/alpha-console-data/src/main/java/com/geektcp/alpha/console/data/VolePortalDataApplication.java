@@ -14,12 +14,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @EnableHystrix                // 开启断路器
 @EnableHystrixDashboard
-@SpringBootApplication(scanBasePackages = {"com.github.vole.portal.data", "com.geektcp.alpha.console.common.core.bean"})
-public class VolePortalDataApplication {
+@SpringBootApplication(scanBasePackages = {"com.github.alpha.portal.data", "com.geektcp.alpha.console.common.core.bean"})
+public class AlphaPortalDataApplication {
 
     public static void main(String[] args) {
-        log.debug("VolePortalDataApplication startup main");
-        SpringApplication application = new SpringApplication(VolePortalDataApplication.class);
+        log.debug("AlphaPortalDataApplication startup main");
+        SpringApplication application = new SpringApplication(AlphaPortalDataApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
     }

@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class VoleJobApplication {
+public class AlphaJobApplication {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(VoleJobApplication.class, args);
+        SpringApplication.run(AlphaJobApplication.class, args);
     }
 }

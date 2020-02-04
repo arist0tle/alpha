@@ -15,11 +15,11 @@ import org.springframework.cloud.netflix.turbine.EnableTurbine;
 @SpringBootApplication
 @EnableHystrixDashboard
 @EnableTurbine    // 开启turbine
-public class VoleTurbineApplication {
+public class AlphaTurbineApplication {
 
     public static void main(String[] args) {
-        log.debug("VoleTurbineApplication startup main");
-        SpringApplication application = new SpringApplication(VoleTurbineApplication.class);
+        log.debug("AlphaTurbineApplication startup main");
+        SpringApplication application = new SpringApplication(AlphaTurbineApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
     }

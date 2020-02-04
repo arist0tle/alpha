@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * Pipeline is currently not supported for JedisClusterConnection.
  */
 @Slf4j
-public class VoleRedisTokenStore implements TokenStore {
+public class AlphaRedisTokenStore implements TokenStore {
 
     private static final String ACCESS = "access:";
     private static final String AUTH_TO_ACCESS = "auth_to_access:";

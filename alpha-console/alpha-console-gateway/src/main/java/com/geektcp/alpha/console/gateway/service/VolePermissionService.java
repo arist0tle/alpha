@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  */
-public interface VolePermissionService {
+public interface AlphaPermissionService {
     /**
      * 判断请求是否有权限
      *

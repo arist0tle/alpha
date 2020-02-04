@@ -2,7 +2,7 @@ package com.geektcp.alpha.console.gateway.service.impl;
 
 import com.geektcp.alpha.console.gateway.entity.vo.PermissionVO;
 import com.geektcp.alpha.console.gateway.feign.RemotePermissionService;
-import com.geektcp.alpha.console.gateway.service.VolePermissionService;
+import com.geektcp.alpha.console.gateway.service.AlphaPermissionService;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
@@ -20,8 +20,8 @@ import java.util.Set;
 
 
 @Slf4j
-@Service("volePermissionService")
-public class VolePermissionServiceImpl implements VolePermissionService {
+@Service("alphaPermissionService")
+public class AlphaPermissionServiceImpl implements AlphaPermissionService {
     @Autowired
     private RemotePermissionService remotePermissionService;
 

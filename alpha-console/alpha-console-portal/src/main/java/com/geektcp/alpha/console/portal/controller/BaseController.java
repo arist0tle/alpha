@@ -11,7 +11,7 @@ import com.geektcp.alpha.console.common.core.config.db.Query;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.github.vole.portal.common.util.SecurityContextUtil;
+import com.geektcp.alpha.console.common.portal.util.SecurityContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 

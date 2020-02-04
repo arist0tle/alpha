@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.geektcp.alpha.console.common.core.utils.R;
 import com.geektcp.alpha.console.mps.model.entity.MemberRole;
 import com.geektcp.alpha.console.mps.service.MemberRoleService;
-import com.github.vole.portal.common.controller.AbstractController;
+import com.geektcp.alpha.console.common.portal.controller.AbstractController;
 import com.geektcp.alpha.console.mps.model.entity.Member;
 import com.geektcp.alpha.console.mps.service.MemberService;
 import com.geektcp.alpha.console.mps.service.RoleService;

@@ -1,4 +1,4 @@
-package com.github.vole.portal.common.controller;
+package com.geektcp.alpha.console.common.portal.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

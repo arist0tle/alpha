@@ -3,7 +3,7 @@ package com.geektcp.alpha.console.mps.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.geektcp.alpha.console.mps.model.entity.SysZuulRoute;
 import com.geektcp.alpha.console.mps.service.SysZuulRouteService;
-import com.github.vole.portal.common.controller.AbstractController;
+import com.geektcp.alpha.console.common.portal.controller.AbstractController;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

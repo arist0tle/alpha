@@ -1,8 +1,8 @@
-package com.github.vole.portal.common.fegin;
+package com.geektcp.alpha.console.common.portal.fegin;
 
-import com.github.vole.portal.common.fegin.fallback.SettingServiceFallbackImpl;
-import com.github.vole.portal.common.vo.SysSettingMenuVO;
-import com.github.vole.portal.common.vo.SysSettingVO;
+import com.geektcp.alpha.console.common.portal.fegin.fallback.SettingServiceFallbackImpl;
+import com.geektcp.alpha.console.common.portal.vo.SysSettingMenuVO;
+import com.geektcp.alpha.console.common.portal.vo.SysSettingVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

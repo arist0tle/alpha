@@ -1,8 +1,8 @@
-package com.github.vole.portal.common.fegin;
+package com.geektcp.alpha.console.common.portal.fegin;
 
-import com.github.vole.portal.common.fegin.fallback.MenuServiceFallbackImpl;
-import com.github.vole.portal.common.vo.SysMenuVO;
-import com.github.vole.portal.common.vo.TreeMenu;
+import com.geektcp.alpha.console.common.portal.fegin.fallback.MenuServiceFallbackImpl;
+import com.geektcp.alpha.console.common.portal.vo.SysMenuVO;
+import com.geektcp.alpha.console.common.portal.vo.TreeMenu;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

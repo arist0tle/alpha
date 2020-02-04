@@ -1,8 +1,8 @@
-package com.github.vole.portal.common.permission;
+package com.geektcp.alpha.console.common.portal.permission;
 
 import com.geektcp.alpha.console.common.passport.permission.AccessPermission;
-import com.github.vole.portal.common.fegin.MenuService;
-import com.github.vole.portal.common.vo.SysMenuVO;
+import com.geektcp.alpha.console.common.portal.fegin.MenuService;
+import com.geektcp.alpha.console.common.portal.vo.SysMenuVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;

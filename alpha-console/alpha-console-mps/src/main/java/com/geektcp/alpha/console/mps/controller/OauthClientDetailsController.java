@@ -4,7 +4,7 @@ package com.geektcp.alpha.console.mps.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.geektcp.alpha.console.common.core.utils.R;
-import com.github.vole.portal.common.controller.AbstractController;
+import com.geektcp.alpha.console.common.portal.controller.AbstractController;
 import com.geektcp.alpha.console.mps.constants.GrantType;
 import com.geektcp.alpha.console.mps.model.entity.OauthClientDetails;
 import com.geektcp.alpha.console.mps.service.OauthClientDetailsService;

@@ -1,4 +1,4 @@
-package com.github.vole.portal.common.vo;
+package com.geektcp.alpha.console.common.portal.vo;
 
 
 import lombok.Data;

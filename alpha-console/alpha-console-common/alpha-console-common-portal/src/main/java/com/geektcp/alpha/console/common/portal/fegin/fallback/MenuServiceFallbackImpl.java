@@ -1,8 +1,8 @@
-package com.github.vole.portal.common.fegin.fallback;
+package com.geektcp.alpha.console.common.portal.fegin.fallback;
 
-import com.github.vole.portal.common.fegin.MenuService;
-import com.github.vole.portal.common.vo.SysMenuVO;
-import com.github.vole.portal.common.vo.TreeMenu;
+import com.geektcp.alpha.console.common.portal.fegin.MenuService;
+import com.geektcp.alpha.console.common.portal.vo.SysMenuVO;
+import com.geektcp.alpha.console.common.portal.vo.TreeMenu;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

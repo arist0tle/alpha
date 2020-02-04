@@ -1,7 +1,7 @@
-package com.github.vole.portal.common.fegin.fallback;
+package com.geektcp.alpha.console.common.portal.fegin.fallback;
 
-import com.github.vole.portal.common.fegin.UserService;
-import com.github.vole.portal.common.vo.SysUserVO;
+import com.geektcp.alpha.console.common.portal.fegin.UserService;
+import com.geektcp.alpha.console.common.portal.vo.SysUserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

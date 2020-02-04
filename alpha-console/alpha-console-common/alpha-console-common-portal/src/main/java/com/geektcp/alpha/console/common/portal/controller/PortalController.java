@@ -1,4 +1,4 @@
-package com.github.vole.portal.common.controller;
+package com.geektcp.alpha.console.common.portal.controller;
 
 import com.geektcp.alpha.console.common.core.utils.R;
 import org.springframework.ui.Model;

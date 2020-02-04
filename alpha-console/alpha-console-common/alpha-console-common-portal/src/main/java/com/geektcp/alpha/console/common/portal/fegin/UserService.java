@@ -1,7 +1,7 @@
-package com.github.vole.portal.common.fegin;
+package com.geektcp.alpha.console.common.portal.fegin;
 
-import com.github.vole.portal.common.fegin.fallback.UserServiceFallbackImpl;
-import com.github.vole.portal.common.vo.SysUserVO;
+import com.geektcp.alpha.console.common.portal.fegin.fallback.UserServiceFallbackImpl;
+import com.geektcp.alpha.console.common.portal.vo.SysUserVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

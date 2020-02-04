@@ -1,14 +1,14 @@
-package com.github.vole.portal.common.interceptor;
+package com.geektcp.alpha.console.common.portal.interceptor;
 
-import com.github.vole.portal.common.fegin.MenuService;
-import com.github.vole.portal.common.fegin.SettingService;
-import com.github.vole.portal.common.fegin.UserService;
-import com.github.vole.portal.common.util.BeanUtil;
-import com.github.vole.portal.common.util.SecurityContextUtil;
-import com.github.vole.portal.common.vo.SysSettingMenuVO;
-import com.github.vole.portal.common.vo.SysSettingVO;
-import com.github.vole.portal.common.vo.SysUserVO;
-import com.github.vole.portal.common.vo.TreeMenu;
+import com.geektcp.alpha.console.common.portal.fegin.MenuService;
+import com.geektcp.alpha.console.common.portal.fegin.SettingService;
+import com.geektcp.alpha.console.common.portal.fegin.UserService;
+import com.geektcp.alpha.console.common.portal.util.BeanUtil;
+import com.geektcp.alpha.console.common.portal.util.SecurityContextUtil;
+import com.geektcp.alpha.console.common.portal.vo.SysSettingMenuVO;
+import com.geektcp.alpha.console.common.portal.vo.SysSettingVO;
+import com.geektcp.alpha.console.common.portal.vo.SysUserVO;
+import com.geektcp.alpha.console.common.portal.vo.TreeMenu;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;

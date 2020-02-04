@@ -1,7 +1,7 @@
 package com.geektcp.alpha.console.portal.config;
 
 import com.geektcp.alpha.console.common.core.bean.config.FilterIgnorePropertiesConfig;
-import com.github.vole.portal.common.interceptor.GlobalInterceptor;
+import com.geektcp.alpha.console.common.portal.interceptor.GlobalInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;

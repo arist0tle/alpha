@@ -1,4 +1,4 @@
-package com.github.vole.portal.common.util;
+package com.geektcp.alpha.console.common.portal.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

@@ -1,7 +1,7 @@
 package com.geektcp.alpha.console.mps.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.github.vole.portal.common.controller.AbstractController;
+import com.geektcp.alpha.console.common.portal.controller.AbstractController;
 import com.geektcp.alpha.console.mps.model.entity.Permission;
 import com.geektcp.alpha.console.mps.service.PermissionService;
 import org.apache.commons.lang3.StringUtils;

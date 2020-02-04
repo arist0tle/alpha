@@ -1,4 +1,4 @@
-package com.github.vole.portal.common.util;
+package com.geektcp.alpha.console.common.portal.util;
 
 import com.geektcp.alpha.console.common.passport.auth.PassportAuthentication;
 import lombok.extern.slf4j.Slf4j;

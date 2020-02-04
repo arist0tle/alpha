@@ -1,4 +1,4 @@
-package com.github.vole.gateway.service;
+package com.geektcp.alpha.console.gateway.service;
 
 import org.springframework.security.core.Authentication;
 

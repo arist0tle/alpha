@@ -14,7 +14,7 @@ public class AccessTokenConverter extends JwtAccessTokenConverter {
     @Override
     public Map<String, ?> convertAccessToken(OAuth2AccessToken token, OAuth2Authentication authentication) {
         Map<String, Object> representation = (Map<String, Object>) super.convertAccessToken(token, authentication);
-        representation.put("license", SecurityConstants.Vole_LICENSE);
+        representation.put("license", SecurityConstants.Alpha_LICENSE);
         return representation;
     }
 

@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: vole-turbine
+    name: alpha-turbine
 
 eureka:
   instance:
@@ -25,7 +25,7 @@ management:
 
 
 turbine:
-  app-config: vole-mps,vole-demo,vole-passport,vole-auth,vole-gateway,vole-portal,vole-portal-data
+  app-config: alpha-mps,alpha-demo,alpha-passport,alpha-auth,alpha-gateway,alpha-portal,alpha-portal-data
   aggregator:
     # turbine聚集数据的粒度
     clusterConfig: default

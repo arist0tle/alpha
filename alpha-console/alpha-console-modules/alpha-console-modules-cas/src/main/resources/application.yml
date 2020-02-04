@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: vole-casclient-service
+    name: alpha-casclient-service
 
 security:
   cas:

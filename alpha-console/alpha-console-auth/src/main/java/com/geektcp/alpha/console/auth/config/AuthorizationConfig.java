@@ -125,15 +125,15 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
      * tokenstore 定制化处理
      *
      * @return TokenStore
-     * 1. 如果使用的 redis-cluster 模式请使用 VoleRedisTokenStore
-     * VoleRedisTokenStore tokenStore = new VoleRedisTokenStore();
+     * 1. 如果使用的 redis-cluster 模式请使用 AlphaRedisTokenStore
+     * AlphaRedisTokenStore tokenStore = new AlphaRedisTokenStore();
      * tokenStore.setRedisTemplate(redisTemplate);
      */
     @Bean
     public TokenStore redisTokenStore() {
-        //VoleRedisTokenStore tokenStore = new VoleRedisTokenStore(redisConnectionFactory);
+        //AlphaRedisTokenStore tokenStore = new AlphaRedisTokenStore(redisConnectionFactory);
         //tokenStore.setPrefix(SecurityConstants.VOLE_PREFIX);
-        VoleRedisTokenStore tokenStore = new VoleRedisTokenStore();
+        AlphaRedisTokenStore tokenStore = new AlphaRedisTokenStore();
         tokenStore.setRedisTemplate(redisTemplate(redisConnectionFactory));
         return tokenStore;
     }
@@ -147,7 +147,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     public TokenEnhancer tokenEnhancer() {
         return (accessToken, authentication) -> {
             final Map<String, Object> additionalInfo = new HashMap<>(2);
-            additionalInfo.put("license", SecurityConstants.Vole_LICENSE);
+            additionalInfo.put("license", SecurityConstants.Alpha_LICENSE);
             UserDetailsImpl user = (UserDetailsImpl) authentication.getUserAuthentication().getPrincipal();
             if (user != null) {
                 additionalInfo.put("userId", user.getUserId());

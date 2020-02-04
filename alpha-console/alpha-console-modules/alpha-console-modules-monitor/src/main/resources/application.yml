@@ -1,6 +1,6 @@
 spring:
   application:
-    name: vole-monitor
+    name: alpha-monitor
   security:
     user:
       name: admin

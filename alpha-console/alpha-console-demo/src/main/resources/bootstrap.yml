@@ -1,13 +1,13 @@
 spring:
   application:
-    name: vole-demo
+    name: alpha-demo
   profiles:
     active: dev
   cloud:
     config:
       fail-fast: true
       discovery:
-        service-id: vole-config-server
+        service-id: alpha-config-server
         enabled: true
       profile: ${spring.profiles.active}
 

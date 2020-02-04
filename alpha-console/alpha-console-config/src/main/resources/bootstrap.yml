@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: vole-config-server
+    name: alpha-config-server
   profiles:
     active: native
   cloud:

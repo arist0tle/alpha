@@ -11,14 +11,14 @@ server:
 
 spring:
   application:
-    name: vole-demo
+    name: alpha-demo
   profiles:
     active: dev
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: root
-    url: jdbc:mysql://thyserver:63306/vole?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://thyserver:63306/alpha?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
 
 ignore:
   urls:

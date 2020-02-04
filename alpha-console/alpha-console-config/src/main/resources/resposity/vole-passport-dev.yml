@@ -4,7 +4,7 @@ server:
     session:
       persistent: false
       cookie:
-        name: vole-passport
+        name: alpha-passport
         http-only: true
 
 # datasoure默认使用JDBC
@@ -13,7 +13,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: root
-    url: jdbc:mysql://thyserver:63306/vole?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://thyserver:63306/alpha?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
   freemarker:
     allow-request-override: false
     allow-session-override: false

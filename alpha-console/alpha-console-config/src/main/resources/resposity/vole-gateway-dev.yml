@@ -6,7 +6,7 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
       username: root
       password: root
-      url: jdbc:mysql://thyserver:63306/vole?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://thyserver:63306/alpha?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
 
 #spring:
 #  zipkin:
@@ -22,16 +22,16 @@ zuul:
     connect-timeout-millis: 1000
     socket-timeout-millis: 1000
   ratelimit:
-    key-prefix: vole-ratelimite
+    key-prefix: alpha-ratelimite
     enabled: true
     repository: REDIS
     behind-proxy: true
     policies:
-      vole-mps:
+      alpha-mps:
         limit: 100
         quota: 100
         refresh-interval: 3
-      vole-demo:
+      alpha-demo:
         limit: 100
         quota: 100
         refresh-interval: 3
@@ -40,7 +40,7 @@ zuul:
 security:
   oauth2:
     client:
-      client-id: vole
+      client-id: alpha
       client-secret: 123456
     resource:
       jwt:
@@ -61,5 +61,5 @@ ignore:
 ribbon:
   eager-load:
     enabled: true
-    clients: vole-auth,vole-mps-service,vole-demo-service
+    clients: alpha-auth,alpha-mps-service,alpha-demo-service
 

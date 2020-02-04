@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS vole;
-CREATE DATABASE vole;
-USE vole;
+DROP DATABASE IF EXISTS alpha;
+CREATE DATABASE alpha;
+USE alpha;
 
 SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -66,7 +66,7 @@ CREATE TABLE `member_0` (
 -- Records of member_0
 -- ----------------------------
 BEGIN;
-INSERT INTO `member_0` VALUES (1067629916525072386, 'vole', '{bcrypt}$2a$10$YCnmdlVnNsXdxR8t7glNeO5lPlDpbEijuFHrkcT13KcbqXsEVUqAC', '18512582267', NULL, '2018-11-28 12:02:52', NULL, '0');
+INSERT INTO `member_0` VALUES (1067629916525072386, 'alpha', '{bcrypt}$2a$10$YCnmdlVnNsXdxR8t7glNeO5lPlDpbEijuFHrkcT13KcbqXsEVUqAC', '18512582267', NULL, '2018-11-28 12:02:52', NULL, '0');
 COMMIT;
 
 -- ----------------------------
@@ -143,7 +143,7 @@ CREATE TABLE `oauth_client_details` (
 -- Records of oauth_client_details
 -- ----------------------------
 BEGIN;
-INSERT INTO `oauth_client_details` VALUES (1, 'vole', NULL, '{bcrypt}$2a$10$zqgaMTf2VSHXjIV28CrID.fgN1bGd73VTwLqvmTqHNak79nrRNz7W', 'server', 'client,password', NULL, NULL, NULL, NULL, NULL, 'true');
+INSERT INTO `oauth_client_details` VALUES (1, 'alpha', NULL, '{bcrypt}$2a$10$zqgaMTf2VSHXjIV28CrID.fgN1bGd73VTwLqvmTqHNak79nrRNz7W', 'server', 'client,password', NULL, NULL, NULL, NULL, NULL, 'true');
 COMMIT;
 
 -- ----------------------------
@@ -291,9 +291,9 @@ CREATE TABLE `sys_zuul_route` (
 -- Records of sys_zuul_route
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_zuul_route` VALUES (3, '/demo/**', 'vole-demo', '', '1', '1', '1', '', '2018-05-17 14:09:06', '2018-12-03 15:15:59', '0');
-INSERT INTO `sys_zuul_route` VALUES (4, '/mps/**', 'vole-mps', '', '1', '1', '1', '', '2018-05-21 11:40:38', '2018-12-03 15:16:16', '0');
-INSERT INTO `sys_zuul_route` VALUES (5, '/auth/**', 'vole-auth', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-10-29 21:25:46', '0');
+INSERT INTO `sys_zuul_route` VALUES (3, '/demo/**', 'alpha-demo', '', '1', '1', '1', '', '2018-05-17 14:09:06', '2018-12-03 15:15:59', '0');
+INSERT INTO `sys_zuul_route` VALUES (4, '/mps/**', 'alpha-mps', '', '1', '1', '1', '', '2018-05-21 11:40:38', '2018-12-03 15:16:16', '0');
+INSERT INTO `sys_zuul_route` VALUES (5, '/auth/**', 'alpha-auth', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-10-29 21:25:46', '0');
 COMMIT;
 
 -- ----------------------------

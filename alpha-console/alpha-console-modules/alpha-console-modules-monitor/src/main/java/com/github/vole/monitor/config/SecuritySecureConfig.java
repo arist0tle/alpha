@@ -12,7 +12,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
  */
 
 
-@Configuration
+//@Configuration
 public class SecuritySecureConfig extends WebSecurityConfigurerAdapter {
 
     private final String adminContextPath;

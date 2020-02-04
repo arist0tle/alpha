@@ -3,7 +3,7 @@
 <mapper namespace="com.geektcp.alpha.portal.mapper.SysUserMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.geektcp.alpha.portal.model.entity.SysUser">
+	<resultMap id="BaseResultMap" type="com.geektcp.alpha.console.portal.model.entity.SysUser">
 		<id column="user_id" property="id"/>
 		<result column="username" property="username"/>
 		<result column="password" property="password"/>

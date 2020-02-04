@@ -3,7 +3,7 @@
 <mapper namespace="com.geektcp.alpha.portal.mapper.SysSettingMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.geektcp.alpha.portal.model.entity.SysSetting">
+	<resultMap id="BaseResultMap" type="com.geektcp.alpha.console.portal.model.entity.SysSetting">
 		<id column="sys_id" property="id" />
 		<result column="sys_name" property="sysName" />
 		<result column="sys_sub_name" property="sysSubName" />

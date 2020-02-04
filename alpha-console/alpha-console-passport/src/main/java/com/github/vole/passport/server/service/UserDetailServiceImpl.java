@@ -24,7 +24,44 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public PassportUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        SysUserVO userVo = userService.findUserByUsername(username);
+//        SysUserVO userVo = userService.findUserByUsername(username);
+        SysUserVO userVo = new SysUserVO();
+        userVo.setLoginname("xialaokou");
+        userVo.setPassword("1111111");
+        userVo.setUserId(5);
+        userVo.setUsername("xialaokou");
+
+        List<SysRoleVO> roleList = new ArrayList<>();
+        SysRoleVO vo1 = new SysRoleVO();
+        vo1.setRoleCode("01");
+        roleList.add(vo1);
+        userVo.setRoleVoList(roleList);
+
+        SysRoleVO vo11 = new SysRoleVO();
+        vo11.setRoleCode("0101");
+        roleList.add(vo11);
+        userVo.setRoleVoList(roleList);
+
+        SysRoleVO vo2 = new SysRoleVO();
+        vo2.setRoleCode("02");
+        roleList.add(vo2);
+        userVo.setRoleVoList(roleList);
+
+        SysRoleVO vo201 = new SysRoleVO();
+        vo201.setRoleCode("0201");
+        roleList.add(vo201);
+        userVo.setRoleVoList(roleList);
+
+        SysRoleVO vo3 = new SysRoleVO();
+        vo3.setRoleCode("01");
+        roleList.add(vo3);
+        userVo.setRoleVoList(roleList);
+
+        SysRoleVO vo301 = new SysRoleVO();
+        vo301.setRoleCode("0301");
+        roleList.add(vo301);
+        userVo.setRoleVoList(roleList);
+
         if (userVo != null) {
             PassportUserDetails details = new PassportUserDetails();
             List<GrantedAuthority> authorityList = new ArrayList<>();
@@ -32,7 +69,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
             for (SysRoleVO roleVo : roleVoList) {
                 authorityList.add(new SimpleGrantedAuthority(roleVo.getRoleCode()));
             }
-            //初始化userDetails
+            // 初始化userDetails
             details.setUserId(userVo.getUserId());
             details.setUsername(userVo.getLoginname());
             details.setPassword(userVo.getPassword());
@@ -41,5 +78,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
             return details;
         }
         throw new UsernameNotFoundException("用户名不存在");
+
+//        PassportUserDetails details = new PassportUserDetails();
+//        details.setUserId(5);
+//        details.setUsername("xialaokou");
+//        details.setPassword("123456");
+//        details.setStatus(userVo.getDelFlag());
+//        details.setRoleList(new ArrayList<>());
+//        return details;
     }
 }

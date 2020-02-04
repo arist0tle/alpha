@@ -1,7 +1,7 @@
-package com.github.vole.passport.server.fegin;
+package com.geektcp.alpha.console.passport.fegin;
 
-import com.github.vole.passport.server.entity.vo.SysUserVO;
-import com.github.vole.passport.server.service.fallback.UserServiceFallbackImpl;
+import com.geektcp.alpha.console.passport.vo.SysUserVO;
+import com.geektcp.alpha.console.passport.service.fallback.UserServiceFallbackImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

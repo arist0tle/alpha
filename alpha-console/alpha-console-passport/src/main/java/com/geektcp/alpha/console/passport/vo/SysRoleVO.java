@@ -1,4 +1,4 @@
-package com.github.vole.passport.server.entity.vo;
+package com.geektcp.alpha.console.passport.vo;
 
 import lombok.Data;
 

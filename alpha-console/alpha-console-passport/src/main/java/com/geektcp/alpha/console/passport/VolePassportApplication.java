@@ -1,4 +1,4 @@
-package com.github.vole.passport.server;
+package com.geektcp.alpha.console.passport;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.Banner;

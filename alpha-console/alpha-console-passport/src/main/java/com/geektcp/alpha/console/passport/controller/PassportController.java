@@ -1,4 +1,4 @@
-package com.github.vole.passport.server.controller;
+package com.geektcp.alpha.console.passport.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;

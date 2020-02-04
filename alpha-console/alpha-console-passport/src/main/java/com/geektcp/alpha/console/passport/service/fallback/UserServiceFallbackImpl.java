@@ -1,7 +1,7 @@
-package com.github.vole.passport.server.service.fallback;
+package com.geektcp.alpha.console.passport.service.fallback;
 
-import com.github.vole.passport.server.entity.vo.SysUserVO;
-import com.github.vole.passport.server.fegin.UserService;
+import com.geektcp.alpha.console.passport.vo.SysUserVO;
+import com.geektcp.alpha.console.passport.fegin.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

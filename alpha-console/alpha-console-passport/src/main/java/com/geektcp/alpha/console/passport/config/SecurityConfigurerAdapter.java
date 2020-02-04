@@ -1,4 +1,4 @@
-package com.github.vole.passport.server.config;
+package com.geektcp.alpha.console.passport.config;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.MapperFeature;

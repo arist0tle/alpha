@@ -1,10 +1,10 @@
-package com.github.vole.passport.server.service;
+package com.geektcp.alpha.console.passport.service;
 
 
 import com.geektcp.alpha.console.common.passport.details.PassportUserDetails;
-import com.github.vole.passport.server.entity.vo.SysRoleVO;
-import com.github.vole.passport.server.entity.vo.SysUserVO;
-import com.github.vole.passport.server.fegin.UserService;
+import com.geektcp.alpha.console.passport.vo.SysRoleVO;
+import com.geektcp.alpha.console.passport.vo.SysUserVO;
+import com.geektcp.alpha.console.passport.fegin.UserService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -18,7 +18,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class ConsoleAuthApplication {
 
     public static void main(String[] args) {
-        log.debug("VoleAuthApplication startup main");
+        log.debug("AlphaAuthApplication startup main");
         SpringApplication application = new SpringApplication(ConsoleAuthApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);

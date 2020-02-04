@@ -14,7 +14,7 @@ public enum EnumSmsChannelTemplate {
     /**
      * 服务异常提醒
      */
-    SERVICE_STATUS_CHANGE("serviceStatusChange", "vole4Cloud");
+    SERVICE_STATUS_CHANGE("serviceStatusChange", "alpha4Cloud");
 
 
     /**

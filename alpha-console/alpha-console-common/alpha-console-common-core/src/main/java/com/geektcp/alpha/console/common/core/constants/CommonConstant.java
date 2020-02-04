@@ -15,7 +15,7 @@ public interface CommonConstant {
     /**
      * jwt签名
      */
-    String SIGN_KEY = "Vole";
+    String SIGN_KEY = "Alpha";
     /**
      * 删除
      */

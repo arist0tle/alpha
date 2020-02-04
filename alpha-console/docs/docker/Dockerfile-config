@@ -1,6 +1,6 @@
 FROM java:8-jre
 
-ADD ./jar/vole-config.jar /app/
-CMD ["java", "-Xmx200m", "-jar", "/app/vole-config.jar"]
+ADD ./jar/alpha-config.jar /app/
+CMD ["java", "-Xmx200m", "-jar", "/app/alpha-config.jar"]
 
 EXPOSE 4001

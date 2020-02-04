@@ -1,7 +1,7 @@
 FROM java:8-jre
 
-ADD ./jar/vole-gateway.jar /app/
+ADD ./jar/alpha-gateway.jar /app/
 
-CMD ["java", "-Xmx500m",  "-jar", "/app/vole-gateway.jar"]
+CMD ["java", "-Xmx500m",  "-jar", "/app/alpha-gateway.jar"]
 
 EXPOSE 9999

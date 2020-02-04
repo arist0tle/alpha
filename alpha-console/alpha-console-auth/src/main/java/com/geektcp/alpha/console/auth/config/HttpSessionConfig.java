@@ -23,7 +23,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 // 清理redis中的session任务时间cleanupCron, 设置为每过几分钟
 @Slf4j
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 3200, redisFlushMode = RedisFlushMode.ON_SAVE,
-    redisNamespace = "vole-session")
+    redisNamespace = "alpha-session")
 public class HttpSessionConfig {
 
 
@@ -39,11 +39,11 @@ public class HttpSessionConfig {
 
     /**
      * Json格式来存储（每序列化，适合∂debug）
-     * 每个会话"vole-session:session:sessions: XXX"是一个Hash数据结构，可以用Redis HASH相关的命令来查看
+     * 每个会话"alpha-session:session:sessions: XXX"是一个Hash数据结构，可以用Redis HASH相关的命令来查看
      * 查看会话key
-     * hgetall vole-session:session:sessions:20e6b651-bd4d-4402-bb00-3400055e36ea
+     * hgetall alpha-session:session:sessions:20e6b651-bd4d-4402-bb00-3400055e36ea
      * 查看该会话里的user1信息
-     * HMGET "vole-session:session:sessions:20e6b651-bd4d-4402-bb00-3400055e36ea"   sessionAttr:user1
+     * HMGET "alpha-session:session:sessions:20e6b651-bd4d-4402-bb00-3400055e36ea"   sessionAttr:user1
      * @return RedisSerializer
      */
     private RedisSerializer<Object> valueSerializer() {

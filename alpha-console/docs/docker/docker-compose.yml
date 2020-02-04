@@ -1,6 +1,6 @@
 version: '2'
 services:
-  vole-eureka:
+  alpha-eureka:
     build:
       context: ./
       dockerfile: Dockerfile-eureka
@@ -8,49 +8,49 @@ services:
     ports:
       - 1025:1025
 
-  vole-config:
+  alpha-config:
     links:
-      - vole-eureka:eureka
+      - alpha-eureka:eureka
     build:
       context: ./
       dockerfile: Dockerfile-config
     restart: always
 
-  vole-portal-data:
+  alpha-portal-data:
     links:
-      - vole-eureka:eureka
+      - alpha-eureka:eureka
     build:
       context: ./
       dockerfile: Dockerfile-portal-data
     restart: always
 
-  vole-portal:
+  alpha-portal:
     links:
-      - vole-eureka:eureka
+      - alpha-eureka:eureka
     build:
       context: ./
       dockerfile: Dockerfile-portal
     restart: always
 
-  vole-passport:
+  alpha-passport:
     links:
-      - vole-eureka:eureka
+      - alpha-eureka:eureka
     build:
       context: ./
       dockerfile: Dockerfile-passport
     restart: always
 
-  vole-mps:
+  alpha-mps:
     links:
-      - vole-eureka:eureka
+      - alpha-eureka:eureka
     build:
       context: ./
       dockerfile: Dockerfile-mps
     restart: always
 
-  vole-auth:
+  alpha-auth:
     links:
-      - vole-eureka:eureka
+      - alpha-eureka:eureka
     build:
       context: ./
       dockerfile: Dockerfile-auth
@@ -58,10 +58,10 @@ services:
     ports:
       - 3000:3000
 
-  vole-gateway:
+  alpha-gateway:
     links:
-      - vole-eureka:eureka
-      - vole-auth:auth
+      - alpha-eureka:eureka
+      - alpha-auth:auth
     build:
       context: ./
       dockerfile: Dockerfile-gateway

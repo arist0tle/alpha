@@ -7,6 +7,6 @@ spring:
 
     jedis:
       pool:
-        max-idle: 8
-        min-idle: 8
-        max-active:4
+        max-idle: 50
+        min-idle: 5
+        max-active: 200

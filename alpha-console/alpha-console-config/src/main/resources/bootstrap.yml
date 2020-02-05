@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: alpha-config-server
+    name: alpha-console-config
   profiles:
     active: native
   cloud:

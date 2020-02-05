@@ -1,6 +1,6 @@
 spring:
   application:
-    name: alpha-monitor
+    name: alpha-console-monitor
   security:
     user:
       name: admin

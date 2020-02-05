@@ -1,6 +1,6 @@
 spring:
   application:
-    name: alpha-auth
+    name: alpha-console-auth
   profiles:
     active: dev
   cloud:

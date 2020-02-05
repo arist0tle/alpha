@@ -1,13 +1,13 @@
 spring:
   application:
-    name: alpha-portal
+    name: alpha-console-portal
   profiles:
     active: dev
   cloud:
     config:
       fail-fast: true
       discovery:
-        service-id: alpha-config-server
+        service-id: alpha-console-config
         enabled: true
       profile: ${spring.profiles.active}
 

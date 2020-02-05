@@ -1,6 +1,6 @@
 spring:
   application:
-    name: alpha-portal-data
+    name: alpha-console-data
   profiles:
     active: dev
   cloud:

@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: alpha-turbine
+    name: alpha-console-turbine
 
 eureka:
   instance:

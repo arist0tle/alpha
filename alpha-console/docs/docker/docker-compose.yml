@@ -1,6 +1,6 @@
 version: '2'
 services:
-  alpha-eureka:
+  alpha-console-eureka:
     build:
       context: ./
       dockerfile: Dockerfile-eureka
@@ -8,49 +8,49 @@ services:
     ports:
       - 1025:1025
 
-  alpha-config:
+  alpha-console-config:
     links:
-      - alpha-eureka:eureka
+      - alpha-console-eureka:eureka
     build:
       context: ./
       dockerfile: Dockerfile-config
     restart: always
 
-  alpha-portal-data:
+  alpha-console-data:
     links:
-      - alpha-eureka:eureka
+      - alpha-console-eureka:eureka
     build:
       context: ./
       dockerfile: Dockerfile-portal-data
     restart: always
 
-  alpha-portal:
+  alpha-console-portal:
     links:
-      - alpha-eureka:eureka
+      - alpha-console-eureka:eureka
     build:
       context: ./
       dockerfile: Dockerfile-portal
     restart: always
 
-  alpha-passport:
+  alpha-console-passport:
     links:
-      - alpha-eureka:eureka
+      - alpha-console-eureka:eureka
     build:
       context: ./
       dockerfile: Dockerfile-passport
     restart: always
 
-  alpha-mps:
+  alpha-console-mps:
     links:
-      - alpha-eureka:eureka
+      - alpha-console-eureka:eureka
     build:
       context: ./
       dockerfile: Dockerfile-mps
     restart: always
 
-  alpha-auth:
+  alpha-console-auth:
     links:
-      - alpha-eureka:eureka
+      - alpha-console-eureka:eureka
     build:
       context: ./
       dockerfile: Dockerfile-auth
@@ -58,10 +58,10 @@ services:
     ports:
       - 3000:3000
 
-  alpha-gateway:
+  alpha-console-gateway:
     links:
-      - alpha-eureka:eureka
-      - alpha-auth:auth
+      - alpha-console-eureka:eureka
+      - alpha-console-auth:auth
     build:
       context: ./
       dockerfile: Dockerfile-gateway

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-@FeignClient(name = "alpha-mps", fallback = MemberServiceFallbackImpl.class)
+@FeignClient(name = "alpha-console-mps", fallback = MemberServiceFallbackImpl.class)
 public interface MemberService {
     /**
      * 通过用户名查询用户、角色信息

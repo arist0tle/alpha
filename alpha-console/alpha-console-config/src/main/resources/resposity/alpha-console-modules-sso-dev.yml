@@ -24,7 +24,7 @@ security:
 
 spring:
   application:
-    name: alpha-console-modules-sso-client
+    name: alpha-console-modules-sso
   profiles:
     active: dev
   datasource:

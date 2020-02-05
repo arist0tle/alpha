@@ -1,5 +1,5 @@
 FROM java:8-jre
 
-ADD ./jar/alpha-portal.jar /app/
+ADD ./jar/alpha-console-portal.jar /app/
 
-CMD ["java", "-Xmx500m", "-jar", "/app/alpha-portal.jar"]
+CMD ["java", "-Xmx500m", "-jar", "/app/alpha-console-portal.jar"]

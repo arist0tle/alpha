@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "alpha-portal-data", fallback = SettingServiceFallbackImpl.class )
+@FeignClient(name = "alpha-console-data", fallback = SettingServiceFallbackImpl.class )
 public interface SettingService {
 
     @RequestMapping(value="/setting/findSysByGlobalKey",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)

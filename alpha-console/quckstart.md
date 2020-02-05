@@ -4,19 +4,18 @@
 
 ## 2. [config](http://localhost:1025) 
 ```
-http://localhost:4001/alpha-auth-dev.yml
-http://localhost:4001/alpha-auth-dev.yml
-http://localhost:4001/alpha-demo-dev.yml
-http://localhost:4001/alpha-gateway-dev.yml
-http://localhost:4001/alpha-job-dev.yml
-http://localhost:4001/alpha-message-service-dev.yml
-http://localhost:4001/alpha-mps-dev.yml
-http://localhost:4001/alpha-mq-dev.yml
-http://localhost:4001/alpha-passport-dev.yml
-http://localhost:4001/alpha-portal-data-dev.yml
-http://localhost:4001/alpha-portal-dev.yml
-http://localhost:4001/alpha-sso-dev.yml
 http://localhost:4001/application-dev.yml
+http://localhost:4001/alpha-console-auth-dev.yml
+http://localhost:4001/alpha-console-demo-dev.yml
+http://localhost:4001/alpha-console-gateway-dev.yml
+http://localhost:4001/alpha-console-mps-dev.yml
+http://localhost:4001/alpha-console-mq-dev.yml
+http://localhost:4001/alpha-console-passport-dev.yml
+http://localhost:4001/alpha-console-data-dev.yml
+http://localhost:4001/alpha-console-portal-dev.yml
+http://localhost:4001/alpha-console-modules-job-dev.yml
+http://localhost:4001/alpha-console-modules-message-dev.yml
+http://localhost:4001/alpha-console-modules-sso-dev.yml
 ```
 
 ## 3. [auth](http://localhost:1025) 

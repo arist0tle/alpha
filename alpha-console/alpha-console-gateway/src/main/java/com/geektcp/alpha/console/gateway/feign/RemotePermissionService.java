@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.Set;
 
 
-@FeignClient(name = "alpha-mps", fallback = RemotePermissionServiceFallbackImpl.class)
+@FeignClient(name = "alpha-console-mps", fallback = RemotePermissionServiceFallbackImpl.class)
 public interface RemotePermissionService {
     /**
      * 通过角色名查询菜单

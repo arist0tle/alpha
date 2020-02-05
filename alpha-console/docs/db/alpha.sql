@@ -291,9 +291,9 @@ CREATE TABLE `sys_zuul_route` (
 -- Records of sys_zuul_route
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_zuul_route` VALUES (3, '/demo/**', 'alpha-demo', '', '1', '1', '1', '', '2018-05-17 14:09:06', '2018-12-03 15:15:59', '0');
-INSERT INTO `sys_zuul_route` VALUES (4, '/mps/**', 'alpha-mps', '', '1', '1', '1', '', '2018-05-21 11:40:38', '2018-12-03 15:16:16', '0');
-INSERT INTO `sys_zuul_route` VALUES (5, '/auth/**', 'alpha-auth', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-10-29 21:25:46', '0');
+INSERT INTO `sys_zuul_route` VALUES (3, '/demo/**', 'alpha-console-demo', '', '1', '1', '1', '', '2018-05-17 14:09:06', '2018-12-03 15:15:59', '0');
+INSERT INTO `sys_zuul_route` VALUES (4, '/mps/**', 'alpha-console-mps', '', '1', '1', '1', '', '2018-05-21 11:40:38', '2018-12-03 15:16:16', '0');
+INSERT INTO `sys_zuul_route` VALUES (5, '/auth/**', 'alpha-console-auth', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-10-29 21:25:46', '0');
 COMMIT;
 
 -- ----------------------------

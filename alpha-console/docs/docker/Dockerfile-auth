@@ -1,5 +1,5 @@
 FROM java:8-jre
 
-ADD ./jar/alpha-auth.jar /app/
+ADD ./jar/alpha-console-auth.jar /app/
 
-CMD ["java", "-Xmx500m", "-jar", "/app/alpha-auth.jar"]
+CMD ["java", "-Xmx500m", "-jar", "/app/alpha-console-auth.jar"]

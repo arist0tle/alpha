@@ -21,7 +21,7 @@ services:
       - alpha-console-eureka:eureka
     build:
       context: ./
-      dockerfile: Dockerfile-portal-data
+      dockerfile: Dockerfile-data
     restart: always
 
   alpha-console-portal:

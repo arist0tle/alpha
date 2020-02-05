@@ -10,4 +10,4 @@ spring:
   elasticjob:
     zookeeper:
       server-lists: 127.0.0.1:2181
-      namespace: alpha-job
+      namespace: alpha-console-job

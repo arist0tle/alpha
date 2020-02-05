@@ -1,6 +1,6 @@
 spring:
   application:
-    name: alpha-console-mq
+    name: alpha-console-modules-mq
   profiles:
     active: dev
   cloud:

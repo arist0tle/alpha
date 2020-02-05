@@ -35,7 +35,7 @@ redis:
 ribbon:
   eager-load:
     enabled: true
-    clients: alpha-auth,alpha-mps,alpha-portal-data
+    clients: alpha-console-auth,alpha-console-mps,alpha-console-data
   Httpclient:
     enabled: false
   OkHttp:

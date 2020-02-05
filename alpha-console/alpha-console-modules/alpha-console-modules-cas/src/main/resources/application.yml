@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: alpha-console-cas
+    name: alpha-console-modules-cas
 
 security:
   cas:

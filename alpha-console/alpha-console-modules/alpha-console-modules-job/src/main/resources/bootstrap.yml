@@ -1,6 +1,6 @@
 spring:
   application:
-    name: alpha-console-job
+    name: alpha-console-modules-job
   profiles:
     active: dev
   cloud:

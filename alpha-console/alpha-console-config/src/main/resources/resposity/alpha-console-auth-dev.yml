@@ -3,7 +3,7 @@ server:
   servlet:
     session:
       cookie:
-        name: alpha-auth
+        name: alpha-console-auth
         http-only: true
 # datasoure默认使用JDBC
 spring:

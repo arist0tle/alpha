@@ -11,7 +11,7 @@ server:
 
 spring:
   application:
-    name: alpha-demo
+    name: alpha-console-demo
   profiles:
     active: dev
   datasource:

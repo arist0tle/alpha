@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: alpha-console-turbine
+    name: alpha-console-modules-turbine
 
 eureka:
   instance:
@@ -25,7 +25,7 @@ management:
 
 
 turbine:
-  app-config: alpha-mps,alpha-demo,alpha-passport,alpha-auth,alpha-gateway,alpha-portal,alpha-portal-data
+  app-config: alpha-console-mps,alpha-console-demo,alpha-console-passport,alpha-console-auth,alpha-console-gateway,alpha-console-portal,alpha-console-data
   aggregator:
     # turbine聚集数据的粒度
     clusterConfig: default

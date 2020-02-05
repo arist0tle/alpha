@@ -4,7 +4,7 @@ server:
     session:
       persistent: false
       cookie:
-        name: alpha-passport
+        name: alpha-console-passport
         http-only: true
 
 # datasoure默认使用JDBC

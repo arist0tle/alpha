@@ -27,11 +27,11 @@ zuul:
     repository: REDIS
     behind-proxy: true
     policies:
-      alpha-mps:
+      alpha-console-mps:
         limit: 100
         quota: 100
         refresh-interval: 3
-      alpha-demo:
+      alpha-console-demo:
         limit: 100
         quota: 100
         refresh-interval: 3
@@ -61,5 +61,5 @@ ignore:
 ribbon:
   eager-load:
     enabled: true
-    clients: alpha-auth,alpha-mps-service,alpha-demo-service
+    clients: alpha-console-auth,alpha-console-mps,alpha-console-demo
 

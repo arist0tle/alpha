@@ -1,6 +1,6 @@
 spring:
   application:
-    name: alpha-console-sso
+    name: alpha-console-modules-sso
   profiles:
     active: dev
   cloud:

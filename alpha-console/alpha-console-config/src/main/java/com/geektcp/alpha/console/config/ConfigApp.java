@@ -12,7 +12,6 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 @EnableConfigServer
 @SpringBootApplication
 public class ConfigApp {
-
     public static void main(String[] args) {
         log.debug("AlphaConfigApplication startup main");
         SpringApplication application = new SpringApplication(ConfigApp.class);

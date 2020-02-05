@@ -28,6 +28,8 @@ Alpha 是一个基于最新的SpringCloud2.0的微服务商业开发脚手架->(
 * 支持Spring-Security的cas客户端
 * 支持FastDfs的客户端
 
+启动顺序：
+eureka > config > auth > cas client > portal-data > mps > passport > portal > gateway 
 
 ## Docker
 使用 docker-compose 部署Docker镜像

@@ -7,7 +7,7 @@ spring:
     config:
       fail-fast: true
       discovery:
-        service-id: alpha-config-server
+        service-id: alpha-console-config
         enabled: true
       profile: ${spring.profiles.active}
 

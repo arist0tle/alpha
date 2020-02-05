@@ -38,7 +38,7 @@ public class RouteConfigInitListener{
         wrapper.eq(CommonConstant.DEL_FLAG, CommonConstant.STATUS_NORMAL);
         List<SysZuulRoute> routeList = sysZuulRouteService.list(wrapper);
         if (CollectionUtils.isNotEmpty(routeList)) {
-            List<SysZuulRouteVO> routeVOS = new ArrayList<SysZuulRouteVO>();
+            List<SysZuulRouteVO> routeVOS = new ArrayList<>();
             routeList.forEach(input ->{
                 SysZuulRouteVO vo  =new SysZuulRouteVO();
                 BeanUtils.copyProperties(input,vo);

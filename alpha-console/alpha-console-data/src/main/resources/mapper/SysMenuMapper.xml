@@ -3,7 +3,7 @@
 <mapper namespace="com.geektcp.alpha.portal.data.mapper.SysMenuMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.geektcp.alpha.portal.data.model.entity.SysMenu">
+	<resultMap id="BaseResultMap" type="com.geektcp.alpha.console.data.model.entity.SysMenu">
 		<id column="menu_id" property="id" />
 		<result column="menu_name" property="menuName" />
 		<result column="parent_id" property="parentId" />
@@ -19,7 +19,7 @@
 	</resultMap>
 
 
-	<resultMap id="SysMenuVoResultMap" type="com.geektcp.alpha.portal.data.model.vo.SysMenuVO">
+	<resultMap id="SysMenuVoResultMap" type="com.geektcp.alpha.console.data.model.vo.SysMenuVO">
 		<id column="menu_id" property="id" />
 		<result column="menu_name" property="menuName" />
 		<result column="parent_id" property="parentId" />

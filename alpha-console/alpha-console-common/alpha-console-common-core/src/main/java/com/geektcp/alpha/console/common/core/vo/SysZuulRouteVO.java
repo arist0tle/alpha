@@ -2,10 +2,11 @@ package com.geektcp.alpha.console.common.core.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class SysZuulRouteVO {
+public class SysZuulRouteVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

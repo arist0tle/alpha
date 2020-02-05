@@ -3,7 +3,7 @@
 <mapper namespace="com.geektcp.alpha.portal.data.mapper.SysUserMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.geektcp.alpha.portal.data.model.entity.SysUser">
+	<resultMap id="BaseResultMap" type="com.geektcp.alpha.console.data.model.entity.SysUser">
 		<id column="user_id" property="id"/>
 		<result column="username" property="username"/>
 		<result column="password" property="password"/>
@@ -17,7 +17,7 @@
 
 
 	<!-- userVo结果集 -->
-	<resultMap id="userVoResultMap" type="com.geektcp.alpha.portal.data.model.vo.SysUserVO">
+	<resultMap id="userVoResultMap" type="com.geektcp.alpha.console.data.model.vo.SysUserVO">
 		<id column="user_id" property="userId"/>
 		<result column="loginname" property="loginname"/>
 		<result column="username" property="username"/>
@@ -27,7 +27,7 @@
 		<result column="ucreate_time" property="createTime"/>
 		<result column="uupdate_time" property="updateTime"/>
 		<result column="udel_flag" property="delFlag"/>
-		<collection property="roleVoList" ofType="com.geektcp.alpha.portal.data.model.vo.SysRoleVO">
+		<collection property="roleVoList" ofType="com.geektcp.alpha.console.data.model.vo.SysRoleVO">
 			<id column="role_id" property="roleId" />
 			<result column="role_name" property="roleName" />
 			<result column="role_code" property="roleCode" />

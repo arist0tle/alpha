@@ -3,7 +3,7 @@
 <mapper namespace="com.geektcp.alpha.portal.data.mapper.SysRoleMenuMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.geektcp.alpha.portal.data.model.entity.SysRoleMenu">
+	<resultMap id="BaseResultMap" type="com.geektcp.alpha.console.data.model.entity.SysRoleMenu">
 		<id column="id" property="id" />
 		<result column="role_id" property="roleId" />
 		<result column="menu_id" property="menuId" />

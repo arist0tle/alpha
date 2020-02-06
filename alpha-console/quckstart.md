@@ -1,3 +1,17 @@
+# 环境准备
+127.0.0.1    alpha-console-auth
+127.0.0.1    alpha-console-demo
+127.0.0.1    alpha-console-gateway
+127.0.0.1    alpha-console-mps
+127.0.0.1    alpha-console-mq
+127.0.0.1    alpha-console-passport
+127.0.0.1    alpha-console-data
+127.0.0.1    alpha-console-portal
+127.0.0.1    alpha-console-modules-job
+127.0.0.1    alpha-console-modules-message
+127.0.0.1    alpha-console-modules-sso
+
+
 # 启动顺序
 
 ## 1. [eureka](http://localhost:1025) 

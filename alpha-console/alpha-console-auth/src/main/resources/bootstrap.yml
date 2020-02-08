@@ -20,7 +20,6 @@ eureka:
     service-url:
       defaultZone: http://localhost:1025/eureka/
 
-#开启debug信息
-#logging:
-#  level:
-#    org.springframework: DEBUG
+logging:
+  level:
+    org.springframework: DEBUG

@@ -25,7 +25,7 @@
     </div>
     <footer>
       <p>support by: alpha</p>
-      <p>email: <a href="mailto:61444803@qq.com">61444803@qq.com</a>.</p>
+      <p>email: <a href="mailto:1379205553@qq.com">1379205553@qq.com</a>.</p>
     </footer>
   </body>
 </html>

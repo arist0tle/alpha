@@ -3,6 +3,7 @@ package com.geektcp.alpha.console.mps.model.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 
 
 @Data
+@TableName("member_0")
 public class Member extends Model<Member> {
 
     private static final long serialVersionUID = 1L;

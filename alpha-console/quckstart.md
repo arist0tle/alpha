@@ -33,6 +33,7 @@ http://localhost:4001/alpha-console-modules-sso-dev.yml
 ```
 
 ## 3. [auth](http://localhost:1025) 
+http://localhost:7001/authentication/form?username=xialaokou&password=123456
 
 ## 4. [cas](http://localhost:1025) 
 

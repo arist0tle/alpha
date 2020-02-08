@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>alpha-sys-auth</module>
+        <module>alpha-sys-api</module>
     </modules>
 
 

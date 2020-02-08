@@ -17,7 +17,6 @@
     <version>1.0</version>
     <modules>
         <module>alpha-common</module>
-        <module>alpha-api</module>
         <module>alpha-spring</module>
         <module>alpha-algorithm</module>
         <module>alpha-db</module>

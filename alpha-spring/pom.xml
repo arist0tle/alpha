@@ -15,5 +15,6 @@
     <modules>
         <module>alpha-spring-shiro</module>
         <module>alpha-spring-aop</module>
+        <module>alpha-spring-security</module>
     </modules>
 </project>

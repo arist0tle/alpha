@@ -33,7 +33,7 @@ public class UserQo {
         this.userDescription = userDescription;
     }
 
-    @Column(name = "password1")
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }

@@ -8,11 +8,15 @@ import org.springframework.stereotype.Service;
 /**
  * This service will reload user information from database.
  */
-@Service("databaseUserDetailService")
-public class DatabaseUserDetailService implements UserDetailsService {
+@Service("myUserDetailService")
+public class MyUserDetailService implements UserDetailsService {
+
+    private UserService userService;
 
     @Autowired
-    private UserService userService;
+    public MyUserDetailService(UserService userService){
+        this.userService = userService;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String userName) {

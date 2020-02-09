@@ -15,6 +15,7 @@ import java.io.IOException;
  */
 @Service("authenticationFailHandler")
 public class AuthenticationFailHandler extends SimpleUrlAuthenticationFailureHandler {
+
     @Override
     public void onAuthenticationFailure(HttpServletRequest request,
                                         HttpServletResponse response,

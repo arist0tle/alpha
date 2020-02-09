@@ -30,7 +30,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    private AuthParameters authParameters;
+    private JwtTokenProvider.AuthParameters authParameters;
 
     @Autowired
     private UserService userService;

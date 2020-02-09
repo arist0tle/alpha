@@ -37,26 +37,17 @@ public class UserService {
         return userVo;
     }
 
-    /**
-     * Get {@link UserDetails} by user name.
-     * @return
-     */
     @Transactional
     public UserDetails getUserDetailByUserName(String username){
-
         UserQo userQo = this.userRepository.findByUserName(username);
-
         if(userQo == null){
-            //throw exception inform front end not this user
             throw new UsernameNotFoundException("user + " + username + "not found.");
         }
-
         List<String> roleList = this.userRepository.queryUserOwnedRoleCodes(username);
         List<GrantedAuthority> authorities = new ArrayList<>();
         roleList.forEach(role ->
                 authorities.add( new SimpleGrantedAuthority(role) )
         );
-
         return new User(username, userQo.getPassword(),authorities);
     }
 }

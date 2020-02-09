@@ -2,42 +2,36 @@ package com.geektcp.alpha.spring.security.auth;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Component
+@Slf4j
 public class JwtTokenProvider {
 
-    Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
-
-    @Autowired
     private AuthParameters authParameters;
 
-    /**
-     * Generate token for user login.
-     *
-     * @param authentication
-     * @return return a token string.
-     */
-    public String createJwtToken(Authentication authentication) {
-        //user name
-        String username = ((org.springframework.security.core.userdetails
-                .User) authentication.getPrincipal()).getUsername();
-        //expire time
-        Date expireTime = new Date(System.currentTimeMillis() + authParameters.getTokenExpiredMs());
+    @Autowired
+    public JwtTokenProvider(AuthParameters authParameters){
+        this.authParameters = authParameters;
+    }
 
+    public String createJwtToken(Authentication authentication) {
+        String username = ((org.springframework.security.core.userdetails.User) authentication.getPrincipal()).getUsername();
+        Date expireTime = new Date(System.currentTimeMillis() + authParameters.getTokenExpiredMs());
         String token = Jwts.builder()
                 .setSubject(username)
                 .setExpiration(expireTime)
                 .setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS512, authParameters.getJwtTokenSecret())
                 .compact();
-        logger.info("token: {}", token);
+        log.info("token: {}", token);
         return token;
     }
 
@@ -49,13 +43,39 @@ public class JwtTokenProvider {
      */
     public boolean validateToken(String token) {
         try {
-            logger.info("check authorization");
+            log.info("check authorization");
             Jwts.parser().setSigningKey(authParameters.getJwtTokenSecret()).parseClaimsJws(token);
-            logger.info("check authorization success!");
+            log.info("check authorization success!");
             return true;
         } catch (Exception ex) {
-            logger.error("validate failed : {}", ex.getMessage());
+            log.error("validate failed : {}", ex.getMessage());
             return false;
+        }
+    }
+
+    @Component
+    @PropertySource("classpath:auth.properties")
+    public static class AuthParameters {
+
+        private String jwtTokenSecret;
+        private long tokenExpiredMs;
+
+         String getJwtTokenSecret() {
+            return jwtTokenSecret;
+        }
+
+        @Value("${jwtTokenSecret}")
+        public void setJwtTokenSecret(String jwtTokenSecret) {
+            this.jwtTokenSecret = jwtTokenSecret;
+        }
+
+         long getTokenExpiredMs() {
+            return tokenExpiredMs;
+        }
+
+        @Value("${tokenExpiredMs}")
+        public void setTokenExpiredMs(long tokenExpiredMs) {
+            this.tokenExpiredMs = tokenExpiredMs;
         }
     }
 }

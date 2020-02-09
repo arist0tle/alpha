@@ -14,9 +14,11 @@ import java.io.IOException;
  */
 @Service("authenticationEntryPointImpl")
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
+
     @Override
     public void commence(HttpServletRequest httpServletRequest,
                          HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException {
         httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
     }
+
 }

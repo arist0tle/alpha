@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Shuangyao
+ * Created by tanghaiyang
  * 16:34 2018/9/9
  */
 @Service("authenticationEntryPointImpl")

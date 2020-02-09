@@ -30,14 +30,14 @@ public class JwtTokenProvider {
                 .User) authentication.getPrincipal()).getUsername();
         //expire time
         Date expireTime = new Date(System.currentTimeMillis() + authParameters.getTokenExpiredMs());
-        //create token
+
         String token = Jwts.builder()
                 .setSubject(username)
                 .setExpiration(expireTime)
                 .setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS512, authParameters.getJwtTokenSecret())
                 .compact();
-
+        logger.info("token: {}", token);
         return token;
     }
 
@@ -48,13 +48,13 @@ public class JwtTokenProvider {
      * @param token a jws string.
      */
     public boolean validateToken(String token) {
-        String VALIDATE_FAILED = "validate failed : ";
-        //ExpiredJwtException, UnsupportedJwtException, MalformedJwtException, SignatureException, IllegalArgumentException
         try {
+            logger.info("check authorization");
             Jwts.parser().setSigningKey(authParameters.getJwtTokenSecret()).parseClaimsJws(token);
+            logger.info("check authorization success!");
             return true;
         } catch (Exception ex) {
-            logger.error(VALIDATE_FAILED + ex.getMessage());
+            logger.error("validate failed : {}", ex.getMessage());
             return false;
         }
     }

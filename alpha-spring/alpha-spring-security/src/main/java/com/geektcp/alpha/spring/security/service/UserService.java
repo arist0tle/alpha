@@ -6,6 +6,7 @@ import com.geektcp.alpha.spring.security.domain.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -13,12 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-/**
- * Created by Shuangyao
- * 23:08 2018/9/6
- */
 @Service
 public class UserService {
 
@@ -31,7 +27,6 @@ public class UserService {
 
     @Transactional
     public UserVo getUserByUserName(String userName){
-
         UserVo userVo = new UserVo();
         UserQo userQo = userRepository.findByUserName(userName);
         userVo.setUserName(userQo.getUserName());
@@ -57,10 +52,11 @@ public class UserService {
         }
 
         List<String> roleList = this.userRepository.queryUserOwnedRoleCodes(username);
-        List<GrantedAuthority> authorities = roleList.stream()
-                .map(role -> new SimpleGrantedAuthority(role)).collect(Collectors.toList());
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        roleList.forEach(role ->
+                authorities.add( new SimpleGrantedAuthority(role) )
+        );
 
-        return new org.springframework.security.core.userdetails
-                .User(username, userQo.getPassword(),authorities);
+        return new User(username, userQo.getPassword(),authorities);
     }
 }

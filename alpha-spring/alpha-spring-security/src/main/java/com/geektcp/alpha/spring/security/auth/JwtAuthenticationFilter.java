@@ -16,9 +16,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
- * Created by Shuangyao
+ * Created by tanghaiyang
  * 22:55 2018/10/15
  */
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -40,21 +41,25 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     //4.把用户信息以UserDetail形式放进SecurityContext以备整个请求过程使用。
     // （例如哪里需要判断用户权限是否足够时可以直接从SecurityContext取出去check
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
             throws ServletException, IOException {
         String token = getJwtFromRequest(request);
-
-        if (token != null && jwtTokenProvider.validateToken(token)) {
+        if(Objects.isNull(token)){
+            logger.error("Token is null: {}", request.getParameter("username"));
+        }
+        if (jwtTokenProvider.validateToken(token)) {
             String username = getUsernameFromJwt(token, authParameters.getJwtTokenSecret());
-
             UserDetails userDetails = userService.getUserDetailByUserName(username);
-
             Authentication authentication = new UsernamePasswordAuthenticationToken(
-                    userDetails, null, userDetails.getAuthorities());
+                    userDetails,
+                    null,
+                    userDetails.getAuthorities()
+            );
             SecurityContextHolder.getContext().setAuthentication(authentication);
-
         } else {
-            logger.error(request.getParameter("username") + " :Token is null");
+            logger.error("no authorization: {}", request.getParameter("username"));
         }
         super.doFilter(request, response, filterChain);
     }
@@ -66,9 +71,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
      * @return token or null.
      */
     private String getJwtFromRequest(HttpServletRequest request) {
-        String token = request.getHeader("Authorization");
-        if (token != null && token.startsWith("Bearer")) {
-            return token.replace("Bearer ", "");
+        String tokenPrefix = "Bearer ";
+        String headName = "Authorization";
+        String token = request.getHeader(headName);
+        if (token != null && token.startsWith(tokenPrefix)) {
+            return token.replace(tokenPrefix, "");
         }
         return null;
     }

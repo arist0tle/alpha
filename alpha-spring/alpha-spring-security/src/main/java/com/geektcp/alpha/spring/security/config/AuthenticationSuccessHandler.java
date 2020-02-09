@@ -17,8 +17,12 @@ import java.io.IOException;
 @Service("authenticationSuccessHandler")
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-    @Autowired
     private JwtTokenProvider tokenProvider;
+
+    @Autowired
+    public AuthenticationSuccessHandler(JwtTokenProvider tokenProvider){
+        this.tokenProvider = tokenProvider;
+    }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response

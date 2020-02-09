@@ -1,4 +1,6 @@
-package com.geektcp.alpha.spring.security.domain;
+package com.geektcp.alpha.spring.security.domain.qo;
+
+import com.geektcp.alpha.spring.security.domain.qo.UserQo;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "sys_role")
-public class UserRole {
+public class UserRoleVo {
 
     private String roleCode;
 
@@ -16,7 +18,7 @@ public class UserRole {
 
     private String roleDescription;
 
-    private List<User> users;
+    private List<UserQo> userQos;
 
     @Id
     @Column(name = "role_code")
@@ -47,11 +49,11 @@ public class UserRole {
     }
 
     @ManyToMany(mappedBy = "roles")
-    public List<User> getUsers() {
-        return users;
+    public List<UserQo> getUserQos() {
+        return userQos;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUserQos(List<UserQo> userQos) {
+        this.userQos = userQos;
     }
 }

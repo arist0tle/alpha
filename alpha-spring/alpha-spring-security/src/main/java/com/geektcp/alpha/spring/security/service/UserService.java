@@ -1,8 +1,8 @@
 package com.geektcp.alpha.spring.security.service;
 
-import com.geektcp.alpha.spring.security.domain.User;
+import com.geektcp.alpha.spring.security.domain.qo.UserQo;
 import com.geektcp.alpha.spring.security.repository.UserRepository;
-import com.geektcp.alpha.spring.security.valueobject.UserView;
+import com.geektcp.alpha.spring.security.domain.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,16 +30,16 @@ public class UserService {
     }
 
     @Transactional
-    public UserView getUserByUserName(String userName){
+    public UserVo getUserByUserName(String userName){
 
-        UserView userView = new UserView();
-        User user = userRepository.findByUserName(userName);
-        userView.setUserName(user.getUserName());
-        userView.setUserDesc(user.getUserDescription());
+        UserVo userVo = new UserVo();
+        UserQo userQo = userRepository.findByUserName(userName);
+        userVo.setUserName(userQo.getUserName());
+        userVo.setUserDesc(userQo.getUserDescription());
         List<String> roleCodes = new ArrayList<>();
-        user.getRoles().forEach(role -> roleCodes.add(role.getRoleCode()));
-        userView.setRoleCodes(roleCodes);
-        return userView;
+        userQo.getRoles().forEach(role -> roleCodes.add(role.getRoleCode()));
+        userVo.setRoleCodes(roleCodes);
+        return userVo;
     }
 
     /**
@@ -49,9 +49,9 @@ public class UserService {
     @Transactional
     public UserDetails getUserDetailByUserName(String username){
 
-        User user = this.userRepository.findByUserName(username);
+        UserQo userQo = this.userRepository.findByUserName(username);
 
-        if(user == null){
+        if(userQo == null){
             //throw exception inform front end not this user
             throw new UsernameNotFoundException("user + " + username + "not found.");
         }
@@ -61,6 +61,6 @@ public class UserService {
                 .map(role -> new SimpleGrantedAuthority(role)).collect(Collectors.toList());
 
         return new org.springframework.security.core.userdetails
-                .User(username,user.getPassword(),authorities);
+                .User(username, userQo.getPassword(),authorities);
     }
 }

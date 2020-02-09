@@ -1,4 +1,4 @@
-package com.geektcp.alpha.spring.security.valueobject;
+package com.geektcp.alpha.spring.security.domain.vo;
 
 import lombok.Data;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * 23:10 2018/9/6
  */
 @Data
-public class UserView {
+public class UserVo {
 
     private String userName;
     private String userDesc;

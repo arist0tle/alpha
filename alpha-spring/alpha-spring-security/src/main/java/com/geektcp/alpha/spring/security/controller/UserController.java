@@ -1,7 +1,7 @@
 package com.geektcp.alpha.spring.security.controller;
 
 import com.geektcp.alpha.spring.security.service.UserService;
-import com.geektcp.alpha.spring.security.valueobject.UserView;
+import com.geektcp.alpha.spring.security.domain.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +22,7 @@ public class UserController {
 
     @GetMapping(value = "/user")
     @PreAuthorize("hasAuthority('admin')")
-    public UserView getUserByName(@RequestParam("userName") String userName) {
+    public UserVo getUserByName(@RequestParam("userName") String userName) {
         return userService.getUserByUserName(userName);
     }
 }

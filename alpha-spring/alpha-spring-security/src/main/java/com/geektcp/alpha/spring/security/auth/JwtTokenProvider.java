@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -23,7 +24,8 @@ public class JwtTokenProvider {
     }
 
     public String createJwtToken(Authentication authentication) {
-        String username = ((org.springframework.security.core.userdetails.User) authentication.getPrincipal()).getUsername();
+        User userObject = (User)authentication.getPrincipal();
+        String username = userObject.getUsername();
         Date expireTime = new Date(System.currentTimeMillis() + authParameters.getTokenExpiredMs());
         String token = Jwts.builder()
                 .setSubject(username)

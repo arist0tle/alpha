@@ -12,3 +12,7 @@ http://localhost:8083/orderSystem/order/list
 https://www.cnblogs.com/cjsblog/p/10548022.html
 https://zoctan.github.io/2018/06/27/Java/OAuth2/OAuth2%20SSO/
 ````
+
+# oauth2原理
+
+

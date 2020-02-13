@@ -31,13 +31,8 @@ public class SwaggerConfigure {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("MyBatis-Plus Example")
-                .description("Spring Boot整合MyBatis-Plus 3.2.0 示例")
-                .termsOfServiceUrl("https://fengwenyi.com")
-                .contact(new Contact("Erwin Feng", "https://fengwenyi.com", "xfsy_2015@163.com"))
+                .title("alpha-driver-mybatis")
                 .version("3.2.0")
-                .license("MIT-License")
-                .licenseUrl("https://mit-license.org/")
                 .build();
     }
 

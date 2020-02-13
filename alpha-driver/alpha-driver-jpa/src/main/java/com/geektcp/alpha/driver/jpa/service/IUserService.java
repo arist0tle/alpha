@@ -1,6 +1,6 @@
-package com.geektcp.alpha.spring.jpa.service;
+package com.geektcp.alpha.driver.jpa.service;
 
-import com.geektcp.alpha.spring.jpa.domain.User;
+import com.geektcp.alpha.driver.jpa.domain.User;
 
 import java.util.List;
 

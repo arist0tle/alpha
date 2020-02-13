@@ -1,4 +1,4 @@
-package com.geektcp.alpha.spring.jpa.model.po;
+package com.geektcp.alpha.driver.jpa.model.po;
 
 import com.geektcp.alpha.common.spring.model.BasePo;
 import lombok.Data;

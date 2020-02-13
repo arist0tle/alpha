@@ -1,6 +1,6 @@
-package com.geektcp.alpha.spring.jpa.repository;
+package com.geektcp.alpha.driver.jpa.repository;
 
-import com.geektcp.alpha.spring.jpa.domain.User;
+import com.geektcp.alpha.driver.jpa.domain.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;

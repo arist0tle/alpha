@@ -1,8 +1,8 @@
-package com.geektcp.alpha.spring.jpa.model.vo;
+package com.geektcp.alpha.driver.jpa.model.vo;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.geektcp.alpha.common.spring.model.BaseTreeNodeVo;
-import com.geektcp.alpha.spring.jpa.model.po.SysResourcePo;
+import com.geektcp.alpha.driver.jpa.model.po.SysResourcePo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

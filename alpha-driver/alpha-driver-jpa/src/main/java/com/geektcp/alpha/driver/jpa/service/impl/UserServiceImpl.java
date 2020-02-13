@@ -1,13 +1,13 @@
-package com.geektcp.alpha.spring.jpa.service.impl;
+package com.geektcp.alpha.driver.jpa.service.impl;
 
 import com.geektcp.alpha.common.spring.jpa.JpaBase;
-import com.geektcp.alpha.spring.jpa.domain.User;
-import com.geektcp.alpha.spring.jpa.model.po.QSysResourcePo;
-import com.geektcp.alpha.spring.jpa.model.po.QSysRoleResourcePo;
-import com.geektcp.alpha.spring.jpa.model.vo.SysResourceVo;
-import com.geektcp.alpha.spring.jpa.repository.UserJpaRepository;
-import com.geektcp.alpha.spring.jpa.repository.UserRepository;
-import com.geektcp.alpha.spring.jpa.service.IUserService;
+import com.geektcp.alpha.driver.jpa.domain.User;
+import com.geektcp.alpha.driver.jpa.model.po.QSysResourcePo;
+import com.geektcp.alpha.driver.jpa.model.po.QSysRoleResourcePo;
+import com.geektcp.alpha.driver.jpa.model.vo.SysResourceVo;
+import com.geektcp.alpha.driver.jpa.repository.UserJpaRepository;
+import com.geektcp.alpha.driver.jpa.repository.UserRepository;
+import com.geektcp.alpha.driver.jpa.service.IUserService;
 import com.querydsl.core.Tuple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;

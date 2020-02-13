@@ -1,4 +1,4 @@
-package com.geektcp.alpha.spring.jpa.model.suo;
+package com.geektcp.alpha.driver.jpa.model.suo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

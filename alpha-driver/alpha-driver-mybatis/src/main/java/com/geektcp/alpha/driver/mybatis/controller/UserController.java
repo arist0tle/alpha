@@ -1,7 +1,7 @@
-package com.geektcp.alpha.spring.jpa.controller;
+package com.geektcp.alpha.driver.mybatis.controller;
 
-import com.geektcp.alpha.spring.jpa.domain.User;
-import com.geektcp.alpha.spring.jpa.service.IUserService;
+import com.geektcp.alpha.driver.mybatis.domain.User;
+import com.geektcp.alpha.driver.mybatis.service.IUserService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

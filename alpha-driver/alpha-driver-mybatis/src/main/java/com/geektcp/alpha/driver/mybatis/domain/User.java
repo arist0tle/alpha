@@ -1,4 +1,4 @@
-package com.geektcp.alpha.spring.jpa.domain;
+package com.geektcp.alpha.driver.mybatis.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

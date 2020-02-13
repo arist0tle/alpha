@@ -1,6 +1,6 @@
-package com.geektcp.alpha.spring.jpa.service;
+package com.geektcp.alpha.driver.mybatis.service;
 
-import com.geektcp.alpha.spring.jpa.domain.User;
+import com.geektcp.alpha.driver.mybatis.domain.User;
 
 import java.util.List;
 

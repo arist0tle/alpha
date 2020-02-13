@@ -1,4 +1,4 @@
-package com.geektcp.alpha.spring.jpa.model.po;
+package com.geektcp.alpha.driver.mybatis.model.po;
 
 import com.geektcp.alpha.common.spring.model.BasePo;
 import lombok.Data;
@@ -16,11 +16,17 @@ import javax.persistence.Table;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "sys_role")
-public class SysRolePo extends BasePo {
+@Table(name = "sys_resource")
+public class SysResourcePo extends BasePo {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "parent_id")
+    private Long parentId;
+
+    @Column(name = "url")
+    private String url;
 
     @Column(name = "remark")
     private String remark;

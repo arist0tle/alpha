@@ -1,13 +1,13 @@
-package com.geektcp.alpha.spring.jpa.repository;
+package com.geektcp.alpha.driver.mybatis.repository;
 
-import com.geektcp.alpha.spring.jpa.domain.User;
+import com.geektcp.alpha.driver.mybatis.domain.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface UserRepository extends Repository<User, Long> {
+public interface UserRepository {
 
     List<User> findByNameAndAddress(String name, String address);
 

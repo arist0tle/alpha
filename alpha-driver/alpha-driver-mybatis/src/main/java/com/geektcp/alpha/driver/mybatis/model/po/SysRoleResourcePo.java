@@ -1,4 +1,4 @@
-package com.geektcp.alpha.spring.jpa.model.po;
+package com.geektcp.alpha.driver.mybatis.model.po;
 
 import lombok.Data;
 
@@ -9,17 +9,17 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-@Table(name = "sys_user_role")
-public class SysUserRolePo {
+@Table(name = "sys_role_resource")
+public class SysRoleResourcePo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "user_id")
-    private Long userId;
-
     @Column(name = "role_id")
     private Long roleId;
+
+    @Column(name = "resource_id")
+    private Long resourceId;
 
 }

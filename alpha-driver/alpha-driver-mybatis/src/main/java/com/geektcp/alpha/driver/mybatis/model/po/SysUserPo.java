@@ -1,7 +1,7 @@
-package com.geektcp.alpha.spring.jpa.model.po;
+package com.geektcp.alpha.driver.mybatis.model.po;
 
 import com.geektcp.alpha.common.spring.model.BasePo;
-import com.geektcp.alpha.spring.jpa.model.suo.SysUserSuo;
+import com.geektcp.alpha.driver.mybatis.model.suo.SysUserSuo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

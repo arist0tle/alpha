@@ -12,9 +12,7 @@ import org.springframework.kafka.support.Acknowledgment;
 @Slf4j
 //@Component
 public class AlphaPersistConsumer {
-
-//    @KafkaListener(id = "demo", topics = "deltaQ_GPE_1Q", group = "haizhi")
-    @KafkaListener(id = "demo2", topics = "mytest1", group = "haizhi")
+    @KafkaListener(id = "demo2", topics = "mytest1", group = "alpha")
     public void listen(ConsumerRecord<Object, Object> record, Acknowledgment ack) {
 //        System.out.println("111111111");
         log.info("records: {}", record.partition());

@@ -23,7 +23,7 @@ public class BaseVo implements Serializable {
     @ApiModelProperty(value = "创建时间", example = "2018-12-24 14:31:27")
     protected String created_dt;
 
-    @ApiModelProperty(value = "更新者", example = "haizhi")
+    @ApiModelProperty(value = "更新者", example = "alpha")
     protected String updated_by;
 
     @ApiModelProperty(value = "更新时间", example = "2018-12-24 14:31:27")

@@ -82,7 +82,7 @@ public class ShiroConfig {
     @Bean
     public FormAuthenticationFilter cookieFilter() {
         FormAuthenticationFilter filter = new FormAuthenticationFilter();
-        filter.setRememberMeParam("haizhi-gap");
+        filter.setRememberMeParam("alpha-gap");
         return filter;
     }
 
@@ -93,7 +93,7 @@ public class ShiroConfig {
         cookie.setMaxAge(43200);// 12hours
 //        cookie.setMaxAge(Cookie.ONE_YEAR);
 //        cookie.setMaxAge(60);
-        cookie.setName("haizhi-gap");
+        cookie.setName("alpha-gap");
         cookie.setPath("/");
         return cookie;
     }

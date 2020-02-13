@@ -17,10 +17,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-    public static final String SWAGGER_SCAN_BASE_PACKAGE = "com.geektcp.alpha.spring.querydsl.service.controller";
-    public static final String VERSION = "1.0.0";
 
-    ApiInfo apiInfo() {
+    private static final String SWAGGER_SCAN_BASE_PACKAGE = "com.geektcp.alpha.spring.querydsl.service.controller";
+    private static final String VERSION = "1.0.0";
+
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Swagger API")
                 .description("This is to show api description")

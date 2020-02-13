@@ -3,7 +3,9 @@ package com.geektcp.alpha.driver.jpa.controller;
 import com.geektcp.alpha.driver.jpa.domain.User;
 import com.geektcp.alpha.driver.jpa.service.IUserService;
 import io.swagger.annotations.Api;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +15,12 @@ import java.util.List;
 @Api
 @RestController
 @RequestMapping(value = "/users")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
-    @Autowired
+
     private IUserService userService;
 
-    @RequestMapping(value = "/add/{id}/{name}/{address}")
+    @GetMapping(value = "/add/{id}/{name}/{address}")
     public User addUser(@PathVariable int id, @PathVariable String name,
                         @PathVariable String address) {
         User user = new User();
@@ -28,22 +31,22 @@ public class UserController {
         return user;
     }
 
-    @RequestMapping(value = "/delete/{id}")
+    @GetMapping(value = "/delete/{id}")
     public void deleteBook(@PathVariable int id) {
         userService.delete(id);
     }
 
-    @RequestMapping(value = "/")
+    @GetMapping(value = "/")
     public List<User> getBooks() {
         return userService.findAll();
     }
 
-    @RequestMapping(value = "/{id}")
+    @GetMapping(value = "/{id}")
     public User getUser(@PathVariable int id) {
         return userService.findOne(id);
     }
 
-    @RequestMapping(value = "/search/name/{name}")
+    @GetMapping(value = "/search/name/{name}")
     public List<User> getBookByName(@PathVariable String name) {
         return userService.findByName(name);
     }

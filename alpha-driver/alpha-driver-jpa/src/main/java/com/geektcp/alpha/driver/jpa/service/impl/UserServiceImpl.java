@@ -9,6 +9,8 @@ import com.geektcp.alpha.driver.jpa.repository.UserJpaRepository;
 import com.geektcp.alpha.driver.jpa.repository.UserRepository;
 import com.geektcp.alpha.driver.jpa.service.IUserService;
 import com.querydsl.core.Tuple;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -17,12 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.LinkedList;
 import java.util.List;
 
+@Slf4j
 @Service
 @Transactional
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UserServiceImpl extends JpaBase implements IUserService {
-    @Autowired
+
     private UserJpaRepository userJpaRepository;
-    @Autowired
+
     private UserRepository userRepository;
 
     public List<User> findAll() {

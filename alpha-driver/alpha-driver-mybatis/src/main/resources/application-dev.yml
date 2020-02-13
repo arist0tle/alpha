@@ -1,0 +1,19 @@
+#spring
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://thyserver:63306/alpha-driver-mybatis
+    username: root
+    password: root
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logback:
+  logDir: log/dev
+
+logging:
+  level:
+    com.fengwenyi.mybatis_plus_example.service.impl: trace
+    com.fengwenyi.mybatis_plus_example.controller: trace

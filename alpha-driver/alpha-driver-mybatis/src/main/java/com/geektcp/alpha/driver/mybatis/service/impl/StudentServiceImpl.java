@@ -46,7 +46,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentDao, Student> impleme
                         .eq(Student.IDCARD_ID, idCardId);
         List<Student> studentList = list(queryWrapper);
 
-        if (studentList == null || studentList.size() == 0) {
+        if (studentList == null || studentList.isEmpty()) {
             return null;
         }
 

@@ -28,12 +28,6 @@ public enum GenderEnum implements IEnum<Integer> {
     }
 
 
-
-    /**
-     * 通过value获取enum
-     * @param value enum-value
-     * @return enum
-     */
     public static GenderEnum getEnumByValue(Integer value) {
         for (GenderEnum obj : GenderEnum.values())
             if (obj.value.equals(value))

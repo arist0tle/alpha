@@ -41,7 +41,7 @@ public class CityServiceImpl extends ServiceImpl<CityDao, City> implements CityS
     @Override
     public City queryCityByName(String name) {
         QueryWrapper<City> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(City.NAME, name);
+        queryWrapper.eq(City.KEY, name);
 
         List<City> cityList = list(queryWrapper);
 

@@ -38,10 +38,7 @@ public class City extends Model<City> {
     @ApiModelProperty(value = "城市名称")
     private String name;
 
-
-    public static final String ID = "id";
-
-    public static final String NAME = "name";
+    public static final String KEY = "name";
 
     @Override
     protected Serializable pkVal() {

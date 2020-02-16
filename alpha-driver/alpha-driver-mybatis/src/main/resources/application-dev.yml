@@ -10,10 +10,6 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-logback:
-  logDir: log/dev
-
 logging:
   level:
-    com.fengwenyi.mybatis_plus_example.service.impl: trace
-    com.fengwenyi.mybatis_plus_example.controller: trace
+    com.geektcp.alpha.driver.mybatis: trace

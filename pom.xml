@@ -36,6 +36,7 @@
         <module>alpha-spi</module>
         <module>alpha-console</module>
         <module>alpha-sso</module>
+        <module>alpha-tool</module>
     </modules>
 
     <properties>

@@ -10,7 +10,7 @@
 
 	 <loggers>
         <!-- 指定特定的类的日志级别，用于过滤日志 -->
-        <logger name="com.haizhi.test" level="INFO">
+        <logger name="com.geektcp.alpha.test" level="INFO">
             <appender-ref ref="RollingFileError"/>
         </logger>
 

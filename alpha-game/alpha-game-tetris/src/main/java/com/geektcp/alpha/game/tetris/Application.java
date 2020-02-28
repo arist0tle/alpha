@@ -1,5 +1,7 @@
 package com.geektcp.alpha.game.tetris;
 
+import com.geektcp.alpha.game.tetris.block.Tetris;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

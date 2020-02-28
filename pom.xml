@@ -17,7 +17,6 @@
     <version>1.0</version>
     <modules>
         <module>alpha-common</module>
-        <module>alpha-api</module>
         <module>alpha-spring</module>
         <module>alpha-algorithm</module>
         <module>alpha-db</module>
@@ -35,19 +34,18 @@
         <module>alpha-cloud</module>
         <module>alpha-agent</module>
         <module>alpha-spi</module>
+        <module>alpha-console</module>
+        <module>alpha-sso</module>
+        <module>alpha-tool</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <maven.test.skip>true</maven.test.skip>
-        <!-- spring boot overwrite -->
-        <hibernate.version>5.2.10.Final</hibernate.version>
-
-        <alpha.version>1.0</alpha.version>
-
         <java.version>1.8</java.version>
+        <maven.test.skip>true</maven.test.skip>
+        <alpha.version>1.0</alpha.version>
         <sonar.java.binaries>${project.basedir}/target/</sonar.java.binaries>
     </properties>
 
@@ -66,7 +64,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <sonar.host.url>http://43.247.68.115:9000</sonar.host.url>
+                <sonar.host.url>http://thyserver:9000</sonar.host.url>
             </properties>
 
         </profile>

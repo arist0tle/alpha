@@ -13,8 +13,8 @@ import org.springframework.web.client.RestTemplate;
 public class HttpImportTest {
 
     private static RestTemplate restTemplate = new RestTemplate();
-    private static String urlDatabase = "http://43.247.68.115:8529/_db/_system/_api/database";
-    private static String urlCollection = "http://43.247.68.115:8529/_db/test4/_api/collection";
+    private static String urlDatabase = "http://thyserver:8529/_db/_system/_api/database";
+    private static String urlCollection = "http://thyserver:8529/_db/test4/_api/collection";
 
     @Test
     public void createDatabase() {

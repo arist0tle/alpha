@@ -2,7 +2,7 @@ package com.geektcp.alpha.spring.shiro.controller.other;
 
 import com.geektcp.alpha.spring.shiro.annotation.ControllerEndpoint;
 import com.geektcp.alpha.spring.shiro.common.controller.BaseController;
-import com.geektcp.alpha.spring.shiro.common.entity.FebsResponse;
+import com.geektcp.alpha.spring.shiro.common.entity.Response;
 import com.geektcp.alpha.spring.shiro.common.entity.QueryRequest;
 import com.geektcp.alpha.spring.shiro.exception.FebsException;
 import com.geektcp.alpha.spring.shiro.entity.other.Eximport;
@@ -45,9 +45,9 @@ public class EximportController extends BaseController {
 
     @GetMapping
     @RequiresPermissions("others:eximport:view")
-    public FebsResponse findEximports(QueryRequest request) {
+    public Response findEximports(QueryRequest request) {
         Map<String, Object> dataTable = getDataTable(eximportService.findEximports(request, null));
-        return new FebsResponse().success().data(dataTable);
+        return new Response().success().data(dataTable);
     }
 
     /**
@@ -75,7 +75,7 @@ public class EximportController extends BaseController {
     @PostMapping("import")
     @RequiresPermissions("eximport:import")
     @ControllerEndpoint(exceptionMessage = "导入Excel数据失败")
-    public FebsResponse importExcels(MultipartFile file) throws IOException {
+    public Response importExcels(MultipartFile file) throws IOException {
         if (file.isEmpty()) {
             throw new FebsException("导入数据为空");
         }
@@ -110,7 +110,7 @@ public class EximportController extends BaseController {
                 "data", data,
                 "error", error
         );
-        return new FebsResponse().success().data(result);
+        return new Response().success().data(result);
     }
 
     @GetMapping("excel")

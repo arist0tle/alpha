@@ -2,7 +2,7 @@ package com.geektcp.alpha.spring.shiro.controller.job;
 
 import com.geektcp.alpha.spring.shiro.annotation.ControllerEndpoint;
 import com.geektcp.alpha.spring.shiro.common.controller.BaseController;
-import com.geektcp.alpha.spring.shiro.common.entity.FebsResponse;
+import com.geektcp.alpha.spring.shiro.common.entity.Response;
 import com.geektcp.alpha.spring.shiro.common.entity.QueryRequest;
 import com.geektcp.alpha.spring.shiro.entity.job.JobLog;
 import com.geektcp.alpha.spring.shiro.service.IJobLogService;
@@ -36,18 +36,18 @@ public class JobLogController extends BaseController {
 
     @GetMapping
     @RequiresPermissions("job:log:view")
-    public FebsResponse jobLogList(QueryRequest request, JobLog log) {
+    public Response jobLogList(QueryRequest request, JobLog log) {
         Map<String, Object> dataTable = getDataTable(this.jobLogService.findJobLogs(request, log));
-        return new FebsResponse().success().data(dataTable);
+        return new Response().success().data(dataTable);
     }
 
     @GetMapping("delete/{jobIds}")
     @RequiresPermissions("job:log:delete")
     @ControllerEndpoint(exceptionMessage = "删除调度日志失败")
-    public FebsResponse deleteJobLog(@NotBlank(message = "{required}") @PathVariable String jobIds) {
+    public Response deleteJobLog(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         String[] ids = jobIds.split(StringPool.COMMA);
         this.jobLogService.deleteJobLogs(ids);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @GetMapping("excel")

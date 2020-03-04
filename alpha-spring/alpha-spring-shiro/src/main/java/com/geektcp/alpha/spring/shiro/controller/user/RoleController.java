@@ -3,7 +3,7 @@ package com.geektcp.alpha.spring.shiro.controller.user;
 
 import com.geektcp.alpha.spring.shiro.annotation.ControllerEndpoint;
 import com.geektcp.alpha.spring.shiro.common.controller.BaseController;
-import com.geektcp.alpha.spring.shiro.common.entity.FebsResponse;
+import com.geektcp.alpha.spring.shiro.common.entity.Response;
 import com.geektcp.alpha.spring.shiro.common.entity.QueryRequest;
 import com.geektcp.alpha.spring.shiro.exception.FebsException;
 import com.geektcp.alpha.spring.shiro.entity.user.Role;
@@ -32,39 +32,39 @@ public class RoleController extends BaseController {
     private IRoleService roleService;
 
     @GetMapping
-    public FebsResponse getAllRoles(Role role) {
-        return new FebsResponse().success().data(roleService.findRoles(role));
+    public Response getAllRoles(Role role) {
+        return new Response().success().data(roleService.findRoles(role));
     }
 
     @GetMapping("list")
     @RequiresPermissions("role:view")
-    public FebsResponse roleList(Role role, QueryRequest request) {
+    public Response roleList(Role role, QueryRequest request) {
         Map<String, Object> dataTable = getDataTable(this.roleService.findRoles(role, request));
-        return new FebsResponse().success().data(dataTable);
+        return new Response().success().data(dataTable);
     }
 
     @PostMapping
     @RequiresPermissions("role:add")
     @ControllerEndpoint(operation = "新增角色", exceptionMessage = "新增角色失败")
-    public FebsResponse addRole(@Valid Role role) {
+    public Response addRole(@Valid Role role) {
         this.roleService.createRole(role);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @GetMapping("delete/{roleIds}")
     @RequiresPermissions("role:delete")
     @ControllerEndpoint(operation = "删除角色", exceptionMessage = "删除角色失败")
-    public FebsResponse deleteRoles(@NotBlank(message = "{required}") @PathVariable String roleIds) {
+    public Response deleteRoles(@NotBlank(message = "{required}") @PathVariable String roleIds) {
         this.roleService.deleteRoles(roleIds);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @PostMapping("update")
     @RequiresPermissions("role:update")
     @ControllerEndpoint(operation = "修改角色", exceptionMessage = "修改角色失败")
-    public FebsResponse updateRole(Role role) {
+    public Response updateRole(Role role) {
         this.roleService.updateRole(role);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @GetMapping("excel")

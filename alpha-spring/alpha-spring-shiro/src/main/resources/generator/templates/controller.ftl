@@ -4,7 +4,7 @@ import com.geektcp.alpha.spring.shiro.annotation.ControllerEndpoint;
 import com.geektcp.alpha.spring.shiro.utils.FebsUtil;
 import com.geektcp.alpha.spring.shiro.common.entity.FebsConstant;
 import com.geektcp.alpha.spring.shiro.common.controller.BaseController;
-import com.geektcp.alpha.spring.shiro.common.entity.FebsResponse;
+import com.geektcp.alpha.spring.shiro.common.entity.Response;
 import com.geektcp.alpha.spring.shiro.common.entity.QueryRequest;
 import ${basePackage}.${entityPackage}.${className};
 import ${basePackage}.${servicePackage}.I${className}Service;

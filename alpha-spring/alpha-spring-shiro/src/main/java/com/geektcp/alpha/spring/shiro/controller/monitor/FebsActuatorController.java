@@ -1,7 +1,7 @@
 package com.geektcp.alpha.spring.shiro.controller.monitor;
 
 import com.geektcp.alpha.spring.shiro.annotation.ControllerEndpoint;
-import com.geektcp.alpha.spring.shiro.common.entity.FebsResponse;
+import com.geektcp.alpha.spring.shiro.common.entity.Response;
 import com.geektcp.alpha.spring.shiro.utils.DateUtil;
 import com.geektcp.alpha.spring.shiro.endpoint.FebsHttpTraceEndpoint;
 import com.geektcp.alpha.spring.shiro.entity.monitor.FebsHttpTrace;
@@ -35,7 +35,7 @@ public class FebsActuatorController {
     @GetMapping("httptrace")
     @RequiresPermissions("httptrace:view")
     @ControllerEndpoint(exceptionMessage = "请求追踪失败")
-    public FebsResponse httpTraces(String method, String url) {
+    public Response httpTraces(String method, String url) {
         FebsHttpTraceDescriptor traces = httpTraceEndpoint.traces();
         List<HttpTrace> httpTraceList = traces.getTraces();
         List<FebsHttpTrace> febsHttpTraces = new ArrayList<>();
@@ -63,6 +63,6 @@ public class FebsActuatorController {
         Map<String, Object> data = new HashMap<>();
         data.put("rows", febsHttpTraces);
         data.put("total", febsHttpTraces.size());
-        return new FebsResponse().success().data(data);
+        return new Response().success().data(data);
     }
 }

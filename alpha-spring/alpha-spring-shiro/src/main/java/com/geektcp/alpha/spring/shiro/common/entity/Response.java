@@ -7,37 +7,37 @@ import java.util.HashMap;
 /**
  * @author tanghaiyang
  */
-public class FebsResponse extends HashMap<String, Object> {
+public class Response extends HashMap<String, Object> {
 
     private static final long serialVersionUID = -8713837118340960775L;
 
-    public FebsResponse code(HttpStatus status) {
+    public Response code(HttpStatus status) {
         this.put("code", status.value());
         return this;
     }
 
-    public FebsResponse message(String message) {
+    public Response message(String message) {
         this.put("message", message);
         return this;
     }
 
-    public FebsResponse data(Object data) {
+    public Response data(Object data) {
         this.put("data", data);
         return this;
     }
 
-    public FebsResponse success() {
+    public Response success() {
         this.code(HttpStatus.OK);
         return this;
     }
 
-    public FebsResponse fail() {
+    public Response fail() {
         this.code(HttpStatus.INTERNAL_SERVER_ERROR);
         return this;
     }
 
     @Override
-    public FebsResponse put(String key, Object value) {
+    public Response put(String key, Object value) {
         super.put(key, value);
         return this;
     }

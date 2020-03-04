@@ -2,7 +2,7 @@ package com.geektcp.alpha.spring.shiro.controller.job;
 
 import com.geektcp.alpha.spring.shiro.annotation.ControllerEndpoint;
 import com.geektcp.alpha.spring.shiro.common.controller.BaseController;
-import com.geektcp.alpha.spring.shiro.common.entity.FebsResponse;
+import com.geektcp.alpha.spring.shiro.common.entity.Response;
 import com.geektcp.alpha.spring.shiro.common.entity.QueryRequest;
 import com.geektcp.alpha.spring.shiro.entity.job.Job;
 import com.geektcp.alpha.spring.shiro.service.IJobService;
@@ -35,9 +35,9 @@ public class JobController extends BaseController {
 
     @GetMapping
     @RequiresPermissions("job:view")
-    public FebsResponse jobList(QueryRequest request, Job job) {
+    public Response jobList(QueryRequest request, Job job) {
         Map<String, Object> dataTable = getDataTable(this.jobService.findJobs(request, job));
-        return new FebsResponse().success().data(dataTable);
+        return new Response().success().data(dataTable);
     }
 
     @GetMapping("cron/check")
@@ -52,49 +52,49 @@ public class JobController extends BaseController {
     @PostMapping
     @RequiresPermissions("job:add")
     @ControllerEndpoint(operation = "新增定时任务", exceptionMessage = "新增定时任务失败")
-    public FebsResponse addJob(@Valid Job job) {
+    public Response addJob(@Valid Job job) {
         this.jobService.createJob(job);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @GetMapping("delete/{jobIds}")
     @RequiresPermissions("job:delete")
     @ControllerEndpoint(operation = "删除定时任务", exceptionMessage = "删除定时任务失败")
-    public FebsResponse deleteJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
+    public Response deleteJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         String[] ids = jobIds.split(StringPool.COMMA);
         this.jobService.deleteJobs(ids);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @PostMapping("update")
     @ControllerEndpoint(operation = "修改定时任务", exceptionMessage = "修改定时任务失败")
-    public FebsResponse updateJob(@Valid Job job) {
+    public Response updateJob(@Valid Job job) {
         this.jobService.updateJob(job);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @GetMapping("run/{jobIds}")
     @RequiresPermissions("job:run")
     @ControllerEndpoint(operation = "执行定时任务", exceptionMessage = "执行定时任务失败")
-    public FebsResponse runJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
+    public Response runJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         this.jobService.run(jobIds);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @GetMapping("pause/{jobIds}")
     @RequiresPermissions("job:pause")
     @ControllerEndpoint(operation = "暂停定时任务", exceptionMessage = "暂停定时任务失败")
-    public FebsResponse pauseJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
+    public Response pauseJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         this.jobService.pause(jobIds);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @GetMapping("resume/{jobIds}")
     @RequiresPermissions("job:resume")
     @ControllerEndpoint(operation = "恢复定时任务", exceptionMessage = "恢复定时任务失败")
-    public FebsResponse resumeJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
+    public Response resumeJob(@NotBlank(message = "{required}") @PathVariable String jobIds) {
         this.jobService.resume(jobIds);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @GetMapping("excel")

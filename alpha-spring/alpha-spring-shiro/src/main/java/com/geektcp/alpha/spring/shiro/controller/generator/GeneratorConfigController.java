@@ -2,7 +2,7 @@ package com.geektcp.alpha.spring.shiro.controller.generator;
 
 import com.geektcp.alpha.spring.shiro.annotation.ControllerEndpoint;
 import com.geektcp.alpha.spring.shiro.common.controller.BaseController;
-import com.geektcp.alpha.spring.shiro.common.entity.FebsResponse;
+import com.geektcp.alpha.spring.shiro.common.entity.Response;
 import com.geektcp.alpha.spring.shiro.exception.FebsException;
 import com.geektcp.alpha.spring.shiro.entity.generator.GeneratorConfig;
 import com.geektcp.alpha.spring.shiro.service.IGeneratorConfigService;
@@ -30,17 +30,17 @@ public class GeneratorConfigController extends BaseController {
 
     @GetMapping
     @RequiresPermissions("generator:configure:view")
-    public FebsResponse getGeneratorConfig() {
-        return new FebsResponse().success().data(generatorConfigService.findGeneratorConfig());
+    public Response getGeneratorConfig() {
+        return new Response().success().data(generatorConfigService.findGeneratorConfig());
     }
 
     @PostMapping("update")
     @RequiresPermissions("generator:configure:update")
     @ControllerEndpoint(operation = "修改GeneratorConfig", exceptionMessage = "修改GeneratorConfig失败")
-    public FebsResponse updateGeneratorConfig(@Valid GeneratorConfig generatorConfig) {
+    public Response updateGeneratorConfig(@Valid GeneratorConfig generatorConfig) {
         if (StringUtils.isBlank(generatorConfig.getId()))
             throw new FebsException("配置id不能为空");
         this.generatorConfigService.updateGeneratorConfig(generatorConfig);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 }

@@ -3,7 +3,7 @@ package com.geektcp.alpha.spring.shiro.controller.user;
 
 import com.geektcp.alpha.spring.shiro.annotation.ControllerEndpoint;
 import com.geektcp.alpha.spring.shiro.common.entity.DeptTree;
-import com.geektcp.alpha.spring.shiro.common.entity.FebsResponse;
+import com.geektcp.alpha.spring.shiro.common.entity.Response;
 import com.geektcp.alpha.spring.shiro.common.entity.QueryRequest;
 import com.geektcp.alpha.spring.shiro.exception.FebsException;
 import com.geektcp.alpha.spring.shiro.entity.user.Dept;
@@ -39,34 +39,34 @@ public class DeptController {
 
     @GetMapping("tree")
     @ControllerEndpoint(exceptionMessage = "获取部门树失败")
-    public FebsResponse getDeptTree(Dept dept) throws FebsException {
+    public Response getDeptTree(Dept dept) throws FebsException {
         List<DeptTree<Dept>> depts = this.deptService.findDepts(dept);
-        return new FebsResponse().success().data(depts);
+        return new Response().success().data(depts);
     }
 
     @PostMapping
     @RequiresPermissions("dept:add")
     @ControllerEndpoint(operation = "新增部门", exceptionMessage = "新增部门失败")
-    public FebsResponse addDept(@Valid Dept dept) {
+    public Response addDept(@Valid Dept dept) {
         this.deptService.createDept(dept);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @GetMapping("delete/{deptIds}")
     @RequiresPermissions("dept:delete")
     @ControllerEndpoint(operation = "删除部门", exceptionMessage = "删除部门失败")
-    public FebsResponse deleteDepts(@NotBlank(message = "{required}") @PathVariable String deptIds) throws FebsException {
+    public Response deleteDepts(@NotBlank(message = "{required}") @PathVariable String deptIds) throws FebsException {
         String[] ids = deptIds.split(StringPool.COMMA);
         this.deptService.deleteDepts(ids);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @PostMapping("update")
     @RequiresPermissions("dept:update")
     @ControllerEndpoint(operation = "修改部门", exceptionMessage = "修改部门失败")
-    public FebsResponse updateDept(@Valid Dept dept) throws FebsException {
+    public Response updateDept(@Valid Dept dept) throws FebsException {
         this.deptService.updateDept(dept);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @GetMapping("excel")

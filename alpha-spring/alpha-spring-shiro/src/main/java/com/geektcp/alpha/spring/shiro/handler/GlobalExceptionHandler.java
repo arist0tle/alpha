@@ -1,6 +1,6 @@
 package com.geektcp.alpha.spring.shiro.handler;
 
-import com.geektcp.alpha.spring.shiro.common.entity.FebsResponse;
+import com.geektcp.alpha.spring.shiro.common.entity.Response;
 import com.geektcp.alpha.spring.shiro.exception.FebsException;
 import com.geektcp.alpha.spring.shiro.exception.FileDownloadException;
 import com.geektcp.alpha.spring.shiro.exception.LimitAccessException;
@@ -34,15 +34,15 @@ import java.util.Set;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
-    public FebsResponse handleException(Exception e) {
+    public Response handleException(Exception e) {
         log.error("系统内部异常，异常信息", e);
-        return new FebsResponse().code(HttpStatus.INTERNAL_SERVER_ERROR).message("系统内部异常");
+        return new Response().code(HttpStatus.INTERNAL_SERVER_ERROR).message("系统内部异常");
     }
 
     @ExceptionHandler(value = FebsException.class)
-    public FebsResponse handleFebsException(FebsException e) {
+    public Response handleFebsException(FebsException e) {
         log.error("系统错误", e);
-        return new FebsResponse().code(HttpStatus.INTERNAL_SERVER_ERROR).message(e.getMessage());
+        return new Response().code(HttpStatus.INTERNAL_SERVER_ERROR).message(e.getMessage());
     }
 
     /**
@@ -52,14 +52,14 @@ public class GlobalExceptionHandler {
      * @return FebsResponse
      */
     @ExceptionHandler(BindException.class)
-    public FebsResponse validExceptionHandler(BindException e) {
+    public Response validExceptionHandler(BindException e) {
         StringBuilder message = new StringBuilder();
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
         for (FieldError error : fieldErrors) {
             message.append(error.getField()).append(error.getDefaultMessage()).append(",");
         }
         message = new StringBuilder(message.substring(0, message.length() - 1));
-        return new FebsResponse().code(HttpStatus.BAD_REQUEST).message(message.toString());
+        return new Response().code(HttpStatus.BAD_REQUEST).message(message.toString());
     }
 
     /**
@@ -69,7 +69,7 @@ public class GlobalExceptionHandler {
      * @return FebsResponse
      */
     @ExceptionHandler(value = ConstraintViolationException.class)
-    public FebsResponse handleConstraintViolationException(ConstraintViolationException e) {
+    public Response handleConstraintViolationException(ConstraintViolationException e) {
         StringBuilder message = new StringBuilder();
         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
         for (ConstraintViolation<?> violation : violations) {
@@ -78,38 +78,38 @@ public class GlobalExceptionHandler {
             message.append(pathArr[1]).append(violation.getMessage()).append(",");
         }
         message = new StringBuilder(message.substring(0, message.length() - 1));
-        return new FebsResponse().code(HttpStatus.BAD_REQUEST).message(message.toString());
+        return new Response().code(HttpStatus.BAD_REQUEST).message(message.toString());
     }
 
     @ExceptionHandler(value = LimitAccessException.class)
-    public FebsResponse handleLimitAccessException(LimitAccessException e) {
+    public Response handleLimitAccessException(LimitAccessException e) {
         log.debug("LimitAccessException", e);
-        return new FebsResponse().code(HttpStatus.TOO_MANY_REQUESTS).message(e.getMessage());
+        return new Response().code(HttpStatus.TOO_MANY_REQUESTS).message(e.getMessage());
     }
 
     @ExceptionHandler(value = UnauthorizedException.class)
-    public FebsResponse handleUnauthorizedException(UnauthorizedException e) {
+    public Response handleUnauthorizedException(UnauthorizedException e) {
         log.debug("UnauthorizedException", e);
-        return new FebsResponse().code(HttpStatus.FORBIDDEN).message(e.getMessage());
+        return new Response().code(HttpStatus.FORBIDDEN).message(e.getMessage());
     }
 
     @ExceptionHandler(value = AuthenticationException.class)
-    public FebsResponse handleAuthenticationException(AuthenticationException e) {
+    public Response handleAuthenticationException(AuthenticationException e) {
         log.debug("AuthenticationException", e);
-        return new FebsResponse().code(HttpStatus.INTERNAL_SERVER_ERROR).message(e.getMessage());
+        return new Response().code(HttpStatus.INTERNAL_SERVER_ERROR).message(e.getMessage());
     }
 
     @ExceptionHandler(value = AuthorizationException.class)
-    public FebsResponse handleAuthorizationException(AuthorizationException e){
+    public Response handleAuthorizationException(AuthorizationException e){
         log.debug("AuthorizationException", e);
-        return new FebsResponse().code(HttpStatus.UNAUTHORIZED).message(e.getMessage());
+        return new Response().code(HttpStatus.UNAUTHORIZED).message(e.getMessage());
     }
 
 
     @ExceptionHandler(value = ExpiredSessionException.class)
-    public FebsResponse handleExpiredSessionException(ExpiredSessionException e) {
+    public Response handleExpiredSessionException(ExpiredSessionException e) {
         log.debug("ExpiredSessionException", e);
-        return new FebsResponse().code(HttpStatus.UNAUTHORIZED).message(e.getMessage());
+        return new Response().code(HttpStatus.UNAUTHORIZED).message(e.getMessage());
     }
 
     @ExceptionHandler(value = FileDownloadException.class)

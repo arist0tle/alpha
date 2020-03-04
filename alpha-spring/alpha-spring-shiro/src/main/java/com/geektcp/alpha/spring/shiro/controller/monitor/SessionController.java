@@ -1,6 +1,6 @@
 package com.geektcp.alpha.spring.shiro.controller.monitor;
 
-import com.geektcp.alpha.spring.shiro.common.entity.FebsResponse;
+import com.geektcp.alpha.spring.shiro.common.entity.Response;
 import com.geektcp.alpha.spring.shiro.entity.monitor.ActiveUser;
 import com.geektcp.alpha.spring.shiro.service.ISessionService;
 import org.apache.commons.collections4.CollectionUtils;
@@ -27,18 +27,18 @@ public class SessionController {
 
     @GetMapping("list")
     @RequiresPermissions("online:view")
-    public FebsResponse list(String username) {
+    public Response list(String username) {
         List<ActiveUser> list = sessionService.list(username);
         Map<String, Object> data = new HashMap<>();
         data.put("rows", list);
         data.put("total", CollectionUtils.size(list));
-        return new FebsResponse().success().data(data);
+        return new Response().success().data(data);
     }
 
     @GetMapping("delete/{id}")
     @RequiresPermissions("user:kickout")
-    public FebsResponse forceLogout(@PathVariable String id) {
+    public Response forceLogout(@PathVariable String id) {
         sessionService.forceLogout(id);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 }

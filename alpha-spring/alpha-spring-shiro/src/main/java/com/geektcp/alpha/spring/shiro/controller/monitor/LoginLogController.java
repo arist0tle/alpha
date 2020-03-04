@@ -2,7 +2,7 @@ package com.geektcp.alpha.spring.shiro.controller.monitor;
 
 import com.geektcp.alpha.spring.shiro.annotation.ControllerEndpoint;
 import com.geektcp.alpha.spring.shiro.common.controller.BaseController;
-import com.geektcp.alpha.spring.shiro.common.entity.FebsResponse;
+import com.geektcp.alpha.spring.shiro.common.entity.Response;
 import com.geektcp.alpha.spring.shiro.common.entity.QueryRequest;
 import com.geektcp.alpha.spring.shiro.entity.monitor.LoginLog;
 import com.geektcp.alpha.spring.shiro.service.ILoginLogService;
@@ -34,18 +34,18 @@ public class LoginLogController extends BaseController {
 
     @GetMapping("list")
     @RequiresPermissions("loginlog:view")
-    public FebsResponse loginLogList(LoginLog loginLog, QueryRequest request) {
+    public Response loginLogList(LoginLog loginLog, QueryRequest request) {
         Map<String, Object> dataTable = getDataTable(this.loginLogService.findLoginLogs(loginLog, request));
-        return new FebsResponse().success().data(dataTable);
+        return new Response().success().data(dataTable);
     }
 
     @GetMapping("delete/{ids}")
     @RequiresPermissions("loginlog:delete")
     @ControllerEndpoint(exceptionMessage = "删除日志失败")
-    public FebsResponse deleteLogss(@NotBlank(message = "{required}") @PathVariable String ids) {
+    public Response deleteLogss(@NotBlank(message = "{required}") @PathVariable String ids) {
         String[] loginLogIds = ids.split(StringPool.COMMA);
         this.loginLogService.deleteLoginLogs(loginLogIds);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @GetMapping("excel")

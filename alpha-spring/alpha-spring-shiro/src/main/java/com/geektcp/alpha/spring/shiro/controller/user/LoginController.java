@@ -2,7 +2,7 @@ package com.geektcp.alpha.spring.shiro.controller.user;
 
 import com.geektcp.alpha.spring.shiro.annotation.Limit;
 import com.geektcp.alpha.spring.shiro.common.controller.BaseController;
-import com.geektcp.alpha.spring.shiro.common.entity.FebsResponse;
+import com.geektcp.alpha.spring.shiro.common.entity.Response;
 import com.geektcp.alpha.spring.shiro.exception.FebsException;
 import com.geektcp.alpha.spring.shiro.common.service.ValidateCodeService;
 import com.geektcp.alpha.spring.shiro.entity.monitor.LoginLog;
@@ -42,7 +42,7 @@ public class LoginController extends BaseController {
 
     @PostMapping("login")
     @Limit(key = "login", period = 60, count = 20, name = "登录接口", prefix = "limit")
-    public FebsResponse login(
+    public Response login(
             @NotBlank(message = "{required}") String username,
             @NotBlank(message = "{required}") String password,
             @NotBlank(message = "{required}") String verifyCode,
@@ -58,11 +58,11 @@ public class LoginController extends BaseController {
         loginLog.setSystemBrowserInfo();
         this.loginLogService.saveLoginLog(loginLog);
 
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @PostMapping("regist")
-    public FebsResponse regist(
+    public Response regist(
             @NotBlank(message = "{required}") String username,
             @NotBlank(message = "{required}") String password) throws FebsException {
         User user = userService.findByName(username);
@@ -70,11 +70,11 @@ public class LoginController extends BaseController {
             throw new FebsException("该用户名已存在");
         }
         this.userService.regist(username, password);
-        return new FebsResponse().success();
+        return new Response().success();
     }
 
     @GetMapping("index/{username}")
-    public FebsResponse index(@NotBlank(message = "{required}") @PathVariable String username) {
+    public Response index(@NotBlank(message = "{required}") @PathVariable String username) {
         // 更新登录时间
         this.userService.updateLoginTime(username);
         Map<String, Object> data = new HashMap<>();
@@ -92,7 +92,7 @@ public class LoginController extends BaseController {
         param.setUsername(username);
         List<Map<String, Object>> lastSevenUserVisitCount = this.loginLogService.findLastSevenDaysVisitCount(param);
         data.put("lastSevenUserVisitCount", lastSevenUserVisitCount);
-        return new FebsResponse().success().data(data);
+        return new Response().success().data(data);
     }
 
     @GetMapping("images/captcha")

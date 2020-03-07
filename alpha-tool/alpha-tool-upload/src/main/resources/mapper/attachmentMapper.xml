@@ -2,7 +2,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.geektcp.alpha.tool.upload.mapper.AttachmentMapper">
+<mapper namespace="com.geektcp.alpha.tool.upload.dao.AttachmentMapper">
   
   <insert id="insert" parameterType="com.geektcp.alpha.tool.upload.bean.AttachmentDetail">
       insert attachment_detail values (#{id},#{name},#{md5})

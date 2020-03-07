@@ -8,7 +8,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * @Author lk
  */
-@MapperScan("com.geektcp.alpha.tool.upload.mapper")
+@MapperScan("com.geektcp.alpha.tool.upload.dao")
 @SpringBootApplication
 @EnableSwagger2
 public class UploadApp {

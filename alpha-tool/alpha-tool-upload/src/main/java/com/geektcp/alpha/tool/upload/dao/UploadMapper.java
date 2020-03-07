@@ -1,4 +1,4 @@
-package com.geektcp.alpha.tool.upload.mapper;
+package com.geektcp.alpha.tool.upload.dao;
 
 import com.geektcp.alpha.tool.upload.bean.FileObj;
 import org.apache.ibatis.annotations.Mapper;

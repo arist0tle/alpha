@@ -1,7 +1,7 @@
 package com.geektcp.alpha.tool.upload.config;
 
 import com.geektcp.alpha.tool.upload.bean.FileObj;
-import com.geektcp.alpha.tool.upload.mapper.UploadMapper;
+import com.geektcp.alpha.tool.upload.dao.UploadMapper;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;

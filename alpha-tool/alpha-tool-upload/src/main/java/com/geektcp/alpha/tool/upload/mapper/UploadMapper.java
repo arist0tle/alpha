@@ -1,6 +1,6 @@
-package com.lik.upload.mutipartupload.mapper;
+package com.geektcp.alpha.tool.upload.mapper;
 
-import com.lik.upload.mutipartupload.bean.FileObj;
+import com.geektcp.alpha.tool.upload.bean.FileObj;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

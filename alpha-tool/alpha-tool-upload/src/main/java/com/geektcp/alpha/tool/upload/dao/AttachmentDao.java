@@ -1,6 +1,6 @@
-package com.lik.upload.mutipartupload.dao;
+package com.geektcp.alpha.tool.upload.dao;
 
-import com.lik.upload.mutipartupload.bean.FileObj;
+import com.geektcp.alpha.tool.upload.bean.FileObj;
 import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * @Author lk

@@ -1,6 +1,6 @@
-package com.lik.upload.mutipartupload.config;
+package com.geektcp.alpha.tool.upload.config;
 
-import com.lik.upload.mutipartupload.service.UserDetailService;
+import com.geektcp.alpha.tool.upload.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @ProjectName: mutipartupload
- * @Package: com.lik.upload.mutipartupload.config
+ * @Package: com.geektcp.alpha.tool.upload.config
  * @ClassName: ResouceServerConfig
  * @Author: chinasoft.k.li
  * @Description: websecurity的配置

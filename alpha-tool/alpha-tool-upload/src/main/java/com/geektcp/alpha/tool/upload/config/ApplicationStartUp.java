@@ -1,7 +1,7 @@
-package com.lik.upload.mutipartupload.config;
+package com.geektcp.alpha.tool.upload.config;
 
-import com.lik.upload.mutipartupload.bean.FileObj;
-import com.lik.upload.mutipartupload.mapper.UploadMapper;
+import com.geektcp.alpha.tool.upload.bean.FileObj;
+import com.geektcp.alpha.tool.upload.mapper.UploadMapper;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;

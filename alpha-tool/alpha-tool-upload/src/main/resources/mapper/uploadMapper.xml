@@ -2,17 +2,17 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.lik.upload.mutipartupload.mapper.UploadMapper">
+<mapper namespace="com.geektcp.alpha.tool.upload.mapper.UploadMapper">
   
   <select id="findAll" resultType="map">
       select * from attachment
   </select>
 
-    <insert id="insert" parameterType="com.lik.upload.mutipartupload.bean.FileObj">
+    <insert id="insert" parameterType="com.geektcp.alpha.tool.upload.bean.FileObj">
         insert into attachment values(#{id},#{name},#{chunkNum},0,#{path},#{chunk})
     </insert>
 
-    <select id="findNotMerges" resultType="com.lik.upload.mutipartupload.bean.FileObj">
+    <select id="findNotMerges" resultType="com.geektcp.alpha.tool.upload.bean.FileObj">
         SELECT
           `name` "name",
           chunk_Num "chunkNum",
@@ -23,7 +23,7 @@
         where ismerge = 2
     </select>
 
-    <select id="findCount" parameterType="com.lik.upload.mutipartupload.bean.FileObj" resultType="int">
+    <select id="findCount" parameterType="com.geektcp.alpha.tool.upload.bean.FileObj" resultType="int">
         select count(1) from attachment where id = #{id}
     </select>
 
@@ -31,7 +31,7 @@
         update attachment set ismerge = 1 where id = #{id}
     </update>
 
-    <select id="findOneById" resultType="com.lik.upload.mutipartupload.bean.FileObj" >
+    <select id="findOneById" resultType="com.geektcp.alpha.tool.upload.bean.FileObj" >
         select
           `name` "name",
           chunk_Num "chunkNum",
@@ -42,7 +42,7 @@
         from attachment where id = #{id}
     </select>
 
-    <update id="upLoadChunk" parameterType="com.lik.upload.mutipartupload.bean.FileObj">
+    <update id="upLoadChunk" parameterType="com.geektcp.alpha.tool.upload.bean.FileObj">
         update attachment set chunk = #{chunk},ismerge = #{ismerge} where id = #{id}
     </update>
 </mapper>

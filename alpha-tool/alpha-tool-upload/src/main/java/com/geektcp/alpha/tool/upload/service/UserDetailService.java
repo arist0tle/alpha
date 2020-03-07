@@ -1,4 +1,4 @@
-package com.lik.upload.mutipartupload.service;
+package com.geektcp.alpha.tool.upload.service;
 
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @ProjectName: mutipartupload
- * @Package: com.lik.upload.mutipartupload.service
+ * @Package: com.geektcp.alpha.tool.upload.service
  * @ClassName: UserDetailService
  * @Author: chinasoft.k.li
  * @Description: 认证服务中查询用户的服务

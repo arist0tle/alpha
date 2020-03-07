@@ -1,4 +1,4 @@
-package com.lik.upload.mutipartupload.bean;
+package com.geektcp.alpha.tool.upload.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

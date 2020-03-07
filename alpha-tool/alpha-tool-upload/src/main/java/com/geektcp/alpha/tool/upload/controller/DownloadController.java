@@ -1,7 +1,7 @@
-package com.lik.upload.mutipartupload.controller;
+package com.geektcp.alpha.tool.upload.controller;
 
-import com.lik.upload.mutipartupload.bean.FileObj;
-import com.lik.upload.mutipartupload.dao.AttachmentDao;
+import com.geektcp.alpha.tool.upload.bean.FileObj;
+import com.geektcp.alpha.tool.upload.dao.AttachmentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * @ProjectName: mutipartupload
- * @Package: com.lik.upload.mutipartupload.controller
+ * @Package: com.geektcp.alpha.tool.upload.controller
  * @ClassName: DownloadController
  * @Author: chinasoft.k.li
  * @Description: 下载的controller

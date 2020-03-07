@@ -1,10 +1,10 @@
-package com.lik.upload.mutipartupload.controller;
+package com.geektcp.alpha.tool.upload.controller;
 
-import com.lik.upload.mutipartupload.bean.AttachmentDetail;
-import com.lik.upload.mutipartupload.bean.FileObj;
-import com.lik.upload.mutipartupload.dao.AttachmentDao;
-import com.lik.upload.mutipartupload.dao.AttachmentDetailDao;
-import com.lik.upload.mutipartupload.properties.PanProperties;
+import com.geektcp.alpha.tool.upload.bean.AttachmentDetail;
+import com.geektcp.alpha.tool.upload.bean.FileObj;
+import com.geektcp.alpha.tool.upload.dao.AttachmentDao;
+import com.geektcp.alpha.tool.upload.dao.AttachmentDetailDao;
+import com.geektcp.alpha.tool.upload.properties.PanProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.http.ResponseEntity;

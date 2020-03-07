@@ -1,4 +1,4 @@
-package com.lik.upload.mutipartupload.properties;
+package com.geektcp.alpha.tool.upload.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @ProjectName: mutipartupload
- * @Package: com.lik.upload.mutipartupload.properties
+ * @Package: com.geektcp.alpha.tool.upload.properties
  * @ClassName: PanProperties
  * @Author: chinasoft.k.li
  * @Description: 项目的配置文件

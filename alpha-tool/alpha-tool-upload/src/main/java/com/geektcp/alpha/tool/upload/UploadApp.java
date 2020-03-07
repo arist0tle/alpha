@@ -6,9 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * @Author lk
+ * @author haiyang
  */
-@MapperScan("com.geektcp.alpha.tool.upload.dao")
 @SpringBootApplication
 @EnableSwagger2
 public class UploadApp {

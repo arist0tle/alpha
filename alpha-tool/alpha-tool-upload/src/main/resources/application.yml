@@ -12,8 +12,8 @@ spring:
     show-sql: true
   http:
     multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
+      max-file-size: 100MB     # single file size
+      max-request-size: 100MB  # all file size when multi file
 
 logging:
   level:

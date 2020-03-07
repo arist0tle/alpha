@@ -26,6 +26,7 @@
         <module>alpha-util-queue</module>
         <module>alpha-util-system</module>
         <module>alpha-util-date</module>
+        <module>alpha-util-jna</module>
     </modules>
 
     <dependencies>

@@ -1,9 +1,7 @@
 package com.geektcp.alpha.tool.upload.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,20 +16,11 @@ import java.util.*;
 @Slf4j
 public class UploadController {
 
-//    @Autowired
-//    private PanProperties panProperties;
-//
-//    @Autowired
-//    private AttachmentDao attachmentDao;
-//
-//    @Autowired
-//    private AttachmentDetailDao attachmentDetailDao;
-
     private static final String SAVE_PATH = "F:\\tmp\\upload";
 
     @PostMapping("/upload")
     @ResponseBody
-    public String upload(MultipartFile file, String name) {
+    public JSONObject upload(MultipartFile file, String name) {
         try {
             File destFile = new File(SAVE_PATH, name);
             boolean isRead = destFile.setReadable(true);
@@ -48,7 +37,9 @@ public class UploadController {
         } catch (IOException e) {
             log.error(e.getMessage());
         }
-        return "1";
+        JSONObject result = new JSONObject();
+        result.put("msg","successful");
+        return result;
     }
 //
 //    @PostMapping("offset")

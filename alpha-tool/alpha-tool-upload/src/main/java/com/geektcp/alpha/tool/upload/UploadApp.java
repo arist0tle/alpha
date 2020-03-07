@@ -11,10 +11,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @MapperScan("com.geektcp.alpha.tool.upload.mapper")
 @SpringBootApplication
 @EnableSwagger2
-public class MutipartuploadApplication {
+public class UploadApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(MutipartuploadApplication.class, args);
+        SpringApplication.run(UploadApp.class, args);
     }
 
 }

@@ -3,7 +3,7 @@ package com.geektcp.alpha.socket.grpc.autoconfig;
 import io.grpc.ServerBuilder;
 import io.grpc.services.HealthStatusManager;
 import com.geektcp.alpha.socket.grpc.annotation.RpcBuilderConfigurer;
-import com.geektcp.alpha.socket.grpc.runner.RpcRunner;
+import com.geektcp.alpha.socket.grpc.runner.GRpcRunner;
 import com.geektcp.alpha.socket.grpc.annotation.RpcService;
 import com.geektcp.alpha.socket.grpc.annotation.RpcPort;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +13,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+/**
+ * @author tanghaiyang on 2020/1/2 1:18.
+ */
 @Slf4j
 @Configuration
 @ConditionalOnBean(annotation = RpcService.class)
@@ -27,8 +29,8 @@ public class RpcAutoConfiguration {
     private RpcProperties serverProperties;
 
     @Bean
-    public RpcRunner grpcServerRunner(ServerBuilder serverBuilder, RpcBuilderConfigurer serverBuilderConfigurer) {
-        return new RpcRunner(serverBuilder, serverBuilderConfigurer);
+    public GRpcRunner gRpcServerRunner(ServerBuilder serverBuilder, RpcBuilderConfigurer serverBuilderConfigurer) {
+        return new GRpcRunner(serverBuilder, serverBuilderConfigurer);
     }
 
     @Bean
@@ -39,10 +41,7 @@ public class RpcAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(RpcBuilderConfigurer.class)
     public RpcBuilderConfigurer defaultServerBuilderConfigurer() {
-        return serverBuilder -> {
-            log.info("configure in defaultServerBuilderConfigurer, no op...");
-            //no op
-        };
+        return serverBuilder -> log.info("configure in defaultServerBuilderConfigurer, no op...");
     }
 
 }

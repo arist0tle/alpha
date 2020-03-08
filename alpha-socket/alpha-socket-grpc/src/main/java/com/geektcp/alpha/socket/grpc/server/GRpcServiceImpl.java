@@ -12,9 +12,9 @@ import com.geektcp.alpha.socket.grpc.annotation.RpcService;
  * @author tanghaiyang on 2020/1/2 1:18.
  */
 @RpcService
-public class GRpcServerServiceImpl extends HelloWorldServiceGrpc.HelloWorldServiceImplBase {
+public class GRpcServiceImpl extends HelloWorldServiceGrpc.HelloWorldServiceImplBase {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GRpcServerServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GRpcServiceImpl.class);
 
     @Override
     public void sayHello(Person request, StreamObserver<Greeting> responseObserver) {

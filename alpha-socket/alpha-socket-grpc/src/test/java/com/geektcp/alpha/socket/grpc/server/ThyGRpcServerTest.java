@@ -11,10 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 
 /**
- * Created by rayt on 5/16/16.
+ * @author tanghaiyang on 2020/1/2 1:18.
  */
 @Slf4j
-public class ThyGRpcServer {
+public class ThyGRpcServerTest {
     public static void main(String[] args) throws IOException, InterruptedException {
         Server server = ServerBuilder.forPort(8080)
                 .addService(new GreetingServiceImpl()).build();

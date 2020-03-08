@@ -9,7 +9,7 @@ import io.grpc.ManagedChannelBuilder;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Created by rayt on 5/16/16.
+ * @author tanghaiyang on 2020/1/2 1:18.
  */
 @Slf4j
 public class ThyGRpcClient {

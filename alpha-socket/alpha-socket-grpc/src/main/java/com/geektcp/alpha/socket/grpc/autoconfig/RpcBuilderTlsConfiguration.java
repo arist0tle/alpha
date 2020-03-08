@@ -21,7 +21,9 @@ import org.springframework.util.StringUtils;
 import javax.net.ssl.SSLException;
 import java.io.File;
 import java.net.InetSocketAddress;
-
+/**
+ * @author tanghaiyang on 2020/1/2 1:18.
+ */
 @Slf4j
 @Configuration
 @ConditionalOnBean(annotation = RpcService.class)

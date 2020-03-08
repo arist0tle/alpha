@@ -1,8 +1,12 @@
 package com.geektcp.alpha.socket.grpc.autoconfig;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-
-@ConfigurationProperties(prefix = "grpc.server", ignoreUnknownFields = true)
+/**
+ * @author tanghaiyang on 2020/1/2 1:18.
+ */
+@Data
+@ConfigurationProperties(prefix = "grpc.server")
 public class RpcProperties {
 
     public static final int DEFAULT_SERVER_PORT = 50051;
@@ -69,69 +73,5 @@ public class RpcProperties {
      * gRPC tls server trustCertCollectionFilePath
      */
     private String trustCertCollectionFilePath;
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
-
-    public String getInProcessServerName() {
-        return inProcessServerName;
-    }
-
-    public void setInProcessServerName(String inProcessServerName) {
-        this.inProcessServerName = inProcessServerName;
-    }
-
-    public boolean isEnableReflection() {
-        return enableReflection;
-    }
-
-    public void setEnableReflection(boolean enableReflection) {
-        this.enableReflection = enableReflection;
-    }
-
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public String getCertChainFilePath() {
-        return certChainFilePath;
-    }
-
-    public void setCertChainFilePath(String certChainFilePath) {
-        this.certChainFilePath = certChainFilePath;
-    }
-
-    public String getPrivateKeyFilePath() {
-        return privateKeyFilePath;
-    }
-
-    public void setPrivateKeyFilePath(String privateKeyFilePath) {
-        this.privateKeyFilePath = privateKeyFilePath;
-    }
-
-    public String getTrustCertCollectionFilePath() {
-        return trustCertCollectionFilePath;
-    }
-
-    public void setTrustCertCollectionFilePath(String trustCertCollectionFilePath) {
-        this.trustCertCollectionFilePath = trustCertCollectionFilePath;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
 
 }

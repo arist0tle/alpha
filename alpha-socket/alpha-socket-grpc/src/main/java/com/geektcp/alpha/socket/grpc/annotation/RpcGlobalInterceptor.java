@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
 import org.springframework.stereotype.Component;
 
 /**
- * Grpc全局拦截器注解
+ * @author tanghaiyang on 2020/1/2 1:18.
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

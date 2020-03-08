@@ -10,8 +10,10 @@ import org.springframework.core.env.PropertiesPropertySource;
 import org.springframework.util.SocketUtils;
 
 import java.util.Properties;
-
-public class GrpcServerEnvironment implements EnvironmentPostProcessor {
+/**
+ * @author tanghaiyang on 2020/1/2 1:18.
+ */
+public class GRpcEnvironment implements EnvironmentPostProcessor {
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {

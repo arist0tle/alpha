@@ -1,29 +1,13 @@
-/*
- * Copyright 2019 The nity.io gRPC Spring Boot Project Authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.geektcp.alpha.socket.grpc.runner;
 
-import com.geektcp.alpha.socket.grpc.annotation.GrpcGlobalInterceptor;
-import com.geektcp.alpha.socket.grpc.annotation.GrpcServerBuilderConfigurer;
-import com.geektcp.alpha.socket.grpc.annotation.GrpcService;
+import com.geektcp.alpha.socket.grpc.annotation.RpcGlobalInterceptor;
+import com.geektcp.alpha.socket.grpc.annotation.RpcBuilderConfigurer;
+import com.geektcp.alpha.socket.grpc.annotation.RpcService;
 import io.grpc.*;
 import io.grpc.health.v1.HealthCheckResponse;
 import io.grpc.protobuf.services.ProtoReflectionService;
 import io.grpc.services.HealthStatusManager;
-import com.geektcp.alpha.socket.grpc.autoconfig.GrpcServerProperties;
+import com.geektcp.alpha.socket.grpc.autoconfig.RpcProperties;
 import com.geektcp.alpha.socket.grpc.context.GrpcServerInitializedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanCreationException;
@@ -48,7 +32,7 @@ import java.util.stream.Stream;
  * Hosts embedded gRPC server.
  */
 @Slf4j
-public class GrpcServerRunner implements CommandLineRunner, DisposableBean {
+public class RpcRunner implements CommandLineRunner, DisposableBean {
 
     @Autowired
     private HealthStatusManager healthStatusManager;
@@ -57,24 +41,25 @@ public class GrpcServerRunner implements CommandLineRunner, DisposableBean {
     private AbstractApplicationContext applicationContext;
 
     @Autowired
-    private GrpcServerProperties serverProperties;
+    private RpcProperties serverProperties;
 
     private final ServerBuilder<?> serverBuilder;
 
-    private GrpcServerBuilderConfigurer serverBuilderConfigurer;
+    private RpcBuilderConfigurer serverBuilderConfigurer;
 
     private Server server;
 
-    public GrpcServerRunner(ServerBuilder<?> serverBuilder, GrpcServerBuilderConfigurer serverBuilderConfigurer) {
+    public RpcRunner(ServerBuilder<?> serverBuilder, RpcBuilderConfigurer serverBuilderConfigurer) {
         this.serverBuilder = serverBuilder;
         this.serverBuilderConfigurer = serverBuilderConfigurer;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("Starting gRPC Server ...");
+        log.info("Starting gRPC Server {}:{}",serverProperties.getHost(),serverProperties.getPort());
 
-        Collection<ServerInterceptor> globalInterceptors = getBeanNamesByTypeWithAnnotation(GrpcGlobalInterceptor.class, ServerInterceptor.class)
+        Collection<ServerInterceptor> globalInterceptors =
+                getBeanNamesByTypeWithAnnotation(RpcGlobalInterceptor.class, ServerInterceptor.class)
                 .map(name -> applicationContext.getBeanFactory().getBean(name, ServerInterceptor.class))
                 .collect(Collectors.toList());
 
@@ -83,12 +68,12 @@ public class GrpcServerRunner implements CommandLineRunner, DisposableBean {
         serverBuilder.addService(healthStatusManager.getHealthService());
 
         // find and register all GrpcService-enabled beans
-        getBeanNamesByTypeWithAnnotation(GrpcService.class, BindableService.class)
+        getBeanNamesByTypeWithAnnotation(RpcService.class, BindableService.class)
                 .forEach(name -> {
                     BindableService srv = applicationContext.getBeanFactory().getBean(name, BindableService.class);
                     ServerServiceDefinition serviceDefinition = srv.bindService();
-                    GrpcService grpcServiceAnn = applicationContext.findAnnotationOnBean(name, GrpcService.class);
-                    serviceDefinition = bindInterceptors(serviceDefinition, grpcServiceAnn, globalInterceptors);
+                    RpcService rpcServiceAnn = applicationContext.findAnnotationOnBean(name, RpcService.class);
+                    serviceDefinition = bindInterceptors(serviceDefinition, rpcServiceAnn, globalInterceptors);
                     serverBuilder.addService(serviceDefinition);
                     String serviceName = serviceDefinition.getServiceDescriptor().getName();
                     healthStatusManager.setStatus(serviceName, HealthCheckResponse.ServingStatus.SERVING);
@@ -110,8 +95,8 @@ public class GrpcServerRunner implements CommandLineRunner, DisposableBean {
         startDaemonAwaitThread();
     }
 
-    private ServerServiceDefinition bindInterceptors(ServerServiceDefinition serviceDefinition, GrpcService grpcService, Collection<ServerInterceptor> globalInterceptors) {
-        Stream<? extends ServerInterceptor> privateInterceptors = Stream.of(grpcService.interceptors())
+    private ServerServiceDefinition bindInterceptors(ServerServiceDefinition serviceDefinition, RpcService rpcService, Collection<ServerInterceptor> globalInterceptors) {
+        Stream<? extends ServerInterceptor> privateInterceptors = Stream.of(rpcService.interceptors())
                 .map(interceptorClass -> {
                     try {
                         return 0 < applicationContext.getBeanNamesForType(interceptorClass).length ?
@@ -123,7 +108,7 @@ public class GrpcServerRunner implements CommandLineRunner, DisposableBean {
                 });
 
         List<ServerInterceptor> interceptors = Stream.concat(
-                grpcService.applyGlobalInterceptors() ? globalInterceptors.stream() : Stream.empty(),
+                rpcService.applyGlobalInterceptors() ? globalInterceptors.stream() : Stream.empty(),
                 privateInterceptors)
                 .distinct()
                 .sorted(serverInterceptorOrderComparator())
@@ -148,7 +133,7 @@ public class GrpcServerRunner implements CommandLineRunner, DisposableBean {
     private void startDaemonAwaitThread() {
         Thread awaitThread = new Thread(() -> {
             try {
-                GrpcServerRunner.this.server.awaitTermination();
+                RpcRunner.this.server.awaitTermination();
             } catch (InterruptedException e) {
                 log.error("gRPC server stopped.", e);
             }

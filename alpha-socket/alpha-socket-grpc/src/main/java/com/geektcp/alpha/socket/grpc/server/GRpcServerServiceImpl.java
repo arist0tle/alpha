@@ -1,20 +1,20 @@
 package com.geektcp.alpha.socket.grpc.server;
 
-import com.geektcp.alpha.grpc.protocol.example.Greeting;
-import com.geektcp.alpha.grpc.protocol.example.HelloWorldServiceGrpc;
-import com.geektcp.alpha.grpc.protocol.example.Person;
+import com.geektcp.alpha.socket.grpc.example.Greeting;
+import com.geektcp.alpha.socket.grpc.example.HelloWorldServiceGrpc;
+import com.geektcp.alpha.socket.grpc.example.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.grpc.stub.StreamObserver;
-import com.geektcp.alpha.socket.grpc.annotation.GrpcService;
+import com.geektcp.alpha.socket.grpc.annotation.RpcService;
 
 /**
  * @author tanghaiyang on 2020/1/2 1:18.
  */
-@GrpcService
-public class ExampleServiceImpl extends HelloWorldServiceGrpc.HelloWorldServiceImplBase {
+@RpcService
+public class GRpcServerServiceImpl extends HelloWorldServiceGrpc.HelloWorldServiceImplBase {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExampleServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GRpcServerServiceImpl.class);
 
     @Override
     public void sayHello(Person request, StreamObserver<Greeting> responseObserver) {

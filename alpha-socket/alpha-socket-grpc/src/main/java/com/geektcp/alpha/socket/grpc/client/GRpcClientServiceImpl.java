@@ -2,9 +2,9 @@ package com.geektcp.alpha.socket.grpc.client;
 
 import javax.annotation.PostConstruct;
 
-import com.geektcp.alpha.grpc.protocol.example.Greeting;
-import com.geektcp.alpha.grpc.protocol.example.HelloWorldServiceGrpc;
-import com.geektcp.alpha.grpc.protocol.example.Person;
+import com.geektcp.alpha.socket.grpc.example.Greeting;
+import com.geektcp.alpha.socket.grpc.example.HelloWorldServiceGrpc;
+import com.geektcp.alpha.socket.grpc.example.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -16,9 +16,9 @@ import io.grpc.ManagedChannelBuilder;
  */
 
 @Component
-public class ExampleClient {
+public class GRpcClientServiceImpl {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExampleClient.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GRpcClientServiceImpl.class);
 
     private HelloWorldServiceGrpc.HelloWorldServiceBlockingStub helloWorldServiceBlockingStub;
 

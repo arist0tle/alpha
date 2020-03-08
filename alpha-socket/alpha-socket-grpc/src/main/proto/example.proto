@@ -1,6 +1,6 @@
 syntax = "proto3";
 option java_multiple_files = true;
-package com.geektcp.alpha.grpc.protocol.example;
+package com.geektcp.alpha.socket.grpc.example;
 
 message Person {
   string first_name = 1;

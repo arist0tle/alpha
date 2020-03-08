@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import com.geektcp.alpha.socket.grpc.client.ExampleClient;
+import com.geektcp.alpha.socket.grpc.client.GRpcClientServiceImpl;
 
 /**
  * @author tanghaiyang on 2020/1/2 1:18.
@@ -17,10 +17,10 @@ import com.geektcp.alpha.socket.grpc.client.ExampleClient;
 public class SpringGrpcApplicationTests {
 
     @Autowired
-    private ExampleClient exampleClient;
+    private GRpcClientServiceImpl GRpcClientServiceImpl;
 
     @Test
     public void testSayHello() {
-        assertThat(exampleClient.sayHello("John", "Doe")).isEqualTo("Hello John Doe!");
+        assertThat(GRpcClientServiceImpl.sayHello("John", "Doe")).isEqualTo("Hello John Doe!");
     }
 }

@@ -20,7 +20,7 @@
         <module>alpha-socket-jetty</module>
         <module>alpha-socket-akka</module>
         <module>alpha-socket-server</module>
-        <module>alpha-grpc</module>
+        <module>alpha-socket-grpc</module>
     </modules>
 
 

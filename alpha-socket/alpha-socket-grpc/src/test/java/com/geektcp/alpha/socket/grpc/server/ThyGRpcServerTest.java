@@ -1,12 +1,14 @@
 package com.geektcp.alpha.socket.grpc.server;
 
-import com.geektcp.alpha.socket.grpc.demo.GreetingServiceGrpc;
-import com.geektcp.alpha.socket.grpc.demo.HelloRequest;
-import com.geektcp.alpha.socket.grpc.demo.HelloResponse;
+import com.geektcp.alpha.socket.grpc.proto.demo.GreetingServiceGrpc;
+import com.geektcp.alpha.socket.grpc.proto.demo.HelloRequest;
+import com.geektcp.alpha.socket.grpc.proto.demo.HelloResponse;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.io.IOException;
 
@@ -15,7 +17,9 @@ import java.io.IOException;
  */
 @Slf4j
 public class ThyGRpcServerTest {
-    public static void main(String[] args) throws IOException, InterruptedException {
+
+    //    @Test
+    public void startServer() throws IOException, InterruptedException {
         Server server = ServerBuilder.forPort(8080)
                 .addService(new GreetingServiceImpl()).build();
 
@@ -23,9 +27,10 @@ public class ThyGRpcServerTest {
         server.start();
         log.info("Server started!");
         server.awaitTermination();
+        Assert.assertTrue(true);
     }
 
-    public static class GreetingServiceImpl extends GreetingServiceGrpc.GreetingServiceImplBase {
+    public class GreetingServiceImpl extends GreetingServiceGrpc.GreetingServiceImplBase {
         @Override
         public void greeting(HelloRequest request, StreamObserver<HelloResponse> responseObserver) {
             log.info("request: {}", request);

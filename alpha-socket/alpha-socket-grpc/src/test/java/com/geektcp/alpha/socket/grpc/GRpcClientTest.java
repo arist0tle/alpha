@@ -1,8 +1,8 @@
 package com.geektcp.alpha.socket.grpc;
 
-import com.geektcp.alpha.socket.grpc.example.Greeting;
-import com.geektcp.alpha.socket.grpc.example.HelloWorldServiceGrpc;
-import com.geektcp.alpha.socket.grpc.example.Person;
+import com.geektcp.alpha.socket.grpc.proto.greet.GreetServiceGrpc;
+import com.geektcp.alpha.socket.grpc.proto.greet.Greeting;
+import com.geektcp.alpha.socket.grpc.proto.greet.Person;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class GRpcClientTest {
                 .usePlaintext()
                 .build();
 
-        HelloWorldServiceGrpc.HelloWorldServiceBlockingStub stub = HelloWorldServiceGrpc.newBlockingStub(channel);
+        GreetServiceGrpc.GreetServiceBlockingStub stub = GreetServiceGrpc.newBlockingStub(channel);
         Person person = Person.newBuilder().setFirstName("tang").setLastName("hai").build();
         log.info("client sending {}", person);
 

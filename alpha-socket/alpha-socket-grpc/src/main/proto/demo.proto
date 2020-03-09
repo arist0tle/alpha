@@ -1,5 +1,5 @@
 syntax = "proto3";
-package com.geektcp.alpha.socket.grpc.demo;
+package com.geektcp.alpha.socket.grpc.proto.demo;
 option java_multiple_files = true;
 
 enum Sentiment {

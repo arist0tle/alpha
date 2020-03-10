@@ -18,7 +18,9 @@ public class FileServiceImpl extends FileServiceGrpc.FileServiceImplBase {
     @Override
     public void send(FileData request, StreamObserver<Response> responseObserver) {
         log.info("server received {}", request);
-        String message = "Hello " + request.getFirstName() + " " + request.getLastName() + "!";
+        String firstName = new String(request.getFirstName().toByteArray());
+        String lastName = new String(request.getLastName().toByteArray());
+        String message = "Hello " + firstName + " | " + lastName + "!";
         ByteString bs = ByteString.copyFrom(message.getBytes());
         Response response = Response.newBuilder().setMessage(bs).build();
         log.info("server responded {}", response);

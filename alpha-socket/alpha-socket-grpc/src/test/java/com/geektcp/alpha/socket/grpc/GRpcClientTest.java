@@ -22,26 +22,22 @@ import java.util.concurrent.CountDownLatch;
 public class GRpcClientTest {
 
     @Test
-    public void startClientForGRpc() throws InterruptedException{
-        CountDownLatch latch = new CountDownLatch(2);
+    public void startClientForGRpc(){
         ManagedChannel channel = ManagedChannelBuilder
                 .forAddress("localhost", 10000)
                 .usePlaintext()
                 .build();
-
         GreetServiceGrpc.GreetServiceBlockingStub stub = GreetServiceGrpc.newBlockingStub(channel);
         Person person = Person.newBuilder().setFirstName("tang").setLastName("hai").build();
         log.info("client sending {}", person);
 
         Greeting greeting = stub.sayHello(person);
         log.info("client received {}", greeting);
-        latch.await();
         Assert.assertTrue(true);
     }
 
     @Test
-    public void startClientForFile() throws InterruptedException{
-        CountDownLatch latch = new CountDownLatch(2);
+    public void startClientForFile(){
         ManagedChannel channel = ManagedChannelBuilder
                 .forAddress("localhost", 10000)
                 .usePlaintext()
@@ -51,10 +47,9 @@ public class GRpcClientTest {
         FileServiceGrpc.FileServiceBlockingStub stub = FileServiceGrpc.newBlockingStub(channel);
         FileData fileData = FileData.newBuilder().setFirstName(firstName).setLastName(lastName).build();
         log.info("client sending {}", fileData);
-
         Response response = stub.send(fileData);
         log.info("client received {}", response);
-        latch.await();
+        channel.shutdown();
         Assert.assertTrue(true);
     }
 }

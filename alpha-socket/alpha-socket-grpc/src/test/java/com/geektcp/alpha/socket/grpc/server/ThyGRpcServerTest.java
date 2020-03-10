@@ -11,6 +11,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * @author tanghaiyang on 2020/1/2 1:18.
@@ -18,15 +19,21 @@ import java.io.IOException;
 @Slf4j
 public class ThyGRpcServerTest {
 
+    @Test
+    public void name() {
+        Assert.assertTrue(true);
+    }
+
     //    @Test
     public void startServer() throws IOException, InterruptedException {
+        CountDownLatch latch = new CountDownLatch(2);
         Server server = ServerBuilder.forPort(8080)
                 .addService(new GreetingServiceImpl()).build();
-
         log.info("Starting server...");
         server.start();
         log.info("Server started!");
         server.awaitTermination();
+        latch.await();
         Assert.assertTrue(true);
     }
 
@@ -34,13 +41,11 @@ public class ThyGRpcServerTest {
         @Override
         public void greeting(HelloRequest request, StreamObserver<HelloResponse> responseObserver) {
             log.info("request: {}", request);
-
             String greeting = "Hello there, " + request.getName();
-
             HelloResponse response = HelloResponse.newBuilder().setGreeting(greeting).build();
-
             responseObserver.onNext(response);
             responseObserver.onCompleted();
+
         }
     }
 }

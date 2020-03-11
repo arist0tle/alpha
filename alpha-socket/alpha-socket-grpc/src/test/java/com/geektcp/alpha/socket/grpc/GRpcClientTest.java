@@ -42,6 +42,7 @@ public class GRpcClientTest {
                 .forAddress("localhost", 10000)
                 .usePlaintext()
                 .build();
+        String filePath = "F:\\tmp\\upload\\src.txt";
         ByteString firstName = ByteString.copyFrom("tang".getBytes());
         ByteString lastName = ByteString.copyFrom("hai".getBytes());
         FileServiceGrpc.FileServiceBlockingStub stub = FileServiceGrpc.newBlockingStub(channel);

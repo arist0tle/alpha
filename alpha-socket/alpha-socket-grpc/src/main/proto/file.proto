@@ -3,12 +3,14 @@ option java_multiple_files = true;
 package com.geektcp.alpha.socket.grpc.proto.file;
 
 message FileData {
-  bytes first_name = 1;
-  bytes last_name = 2;
+  bytes data = 1;
+  int32 start_pos = 2;
+  int32 len = 3;
+  string msg = 4;
 }
 
 message Response {
-  bytes message = 1;
+  string msg = 1;
 }
 
 service FileService {

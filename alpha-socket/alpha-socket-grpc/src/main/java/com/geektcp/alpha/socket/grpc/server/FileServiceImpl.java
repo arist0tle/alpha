@@ -21,40 +21,59 @@ import java.util.Objects;
 @RpcService
 public class FileServiceImpl extends FileServiceGrpc.FileServiceImplBase {
 
-    private static final String dstFilePath = "/share/down/file/jdk-9+181_linux-x64_ri.zip";
+    private static final String SAVE_PATH = "data/";
 
     private static FileChannel fileChannel;
+    private static FileOutputStream dstFos;
 
     @Override
-    public void send(FileData request, StreamObserver<Response> responseObserver) {
+    public void send(FileData fileData, StreamObserver<Response> responseObserver) {
+        String fileName = fileData.getFileName();
+        int status = fileData.getStatus();
+
+        String message = "response";
+        Response response = Response.newBuilder().setMsg(message).build();
+        log.info("server responded {}", response);
+
         try {
-            FileChannel dstFileChannel = getFileChannel();
-            if(Objects.isNull(dstFileChannel)){
+            FileChannel dstFileChannel = getFileChannel(fileName, status);
+            if (Objects.isNull(dstFileChannel)) {
+                responseObserver.onNext(response);
+                responseObserver.onCompleted();
                 return;
             }
-            ByteString date = request.getData();
-            ByteBuffer buffer = ByteBuffer.wrap(date.toByteArray());
+            ByteString data = fileData.getData();
+            if(Objects.isNull(data)){
+                responseObserver.onNext(response);
+                responseObserver.onCompleted();
+                return;
+            }
+            ByteBuffer buffer = ByteBuffer.wrap(data.toByteArray());
             dstFileChannel.write(buffer);
-            String message = "response";
-            Response response = Response.newBuilder().setMsg(message).build();
-            log.info("server responded {}", response);
+
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         } catch (Exception e) {
             log.error(e.getMessage());
+            log.info("fileName: {} | status:{}", fileName, status);
+            e.printStackTrace();
         }
     }
 
     //////////////////////
-    private static FileChannel getFileChannel() {
-        if (Objects.isNull(fileChannel)) {
+    private static FileChannel getFileChannel(String fileName, int status) throws Exception {
+        if (status == 0 || Objects.isNull(fileChannel)) {
             try {
-                File dstFile = new File(dstFilePath);
-                FileOutputStream dstFos = new FileOutputStream(dstFile);
+                File dstFile = new File(SAVE_PATH + fileName);
+                dstFos = new FileOutputStream(dstFile,true);
                 fileChannel = dstFos.getChannel();
             } catch (Exception e) {
                 log.error(e.getMessage());
             }
+        }
+        if (status == 2 && Objects.nonNull(fileChannel)) {
+            fileChannel.close();
+            return null;
         }
         return fileChannel;
     }

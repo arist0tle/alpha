@@ -7,6 +7,8 @@ message FileData {
   int32 start_pos = 2;
   int32 len = 3;
   string msg = 4;
+  string file_name = 5;
+  int32 status = 6;
 }
 
 message Response {

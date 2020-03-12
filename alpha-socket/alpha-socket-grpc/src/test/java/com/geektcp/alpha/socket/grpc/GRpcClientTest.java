@@ -27,7 +27,7 @@ import java.util.concurrent.CountDownLatch;
 public class GRpcClientTest {
 
     @Test
-    public void startClientForGRpc(){
+    public void startClientForGRpc() {
         ManagedChannel channel = ManagedChannelBuilder
                 .forAddress("localhost", 10000)
                 .usePlaintext()
@@ -42,7 +42,7 @@ public class GRpcClientTest {
     }
 
     @Test
-    public void startClientForByte(){
+    public void startClientForByte() {
         ManagedChannel channel = ManagedChannelBuilder
                 .forAddress("localhost", 10000)
                 .usePlaintext()
@@ -59,12 +59,12 @@ public class GRpcClientTest {
     }
 
     @Test
-    public void startClientForFile() throws Exception{
+    public void startClientForFile() throws Exception {
         ManagedChannel channel = ManagedChannelBuilder
                 .forAddress("localhost", 10000)
                 .usePlaintext()
                 .build();
-        String srcFilePath = "/share/down/jdk-9+181_linux-x64_ri.zip";
+        String srcFilePath = "F:\\down\\axureRP-8.1.zip";
         File srcFile = new File(srcFilePath);
         FileInputStream srcFis = new FileInputStream(srcFile);
         FileChannel srcFileChannel = srcFis.getChannel();
@@ -72,18 +72,24 @@ public class GRpcClientTest {
         int len = 200000;
         int size = 0;
         ByteBuffer buffer = ByteBuffer.allocateDirect(len);
+        FileData.Builder builder = FileData.newBuilder();
+        builder.setFileName("test.zip");
+        builder.setStatus(0);
         while (true) {
             size = srcFileChannel.read(buffer);
             if (size == -1) {
+                builder.setStatus(2);
+                Response response = stub.send(builder.build());
+                log.info("client send finished: {}", response.getMsg());
                 break;
             }
             buffer.flip();
-            FileData fileData = FileData.newBuilder()
-                    .setData(ByteString.copyFrom(buffer))
-                    .build();
+            builder.setData(ByteString.copyFrom(buffer));
+            FileData fileData = builder.build();
             Response response = stub.send(fileData);
             log.info("client received {}", response.getMsg());
             buffer.clear();
+            builder.setStatus(1);
         }
         log.info("finished!");
         channel.shutdown();

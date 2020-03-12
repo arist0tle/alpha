@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,36 +19,42 @@ import java.util.Objects;
 public class FileParser {
     private static String[] fields = null;
 
+    private FileParser() {
+    }
 
-    public static JSONObject listPath(String path){
+    public static JSONObject listPath(String path) {
         JSONObject ret = new JSONObject();
         File rootDir = new File(path);
         File[] subDirs = rootDir.listFiles();
 
-        if(Objects.isNull(subDirs)) return null;
-        for(File subDir: subDirs){
+        if (Objects.isNull(subDirs)) {
+            return null;
+        }
+        for (File subDir : subDirs) {
             File[] subDirsBetas = subDir.listFiles();
             String type = subDir.getName();
 
-            if(!ret.containsKey(type)) {
-                ret.put(type, new JSONObject());
-            }
-            JSONObject typeObject = ret.getJSONObject(type);
-
-            if(Objects.isNull(subDirsBetas)) continue;
-            for(File subDirsBeta: subDirsBetas) {
-                String table = subDirsBeta.getName();
-                if(!typeObject.containsKey(table)) {
-                    typeObject.put(table, new JSONArray());
+            if (ret.containsKey(type)) {
+                JSONObject typeObject = ret.getJSONObject(type);
+                if (Objects.isNull(subDirsBetas)) {
+                    continue;
                 }
-                JSONArray tableObject = typeObject.getJSONArray(table);
+                for (File subDirsBeta : subDirsBetas) {
+                    String table = subDirsBeta.getName();
+                    if (!typeObject.containsKey(table)) {
+                        typeObject.put(table, new JSONArray());
+                    }
+                    JSONArray tableObject = typeObject.getJSONArray(table);
 
-                File[] files = subDirsBeta.listFiles();
-                if (Objects.isNull(files)) continue;
-                for (File file : files) {
+                    File[] files = subDirsBeta.listFiles();
+                    if (Objects.isNull(files)) continue;
+                    for (File file : files) {
 //                    System.out.println(type + "|" + table + "|" + file.getAbsolutePath());
-                    tableObject.add(file.getAbsolutePath());
+                        tableObject.add(file.getAbsolutePath());
+                    }
                 }
+            } else {
+                ret.put(type, new JSONObject());
             }
 
         }
@@ -62,13 +69,13 @@ public class FileParser {
         FileType fileType = FileType.JSON;
         try (BufferedRandomAccessFile reader = new BufferedRandomAccessFile(file, "r")) {
             reader.seek(pos);
-            if(pos == 0 ) {
+            if (pos == 0) {
                 String firstLine = reader.readLine();
-                try{
+                try {
                     JSONObject lineJson = JSONObject.parseObject(firstLine);
                     fileType = FileType.JSON;
                     lines.add(lineJson);
-                } catch (Exception e){
+                } catch (Exception e) {
                     fields = firstLine.split(",");
                     fileType = FileType.CSV;
                 }
@@ -76,12 +83,14 @@ public class FileParser {
 
             for (int i = 0; i < num; i++) {
                 String line = reader.readLine();
-                if (StringUtils.isBlank(line)) { break; }
+                if (StringUtils.isBlank(line)) {
+                    break;
+                }
 
                 JSONObject lineJson = null;
-                if(fileType.equals(FileType.CSV)){
+                if (fileType.equals(FileType.CSV)) {
                     lineJson = transfer(line);
-                }else if(fileType.equals(FileType.JSON)){
+                } else if (fileType.equals(FileType.JSON)) {
                     lineJson = JSONObject.parseObject(line);
                 }
 //                lines.add(new String(line.getBytes("8859_1"), encoding));
@@ -99,12 +108,12 @@ public class FileParser {
     }
 
     // used when csv
-    private static List<String> transfer(List<String> lines){
+    private static List<String> transfer(List<String> lines) {
         List<String> ret = new ArrayList<>();
-        for(String line:lines){
+        for (String line : lines) {
             String[] valuesArr = line.split(",");
             JSONObject lineJson = new JSONObject(true);
-            for(int j=0;j<valuesArr.length;j++) {
+            for (int j = 0; j < valuesArr.length; j++) {
                 lineJson.put(fields[j], valuesArr[j]);
             }
             ret.add(lineJson.toJSONString());
@@ -115,10 +124,10 @@ public class FileParser {
     }
 
     // used when csv
-    private static JSONObject transfer(String line){
+    private static JSONObject transfer(String line) {
         String[] valuesArr = line.split(",");
         JSONObject lineJson = new JSONObject(true);
-        for(int j=0;j<valuesArr.length;j++) {
+        for (int j = 0; j < valuesArr.length; j++) {
             lineJson.put(fields[j], valuesArr[j]);
         }
 

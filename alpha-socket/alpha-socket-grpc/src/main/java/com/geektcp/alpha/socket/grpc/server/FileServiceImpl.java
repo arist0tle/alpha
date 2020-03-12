@@ -41,7 +41,7 @@ public class FileServiceImpl extends FileServiceGrpc.FileServiceImplBase {
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
     }
 

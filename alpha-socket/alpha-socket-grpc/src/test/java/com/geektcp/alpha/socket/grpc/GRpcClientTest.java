@@ -71,7 +71,6 @@ public class GRpcClientTest {
         FileServiceGrpc.FileServiceBlockingStub stub = FileServiceGrpc.newBlockingStub(channel);
         int len = 200000;
         int size = 0;
-        int startPos = 0;
         ByteBuffer buffer = ByteBuffer.allocateDirect(len);
         while (true) {
             size = srcFileChannel.read(buffer);
@@ -79,10 +78,9 @@ public class GRpcClientTest {
                 break;
             }
             buffer.flip();
-            FileData fileData = FileData.newBuilder().
-                    setData(ByteString.copyFrom(buffer))
+            FileData fileData = FileData.newBuilder()
+                    .setData(ByteString.copyFrom(buffer))
                     .build();
-//            log.info("client sending {}", fileData);
             Response response = stub.send(fileData);
             log.info("client received {}", response.getMsg());
             buffer.clear();
@@ -92,32 +90,32 @@ public class GRpcClientTest {
         Assert.assertTrue(true);
     }
 
-//    @Test
-//    public void writeFileByteByChannel() {
-//        try {
-//            String srcFilePath = "/share/down/jdk-9+181_linux-x64_ri.zip";
-//            String dstFilePath = "/share/down/file/jdk-9+181_linux-x64_ri.zip";
-//            File srcFile = new File(srcFilePath);
-//            FileInputStream srcFis = new FileInputStream(srcFile);
-//            FileChannel srcFileChannel = srcFis.getChannel();
-//            File dstFile = new File(dstFilePath);
-//            FileOutputStream dstFos = new FileOutputStream(dstFile);
-//            FileChannel dstFileChannel = dstFos.getChannel();
-//            int len = 2000;
-//            int size = 0;
-//            ByteBuffer buffer = ByteBuffer.allocateDirect(len);
-//            while (true) {
-//                size = srcFileChannel.read(buffer);
-//                if (size == -1) {
-//                    break;
-//                }
-//                buffer.flip();
-//                dstFileChannel.write(buffer);
-//                buffer.clear();
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        Assert.assertTrue(true);
-//    }
+    @Test
+    public void writeFileByteByChannel() {
+        try {
+            String srcFilePath = "/share/down/jdk-9+181_linux-x64_ri.zip";
+            String dstFilePath = "/share/down/file/test-1.zip";
+            File srcFile = new File(srcFilePath);
+            FileInputStream srcFis = new FileInputStream(srcFile);
+            FileChannel srcFileChannel = srcFis.getChannel();
+            File dstFile = new File(dstFilePath);
+            FileOutputStream dstFos = new FileOutputStream(dstFile);
+            FileChannel dstFileChannel = dstFos.getChannel();
+            int len = 2000;
+            ByteBuffer buffer = ByteBuffer.allocateDirect(len);
+            int size;
+            while (true) {
+                size = srcFileChannel.read(buffer);
+                if (size == -1) {
+                    break;
+                }
+                buffer.flip();
+                dstFileChannel.write(buffer);
+                buffer.clear();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Assert.assertTrue(true);
+    }
 }

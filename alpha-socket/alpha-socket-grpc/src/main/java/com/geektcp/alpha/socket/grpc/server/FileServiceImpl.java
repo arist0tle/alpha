@@ -33,7 +33,7 @@ public class FileServiceImpl extends FileServiceGrpc.FileServiceImplBase {
                 return;
             }
             ByteString date = request.getData();
-            ByteBuffer buffer = date.asReadOnlyByteBuffer();
+            ByteBuffer buffer = ByteBuffer.wrap(date.toByteArray());
             dstFileChannel.write(buffer);
             String message = "response";
             Response response = Response.newBuilder().setMsg(message).build();

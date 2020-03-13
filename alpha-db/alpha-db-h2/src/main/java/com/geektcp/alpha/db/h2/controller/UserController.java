@@ -14,8 +14,7 @@ public class UserController {
 
     @GetMapping(value = "/aaa")
     public String addUser() {
-        log.info("11111111111111");
-        log.info("env: {}", System.getProperty("spring.profiles.active"));
+        log.info("test case");
         return System.getProperty("spring.profiles.active");
     }
 

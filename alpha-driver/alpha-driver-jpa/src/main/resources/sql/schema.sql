@@ -7,7 +7,7 @@ CREATE TABLE `sys_role` (
   `created_by` varchar(50) NOT NULL DEFAULT '',
   `created_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_by` varchar(50) NOT NULL DEFAULT '',
-  `updated_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ,
   PRIMARY KEY (`id`)
 );
 
@@ -32,7 +32,7 @@ CREATE TABLE `sys_resource` (
   `created_by` varchar(50)  NOT NULL DEFAULT '',
   `created_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_by` varchar(50)  NOT NULL DEFAULT '',
-  `updated_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ,
   PRIMARY KEY (`id`)
 );
 
@@ -49,7 +49,7 @@ CREATE TABLE `sys_user` (
   `created_by` varchar(50)  NOT NULL DEFAULT '',
   `created_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_by` varchar(50)  NOT NULL DEFAULT '',
-  `updated_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ,
   PRIMARY KEY (`id`)
 );
 

@@ -34,12 +34,12 @@ public class UserServiceImpl extends JpaBase implements IUserService {
     }
 
     public List<User> findByName(String name) {
-        List<User> userList1 = userRepository.findByName1(name);
-        List<User> userList2 = userRepository.findByName2(name);
-        List<User> userList3 = userRepository.findByNameAndAddress(name, "3");
-        System.out.println("userList1:" + userList1);
-        System.out.println("userList2:" + userList2);
-        System.out.println("userList3:" + userList3);
+//        List<User> userList1 = userRepository.findByName1(name);
+//        List<User> userList2 = userRepository.findByName2(name);
+//        List<User> userList3 = userRepository.findByNameAndAddress(name, "3");
+//        System.out.println("userList1:" + userList1);
+//        System.out.println("userList2:" + userList2);
+//        System.out.println("userList3:" + userList3);
         return userRepository.findByName(name);
     }
 

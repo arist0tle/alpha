@@ -19,6 +19,7 @@
         <module>alpha-db-tigergraph</module>
         <module>alpha-db-arango</module>
         <module>alpha-db-es6</module>
+        <module>alpha-db-h2</module>
     </modules>
 
 

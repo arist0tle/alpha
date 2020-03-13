@@ -11,11 +11,14 @@ import java.io.Serializable;
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    long id;
+    private long id;
+
     @Column(name = "name")
-    String name;
+
+    private String name;
+
     @Column(name = "address")
-    String address;
+    private String address;
 
     public long getId() {
         return id;

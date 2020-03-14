@@ -1,1 +1,1 @@
-mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true
+mvn clean install -DskipTests=true -Dmaven.test.skip=true

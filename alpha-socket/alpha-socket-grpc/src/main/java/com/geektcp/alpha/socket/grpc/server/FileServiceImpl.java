@@ -60,6 +60,11 @@ public class FileServiceImpl extends FileServiceGrpc.FileServiceImplBase {
         }
     }
 
+    @Override
+    public void getProgress(FileData request, StreamObserver<Response> responseObserver) {
+        super.getProgress(request, responseObserver);
+    }
+
     //////////////////////
     private static FileChannel getFileChannel(String fileName, int status) throws Exception {
         if (status == 0 || Objects.isNull(fileChannel)) {

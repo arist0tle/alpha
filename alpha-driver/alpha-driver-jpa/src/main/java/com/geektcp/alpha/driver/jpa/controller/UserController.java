@@ -41,6 +41,11 @@ public class UserController {
         return userService.findAll();
     }
 
+    @GetMapping(value = "/test")
+    public List<User> findByName() {
+        return userService.findByName("内置用户");
+    }
+
     @GetMapping(value = "/{id}")
     public User getUser(@PathVariable int id) {
         return userService.findOne(id);

@@ -12,9 +12,11 @@ message FileData {
 }
 
 message Response {
-  string msg = 1;
+  int32 offset = 1;
+  string msg = 2;
 }
 
 service FileService {
   rpc send (FileData) returns (Response);
+  rpc getProgress (FileData) returns (Response);
 }

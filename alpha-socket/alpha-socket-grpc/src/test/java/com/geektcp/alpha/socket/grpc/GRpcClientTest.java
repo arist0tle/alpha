@@ -124,4 +124,36 @@ public class GRpcClientTest {
         }
         Assert.assertTrue(true);
     }
+
+    @Test
+    public void writeFileByteByChannelPosition() {
+        try {
+            String srcFilePath = "F:/tmp/upload/test.zip";
+            String dstFilePath = "F:/tmp/upload/test1.zip";
+            File srcFile = new File(srcFilePath);
+            FileInputStream srcFis = new FileInputStream(srcFile);
+            FileChannel srcFileChannel = srcFis.getChannel();
+            File dstFile = new File(dstFilePath);
+            FileOutputStream dstFos = new FileOutputStream(dstFile);
+            FileChannel dstFileChannel = dstFos.getChannel();
+            int len = 2000;
+            ByteBuffer buffer = ByteBuffer.allocateDirect(len);
+            int size;
+            long position = 0;
+            while (true) {
+                size = srcFileChannel.read(buffer,position);
+                if (size == -1) {
+                    break;
+                }
+                buffer.flip();
+                dstFileChannel.write(buffer,position);
+                position += buffer.position();
+                log.info("position: {}",position);
+                buffer.clear();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Assert.assertTrue(true);
+    }
 }

@@ -14,26 +14,19 @@ public class BarcodeService {
 
     /**
      * 生成文件
-     *
-     * @param msg
-     * @param path
-     * @return
      */
-    public static File generateFile(String msg, String path) {
+    public static void generateFile(String msg, String path) {
         File file = new File(path);
         try {
             generate(msg, new FileOutputStream(file));
+//          byte[] bytes = generate(msg);
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            e.getMessage();
         }
-        return file;
     }
 
     /**
      * 生成字节
-     *
-     * @param msg
-     * @return
      */
     public static byte[] generate(String msg) {
         ByteArrayOutputStream ous = new ByteArrayOutputStream();
@@ -43,11 +36,8 @@ public class BarcodeService {
 
     /**
      * 生成到流
-     *
-     * @param msg
-     * @param ous
      */
-    public static void generate(String msg, OutputStream ous) {
+    private static void generate(String msg, OutputStream ous) {
         if (StringUtils.isEmpty(msg) || ous == null) {
             return;
         }
@@ -66,7 +56,6 @@ public class BarcodeService {
 
         String format = "image/png";
         try {
-
             // 输出到流
             BitmapCanvasProvider canvas = new BitmapCanvasProvider(ous, format, dpi,
                     BufferedImage.TYPE_BYTE_BINARY, false, 0);
@@ -77,7 +66,7 @@ public class BarcodeService {
             // 结束绘制
             canvas.finish();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.getMessage();
         }
     }
 

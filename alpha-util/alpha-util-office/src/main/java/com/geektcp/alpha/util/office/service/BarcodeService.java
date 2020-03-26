@@ -26,7 +26,7 @@ public class BarcodeService {
     /**
      * 生成文件
      */
-    private static void generateFile(String msg, String path) {
+    public static void generateFile(String msg, String path) {
         try {
             File file = new File(path);
             generate(msg, new FileOutputStream(file));
@@ -39,7 +39,7 @@ public class BarcodeService {
     /**
      * 生成字节
      */
-    private static byte[] generateByte(String msg) {
+    public static byte[] generateByte(String msg) {
         ByteArrayOutputStream ous = new ByteArrayOutputStream();
         generate(msg, ous);
         return ous.toByteArray();

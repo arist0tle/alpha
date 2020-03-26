@@ -19,9 +19,7 @@ public class ExportWordServiceTest {
     public static void generateTextWord() {
         ExportWordService ew = new ExportWordService();
         XWPFDocument document = ew.createXWPFDocument();
-
         List<List<Object>> list = new ArrayList<>();
-
         List<Object> tempList = new ArrayList<>();
         tempList.add("姓名");
         tempList.add("黄xx");
@@ -50,7 +48,15 @@ public class ExportWordServiceTest {
         Map<String, Object> dataList = new HashMap<>();
         dataList.put("TITLE", "个人体检表");
         dataList.put("TABLEDATA", list);
-        ew.exportCheckWord(dataList, document, "expWordTest.docx");
+        ew.exportTextWord(dataList, document, "expWordTest.docx");
         System.out.println("文档生成成功");
+    }
+
+
+    @Test
+    public static void generatePictureWord() {
+        byte[] bytes = BarcodeService.generateByte("00000-00000-0000-0");
+
+
     }
 }

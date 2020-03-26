@@ -93,10 +93,11 @@ public class ExportWordService {
      * @Author Huangxiaocong 2018年12月16日
      */
     @SuppressWarnings("unchecked")
-    public void exportCheckWord(Map<String, Object> dataList, XWPFDocument document, String savePath) throws IOException {
+    public void exportCheckWord(Map<String, Object> dataList, XWPFDocument document, String savePath) {
         XWPFParagraph paragraph = document.getParagraphArray(0);
         XWPFRun titleFun = paragraph.getRuns().get(0);
         titleFun.setText(String.valueOf(dataList.get("TITLE")));
+
         List<List<Object>> tableData = (List<List<Object>>) dataList.get("TABLEDATA");
         XWPFTable table = document.getTableArray(0);
         fillTableData(table, tableData);

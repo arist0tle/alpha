@@ -12,23 +12,34 @@ import java.io.*;
  */
 public class BarcodeService {
 
+    public static void main(String[] args) {
+        String msg = "55555-88888-1230-0";
+        String path = "barcode.png";
+//        generateFile(msg, path);
+
+        byte[] bytes = generateByte(msg);
+
+    }
+
+
+    ///////////////////////////////////////////////
     /**
      * 生成文件
      */
-    public static void generateFile(String msg, String path) {
-        File file = new File(path);
+    private static void generateFile(String msg, String path) {
         try {
+            File file = new File(path);
             generate(msg, new FileOutputStream(file));
-//          byte[] bytes = generate(msg);
-        } catch (FileNotFoundException e) {
-            e.getMessage();
+        }catch (Exception e){
+            // do something
         }
+
     }
 
     /**
      * 生成字节
      */
-    public static byte[] generate(String msg) {
+    private static byte[] generateByte(String msg) {
         ByteArrayOutputStream ous = new ByteArrayOutputStream();
         generate(msg, ous);
         return ous.toByteArray();
@@ -41,13 +52,9 @@ public class BarcodeService {
         if (StringUtils.isEmpty(msg) || ous == null) {
             return;
         }
-
         Code39Bean bean = new Code39Bean();
-
-        // 精细度
-        final int dpi = 150;
-        // module宽度
-        final double moduleWidth = UnitConv.in2mm(1.0f / dpi);
+        final int dpi = 150;  // 精细度
+        final double moduleWidth = UnitConv.in2mm(1.0f / dpi);        // module宽度
 
         // 配置对象
         bean.setModuleWidth(moduleWidth);
@@ -57,8 +64,12 @@ public class BarcodeService {
         String format = "image/png";
         try {
             // 输出到流
-            BitmapCanvasProvider canvas = new BitmapCanvasProvider(ous, format, dpi,
-                    BufferedImage.TYPE_BYTE_BINARY, false, 0);
+            BitmapCanvasProvider canvas = new BitmapCanvasProvider(ous,
+                    format,
+                    dpi,
+                    BufferedImage.TYPE_BYTE_BINARY,
+                    false,
+                    0);
 
             // 生成条形码
             bean.generateBarcode(canvas, msg);
@@ -70,9 +81,5 @@ public class BarcodeService {
         }
     }
 
-    public static void main(String[] args) {
-        String msg = "55555-88888-1230-0";
-        String path = "barcode.png";
-        generateFile(msg, path);
-    }
+
 }

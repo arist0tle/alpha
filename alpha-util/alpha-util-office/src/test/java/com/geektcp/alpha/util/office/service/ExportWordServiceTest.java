@@ -3,6 +3,7 @@ package com.geektcp.alpha.util.office.service;
 
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +15,8 @@ import java.util.Map;
  */
 public class ExportWordServiceTest {
 
-    public static void main(String[] args) throws Exception {
+    @Test
+    public static void generateTextWord() {
         ExportWordService ew = new ExportWordService();
         XWPFDocument document = ew.createXWPFDocument();
 

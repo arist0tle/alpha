@@ -1,10 +1,12 @@
 package com.geektcp.alpha.util.office.service;
 
 
-
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.Map;
 public class ExportWordServiceTest {
 
     @Test
-    public static void generateTextWord() {
+    public void generateTextWord() {
         ExportWordService ew = new ExportWordService();
         XWPFDocument document = ew.createXWPFDocument();
         List<List<Object>> list = new ArrayList<>();
@@ -52,11 +54,12 @@ public class ExportWordServiceTest {
         System.out.println("文档生成成功");
     }
 
-
     @Test
-    public static void generatePictureWord() {
-        byte[] bytes = BarcodeService.generateByte("00000-00000-0000-0");
-
-
+    public void generatePictureWord() {
+        ExportWordService ew = new ExportWordService();
+        byte[] bytes = BarcodeService.generateByte("12345-22341-0000-0");
+        ByteArrayInputStream fileInputStream = new ByteArrayInputStream(bytes);
+        ew.exportPictureWord(fileInputStream,  "/share/down/test.docx");
     }
+
 }

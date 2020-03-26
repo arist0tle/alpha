@@ -56,6 +56,7 @@ public class XWpfUtils {
             OutputStream os = new FileOutputStream(savePath);
             document.write(os);
             os.close();
+            System.out.println(savePath);
         }catch (Exception e){
             // do something
         }

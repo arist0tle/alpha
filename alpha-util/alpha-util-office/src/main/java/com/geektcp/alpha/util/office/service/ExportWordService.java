@@ -3,10 +3,15 @@ package com.geektcp.alpha.util.office.service;
 
 import com.geektcp.alpha.util.office.util.XWpfTableUtils;
 import com.geektcp.alpha.util.office.util.XWpfUtils;
+import org.apache.poi.util.Units;
+import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
 import org.apache.poi.xwpf.usermodel.*;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.STJc;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.STVerticalJc;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
@@ -27,8 +32,8 @@ public class ExportWordService {
      */
     public XWPFDocument createXWPFDocument() {
         XWPFDocument doc = new XWPFDocument();
-        createTitleParagraph(doc);
-        createTableParagraph(doc, 10, 6);
+//        createTitleParagraph(doc);
+//        createTableParagraph(doc, 10, 6);
         return doc;
     }
 
@@ -92,6 +97,48 @@ public class ExportWordService {
         XWPFTable table = document.getTableArray(0);
         fillTableData(table, tableData);
         xWpfUtils.saveDocument(document, savePath);
+    }
+
+    public void exportPictureWord(ByteArrayInputStream fileInputStream, String savePath) {
+        try (  XWPFDocument doc = new XWPFDocument();){
+            // the body content
+            XWPFParagraph paragraph = doc.createParagraph();
+            XWPFRun run = paragraph.createRun();
+            run.setText("\t\t\t\t小马白云分拨中心————全进总部站");
+            run.addCarriageReturn();
+            paragraph = doc.createParagraph();
+
+            // create header start
+            CTSectPr sectPr = doc.getDocument().getBody().addNewSectPr();
+            XWPFHeaderFooterPolicy headerFooterPolicy = new XWPFHeaderFooterPolicy(doc, sectPr);
+
+//            XWPFHeader header = headerFooterPolicy.createHeader(XWPFHeaderFooterPolicy.DEFAULT);
+//            paragraph = header.getParagraphArray(0);
+//            paragraph.setAlignment(ParagraphAlignment.LEFT);
+//
+//            CTTabStop tabStop = paragraph.getCTP().getPPr().addNewTabs().addNewTab();
+//            tabStop.setVal(STTabJc.RIGHT);
+//            int twipsPerInch = 1440;
+//            tabStop.setPos(BigInteger.valueOf(6 * twipsPerInch));
+
+            run = paragraph.createRun();
+            String imgFile = "/share/down/sky2.png";
+            run.addPicture(fileInputStream, XWPFDocument.PICTURE_TYPE_PNG, null, Units.toEMU(400), Units.toEMU(50));
+            // create footer start
+            XWPFFooter footer = headerFooterPolicy.createFooter(XWPFHeaderFooterPolicy.DEFAULT);
+
+//            paragraph = footer.getParagraphArray(0);
+//            paragraph.setAlignment(ParagraphAlignment.CENTER);
+
+//            run = paragraph.createRun();
+//            run.setText("The Footer:");
+
+            doc.write(new FileOutputStream(savePath));
+            xWpfUtils.saveDocument(doc, savePath);
+        } catch (Exception e) {
+            // do something
+            e.printStackTrace();
+        }
     }
 
     /**

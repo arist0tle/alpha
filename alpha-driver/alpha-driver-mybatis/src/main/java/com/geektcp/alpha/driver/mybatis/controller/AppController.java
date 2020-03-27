@@ -46,67 +46,6 @@ public class AppController {
 
     private UserService userService;
 
-//    // 查询所有城市
-//    @GetMapping("/queryCityAll")
-//    public ResultModel queryCityAll() {
-//        List<CityPo> cities = cityService.queryCityAll();
-//        return ResultHelper.success("Success", cities);
-//    }
-//
-//
-//    // 添加城市
-//    @PostMapping("/addCity")
-//    public ResultModel addCity(String name) {
-//        if (StringUtils.isEmpty(name))
-//            return ResultHelper.error("名称不能为空");
-//        boolean rs = cityService.addCity(new CityPo().setName(name));
-//        if (rs)
-//            return ResultHelper.success("Success", null);
-//        return ResultHelper.error("添加失败");
-//    }
-//
-//    // 添加学生
-//    @PostMapping("/addStudent")
-//    public ResultModel addStudent(String name, Integer age, String gender, String info, String idCardCode, String cityName) {
-//        if (StringUtils.isEmpty(name)
-//                || age == null
-//                || StringUtils.isEmpty(gender)
-//                || StringUtils.isEmpty(info)
-//                || StringUtils.isEmpty(idCardCode)
-//                || StringUtils.isEmpty(cityName))
-//            return ResultHelper.error("参数不合法");
-//
-//        // 获取GenderEnum
-//        GenderEnum genderEnum = GenderEnum.getEnumByDesc(gender);
-//
-//        // studentPo
-//        StudentPo studentPo = new StudentPo()
-//                .setName(name)
-//                .setAge(age)
-//                .setGender(genderEnum)
-//                .setInfo(info);
-//
-//        // city
-//        CityPo cityPo = new CityPo().setName(cityName);
-//
-//        // idCard
-//        CardPo cardPo = new CardPo().setCode(idCardCode);
-//
-//        // service
-//        boolean rs = appBusiness.addStudent(studentPo, cityPo, cardPo);
-//        if (rs)
-//            return ResultHelper.success("Success", null);
-//        return ResultHelper.error("添加失败");
-//    }
-//
-//
-//    @PostMapping("/findPage")
-//    public ResultModel findPage() {
-//        List<CityPo> cities = cityService.queryCityAll();
-//        return ResultHelper.success("Success", cities);
-//    }
-
-
     @ApiOperation(value = "分页查询公司的用户列表")
     @ApiResponses({@ApiResponse(code = 200, message = "成功")})
     @PostMapping("/findPage")

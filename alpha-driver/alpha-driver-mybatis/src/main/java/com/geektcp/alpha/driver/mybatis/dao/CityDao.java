@@ -1,7 +1,7 @@
 package com.geektcp.alpha.driver.mybatis.dao;
 
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.geektcp.alpha.driver.mybatis.model.City;
 
 /**

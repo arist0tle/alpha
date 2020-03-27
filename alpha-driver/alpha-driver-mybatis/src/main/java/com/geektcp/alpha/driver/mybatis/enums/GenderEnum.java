@@ -1,6 +1,5 @@
 package com.geektcp.alpha.driver.mybatis.enums;
 
-import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
@@ -11,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * @author tanghaiyang
  * @since 2018-09-01
  */
-public enum GenderEnum implements IEnum<Integer> {
+public enum GenderEnum implements Status {
 
     SECRECY(0, "保密"),
     MALE(1, "男"),
@@ -47,7 +46,7 @@ public enum GenderEnum implements IEnum<Integer> {
     }
 
     @Override
-    public Integer getValue() {
+    public int getCode() {
         return this.value;
     }
 

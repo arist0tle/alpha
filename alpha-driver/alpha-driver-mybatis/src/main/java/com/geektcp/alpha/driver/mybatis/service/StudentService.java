@@ -1,7 +1,5 @@
 package com.geektcp.alpha.driver.mybatis.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.geektcp.alpha.driver.mybatis.model.Student;
 
 import java.util.List;
@@ -14,13 +12,12 @@ import java.util.List;
  * @author tanghaiyang
  * @since 2018-08-31
  */
-public interface StudentService extends IService<Student> {
+public interface StudentService {
 
     boolean addStudent(Student student);
 
     Student queryStudentByIdCardId(Long idCardId);
 
-    IPage<Student> queryStudentByPage(Long currentPage);
 
     void test1();
 
@@ -30,19 +27,8 @@ public interface StudentService extends IService<Student> {
 
     void test4();
 
-    void test5();
+    void selectAll();
 
-    void test6();
-
-    void test7();
-
-    //------------------------------------------ 封装接口
-
-    /**
-     * 查询所有数据
-     * @return List<Student>
-     */
-    List<Student> findAll();
 
     /**
      * 查询部分数据

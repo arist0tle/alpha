@@ -1,10 +1,11 @@
 package com.geektcp.alpha.driver.mybatis.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.geektcp.alpha.driver.mybatis.model.City;
 import com.geektcp.alpha.driver.mybatis.dao.CityDao;
 import com.geektcp.alpha.driver.mybatis.service.CityService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class CityServiceImpl extends ServiceImpl<CityDao, City> implements CityS
 
     @Override
     public List<City> queryCityAll() {
-        return list(null);
+        return this.selectList(null);
     }
 
     @Override
@@ -32,7 +33,7 @@ public class CityServiceImpl extends ServiceImpl<CityDao, City> implements CityS
         String name = city.getName();
 
         if (queryCityByName(name) == null)
-            return save(city);
+            return this.insert(city);
 
         // 数据库已经存在
         return true;
@@ -40,17 +41,15 @@ public class CityServiceImpl extends ServiceImpl<CityDao, City> implements CityS
 
     @Override
     public City queryCityByName(String name) {
-        QueryWrapper<City> queryWrapper = new QueryWrapper<>();
+        Wrapper<City> queryWrapper = new EntityWrapper<>();
         queryWrapper.eq(City.KEY, name);
-
-        List<City> cityList = list(queryWrapper);
-
-        if (cityList == null || cityList.isEmpty())
+        List<City> cityList = this.selectList(queryWrapper);
+        if (cityList == null || cityList.isEmpty()) {
             return null;
-
-        if (cityList.size() > 1)
+        }
+        if (cityList.size() > 1) {
             log.error("queryCityByName结果有多个，name={}", name);
-
+        }
         return cityList.get(0);
     }
 }

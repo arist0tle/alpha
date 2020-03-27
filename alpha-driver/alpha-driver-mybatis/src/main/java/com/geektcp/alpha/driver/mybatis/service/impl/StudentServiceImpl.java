@@ -1,15 +1,13 @@
 package com.geektcp.alpha.driver.mybatis.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.geektcp.alpha.driver.mybatis.config.ConstantConfig;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.geektcp.alpha.driver.mybatis.model.Student;
 import com.geektcp.alpha.driver.mybatis.dao.StudentDao;
 import com.geektcp.alpha.driver.mybatis.service.StudentService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -33,7 +31,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentDao, Student> impleme
     public boolean addStudent(Student student) {
 
         if (queryStudentByIdCardId(student.getIdcardId()) == null) {
-            return save(student);
+            return this.insert(student);
         }
 
         return true;
@@ -41,140 +39,111 @@ public class StudentServiceImpl extends ServiceImpl<StudentDao, Student> impleme
 
     @Override
     public Student queryStudentByIdCardId(Long idCardId) {
-        QueryWrapper<Student> queryWrapper =
-                new QueryWrapper<Student>()
-                        .eq(Student.IDCARD_ID, idCardId);
-        List<Student> studentList = list(queryWrapper);
-
+        Wrapper<Student> queryWrapper = new EntityWrapper<>();
+        queryWrapper.eq(Student.IDCARD_ID, idCardId);
+        List<Student> studentList = this.selectList(queryWrapper);
         if (studentList == null || studentList.isEmpty()) {
             return null;
         }
-
         if (studentList.size() > 1) {
             log.error("queryStudentByIdCardId 有多个结果，idCardId={}", idCardId);
         }
         return studentList.get(0);
     }
 
-    // 简单分页查询
-    public IPage<Student> queryStudentByPage(Long currentPage) {
-        return page(new Page<>(currentPage, ConstantConfig.PAGE_SITE), null);
-    }
+
 
     // 通过名字进行筛选
     @Override
     public void test1() {
-        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(Student::getName, "冯文议");
-        List<Student> studentList = list(queryWrapper);
+        Wrapper<Student> queryWrapper = new EntityWrapper<>();
+        queryWrapper.eq("name", "冯文议");
+        List<Student> studentList = this.selectList(queryWrapper);
         for (Student student : studentList)
             log.info(JSON.toJSONString(student));
     }
 
+
+
     @Override
     public void test2() {
-
-        IPage<Student> page = page(
-                new Page<>(1, 2),
-                null);
-
-        log.info(JSON.toJSONString(page));
+        Wrapper<Student> queryWrapper = new EntityWrapper<>();
+        queryWrapper.eq("name", "冯文议")
+//                .eq(Student::getAge, 26)
+                .eq("age", 25);
+        List<Student> studentList = this.selectList(queryWrapper);
+        for (Student student : studentList)
+            log.info(JSON.toJSONString(student));
     }
 
     @Override
     public void test3() {
-        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda()
-                .eq(Student::getName, "冯文议")
-//                .eq(Student::getAge, 26)
-                .eq(Student::getAge, 25);
-        List<Student> studentList = list(queryWrapper);
-        for (Student student : studentList)
+        Wrapper<Student> queryWrapper = new EntityWrapper<>();
+        queryWrapper.and();
+        queryWrapper.eq("name", "冯文议");
+        queryWrapper.eq("age", 26);
+
+        List<Student> studentList = this.selectList(queryWrapper);
+        for (Student student : studentList) {
             log.info(JSON.toJSONString(student));
+        }
     }
 
     @Override
     public void test4() {
-        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda()
-                .and(obj ->
-                        obj.eq(Student::getName, "冯文议")
-                                .eq(Student::getAge, 26));
-
-        List<Student> studentList = list(queryWrapper);
+        Wrapper<Student> queryWrapper = new EntityWrapper<>();
+        queryWrapper.or();
+        queryWrapper.eq("name", "冯文议");
+        queryWrapper.or("age", "1");
+        List<Student> studentList = selectList(queryWrapper);
         for (Student student : studentList)
             log.info(JSON.toJSONString(student));
     }
 
-    @Override
-    public void test5() {
-        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda()
-                .or(obj1 -> obj1.eq(Student::getName, "冯文议"))
-                .or(obj2 -> obj2.eq(Student::getName, "1"));
-        List<Student> studentList = list(queryWrapper);
-        for (Student student : studentList)
-            log.info(JSON.toJSONString(student));
-    }
-
-    @Override
-    public void test6() {
-        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda()
-                .eq(Student::getName, "冯文议")
-                .or()
-                .eq(Student::getName, "1");
-        List<Student> studentList = list(queryWrapper);
-        for (Student student : studentList)
-            log.info(JSON.toJSONString(student));
-    }
 
     @Resource
     StudentDao studentDao;
 
     @Override
-    public void test7() {
-        List<Student> studentList = studentDao.selectAll();
+    public void selectAll() {
+        Page page = new Page();
+        List<Student> studentList = studentDao.selectAll(page);
         for (Student student : studentList)
             log.info(JSON.toJSONString(student));
     }
 
-    @Override
-    public List<Student> findAll() {
-        return list(null);
-    }
 
-    @Override
-    public List<Student> findList() {
-        return list(null);
-    }
 
     @Override
     public Student findOne() {
-        return getOne(null);
+        return selectOne(null);
     }
 
     @Override
     public Student findById(Long id) {
-        return getById(id);
+        return selectById(id);
     }
 
     @Override
     public List<Student> findByNameAndAge(String name, Integer age) {
-        LambdaQueryWrapper<Student> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        Wrapper<Student> lambdaQueryWrapper = new EntityWrapper<>();
         if (!StringUtils.isEmpty(name)) {
-            lambdaQueryWrapper.eq(Student::getName, name);
+            lambdaQueryWrapper.eq("age", name);
         }
 
         if (age != null) {
-            lambdaQueryWrapper.eq(Student::getAge, age);
+            lambdaQueryWrapper.eq("age", age);
         }
 
-        List<Student> studentList = list(lambdaQueryWrapper);
-        for (Student student : studentList)
+        List<Student> studentList = selectList(lambdaQueryWrapper);
+        for (Student student : studentList) {
             log.info(JSON.toJSONString(student));
-        return null;
+        }
+        return studentList;
     }
 
-    //--------------------------------------------------test end
+    @Override
+    public List<Student> findList() {
+        return null;
+    }
 }

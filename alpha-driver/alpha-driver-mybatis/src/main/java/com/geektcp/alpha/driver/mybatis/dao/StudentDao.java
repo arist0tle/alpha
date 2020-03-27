@@ -1,7 +1,9 @@
 package com.geektcp.alpha.driver.mybatis.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.geektcp.alpha.driver.mybatis.model.Student;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,6 +17,6 @@ import java.util.List;
  */
 public interface StudentDao extends BaseMapper<Student> {
 
-    List<Student> selectAll();
+    List<Student> selectAll(@Param("page") Page page);
 
 }

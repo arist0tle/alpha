@@ -1,6 +1,5 @@
 package com.geektcp.alpha.driver.mybatis.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.fengwenyi.api_result.helper.ResultHelper;
 import com.fengwenyi.api_result.model.ResultModel;
 import com.geektcp.alpha.driver.mybatis.business.AppBusiness;
@@ -90,12 +89,5 @@ public class AppController {
         return ResultHelper.error("添加失败");
     }
 
-    // 分页查询学生
-    @GetMapping("/queryStudentByPage/{currentPage}")
-    public ResultModel queryStudentByPage(@PathVariable("currentPage") Long currentPage) {
-        if (currentPage == null)
-            return ResultHelper.error("当前页不能为空");
-        IPage<Student> studentIPage = studentService.queryStudentByPage(currentPage);
-        return ResultHelper.success("Success", studentIPage);
-    }
+
 }

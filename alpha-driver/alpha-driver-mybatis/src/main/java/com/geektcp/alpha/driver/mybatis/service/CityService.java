@@ -1,6 +1,5 @@
 package com.geektcp.alpha.driver.mybatis.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.geektcp.alpha.driver.mybatis.model.City;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * @author tanghaiyang
  * @since 2018-08-31
  */
-public interface CityService extends IService<City> {
+public interface CityService {
 
     List<City> queryCityAll();
 

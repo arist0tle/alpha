@@ -1,6 +1,7 @@
 package com.geektcp.alpha.util.office.service;
 
 
+import com.geektcp.alpha.util.office.model.BatchInfo;
 import com.geektcp.alpha.util.office.util.XWpfTableUtils;
 import com.geektcp.alpha.util.office.util.XWpfUtils;
 import org.apache.poi.util.Units;
@@ -99,45 +100,23 @@ public class ExportWordService {
         xWpfUtils.saveDocument(document, savePath);
     }
 
-    public void exportPictureWord(ByteArrayInputStream fileInputStream, String savePath) {
-        try (  XWPFDocument doc = new XWPFDocument();){
-            // the body content
-            XWPFParagraph paragraph = doc.createParagraph();
-            XWPFRun run = paragraph.createRun();
-            run.setText("\t\t\t\t小马白云分拨中心————全进总部站");
-            run.addCarriageReturn();
-            paragraph = doc.createParagraph();
-
-            // create header start
-            CTSectPr sectPr = doc.getDocument().getBody().addNewSectPr();
-            XWPFHeaderFooterPolicy headerFooterPolicy = new XWPFHeaderFooterPolicy(doc, sectPr);
-
-//            XWPFHeader header = headerFooterPolicy.createHeader(XWPFHeaderFooterPolicy.DEFAULT);
-//            paragraph = header.getParagraphArray(0);
-//            paragraph.setAlignment(ParagraphAlignment.LEFT);
-//
-//            CTTabStop tabStop = paragraph.getCTP().getPPr().addNewTabs().addNewTab();
-//            tabStop.setVal(STTabJc.RIGHT);
-//            int twipsPerInch = 1440;
-//            tabStop.setPos(BigInteger.valueOf(6 * twipsPerInch));
-
-            run = paragraph.createRun();
-            String imgFile = "/share/down/sky2.png";
-            run.addPicture(fileInputStream, XWPFDocument.PICTURE_TYPE_PNG, null, Units.toEMU(400), Units.toEMU(50));
-            // create footer start
-            XWPFFooter footer = headerFooterPolicy.createFooter(XWPFHeaderFooterPolicy.DEFAULT);
-
-//            paragraph = footer.getParagraphArray(0);
-//            paragraph.setAlignment(ParagraphAlignment.CENTER);
-
-//            run = paragraph.createRun();
-//            run.setText("The Footer:");
-
-            doc.write(new FileOutputStream(savePath));
+    public void exportPictureWord(List<BatchInfo> batchInfoList, String savePath) {
+        try (XWPFDocument doc = new XWPFDocument()) {
+            for (BatchInfo batchInfo: batchInfoList) {
+                ByteArrayInputStream fileInputStream = new ByteArrayInputStream(batchInfo.getBytes());
+                XWPFParagraph paragraph = doc.createParagraph();
+                XWPFRun run = paragraph.createRun();
+                run.setText(batchInfo.getTitle());
+                run.addCarriageReturn();
+                run.addPicture(fileInputStream, XWPFDocument.PICTURE_TYPE_PNG, null, Units.toEMU(400), Units.toEMU(50));
+                doc.write(new FileOutputStream(savePath));
+                run.addCarriageReturn();
+                run.addCarriageReturn();
+            }
             xWpfUtils.saveDocument(doc, savePath);
         } catch (Exception e) {
             // do something
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

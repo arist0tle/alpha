@@ -1,12 +1,13 @@
 package com.geektcp.alpha.util.office.service;
 
 
+import com.geektcp.alpha.util.office.model.BatchInfo;
+import lombok.Data;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.assertj.core.util.Lists;
+import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,14 +53,29 @@ public class ExportWordServiceTest {
         dataList.put("TABLEDATA", list);
         ew.exportTextWord(dataList, document, "expWordTest.docx");
         System.out.println("文档生成成功");
+        Assert.assertTrue(true);
     }
 
     @Test
     public void generatePictureWord() {
+        List<BatchInfo> batchInfoList = Lists.newArrayList();
+        for (int i = 0; i < 3; i++) {
+            BatchInfo batchInfo = new BatchInfo();
+            batchInfo.setBatchNo("12345-22341-0000-" + i);
+            batchInfo.setTitle("\t\t\t\t文档" + i);
+            batchInfoList.add(batchInfo);
+        }
+
+//        Map<String, String> batchMap = new HashMap<>();
+//        batchMap.put("12345-22341-0000-0", "\t\t\t\t文档0");
+//        batchMap.put("12345-22341-0000-1", "\t\t\t\t文档1");
+//        batchMap.put("12345-22341-0000-2", "\t\t\t\t文档2");
+//        batchMap.put("12345-22341-0000-3", "\t\t\t\t文档3");
         ExportWordService ew = new ExportWordService();
-        byte[] bytes = BarcodeService.generateByte("12345-22341-0000-0");
-        ByteArrayInputStream fileInputStream = new ByteArrayInputStream(bytes);
-        ew.exportPictureWord(fileInputStream,  "/share/down/test.docx");
+        BarcodeService.generateByte(batchInfoList);
+
+        ew.exportPictureWord(batchInfoList, "/share/down/test.docx");
+        Assert.assertTrue(true);
     }
 
 }

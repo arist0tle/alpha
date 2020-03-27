@@ -1,23 +1,33 @@
 package com.geektcp.alpha.util.office.service;
 
+import com.geektcp.alpha.util.office.model.BatchInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.assertj.core.util.Lists;
 import org.krysalis.barcode4j.impl.code39.Code39Bean;
 import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 import org.krysalis.barcode4j.tools.UnitConv;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * @author haiyang on 3/26/20 11:49 AM.
  */
+@Slf4j
 public class BarcodeService {
 
     public static void main(String[] args) {
         String msg = "55555-88888-1230-0";
         String path = "barcode.png";
 //        generateFile(msg, path);
-
-        byte[] bytes = generateByte(msg);
+        List<String> list = Lists.newArrayList();
+        list.add(msg);
+//        List<byte[]> byteList = generateByte(list);
 
     }
 
@@ -39,10 +49,18 @@ public class BarcodeService {
     /**
      * 生成字节
      */
-    public static byte[] generateByte(String msg) {
+    public static void generateByte(List<BatchInfo> batchInfoList) {
+        List<byte[]> ret = Lists.newArrayList();
         ByteArrayOutputStream ous = new ByteArrayOutputStream();
-        generate(msg, ous);
-        return ous.toByteArray();
+        for(BatchInfo batchInfo: batchInfoList){
+            generate(batchInfo.getBatchNo(), ous);
+            batchInfo.setBytes(ous.toByteArray());
+        }
+        try {
+            ous.close();
+        }catch (Exception e){
+            log.info(e.getMessage());
+        }
     }
 
     /**
@@ -77,7 +95,7 @@ public class BarcodeService {
             // 结束绘制
             canvas.finish();
         } catch (IOException e) {
-            e.getMessage();
+            log.info(e.getMessage());
         }
     }
 

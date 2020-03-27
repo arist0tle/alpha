@@ -31,6 +31,6 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserPo> implements Use
         Page<UserPo> result = this.selectPage(page,wrapper);
         log.info("result: {}", JSON.toJSONString(result,true));
 
-        return null;
+        return new PageResponse();
     }
 }

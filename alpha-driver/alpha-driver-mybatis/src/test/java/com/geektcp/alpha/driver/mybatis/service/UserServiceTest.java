@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
 /**
  * @author haiyang on 2020-03-27 16:27
  */
@@ -29,7 +28,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void name() {
+    public void findPage() {
         UserQo qo = new UserQo();
         PageResponse<UserVo> response = userService.findPage(qo);
         log.info("response: {}", JSON.toJSONString(response,true));

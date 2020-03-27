@@ -3,7 +3,7 @@ package com.geektcp.alpha.driver.mybatis.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.geektcp.alpha.driver.mybatis.model.Card;
+import com.geektcp.alpha.driver.mybatis.model.po.CardPo;
 import com.geektcp.alpha.driver.mybatis.dao.CardDao;
 import com.geektcp.alpha.driver.mybatis.service.CardService;
 import com.google.common.collect.Lists;
@@ -22,42 +22,42 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class CardServiceImpl extends ServiceImpl<CardDao, Card> implements CardService {
+public class CardServiceImpl extends ServiceImpl<CardDao, CardPo> implements CardService {
 
     @Override
-    public boolean addIdCard(Card card) {
-        if (queryIdCardByCode(card.getCode()) == null)
-            return this.insert(card);
+    public boolean addIdCard(CardPo cardPo) {
+        if (queryIdCardByCode(cardPo.getCode()) == null)
+            return this.insert(cardPo);
         return true;
     }
 
     @Override
-    public Card queryIdCardByCode(String code) {
-        Wrapper<Card> queryWrapper = new EntityWrapper<>();
-        queryWrapper.eq(Card.CODE, code);
-        List<Card> idCardList = this.selectList(queryWrapper);
+    public CardPo queryIdCardByCode(String code) {
+        Wrapper<CardPo> queryWrapper = new EntityWrapper<>();
+        queryWrapper.eq(CardPo.CODE, code);
+        List<CardPo> idCardPoList = this.selectList(queryWrapper);
 
-        if (idCardList == null || idCardList.isEmpty())
+        if (idCardPoList == null || idCardPoList.isEmpty())
             return null;
 
-        if (idCardList.size() > 1)
+        if (idCardPoList.size() > 1)
             log.error("queryIdCardByCode有多个返回结果，code={}", code);
 
-        return idCardList.get(0);
+        return idCardPoList.get(0);
     }
 
     @Override
-    public List<Card> findPage(String code) {
-        Wrapper<Card> queryWrapper = new EntityWrapper<>();
-        queryWrapper.eq(Card.CODE, code);
-        List<Card> idCardList = this.selectList(queryWrapper);
+    public List<CardPo> findPage(String code) {
+        Wrapper<CardPo> queryWrapper = new EntityWrapper<>();
+        queryWrapper.eq(CardPo.CODE, code);
+        List<CardPo> idCardPoList = this.selectList(queryWrapper);
 
-        if (idCardList == null || idCardList.isEmpty())
+        if (idCardPoList == null || idCardPoList.isEmpty())
             return Lists.newArrayList();
 
-        if (idCardList.size() > 1)
+        if (idCardPoList.size() > 1)
             log.error("queryIdCardByCode有多个返回结果，code={}", code);
 
-        return idCardList;
+        return idCardPoList;
     }
 }

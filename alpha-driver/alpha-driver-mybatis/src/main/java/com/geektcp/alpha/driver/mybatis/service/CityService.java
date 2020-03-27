@@ -1,6 +1,6 @@
 package com.geektcp.alpha.driver.mybatis.service;
 
-import com.geektcp.alpha.driver.mybatis.model.City;
+import com.geektcp.alpha.driver.mybatis.model.po.CityPo;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ import java.util.List;
  */
 public interface CityService {
 
-    List<City> queryCityAll();
+    List<CityPo> queryCityAll();
 
-    boolean addCity(City city);
+    boolean addCity(CityPo cityPo);
 
-    City queryCityByName(String name);
+    CityPo queryCityByName(String name);
 
 }

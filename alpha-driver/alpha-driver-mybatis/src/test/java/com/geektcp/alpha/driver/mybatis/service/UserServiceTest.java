@@ -1,7 +1,9 @@
 package com.geektcp.alpha.driver.mybatis.service;
 
 import com.alibaba.fastjson.JSON;
-import com.geektcp.alpha.driver.mybatis.model.Card;
+import com.geektcp.alpha.driver.mybatis.model.vo.PageResponse;
+import com.geektcp.alpha.driver.mybatis.model.qo.UserQo;
+import com.geektcp.alpha.driver.mybatis.model.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,15 +13,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * @author haiyang on 3/27/20 3:19 PM.
+ * @author haiyang on 2020-03-27 16:27
  */
 @Slf4j
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class CardServiceTest {
+public class UserServiceTest {
 
     @Autowired
-    private CardService cardService;
+    private UserService userService;
 
     @Test
     public void method() {
@@ -28,7 +30,8 @@ public class CardServiceTest {
 
     @Test
     public void name() {
-        Card response = cardService.queryIdCardByCode("ghfhfkikkkkk");
+        UserQo qo = new UserQo();
+        PageResponse<UserVo> response = userService.findPage(qo);
         log.info("response: {}", JSON.toJSONString(response,true));
         Assert.assertTrue(true);
     }

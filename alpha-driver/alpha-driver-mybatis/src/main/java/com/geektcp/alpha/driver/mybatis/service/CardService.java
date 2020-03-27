@@ -1,6 +1,6 @@
 package com.geektcp.alpha.driver.mybatis.service;
 
-import com.geektcp.alpha.driver.mybatis.model.Card;
+import com.geektcp.alpha.driver.mybatis.model.po.CardPo;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface CardService {
 
-    boolean addIdCard(Card card);
+    boolean addIdCard(CardPo cardPo);
 
-    Card queryIdCardByCode(String code);
+    CardPo queryIdCardByCode(String code);
 
-    List<Card> findPage(String code);
+    List<CardPo> findPage(String code);
 }

@@ -1,8 +1,8 @@
 package com.geektcp.alpha.driver.mybatis.business;
 
-import com.geektcp.alpha.driver.mybatis.model.City;
-import com.geektcp.alpha.driver.mybatis.model.Card;
-import com.geektcp.alpha.driver.mybatis.model.Student;
+import com.geektcp.alpha.driver.mybatis.model.po.CityPo;
+import com.geektcp.alpha.driver.mybatis.model.po.CardPo;
+import com.geektcp.alpha.driver.mybatis.model.po.StudentPo;
 
 /**
  * 数据库表关联逻辑处理接口
@@ -12,6 +12,6 @@ import com.geektcp.alpha.driver.mybatis.model.Student;
  */
 public interface AppBusiness {
 
-    boolean addStudent(Student student, City city, Card card);
+    boolean addStudent(StudentPo studentPo, CityPo cityPo, CardPo cardPo);
 
 }

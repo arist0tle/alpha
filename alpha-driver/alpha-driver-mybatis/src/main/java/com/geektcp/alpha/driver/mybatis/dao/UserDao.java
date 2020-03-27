@@ -2,7 +2,7 @@ package com.geektcp.alpha.driver.mybatis.dao;
 
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.geektcp.alpha.driver.mybatis.model.po.CardPo;
+import com.geektcp.alpha.driver.mybatis.model.po.UserPo;
 
 /**
  * <p>
@@ -12,6 +12,6 @@ import com.geektcp.alpha.driver.mybatis.model.po.CardPo;
  * @author tanghaiyang
  * @since 2018-08-31
  */
-public interface CardDao extends BaseMapper<CardPo> {
+public interface UserDao extends BaseMapper<UserPo> {
 
 }

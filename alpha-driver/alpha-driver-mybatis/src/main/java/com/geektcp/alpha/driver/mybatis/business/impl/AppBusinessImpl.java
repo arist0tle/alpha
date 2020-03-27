@@ -1,9 +1,9 @@
 package com.geektcp.alpha.driver.mybatis.business.impl;
 
 import com.geektcp.alpha.driver.mybatis.business.AppBusiness;
-import com.geektcp.alpha.driver.mybatis.model.City;
-import com.geektcp.alpha.driver.mybatis.model.Card;
-import com.geektcp.alpha.driver.mybatis.model.Student;
+import com.geektcp.alpha.driver.mybatis.model.po.StudentPo;
+import com.geektcp.alpha.driver.mybatis.model.po.CityPo;
+import com.geektcp.alpha.driver.mybatis.model.po.CardPo;
 import com.geektcp.alpha.driver.mybatis.service.CityService;
 import com.geektcp.alpha.driver.mybatis.service.CardService;
 import com.geektcp.alpha.driver.mybatis.service.StudentService;
@@ -33,27 +33,27 @@ public class AppBusinessImpl implements AppBusiness {
     private StudentService studentService;
 
     @Override
-    public boolean addStudent(Student student, City city, Card card) {
-        boolean rsAddCity = cityService.addCity(city);
+    public boolean addStudent(StudentPo studentPo, CityPo cityPo, CardPo cardPo) {
+        boolean rsAddCity = cityService.addCity(cityPo);
         if (rsAddCity) {
-            String cityName = city.getName();
-            city = cityService.queryCityByName(cityName);
-            if (city != null) {
-                boolean rsAddIdCard = cardService.addIdCard(card);
+            String cityName = cityPo.getName();
+            cityPo = cityService.queryCityByName(cityName);
+            if (cityPo != null) {
+                boolean rsAddIdCard = cardService.addIdCard(cardPo);
                 if (rsAddIdCard) {
-                    String idCardCode = card.getCode();
-                    card = cardService.queryIdCardByCode(idCardCode);
-                    if (card != null) {
-                        student.setCityId(city.getId()).setIdcardId(card.getId());
-                        return studentService.addStudent(student);
+                    String idCardCode = cardPo.getCode();
+                    cardPo = cardService.queryIdCardByCode(idCardCode);
+                    if (cardPo != null) {
+                        studentPo.setCityId(cityPo.getId()).setIdcardId(cardPo.getId());
+                        return studentService.addStudent(studentPo);
                     } else
                         log.error("queryIdCardByCode 查询失败，idCardCode={}", idCardCode);
                 } else
-                    log.error("增加IdCard失败：{}", card);
+                    log.error("增加IdCard失败：{}", cardPo);
             } else
                 log.error("queryCityByName 查询失败，name={}", cityName);
         } else
-            log.error("增加City失败：{}", city);
+            log.error("增加City失败：{}", cityPo);
 
         return false;
     }

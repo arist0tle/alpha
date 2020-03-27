@@ -3,7 +3,7 @@ package com.geektcp.alpha.driver.mybatis.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.geektcp.alpha.driver.mybatis.model.City;
+import com.geektcp.alpha.driver.mybatis.model.po.CityPo;
 import com.geektcp.alpha.driver.mybatis.dao.CityDao;
 import com.geektcp.alpha.driver.mybatis.service.CityService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,35 +21,35 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class CityServiceImpl extends ServiceImpl<CityDao, City> implements CityService {
+public class CityServiceImpl extends ServiceImpl<CityDao, CityPo> implements CityService {
 
     @Override
-    public List<City> queryCityAll() {
+    public List<CityPo> queryCityAll() {
         return this.selectList(null);
     }
 
     @Override
-    public boolean addCity(City city) {
-        String name = city.getName();
+    public boolean addCity(CityPo cityPo) {
+        String name = cityPo.getName();
 
         if (queryCityByName(name) == null)
-            return this.insert(city);
+            return this.insert(cityPo);
 
         // 数据库已经存在
         return true;
     }
 
     @Override
-    public City queryCityByName(String name) {
-        Wrapper<City> queryWrapper = new EntityWrapper<>();
-        queryWrapper.eq(City.KEY, name);
-        List<City> cityList = this.selectList(queryWrapper);
-        if (cityList == null || cityList.isEmpty()) {
+    public CityPo queryCityByName(String name) {
+        Wrapper<CityPo> queryWrapper = new EntityWrapper<>();
+        queryWrapper.eq(CityPo.KEY, name);
+        List<CityPo> cityPoList = this.selectList(queryWrapper);
+        if (cityPoList == null || cityPoList.isEmpty()) {
             return null;
         }
-        if (cityList.size() > 1) {
+        if (cityPoList.size() > 1) {
             log.error("queryCityByName结果有多个，name={}", name);
         }
-        return cityList.get(0);
+        return cityPoList.get(0);
     }
 }

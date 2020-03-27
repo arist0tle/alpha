@@ -1,4 +1,4 @@
-package com.geektcp.alpha.driver.mybatis.model;
+package com.geektcp.alpha.driver.mybatis.model.po;
 
 import java.io.Serializable;
 
@@ -25,24 +25,20 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("t_idcard")
-@ApiModel(value="Idcard对象", description="")
-public class Card extends Model<Card> {
+@TableName("t_city")
+@ApiModel(value="City对象", description="")
+public class CityPo extends Model<CityPo> {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "主键id")
     @TableId(value = "id", type = IdType.ID_WORKER)
     @JsonSerialize(using= ToStringSerializer.class)
     private Long id;
 
-    @ApiModelProperty(value = "身份证号码")
-    private String code;
+    @ApiModelProperty(value = "城市名称")
+    private String name;
 
-
-    public static final String ID = "id";
-
-    public static final String CODE = "code";
+    public static final String KEY = "name";
 
     @Override
     protected Serializable pkVal() {

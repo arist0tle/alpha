@@ -1,4 +1,4 @@
-package com.geektcp.alpha.driver.mybatis.model;
+package com.geektcp.alpha.driver.mybatis.model.po;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -31,7 +31,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("t_student")
 @ApiModel(value="Student对象", description="")
-public class Student extends Model<Student> {
+public class StudentPo extends Model<StudentPo> {
 
     private static final long serialVersionUID = 1L;
 

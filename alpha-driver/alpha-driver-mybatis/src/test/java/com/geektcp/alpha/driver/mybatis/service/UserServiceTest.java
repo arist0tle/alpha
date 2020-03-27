@@ -1,6 +1,8 @@
 package com.geektcp.alpha.driver.mybatis.service;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.geektcp.alpha.driver.mybatis.model.qo.PageQo;
 import com.geektcp.alpha.driver.mybatis.model.vo.PageResponse;
 import com.geektcp.alpha.driver.mybatis.model.qo.UserQo;
 import com.geektcp.alpha.driver.mybatis.model.vo.UserVo;
@@ -30,6 +32,8 @@ public class UserServiceTest {
     @Test
     public void findPage() {
         UserQo qo = new UserQo();
+        PageQo pageQo = new PageQo(2,3);
+        qo.setPageQo(pageQo);
         PageResponse<UserVo> response = userService.findPage(qo);
         log.info("response: {}", JSON.toJSONString(response,true));
         Assert.assertTrue(true);

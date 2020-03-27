@@ -6,13 +6,18 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.geektcp.alpha.driver.mybatis.dao.UserDao;
+import com.geektcp.alpha.driver.mybatis.model.qo.PageQo;
 import com.geektcp.alpha.driver.mybatis.model.vo.PageResponse;
 import com.geektcp.alpha.driver.mybatis.model.po.UserPo;
 import com.geektcp.alpha.driver.mybatis.model.qo.UserQo;
 import com.geektcp.alpha.driver.mybatis.model.vo.UserVo;
 import com.geektcp.alpha.driver.mybatis.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author haiyang on 3/27/20 4:17 PM.
@@ -24,13 +29,12 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserPo> implements Use
     @Override
     public PageResponse<UserVo> findPage(UserQo qo) {
         Wrapper<UserPo> wrapper = new EntityWrapper<>();
-        Page<UserPo> page = new Page<>();
-        page.setCurrent(2);
-        page.setSize(5);
-
-        Page<UserPo> result = this.selectPage(page,wrapper);
-        log.info("result: {}", JSON.toJSONString(result,true));
-
+        PageQo pageQo = qo.getPageQo();
+        PageHelper.startPage(pageQo.getPageNo(), pageQo.getPageSize());
+        List<UserPo> result = this.selectList(wrapper);
+        log.info("result: {}", JSON.toJSONString(result, true));
+        PageInfo<UserPo> pageInfo = new PageInfo<>(result);
+        log.info("pageInfo: {}", JSON.toJSONString(pageInfo, true));
         return new PageResponse();
     }
 }

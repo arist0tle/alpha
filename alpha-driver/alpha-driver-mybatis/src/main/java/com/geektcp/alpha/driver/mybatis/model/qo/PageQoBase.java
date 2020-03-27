@@ -20,8 +20,4 @@ public class PageQoBase {
     @ApiModelProperty(value = "分页查询参数")
     protected PageQo pageQo = new PageQo();
 
-    @Valid
-    @ApiModelProperty(value = "分页查询参数mybatis puls")
-    protected Page page = new Page();
-
 }

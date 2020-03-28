@@ -17,8 +17,7 @@ import java.io.*;
 public class DownloadController {
 
     @GetMapping("/download")
-    public void download2(HttpServletResponse response) {
-
+    public void download(HttpServletResponse response) {
         response.setContentType("application/force-download");
         String fileName = "application.yml";
         response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);

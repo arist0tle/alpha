@@ -34,14 +34,13 @@ import java.util.List;
 @Slf4j
 public class UploadTest {
 
-
     @Test
     public void name() {
         Assert.assertTrue(true);
     }
 
     @Test
-    public void upload() throws Exception {
+    public void upload() {
         String fileName = "src.txt";
         String url = "http://localhost:9000/upload?name=" + fileName;
         HashMap<String, Object> map = new HashMap<>();
@@ -63,8 +62,6 @@ public class UploadTest {
         log.info("response: {}", JSON.toJSONString(response, true));
 
         Assert.assertTrue(true);
-
-
     }
 
 

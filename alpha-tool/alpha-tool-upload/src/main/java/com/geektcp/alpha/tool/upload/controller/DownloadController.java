@@ -20,9 +20,10 @@ public class DownloadController {
     public void download2(HttpServletResponse response) {
 
         response.setContentType("application/force-download");
-        String fileName = "sky2.png";
+        String fileName = "application.yml";
         response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);
-        String path = "/share/down/" + fileName;
+        String resourcePath =  this.getClass().getResource("/").getPath();
+        String path = resourcePath + fileName;
         File tempFile = new File(path);
         try (InputStream inputStream = new FileInputStream(tempFile)) {
             OutputStream os = response.getOutputStream();

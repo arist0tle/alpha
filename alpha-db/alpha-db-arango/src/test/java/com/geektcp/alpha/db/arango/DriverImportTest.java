@@ -21,7 +21,7 @@ public class DriverImportTest {
     private String dbName = "test";
     private String collectionName = "firstCollection";
 
-//    private String host = "thyserver";
+//    private String host = "alpha-server";
     private String host = "192.168.1.176";
 
     @Before

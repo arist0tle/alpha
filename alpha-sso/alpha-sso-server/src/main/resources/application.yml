@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://thyserver:63306/permission
+    url: jdbc:mysql://alpha-server:63306/permission
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -9,7 +9,7 @@ spring:
   session:
     store-type: redis
   redis:
-    host: thyserver
+    host: alpha-server
     password: 111111
     port: 6379
 server:

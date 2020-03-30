@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://thyserver:63306/dbgirl
+    url: jdbc:mysql://alpha-server:63306/dbgirl
     username: root
     password: root
   jpa:

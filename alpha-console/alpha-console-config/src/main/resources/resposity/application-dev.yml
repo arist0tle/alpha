@@ -10,7 +10,7 @@ server:
 
 spring:
   redis:
-    host: thyserver
+    host: alpha-server
     port: 6379
     timeout: 3000ms
     database: 0

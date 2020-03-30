@@ -15,12 +15,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public final class DrawingPanel extends FileFilter
+public final class PanelService extends FileFilter
         implements ActionListener, MouseMotionListener,  WindowListener {
     // 常量
-    public static final String HEADLESS_PROPERTY   = "my.headless";
-    public static final String MULTIPLE_PROPERTY   =  "my.multiple";
-    public static final String SAVE_PROPERTY       = "my.save";
+    private static final String HEADLESS_PROPERTY   = "my.headless";
+    private static final String MULTIPLE_PROPERTY   =  "my.multiple";
+    private static final String SAVE_PROPERTY       = "my.save";
     private static final String TITLE              = "五子棋";
     private static final Color GRID_LINE_COLOR     = new Color(64, 64, 64, 128);
     private static final int GRID_SIZE             = 10;      // 10px 网格间距
@@ -120,7 +120,7 @@ public final class DrawingPanel extends FileFilter
     private int initialPixel;              // 初始化每个像素点
 
     // 根据width和height绘制一个panel
-    public DrawingPanel(int width, int height) {
+    public PanelService(int width, int height) {
         if (width < 0 || width > MAX_SIZE || height < 0 || height > MAX_SIZE) {
             throw new IllegalArgumentException("Illegal width/height: " + width + " x " + height);
         }

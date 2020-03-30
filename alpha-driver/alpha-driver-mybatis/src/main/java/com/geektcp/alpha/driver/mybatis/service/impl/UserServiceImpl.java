@@ -3,7 +3,6 @@ package com.geektcp.alpha.driver.mybatis.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.geektcp.alpha.driver.mybatis.dao.UserDao;
 import com.geektcp.alpha.driver.mybatis.model.qo.PageQo;
@@ -30,9 +29,10 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserPo> implements Use
     public PageResponse<UserVo> findPage(UserQo qo) {
         Wrapper<UserPo> wrapper = new EntityWrapper<>();
         PageQo pageQo = qo.getPageQo();
+        // com.baomidou.mybatisplus.plugins.pagination.PageHelper
+        // must use com.github.pagehelper.PageHelper
         PageHelper.startPage(pageQo.getPageNo(), pageQo.getPageSize());
         List<UserPo> result = this.selectList(wrapper);
-        log.info("result: {}", JSON.toJSONString(result, true));
         PageInfo<UserPo> pageInfo = new PageInfo<>(result);
         log.info("pageInfo: {}", JSON.toJSONString(pageInfo, true));
         return new PageResponse();

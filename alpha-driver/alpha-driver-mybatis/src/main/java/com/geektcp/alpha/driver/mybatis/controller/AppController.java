@@ -1,13 +1,7 @@
 package com.geektcp.alpha.driver.mybatis.controller;
 
-//import com.fengwenyi.api_result.helper.ResultHelper;
-//import com.fengwenyi.api_result.model.ResultModel;
 import com.geektcp.alpha.driver.mybatis.business.AppBusiness;
-import com.geektcp.alpha.driver.mybatis.enums.GenderEnum;
-import com.geektcp.alpha.driver.mybatis.model.po.CityPo;
 import com.geektcp.alpha.driver.mybatis.model.vo.PageResponse;
-import com.geektcp.alpha.driver.mybatis.model.po.CardPo;
-import com.geektcp.alpha.driver.mybatis.model.po.StudentPo;
 import com.geektcp.alpha.driver.mybatis.model.qo.UserQo;
 import com.geektcp.alpha.driver.mybatis.model.vo.UserVo;
 import com.geektcp.alpha.driver.mybatis.service.CityService;
@@ -20,11 +14,9 @@ import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * 测试

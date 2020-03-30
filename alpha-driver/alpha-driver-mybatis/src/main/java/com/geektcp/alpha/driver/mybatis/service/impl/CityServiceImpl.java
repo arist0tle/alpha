@@ -31,10 +31,9 @@ public class CityServiceImpl extends ServiceImpl<CityDao, CityPo> implements Cit
     @Override
     public boolean addCity(CityPo cityPo) {
         String name = cityPo.getName();
-
-        if (queryCityByName(name) == null)
+        if (queryCityByName(name) == null) {
             return this.insert(cityPo);
-
+        }
         // 数据库已经存在
         return true;
     }
@@ -52,4 +51,5 @@ public class CityServiceImpl extends ServiceImpl<CityDao, CityPo> implements Cit
         }
         return cityPoList.get(0);
     }
+
 }

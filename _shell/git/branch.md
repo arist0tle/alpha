@@ -17,5 +17,8 @@ allow push to branch dev
 #### 4.Require linear history
 
 #### 5.nclude administrators
-
+```
 勾选5和1，或者勾选5和2.1可以限制任何人直接提交代码到master
+单独勾选3也可以保护分支
+单独勾选4或者单独勾选5不能保护分支，还是可以直接提交到master
+```

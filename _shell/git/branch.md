@@ -19,6 +19,9 @@ allow push to branch dev
 #### 3.Require signed commits
 
 #### 4.Require linear history
+```
+要求主线分支
+```
 
 #### 5.Include administrators
 ```

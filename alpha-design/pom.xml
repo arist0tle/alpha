@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>alpha-design-pattern</module>
+        <module>alpha-design-statemachine</module>
     </modules>
 
 

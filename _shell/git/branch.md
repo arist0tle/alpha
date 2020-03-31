@@ -17,15 +17,10 @@ allow push to branch dev
 ##### 2.3 github/pages
  
 #### 3.Require signed commits
-```
-没有signatures,该分支不能push，也不能merge
-```
 
 #### 4.Require linear history
 
 #### 5.Include administrators
-=======
-#### 5.nclude administrators
 ```
 勾选5和1，或者勾选5和2.1可以限制任何人直接提交代码到master
 单独勾选3也可以保护分支
@@ -33,6 +28,4 @@ allow push to branch dev
 ```
 
 # best resolve
-```
-单独勾选1，邀请其他用户review一次
-```
+单独勾选3，直接限制push到master

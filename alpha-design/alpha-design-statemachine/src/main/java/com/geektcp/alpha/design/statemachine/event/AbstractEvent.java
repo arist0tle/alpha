@@ -1,14 +1,10 @@
 package com.geektcp.alpha.design.statemachine.event;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
  * 事件定义（包含事件枚举 和 事件数据）
  *
  * @param <T>
  */
-@Data
 public abstract class AbstractEvent<T extends Enum<T>> {
 
     private final T type;

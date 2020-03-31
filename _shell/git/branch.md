@@ -30,4 +30,6 @@ allow push to branch dev
 ```
 
 # best resolve
+```
 单独勾选3，直接限制push到master
+```

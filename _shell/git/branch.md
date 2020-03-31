@@ -17,6 +17,9 @@ allow push to branch dev
 ##### 2.3 github/pages
  
 #### 3.Require signed commits
+```
+没有signatures,该分支不能push，也不能merge
+```
 
 #### 4.Require linear history
 

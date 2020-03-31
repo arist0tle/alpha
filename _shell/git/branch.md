@@ -28,4 +28,7 @@ allow push to branch dev
 ```
 
 # best resolve
-单独勾选3，直接限制push到master
+```
+单独勾选1，必须有其他用户review一次，而且必须是Approve类型的review
+注意：分支保护限制下，提交者只能操作Comment类型的review
+```

@@ -2,7 +2,8 @@
 
 ```
 author: haiyang
-geektcp   / geektcp@163.com
+github: https://github.com/geektcp
+email:  geektcp@163.com
 ```
 
 # Learn

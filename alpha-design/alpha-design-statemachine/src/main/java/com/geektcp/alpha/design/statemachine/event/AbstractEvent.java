@@ -7,7 +7,7 @@ package com.geektcp.alpha.design.statemachine.event;
  */
 public abstract class AbstractEvent<T extends Enum<T>> {
 
-    private final T type;
+    private  T type;
 
     public AbstractEvent(T type) {
         this.type = type;
@@ -20,5 +20,9 @@ public abstract class AbstractEvent<T extends Enum<T>> {
     @Override
     public String toString() {
         return "Event{" + "type=" + type +  '}';
+    }
+
+    protected AbstractEvent(){
+
     }
 }

@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 public abstract class StateManager<T extends AbstractEvent> implements EventHandler<T> {
@@ -94,7 +95,7 @@ public abstract class StateManager<T extends AbstractEvent> implements EventHand
      */
     protected void autoSyncState(String uuid) {
         List<StateTransition> innerAutoTransitions = new ArrayList<>(autoTransitions);
-        if (innerAutoTransitions.size() == 0) {
+        if (innerAutoTransitions.isEmpty()) {
             return;
         }
 

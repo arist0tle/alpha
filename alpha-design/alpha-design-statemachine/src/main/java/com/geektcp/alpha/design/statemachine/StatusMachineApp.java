@@ -3,7 +3,7 @@ package com.geektcp.alpha.design.statemachine;
 import com.geektcp.alpha.design.statemachine.event.AsyncDispatcher;
 import com.geektcp.alpha.design.statemachine.event.Dispatcher;
 import com.geektcp.alpha.design.statemachine.example.LocalStateEvent;
-import com.geektcp.alpha.design.statemachine.example.LocalStateEventType;
+import com.geektcp.alpha.design.statemachine.constant.LocalStateEventType;
 import com.geektcp.alpha.design.statemachine.example.LocalStateManager;
 import com.geektcp.alpha.design.statemachine.state.StateListener;
 import com.geektcp.alpha.design.statemachine.state.StateManager;

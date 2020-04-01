@@ -1,5 +1,6 @@
 package com.geektcp.alpha.design.statemachine.example;
 
+import com.geektcp.alpha.design.statemachine.constant.LocalStateEventType;
 import com.geektcp.alpha.design.statemachine.constant.LocalStatus;
 import com.geektcp.alpha.design.statemachine.event.Dispatcher;
 import com.geektcp.alpha.design.statemachine.state.StateManager;

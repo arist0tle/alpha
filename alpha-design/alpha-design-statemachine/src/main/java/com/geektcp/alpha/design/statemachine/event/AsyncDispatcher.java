@@ -1,5 +1,8 @@
 package com.geektcp.alpha.design.statemachine.event;
 
+import com.geektcp.alpha.design.statemachine.exception.BaseException;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -8,7 +11,8 @@ import java.util.concurrent.Executors;
 /**
  * 异步事件分发器，内部使用线程池来处理事件
  */
-public class AsyncDispatcher implements Dispatcher {
+@Slf4j
+public class AsyncDispatcher<T> implements Dispatcher {
 
     private Map<Class<? extends Enum>, EventHandler> eventHandlerMap;
     private ExecutorService executor;
@@ -33,20 +37,19 @@ public class AsyncDispatcher implements Dispatcher {
         eventHandlerMap.put(eventType, handler);
     }
 
-    public void dispatch(final AbstractEvent event) {
+    public void  dispatch(final AbstractEvent event) {
         final EventHandler eventHandler = eventHandlerMap.get(event.getType().getClass());
         if (eventHandler == null) {
-            throw new RuntimeException("no matched event handler;type=" + event.getType());
+            throw new BaseException("no matched event handler;type=" + event.getType());
         }
 
         executor.execute(() -> {
             try {
-                System.out.println("AsyncDispatcher handle event start;event=" + event);
+                log.info("AsyncDispatcher handle event start;event=" + event);
                 eventHandler.handle(event);
-                System.out.println("AsyncDispatcher handle event end;event=" + event);
+                log.info("AsyncDispatcher handle event end;event=" + event);
             } catch (Exception e) {
-                System.out.println("AsyncDispatcher handle event exception;event=" + event);
-                e.printStackTrace();
+                log.error("AsyncDispatcher handle event exception;event=" + event);
             }
         });
     }
@@ -54,6 +57,6 @@ public class AsyncDispatcher implements Dispatcher {
     @Override
     public void shutdown() {
         executor.shutdown();
-        System.out.println("AsyncDispatcher shutdown");
+        log.info("AsyncDispatcher shutdown");
     }
 }

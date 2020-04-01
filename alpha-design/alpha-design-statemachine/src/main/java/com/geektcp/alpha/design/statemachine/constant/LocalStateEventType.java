@@ -1,4 +1,4 @@
-package com.geektcp.alpha.design.statemachine.example;
+package com.geektcp.alpha.design.statemachine.constant;
 
 public enum LocalStateEventType {
 

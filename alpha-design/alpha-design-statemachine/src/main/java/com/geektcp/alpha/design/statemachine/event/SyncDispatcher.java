@@ -1,5 +1,6 @@
 package com.geektcp.alpha.design.statemachine.event;
 
+import com.geektcp.alpha.design.statemachine.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
@@ -11,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 public class SyncDispatcher implements Dispatcher {
 
-    Map<Class<? extends Enum>, EventHandler> eventHandlerMap;
+    private Map<Class<? extends Enum>, EventHandler> eventHandlerMap;
 
     public SyncDispatcher() {
         eventHandlerMap = new ConcurrentHashMap<>();
@@ -25,7 +26,7 @@ public class SyncDispatcher implements Dispatcher {
     public void dispatch(final AbstractEvent event) {
         final EventHandler eventHandler = eventHandlerMap.get(event.getType().getClass());
         if (eventHandler == null) {
-            throw new RuntimeException("no matched event handler;type=" + event.getType());
+            throw new BaseException("no matched event handler;type=" + event.getType());
         }
 
         try {
@@ -40,6 +41,6 @@ public class SyncDispatcher implements Dispatcher {
 
     @Override
     public void shutdown() {
-
+        // do something
     }
 }

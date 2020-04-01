@@ -1,7 +1,5 @@
 package com.geektcp.alpha.design.statemachine.constant;
 
-import com.geektcp.alpha.design.statemachine.example.LocalStateManager;
-
 /**
  * @author haiyang on 2020-03-31 16:33
  */

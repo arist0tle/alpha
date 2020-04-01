@@ -6,7 +6,6 @@ public interface StateTransition {
 
     /**
      * 前置状态
-     *
      */
     List<Integer> preState();
 
@@ -14,4 +13,5 @@ public interface StateTransition {
      * 执行的操作，返回操作后的状态
      */
     int operation(String uuid);
+
 }

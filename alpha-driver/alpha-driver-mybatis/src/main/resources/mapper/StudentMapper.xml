@@ -3,7 +3,7 @@
 <mapper namespace="com.fengwenyi.mybatis_plus_example.dao.StudentDao">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.geektcp.alpha.driver.mybatis.model.Student">
+    <resultMap id="BaseResultMap" type="com.geektcp.alpha.driver.mybatis.model.po.StudentPo">
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="age" property="age" />
@@ -16,7 +16,7 @@
         <result column="city_id" property="cityId" />
     </resultMap>
 
-    <!--List<Student> selectAll();-->
+    <!--List<StudentPo> selectAll();-->
     <select id="selectAll" resultMap="BaseResultMap">
         select * from t_student
     </select>

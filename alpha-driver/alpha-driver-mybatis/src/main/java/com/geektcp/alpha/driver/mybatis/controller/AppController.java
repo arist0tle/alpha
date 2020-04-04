@@ -1,23 +1,22 @@
 package com.geektcp.alpha.driver.mybatis.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.fengwenyi.api_result.helper.ResultHelper;
-import com.fengwenyi.api_result.model.ResultModel;
 import com.geektcp.alpha.driver.mybatis.business.AppBusiness;
-import com.geektcp.alpha.driver.mybatis.enums.GenderEnum;
-import com.geektcp.alpha.driver.mybatis.model.City;
-import com.geektcp.alpha.driver.mybatis.model.Card;
-import com.geektcp.alpha.driver.mybatis.model.Student;
+import com.geektcp.alpha.driver.mybatis.model.vo.PageResponse;
+import com.geektcp.alpha.driver.mybatis.model.qo.UserQo;
+import com.geektcp.alpha.driver.mybatis.model.vo.UserVo;
 import com.geektcp.alpha.driver.mybatis.service.CityService;
 import com.geektcp.alpha.driver.mybatis.service.StudentService;
+import com.geektcp.alpha.driver.mybatis.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 /**
  * 测试
@@ -37,65 +36,12 @@ public class AppController {
 
     private StudentService studentService;
 
-    // 查询所有城市
-    @GetMapping("/queryCityAll")
-    public ResultModel queryCityAll() {
-        List<City> cities = cityService.queryCityAll();
-        return ResultHelper.success("Success", cities);
-    }
+    private UserService userService;
 
-
-    // 添加城市
-    @PostMapping("/addCity")
-    public ResultModel addCity(String name) {
-        if (StringUtils.isEmpty(name))
-            return ResultHelper.error("名称不能为空");
-        boolean rs = cityService.addCity(new City().setName(name));
-        if (rs)
-            return ResultHelper.success("Success", null);
-        return ResultHelper.error("添加失败");
-    }
-
-    // 添加学生
-    @PostMapping("/addStudent")
-    public ResultModel addStudent(String name, Integer age, String gender, String info, String idCardCode, String cityName) {
-        if (StringUtils.isEmpty(name)
-                || age == null
-                || StringUtils.isEmpty(gender)
-                || StringUtils.isEmpty(info)
-                || StringUtils.isEmpty(idCardCode)
-                || StringUtils.isEmpty(cityName))
-            return ResultHelper.error("参数不合法");
-
-        // 获取GenderEnum
-        GenderEnum genderEnum = GenderEnum.getEnumByDesc(gender);
-
-        // student
-        Student student = new Student()
-                .setName(name)
-                .setAge(age)
-                .setGender(genderEnum)
-                .setInfo(info);
-
-        // city
-        City city = new City().setName(cityName);
-
-        // idCard
-        Card card = new Card().setCode(idCardCode);
-
-        // service
-        boolean rs = appBusiness.addStudent(student, city, card);
-        if (rs)
-            return ResultHelper.success("Success", null);
-        return ResultHelper.error("添加失败");
-    }
-
-    // 分页查询学生
-    @GetMapping("/queryStudentByPage/{currentPage}")
-    public ResultModel queryStudentByPage(@PathVariable("currentPage") Long currentPage) {
-        if (currentPage == null)
-            return ResultHelper.error("当前页不能为空");
-        IPage<Student> studentIPage = studentService.queryStudentByPage(currentPage);
-        return ResultHelper.success("Success", studentIPage);
+    @ApiOperation(value = "分页查询公司的用户列表")
+    @ApiResponses({@ApiResponse(code = 200, message = "成功")})
+    @PostMapping("/findPage")
+    public PageResponse<UserVo> findPage(@RequestBody @Valid UserQo userQo) {
+        return userService.findPage(userQo);
     }
 }

@@ -3,7 +3,7 @@
 <mapper namespace="com.fengwenyi.mybatis_plus_example.dao.CityDao">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.geektcp.alpha.driver.mybatis.model.City">
+    <resultMap id="BaseResultMap" type="com.geektcp.alpha.driver.mybatis.model.po.CityPo">
         <id column="id" property="id" />
         <result column="name" property="name" />
     </resultMap>

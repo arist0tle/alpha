@@ -64,7 +64,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <sonar.host.url>http://thyserver:9000</sonar.host.url>
+                <sonar.host.url>http://alpha-server:9000</sonar.host.url>
             </properties>
 
         </profile>

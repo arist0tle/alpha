@@ -1,8 +1,6 @@
 package com.geektcp.alpha.driver.mybatis.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.geektcp.alpha.driver.mybatis.model.Student;
+import com.geektcp.alpha.driver.mybatis.model.po.StudentPo;
 
 import java.util.List;
 
@@ -14,13 +12,12 @@ import java.util.List;
  * @author tanghaiyang
  * @since 2018-08-31
  */
-public interface StudentService extends IService<Student> {
+public interface StudentService {
 
-    boolean addStudent(Student student);
+    boolean addStudent(StudentPo studentPo);
 
-    Student queryStudentByIdCardId(Long idCardId);
+    StudentPo queryStudentByIdCardId(Long idCardId);
 
-    IPage<Student> queryStudentByPage(Long currentPage);
 
     void test1();
 
@@ -30,40 +27,29 @@ public interface StudentService extends IService<Student> {
 
     void test4();
 
-    void test5();
+    void selectAll();
 
-    void test6();
-
-    void test7();
-
-    //------------------------------------------ 封装接口
-
-    /**
-     * 查询所有数据
-     * @return List<Student>
-     */
-    List<Student> findAll();
 
     /**
      * 查询部分数据
-     * @return List<Student>
+     * @return List<StudentPo>
      */
-    List<Student> findList();
+    List<StudentPo> findList();
 
     /**
      * 查询一条数据
-     * @return Student
+     * @return StudentPo
      */
-    Student findOne();
+    StudentPo findOne();
 
     /**
      * 根据主键ID查询数据
      * @param id 主键ID，为null，返回null
-     * @return Student
+     * @return StudentPo
      */
-    Student findById(Long id);
+    StudentPo findById(Long id);
 
     //------------------------------------------
 
-    List<Student> findByNameAndAge(String name, Integer age);
+    List<StudentPo> findByNameAndAge(String name, Integer age);
 }

@@ -27,6 +27,7 @@
         <module>alpha-util-system</module>
         <module>alpha-util-date</module>
         <module>alpha-util-jna</module>
+        <module>alpha-util-office</module>
     </modules>
 
     <dependencies>

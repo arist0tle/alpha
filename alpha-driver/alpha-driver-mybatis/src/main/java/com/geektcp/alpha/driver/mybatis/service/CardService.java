@@ -1,7 +1,8 @@
 package com.geektcp.alpha.driver.mybatis.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.geektcp.alpha.driver.mybatis.model.Card;
+import com.geektcp.alpha.driver.mybatis.model.po.CardPo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -11,10 +12,11 @@ import com.geektcp.alpha.driver.mybatis.model.Card;
  * @author tanghaiyang
  * @since 2018-08-31
  */
-public interface CardService extends IService<Card> {
+public interface CardService {
 
-    boolean addIdCard(Card card);
+    boolean addIdCard(CardPo cardPo);
 
-    Card queryIdCardByCode(String code);
+    CardPo queryIdCardByCode(String code);
 
+    List<CardPo> findPage(String code);
 }

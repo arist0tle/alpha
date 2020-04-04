@@ -20,7 +20,7 @@ public class RedisFactoryTest {
     @Test
     public void jedisConnectionFactory(){
         RedisConfig redisConfig = new RedisConfig();
-        redisConfig.setHost("thyserver");
+        redisConfig.setHost("alpha-server");
         redisConfig.setPort(6379);
         redisConfig.setDatabase(0);
         redisConfig.setPassword("111111");

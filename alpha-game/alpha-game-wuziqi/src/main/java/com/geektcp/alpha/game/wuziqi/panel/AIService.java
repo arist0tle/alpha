@@ -1,92 +1,103 @@
 package com.geektcp.alpha.game.wuziqi.panel;
-/**
- * AI算法和主函数入口
- */
+
+import com.google.common.collect.Lists;
+import lombok.Data;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.*;
+import java.util.List;
 
-public class AI {
+/**
+ * AI算法和主函数入口
+ */
+@Data
+public class AIService {
+
+    public static boolean finished = false;
+    public static boolean black = false;                   //标志棋子的颜色
+    public static int[][] chessBoard = new int[17][17];    //棋盘棋子的摆放情况：0无子，1黑子，－1白子
+
+    private AIService() {
+    }
     //
-    private static DrawingPanel panel;
-    private static Graphics g;
-    public static boolean isBlack = false;//标志棋子的颜色
-    public static int[][] chessBoard = new int[17][17]; //棋盘棋子的摆放情况：0无子，1黑子，－1白子
-    private static HashSet<Point> toJudge = new HashSet<Point>(); // ai可能会下棋的点
-    private static int dr[] = new int[]{-1, 1, -1, 1, 0, 0, -1, 1}; // 方向向量
-    private static int dc[] = new int[]{1, -1, -1, 1, -1, 1, 0, 0}; //方向向量
-    public static final int MAXN = 1 << 28;
-    public static final int MINN = -MAXN;
+    private static PanelService panel;
+    private static Graphics graphics;
+    private static HashSet<Point> judgePoint = new HashSet<>(); // ai可能会下棋的点
+    //    private static int dr[] = new int[]{-1, 1, -1, 1, 0, 0, -1, 1}; // 方向向量
+//    private static int dc[] = new int[]{1, -1, -1, 1, -1, 1, 0, 0}; //方向向量
+    private static List<Integer> drList;
+    private static List<Integer> dcList;
+    private static final int MAXN = 1 << 28;
+    private static final int MINN = -MAXN;
     private static int searchDeep = 4;    //搜索深度
-    private static final int size = 15;   //棋盘大小
-    public static boolean isFinished = false;
+    private static final int SIZE = 15;   // 棋盘大小
 
 
-    public static void init(DrawingPanel panel1){
+    public static void init(PanelService panel1) {
         panel = panel1;
-        g = panel.getGraphics();
+        graphics = panel.getGraphics();
+        drList = Lists.newArrayList(-1, 1, -1, 1, 0, 0, -1, 1);
+        dcList = Lists.newArrayList(1, -1, -1, 1, -1, 1, 0, 0);
     }
 
     // 初始化函数，绘图
     public static void initChessBoard() {
-        isBlack = false;
-        toJudge.clear();
+        black = false;
+        judgePoint.clear();
         panel.clear();
         panel.setBackground(Color.GRAY);
 
-        g.setColor(Color.BLACK);
+        graphics.setColor(Color.BLACK);
         for (int i = 45; i <= 675; i += 45) {
-            g.drawLine(45, i, 675, i);
-            g.drawLine(i, 45, i, 675);
+            graphics.drawLine(45, i, 675, i);
+            graphics.drawLine(i, 45, i, 675);
         }
         // 棋盘上的五个定位基本点，图中的小圆圈
-        g.setColor(Color.BLACK);
-        g.fillOval(353, 353, 14, 14);
-        g.fillOval(218, 218, 14, 14);
-        g.fillOval(488, 218, 14, 14);
-        g.fillOval(488, 488, 14, 14);
-        g.fillOval(218, 488, 14, 14);
+        graphics.setColor(Color.BLACK);
+        graphics.fillOval(353, 353, 14, 14);
+        graphics.fillOval(218, 218, 14, 14);
+        graphics.fillOval(488, 218, 14, 14);
+        graphics.fillOval(488, 488, 14, 14);
+        graphics.fillOval(218, 488, 14, 14);
         // 初始化棋盘
         for (int i = 1; i <= 15; ++i)
             for (int j = 1; j <= 15; ++j)
                 chessBoard[i][j] = 0;
         // ai先手
-        g.fillOval(337, 337, 45, 45);
+        graphics.fillOval(337, 337, 45, 45);
         chessBoard[8][8] = 1;
         for (int i = 0; i < 8; ++i)
-            if (1 <= 8 + dc[i] && 8 + dc[i] <= size && 1 <= 8 + dr[i] && 8 + dr[i] <= size) {
-                Point now = new Point(8 + dc[i], 8 + dr[i]);
-                if (!toJudge.contains(now))
-                    toJudge.add(now);
+            if (1 <= 8 + dcList.get(i) && 8 + dcList.get(i) <= SIZE && 1 <= 8 + drList.get(i) && 8 + drList.get(i) <= SIZE) {
+                Point now = new Point(8 + dcList.get(i), 8 + drList.get(i));
+                if (judgePoint.contains(now)) {
+                    continue;
+                }
+                judgePoint.add(now);
             }
-        isBlack = false;
+        black = false;
     }
 
     // 通过点击事件，得到棋子位置进行下棋
     public static void putChess(int x, int y) {
-        if (isBlack)
-            g.setColor(Color.BLACK);
+        if (black)
+            graphics.setColor(Color.BLACK);
         else
-            g.setColor(Color.WHITE);
-        g.fillOval(x - 22, y - 22, 45, 45);
-        chessBoard[y / 45][x / 45] = isBlack ? 1 : -1;
+            graphics.setColor(Color.WHITE);
+        graphics.fillOval(x - 22, y - 22, 45, 45);
+        chessBoard[y / 45][x / 45] = black ? 1 : -1;
         if (isEnd(x / 45, y / 45)) {
-            String s = AI.isBlack ? "黑子胜" : "白子胜";
+            String s = AIService.black ? "黑子胜" : "白子胜";
             JOptionPane.showMessageDialog(null, s);
-            isBlack = true;
+            black = true;
             initChessBoard();
         } else {
             Point p = new Point(x / 45, y / 45);
-            if (toJudge.contains(p))
-                toJudge.remove(p);
+            judgePoint.remove(p);
             for (int i = 0; i < 8; ++i) {
-                Point now = new Point(p.x + dc[i], p.y + dr[i]);
-                if (1 <= now.x && now.x <= size && 1 <= now.y && now.y <= size && chessBoard[now.y][now.x] == 0)
-                    toJudge.add(now);
+                Point now = new Point(p.x + dcList.get(i), p.y + drList.get(i));
+                if (1 <= now.x && now.x <= SIZE && 1 <= now.y && now.y <= SIZE && chessBoard[now.y][now.x] == 0)
+                    judgePoint.add(now);
             }
         }
     }
@@ -95,21 +106,21 @@ public class AI {
     public static void myAI() {
         Node node = new Node();
         dfs(0, node, MINN, MAXN, null);
-        Point now = node.bestChild.p;
-        // toJudge.remove(now);
+        Point now = node.getBestChild().getPoint();
+        // judgePoint.remove(now);
         putChess(now.x * 45, now.y * 45);
-        isBlack = false;
+        black = false;
     }
 
     // alpha beta dfs
     private static void dfs(int deep, Node root, int alpha, int beta, Point p) {
         if (deep == searchDeep) {
-            root.mark = getMark();
+            root.setMark( getMark());
             // System.out.printf("%d\t%d\t%d\n",p.x,p.y,root.mark);
             return;
         }
         ArrayList<Point> judgeSet = new ArrayList<Point>();
-        Iterator it = toJudge.iterator();
+        Iterator it = judgePoint.iterator();
         while (it.hasNext()) {
             Point now = new Point((Point) it.next());
             judgeSet.add(now);
@@ -120,11 +131,11 @@ public class AI {
             Node node = new Node();
             node.setPoint(now);
             root.addChild(node);
-            boolean flag = toJudge.contains(now);
+            boolean flag = judgePoint.contains(now);
             chessBoard[now.y][now.x] = ((deep & 1) == 1) ? -1 : 1;
             if (isEnd(now.x, now.y)) {
-                root.bestChild = node;
-                root.mark = MAXN * chessBoard[now.y][now.x];
+                root.setBestChild(node);
+                root.setMark( MAXN * chessBoard[now.y][now.x]);
                 chessBoard[now.y][now.x] = 0;
                 return;
             }
@@ -132,56 +143,56 @@ public class AI {
             boolean flags[] = new boolean[8]; //标记回溯时要不要删掉
             Arrays.fill(flags, true);
             for (int i = 0; i < 8; ++i) {
-                Point next = new Point(now.x + dc[i], now.y + dr[i]);
-                if (1 <= now.x + dc[i] && now.x + dc[i] <= size && 1 <= now.y + dr[i] && now.y + dr[i] <= size && chessBoard[next.y][next.x] == 0) {
-                    if (!toJudge.contains(next)) {
-                        toJudge.add(next);
+                Point next = new Point(now.x + dcList.get(i), now.y + drList.get(i));
+                if (1 <= now.x + dcList.get(i) && now.x + dcList.get(i) <= SIZE && 1 <= now.y + drList.get(i) && now.y + drList.get(i) <= SIZE && chessBoard[next.y][next.x] == 0) {
+                    if (!judgePoint.contains(next)) {
+                        judgePoint.add(next);
                     } else flags[i] = false;
                 }
             }
 
             if (flag)
-                toJudge.remove(now);
+                judgePoint.remove(now);
             dfs(deep + 1, root.getLastChild(), alpha, beta, now);
             chessBoard[now.y][now.x] = 0;
             if (flag)
-                toJudge.add(now);
+                judgePoint.add(now);
             for (int i = 0; i < 8; ++i)
                 if (flags[i])
-                    toJudge.remove(new Point(now.x + dc[i], now.y + dr[i]));
+                    judgePoint.remove(new Point(now.x + dcList.get(i), now.y + drList.get(i)));
             // alpha beta剪枝
             // min层
             if ((deep & 1) == 1) {
-                if (root.bestChild == null || root.getLastChild().mark < root.bestChild.mark) {
-                    root.bestChild = root.getLastChild();
-                    root.mark = root.bestChild.mark;
-                    if (root.mark <= MINN)
-                        root.mark += deep;
-                    beta = Math.min(root.mark, beta);
+                if (root.getBestChild() == null || root.getLastChild().getMark() < root.getBestChild().getMark()) {
+                    root.setBestChild(root.getLastChild());
+                    root.setMark(root.getBestChild().getMark());
+                    if (root.getMark() <= MINN){
+                    root.setMark(root.getMark()+deep);
                 }
-                if (root.mark <= alpha)
+                    beta = Math.min(root.getMark(), beta);
+                }
+                if (root.getMark() <= alpha)
                     return;
             }
             // max层
             else {
-                if (root.bestChild == null || root.getLastChild().mark > root.bestChild.mark) {
-                    root.bestChild = root.getLastChild();
-                    root.mark = root.bestChild.mark;
-                    if (root.mark == MAXN)
-                        root.mark -= deep;
-                    alpha = Math.max(root.mark, alpha);
+                if (root.getBestChild() == null || root.getLastChild().getMark() > root.getBestChild().getMark()) {
+                    root.setBestChild(root.getLastChild());
+                    root.setMark(root.getBestChild().getMark());
+                    if (root.getMark() == MAXN)
+                        root.setMark(root.getMark()-deep);
+                    alpha = Math.max(root.getMark(), alpha);
                 }
-                if (root.mark >= beta)
+                if (root.getMark() >= beta)
                     return;
             }
         }
-        // if(deep==0) System.out.printf("******************************************\n");
     }
 
     public static int getMark() {
         int res = 0;
-        for (int i = 1; i <= size; ++i) {
-            for (int j = 1; j <= size; ++j) {
+        for (int i = 1; i <= SIZE; ++i) {
+            for (int j = 1; j <= SIZE; ++j) {
                 if (chessBoard[i][j] != 0) {
                     // 行
                     boolean flag1 = false, flag2 = false;
@@ -192,8 +203,8 @@ public class AI {
                     if (col > 0 && chessBoard[row][col] == 0) flag1 = true;
                     col = x;
                     row = y;
-                    while (++col <= size && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
-                    if (col <= size && chessBoard[row][col] == 0) flag2 = true;
+                    while (++col <= SIZE && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
+                    if (col <= SIZE && chessBoard[row][col] == 0) flag2 = true;
                     if (flag1 && flag2)
                         res += chessBoard[i][j] * cnt * cnt;
                     else if (flag1 || flag2) res += chessBoard[i][j] * cnt * cnt / 4;
@@ -208,8 +219,8 @@ public class AI {
                     if (row > 0 && chessBoard[row][col] == 0) flag1 = true;
                     col = x;
                     row = y;
-                    while (++row <= size && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
-                    if (row <= size && chessBoard[row][col] == 0) flag2 = true;
+                    while (++row <= SIZE && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
+                    if (row <= SIZE && chessBoard[row][col] == 0) flag2 = true;
                     if (flag1 && flag2)
                         res += chessBoard[i][j] * cnt * cnt;
                     else if (flag1 || flag2)
@@ -225,8 +236,8 @@ public class AI {
                     if (col > 0 && row > 0 && chessBoard[row][col] == 0) flag1 = true;
                     col = x;
                     row = y;
-                    while (++col <= size && ++row <= size && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
-                    if (col <= size && row <= size && chessBoard[row][col] == 0) flag2 = true;
+                    while (++col <= SIZE && ++row <= SIZE && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
+                    if (col <= SIZE && row <= SIZE && chessBoard[row][col] == 0) flag2 = true;
                     if (flag1 && flag2)
                         res += chessBoard[i][j] * cnt * cnt;
                     else if (flag1 || flag2) res += chessBoard[i][j] * cnt * cnt / 4;
@@ -237,12 +248,12 @@ public class AI {
                     cnt = 1;
                     flag1 = false;
                     flag2 = false;
-                    while (++row <= size && --col > 0 && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
-                    if (row <= size && col > 0 && chessBoard[row][col] == 0) flag1 = true;
+                    while (++row <= SIZE && --col > 0 && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
+                    if (row <= SIZE && col > 0 && chessBoard[row][col] == 0) flag1 = true;
                     col = x;
                     row = y;
-                    while (--row > 0 && ++col <= size && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
-                    if (row > 0 && col <= size && chessBoard[i][j] == 0) flag2 = true;
+                    while (--row > 0 && ++col <= SIZE && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
+                    if (row > 0 && col <= SIZE && chessBoard[i][j] == 0) flag2 = true;
                     if (flag1 && flag2)
                         res += chessBoard[i][j] * cnt * cnt;
                     else if (flag1 || flag2) res += chessBoard[i][j] * cnt * cnt / 4;
@@ -256,8 +267,8 @@ public class AI {
 
     // for debug
     public static void debug() {
-        for (int i = 1; i <= size; ++i) {
-            for (int j = 1; j <= size; ++j) {
+        for (int i = 1; i <= SIZE; ++i) {
+            for (int j = 1; j <= SIZE; ++j) {
                 System.out.printf("%d\t", chessBoard[i][j]);
             }
             System.out.println("");
@@ -272,9 +283,9 @@ public class AI {
         while (--col > 0 && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
         col = x;
         row = y;
-        while (++col <= size && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
+        while (++col <= SIZE && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
         if (cnt >= 5) {
-            isFinished = true;
+            finished = true;
             return true;
         }
         // 判断一列是否五子连珠
@@ -284,9 +295,9 @@ public class AI {
         while (--row > 0 && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
         col = x;
         row = y;
-        while (++row <= size && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
+        while (++row <= SIZE && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
         if (cnt >= 5) {
-            isFinished = true;
+            finished = true;
             return true;
         }
         // 判断左对角线是否五子连珠
@@ -296,21 +307,21 @@ public class AI {
         while (--col > 0 && --row > 0 && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
         col = x;
         row = y;
-        while (++col <= size && ++row <= size && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
+        while (++col <= SIZE && ++row <= SIZE && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
         if (cnt >= 5) {
-            isFinished = true;
+            finished = true;
             return true;
         }
         // 判断右对角线是否五子连珠
         col = x;
         row = y;
         cnt = 1;
-        while (++row <= size && --col > 0 && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
+        while (++row <= SIZE && --col > 0 && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
         col = x;
         row = y;
-        while (--row > 0 && ++col <= size && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
+        while (--row > 0 && ++col <= SIZE && chessBoard[row][col] == chessBoard[y][x]) ++cnt;
         if (cnt >= 5) {
-            isFinished = true;
+            finished = true;
             return true;
         }
         return false;

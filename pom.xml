@@ -35,7 +35,7 @@
         <module>alpha-agent</module>
         <module>alpha-spi</module>
         <module>alpha-console</module>
-        <module>alpha-sso</module>
+        <module>alpha-oauth2</module>
         <module>alpha-tool</module>
     </modules>
 

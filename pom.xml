@@ -37,6 +37,8 @@
         <module>alpha-console</module>
         <module>alpha-oauth2</module>
         <module>alpha-tool</module>
+        <module>alpha-chat</module>
+        <module>alpha-scheduler</module>
     </modules>
 
     <properties>

@@ -12,10 +12,17 @@ import com.geektcp.alpha.scheduler.api.core.util.I18nUtil;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobGroupDao;
 import com.geektcp.alpha.scheduler.api.service.LoginService;
 import com.geektcp.alpha.scheduler.api.service.XxlJobService;
+<<<<<<< HEAD:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/controller/JobInfoController.java
 import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
 import com.geektcp.alpha.scheduler.core.enums.ExecutorBlockStrategyEnum;
 import com.geektcp.alpha.scheduler.core.glue.GlueTypeEnum;
 import com.geektcp.alpha.scheduler.core.util.DateUtil;
+=======
+import com.xxl.job.core.biz.model.ReturnT;
+import com.xxl.job.core.enums.ExecutorBlockStrategyEnum;
+import com.xxl.job.core.glue.GlueTypeEnum;
+import com.xxl.job.core.util.DateUtil;
+>>>>>>> upstream/master:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/controller/JobInfoController.java
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

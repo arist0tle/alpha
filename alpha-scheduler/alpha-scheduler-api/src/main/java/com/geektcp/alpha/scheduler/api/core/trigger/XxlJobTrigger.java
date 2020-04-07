@@ -7,10 +7,17 @@ import com.geektcp.alpha.scheduler.api.core.model.XxlJobInfo;
 import com.geektcp.alpha.scheduler.api.core.model.XxlJobLog;
 import com.geektcp.alpha.scheduler.api.core.route.ExecutorRouteStrategyEnum;
 import com.geektcp.alpha.scheduler.api.core.util.I18nUtil;
+<<<<<<< HEAD:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/core/trigger/XxlJobTrigger.java
 import com.geektcp.alpha.scheduler.core.biz.ExecutorBiz;
 import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
 import com.geektcp.alpha.scheduler.core.biz.model.TriggerParam;
 import com.geektcp.alpha.scheduler.core.enums.ExecutorBlockStrategyEnum;
+=======
+import com.xxl.job.core.biz.ExecutorBiz;
+import com.xxl.job.core.biz.model.ReturnT;
+import com.xxl.job.core.biz.model.TriggerParam;
+import com.xxl.job.core.enums.ExecutorBlockStrategyEnum;
+>>>>>>> upstream/master:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/core/trigger/XxlJobTrigger.java
 import com.xxl.rpc.util.IpUtil;
 import com.xxl.rpc.util.ThrowableUtil;
 import org.slf4j.Logger;

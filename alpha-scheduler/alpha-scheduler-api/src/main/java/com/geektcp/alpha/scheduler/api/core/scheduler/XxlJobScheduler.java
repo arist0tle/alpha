@@ -3,8 +3,13 @@ package com.geektcp.alpha.scheduler.api.core.scheduler;
 import com.geektcp.alpha.scheduler.api.core.conf.XxlJobAdminConfig;
 import com.geektcp.alpha.scheduler.api.core.thread.*;
 import com.geektcp.alpha.scheduler.api.core.util.I18nUtil;
+<<<<<<< HEAD:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/core/scheduler/XxlJobScheduler.java
 import com.geektcp.alpha.scheduler.core.biz.ExecutorBiz;
 import com.geektcp.alpha.scheduler.core.enums.ExecutorBlockStrategyEnum;
+=======
+import com.xxl.job.core.biz.ExecutorBiz;
+import com.xxl.job.core.enums.ExecutorBlockStrategyEnum;
+>>>>>>> upstream/master:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/core/scheduler/XxlJobScheduler.java
 import com.xxl.rpc.remoting.invoker.call.CallType;
 import com.xxl.rpc.remoting.invoker.reference.XxlRpcReferenceBean;
 import com.xxl.rpc.remoting.invoker.route.LoadBalance;

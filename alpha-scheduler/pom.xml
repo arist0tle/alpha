@@ -10,7 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>alpha-scheduler</artifactId>
-    <packaging>pom</packaging>
     <modules>
         <module>alpha-scheduler-api</module>
         <module>alpha-scheduler-core</module>

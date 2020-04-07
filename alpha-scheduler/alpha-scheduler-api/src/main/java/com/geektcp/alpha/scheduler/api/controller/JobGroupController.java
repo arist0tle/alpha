@@ -6,8 +6,13 @@ import com.geektcp.alpha.scheduler.api.core.util.I18nUtil;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobGroupDao;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobInfoDao;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobRegistryDao;
+<<<<<<< HEAD:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/controller/JobGroupController.java
+import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
+import com.geektcp.alpha.scheduler.core.enums.RegistryConfig;
+=======
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.enums.RegistryConfig;
+>>>>>>> upstream/master:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/controller/JobGroupController.java
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

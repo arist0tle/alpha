@@ -5,7 +5,11 @@ import com.geektcp.alpha.scheduler.api.core.util.CookieUtil;
 import com.geektcp.alpha.scheduler.api.core.util.I18nUtil;
 import com.geektcp.alpha.scheduler.api.core.util.JacksonUtil;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobUserDao;
+<<<<<<< HEAD:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/service/LoginService.java
+import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
+=======
 import com.xxl.job.core.biz.model.ReturnT;
+>>>>>>> upstream/master:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/service/LoginService.java
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.DigestUtils;
 

@@ -1,10 +1,10 @@
 package com.xxl.job.executor;
 
-import com.xxl.job.core.biz.ExecutorBiz;
-import com.xxl.job.core.biz.model.ReturnT;
-import com.xxl.job.core.biz.model.TriggerParam;
-import com.xxl.job.core.enums.ExecutorBlockStrategyEnum;
-import com.xxl.job.core.glue.GlueTypeEnum;
+import com.geektcp.alpha.scheduler.core.biz.ExecutorBiz;
+import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
+import com.geektcp.alpha.scheduler.core.biz.model.TriggerParam;
+import com.geektcp.alpha.scheduler.core.enums.ExecutorBlockStrategyEnum;
+import com.geektcp.alpha.scheduler.core.glue.GlueTypeEnum;
 import com.xxl.rpc.remoting.invoker.XxlRpcInvokerFactory;
 import com.xxl.rpc.remoting.invoker.call.CallType;
 import com.xxl.rpc.remoting.invoker.reference.XxlRpcReferenceBean;

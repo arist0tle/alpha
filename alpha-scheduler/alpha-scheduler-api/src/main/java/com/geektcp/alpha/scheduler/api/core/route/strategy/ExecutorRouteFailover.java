@@ -3,9 +3,9 @@ package com.geektcp.alpha.scheduler.api.core.route.strategy;
 import com.geektcp.alpha.scheduler.api.core.scheduler.XxlJobScheduler;
 import com.geektcp.alpha.scheduler.api.core.route.ExecutorRouter;
 import com.geektcp.alpha.scheduler.api.core.util.I18nUtil;
-import com.xxl.job.core.biz.ExecutorBiz;
-import com.xxl.job.core.biz.model.ReturnT;
-import com.xxl.job.core.biz.model.TriggerParam;
+import com.geektcp.alpha.scheduler.core.biz.ExecutorBiz;
+import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
+import com.geektcp.alpha.scheduler.core.biz.model.TriggerParam;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.geektcp.alpha.scheduler.api.controller.resolver;
 
 import com.geektcp.alpha.scheduler.api.core.exception.XxlJobException;
-import com.xxl.job.core.biz.model.ReturnT;
+import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
 import com.geektcp.alpha.scheduler.api.core.util.JacksonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

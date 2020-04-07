@@ -7,9 +7,9 @@ package com.geektcp.alpha.scheduler.api.core.old;//package com.geektcp.alpha.sch
 //import com.geektcp.alpha.scheduler.api.core.thread.JobRegistryMonitorHelper;
 //import com.geektcp.alpha.scheduler.api.core.thread.JobTriggerPoolHelper;
 //import com.geektcp.alpha.scheduler.api.core.util.I18nUtil;
-//import com.xxl.job.core.biz.AdminBiz;
-//import com.xxl.job.core.biz.ExecutorBiz;
-//import com.xxl.job.core.enums.ExecutorBlockStrategyEnum;
+//import com.geektcp.alpha.scheduler.core.biz.AdminBiz;
+//import com.geektcp.alpha.scheduler.core.biz.ExecutorBiz;
+//import com.geektcp.alpha.scheduler.core.enums.ExecutorBlockStrategyEnum;
 //import com.xxl.rpc.remoting.invoker.XxlRpcInvokerFactory;
 //import com.xxl.rpc.remoting.invoker.call.CallType;
 //import com.xxl.rpc.remoting.invoker.reference.XxlRpcReferenceBean;

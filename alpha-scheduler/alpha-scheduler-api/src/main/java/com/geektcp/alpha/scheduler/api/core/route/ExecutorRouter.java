@@ -1,7 +1,7 @@
 package com.geektcp.alpha.scheduler.api.core.route;
 
-import com.xxl.job.core.biz.model.ReturnT;
-import com.xxl.job.core.biz.model.TriggerParam;
+import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
+import com.geektcp.alpha.scheduler.core.biz.model.TriggerParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -3,7 +3,7 @@ package com.geektcp.alpha.scheduler.api.controller;
 import com.geektcp.alpha.scheduler.api.controller.annotation.PermissionLimit;
 import com.geektcp.alpha.scheduler.api.service.LoginService;
 import com.geektcp.alpha.scheduler.api.service.XxlJobService;
-import com.xxl.job.core.biz.model.ReturnT;
+import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

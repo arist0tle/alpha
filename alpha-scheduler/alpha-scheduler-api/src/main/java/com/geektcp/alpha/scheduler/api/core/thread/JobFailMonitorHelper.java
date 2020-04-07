@@ -6,7 +6,7 @@ import com.geektcp.alpha.scheduler.api.core.model.XxlJobInfo;
 import com.geektcp.alpha.scheduler.api.core.model.XxlJobLog;
 import com.geektcp.alpha.scheduler.api.core.trigger.TriggerTypeEnum;
 import com.geektcp.alpha.scheduler.api.core.util.I18nUtil;
-import com.xxl.job.core.biz.model.ReturnT;
+import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.MimeMessageHelper;

@@ -5,7 +5,7 @@ import com.geektcp.alpha.scheduler.api.core.util.CookieUtil;
 import com.geektcp.alpha.scheduler.api.core.util.I18nUtil;
 import com.geektcp.alpha.scheduler.api.core.util.JacksonUtil;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobUserDao;
-import com.xxl.job.core.biz.model.ReturnT;
+import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.DigestUtils;
 

@@ -1,7 +1,7 @@
 dir('xxl-job-admin') {
     runDockerBuild(
-            'appName': 'xxl-job',
+            'appName': 'alpha-scheduler',
             'dockerRegistry': 'registry.cn-shenzhen.aliyuncs.com',
-            'dockerImage': 'xiaomayz/xxl-job'
+            'dockerImage': 'thy/alpha-scheduler'
     )
 }

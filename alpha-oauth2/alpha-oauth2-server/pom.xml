@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>alpha-sso-server</artifactId>
+    <artifactId>alpha-oauth2-server</artifactId>
 
     <dependencies>
         <dependency>

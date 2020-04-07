@@ -9,15 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>alpha-sso</artifactId>
+    <artifactId>alpha-oauth2</artifactId>
     <groupId>com.geektcp.alpha</groupId>
     <version>1.0</version>
 
     <packaging>pom</packaging>
     <modules>
-        <module>alpha-sso-server</module>
-        <module>alpha-sso-member</module>
-        <module>alpha-sso-order</module>
+        <module>alpha-oauth2-server</module>
+        <module>alpha-oauth2-member</module>
+        <module>alpha-oauth2-order</module>
     </modules>
 
     <build>

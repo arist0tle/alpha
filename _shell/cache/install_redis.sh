@@ -40,7 +40,20 @@ bin/redis-server conf/redis.conf
 redis-cli
 
 
+# script:
+############ shutdown.sh ################
+#!/bin/sh
+# author: haiyang
+# date  : Wed Apr  8 14:12:42 CST 2020
+
+ps -ef |grep redis-server|grep -v grep |awk '{print $2 }'|xargs -t -i kill {}
+echo "stopped redis!"
 
 
+############ startup.sh ################
+#!/bin/sh
+# author: haiyang
+# date  : Wed Apr  8 14:12:42 CST 2020
 
-
+/usr/local/redis/bin/redis-server /usr/local/redis/conf/redis.conf
+echo "started redis!"

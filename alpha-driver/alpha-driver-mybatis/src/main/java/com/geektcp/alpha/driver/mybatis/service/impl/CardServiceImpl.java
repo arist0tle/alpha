@@ -32,6 +32,22 @@ public class CardServiceImpl extends ServiceImpl<CardDao, CardPo> implements Car
     }
 
     @Override
+    public boolean insert() {
+        CardPo po = new CardPo();
+        po.setCode("111111");
+        return this.insert(po);
+    }
+
+    @Override
+    public boolean put() {
+        CardPo po = new CardPo();
+        po.setCode("22222");
+
+        throw new RuntimeException();
+//        return this.insert(po);
+    }
+
+    @Override
     public CardPo queryIdCardByCode(String code) {
         Wrapper<CardPo> queryWrapper = new EntityWrapper<>();
         queryWrapper.eq(CardPo.CODE, code);

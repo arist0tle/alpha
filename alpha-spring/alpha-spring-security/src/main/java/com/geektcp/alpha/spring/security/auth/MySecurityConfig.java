@@ -1,9 +1,10 @@
-package com.geektcp.alpha.spring.security.config;
+package com.geektcp.alpha.spring.security.auth;
 
-import com.geektcp.alpha.spring.security.auth.JwtAuthenticationFilter;
+import com.geektcp.alpha.spring.security.auth.filter.JwtAuthenticationFilter;
+import com.geektcp.alpha.spring.security.auth.handle.AuthenticationFailHandler;
+import com.geektcp.alpha.spring.security.auth.handle.AuthenticationSuccessHandler;
 import com.geektcp.alpha.spring.security.service.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

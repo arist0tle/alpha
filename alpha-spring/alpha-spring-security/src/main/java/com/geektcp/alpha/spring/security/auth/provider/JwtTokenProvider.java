@@ -1,11 +1,9 @@
-package com.geektcp.alpha.spring.security.auth;
+package com.geektcp.alpha.spring.security.auth.provider;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
@@ -55,29 +53,5 @@ public class JwtTokenProvider {
         }
     }
 
-    @Component
-    @PropertySource("classpath:auth.properties")
-    public static class AuthParameters {
 
-        private String jwtTokenSecret;
-        private long tokenExpiredMs;
-
-         String getJwtTokenSecret() {
-            return jwtTokenSecret;
-        }
-
-        @Value("${jwtTokenSecret}")
-        public void setJwtTokenSecret(String jwtTokenSecret) {
-            this.jwtTokenSecret = jwtTokenSecret;
-        }
-
-         long getTokenExpiredMs() {
-            return tokenExpiredMs;
-        }
-
-        @Value("${tokenExpiredMs}")
-        public void setTokenExpiredMs(long tokenExpiredMs) {
-            this.tokenExpiredMs = tokenExpiredMs;
-        }
-    }
 }

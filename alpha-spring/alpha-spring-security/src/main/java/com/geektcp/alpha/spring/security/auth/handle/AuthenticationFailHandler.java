@@ -1,4 +1,4 @@
-package com.geektcp.alpha.spring.security.config;
+package com.geektcp.alpha.spring.security.auth.handle;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;

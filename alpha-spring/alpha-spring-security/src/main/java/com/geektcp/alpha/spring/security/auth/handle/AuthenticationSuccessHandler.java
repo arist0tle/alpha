@@ -1,6 +1,6 @@
-package com.geektcp.alpha.spring.security.config;
+package com.geektcp.alpha.spring.security.auth.handle;
 
-import com.geektcp.alpha.spring.security.auth.JwtTokenProvider;
+import com.geektcp.alpha.spring.security.auth.provider.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;

@@ -1,5 +1,7 @@
-package com.geektcp.alpha.spring.security.auth;
+package com.geektcp.alpha.spring.security.auth.filter;
 
+import com.geektcp.alpha.spring.security.auth.provider.AuthParameters;
+import com.geektcp.alpha.spring.security.auth.provider.JwtTokenProvider;
 import com.geektcp.alpha.spring.security.service.UserService;
 import io.jsonwebtoken.Jwts;
 import org.slf4j.Logger;
@@ -9,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -22,6 +25,7 @@ import java.util.Objects;
  * Created by tanghaiyang
  * 22:55 2018/10/15
  */
+@Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
@@ -30,7 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    private JwtTokenProvider.AuthParameters authParameters;
+    private AuthParameters authParameters;
 
     @Autowired
     private UserService userService;

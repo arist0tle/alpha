@@ -28,7 +28,7 @@ public class UserController {
 
     @GetMapping(value = "/user")
     @PreAuthorize("hasAuthority('admin')")
-    public UserVo getUserByName(@RequestParam("userName") String userName) {
+    public UserVo getUserByName(@RequestParam("username") String userName) {
         log.info("success!");
         return userService.getUserByUserName(userName);
     }

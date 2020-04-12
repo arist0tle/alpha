@@ -15,8 +15,8 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<UserQo, String> {
 
-    UserQo findByUserName(String userName);
+    UserQo findByUserName(String username);
 
-    @Query(value = "select r.roleCode from UserQo u inner join u.roles as r where u.userName = :userName")
-    List<String> queryUserOwnedRoleCodes(@Param(value = "userName") String userName);
+    @Query(value = "select r.roleCode from UserQo u inner join u.roles as r where u.userName = :username")
+    List<String> queryUserOwnedRoleCodes(@Param(value = "username") String username);
 }

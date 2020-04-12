@@ -19,7 +19,7 @@ public class MyUserDetailService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String userName) {
-        return this.userService.getUserDetailByUserName(userName);
+    public UserDetails loadUserByUsername(String username) {
+        return this.userService.getUserDetailByUserName(username);
     }
 }

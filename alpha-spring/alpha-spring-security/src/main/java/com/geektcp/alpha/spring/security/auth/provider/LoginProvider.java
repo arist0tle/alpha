@@ -1,7 +1,6 @@
 package com.geektcp.alpha.spring.security.auth.provider;
 
 import com.geektcp.alpha.spring.security.exception.LoginException;
-import com.geektcp.alpha.spring.security.service.MyUserDetailService;
 import com.geektcp.alpha.spring.security.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -23,14 +22,10 @@ public class LoginProvider implements AuthenticationProvider {
 
     private LoginParameters loginParameters;
     private UserService userService;
-    private MyUserDetailService myUserDetailService;
 
     @Autowired
-    public void setAutowired(UserService userService,
-                             MyUserDetailService myUserDetailService,
-                             LoginParameters loginParameters) {
+    public void setAutowired(UserService userService, LoginParameters loginParameters) {
         this.userService = userService;
-        this.myUserDetailService = myUserDetailService;
         this.loginParameters = loginParameters;
     }
 
@@ -72,14 +67,8 @@ public class LoginProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) {
         log.info("33333333323");
-        UserDetails userDetails;
-        try {
-             userDetails = myUserDetailService.loadUserByUsername("");
-//            userDetails = userService.getUserDetailByUserName(authentication.getPrincipal().toString());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        } catch (Exception e) {
-            throw new LoginException(e.getMessage());
-        }
+        UserDetails userDetails = userService.getUserDetailByUserName(authentication.getPrincipal().toString());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return new LoginToken(userDetails, userDetails.getAuthorities());
     }
 

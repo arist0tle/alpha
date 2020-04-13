@@ -17,6 +17,6 @@ public class FailHandler extends SimpleUrlAuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
             throws IOException {
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, exception.getMessage());
+        response.sendError(HttpServletResponse.SC_HTTP_VERSION_NOT_SUPPORTED, exception.getMessage());
     }
 }

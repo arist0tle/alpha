@@ -49,7 +49,7 @@ public class TokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        log.info("222222TokenFilter");
+        log.info("11111TokenFilter");
         String token = getJwtFromRequest(request);
         if(StringUtils.isNoneEmpty(token)) {
             if (loginProvider.validateToken(token)) {

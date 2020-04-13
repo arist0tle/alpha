@@ -1,7 +1,5 @@
 package com.geektcp.alpha.spring.security.domain.qo;
 
-import com.geektcp.alpha.spring.security.domain.qo.UserQo;
-
 import javax.persistence.*;
 import java.util.List;
 

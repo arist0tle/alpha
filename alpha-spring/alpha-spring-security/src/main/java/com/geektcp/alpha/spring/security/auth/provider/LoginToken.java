@@ -2,7 +2,6 @@ package com.geektcp.alpha.spring.security.auth.provider;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
-
 import java.util.Collection;
 
 /**
@@ -34,5 +33,4 @@ public class LoginToken extends AbstractAuthenticationToken {
     public Object getPrincipal() {
         return null;
     }
-
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @PropertySource("classpath:auth.properties")
-public  class AuthParameters {
+public  class LoginParameters {
 
     private String jwtTokenSecret;
     private long tokenExpiredMs;

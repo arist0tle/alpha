@@ -2,12 +2,7 @@ package com.geektcp.alpha.scheduler.api.service;
 
 
 import com.geektcp.alpha.scheduler.api.core.model.XxlJobInfo;
-<<<<<<< HEAD:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/service/XxlJobService.java
 import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
-=======
-import com.xxl.job.core.biz.model.ReturnT;
->>>>>>> upstream/master:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/service/XxlJobService.java
-
 import java.util.Date;
 import java.util.Map;
 

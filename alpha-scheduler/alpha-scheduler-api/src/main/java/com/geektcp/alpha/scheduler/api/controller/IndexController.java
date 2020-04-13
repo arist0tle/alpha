@@ -3,19 +3,12 @@ package com.geektcp.alpha.scheduler.api.controller;
 import com.geektcp.alpha.scheduler.api.controller.annotation.PermissionLimit;
 import com.geektcp.alpha.scheduler.api.service.LoginService;
 import com.geektcp.alpha.scheduler.api.service.XxlJobService;
-<<<<<<< HEAD:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/controller/IndexController.java
 import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
-=======
-import com.xxl.job.core.biz.model.ReturnT;
->>>>>>> upstream/master:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/controller/IndexController.java
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +30,7 @@ public class IndexController {
 	private LoginService loginService;
 
 
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String index(Model model) {
 
 		Map<String, Object> dashboardMap = xxlJobService.dashboardInfo();
@@ -46,14 +39,14 @@ public class IndexController {
 		return "index";
 	}
 
-    @RequestMapping("/chartInfo")
+    @GetMapping("/chartInfo")
 	@ResponseBody
 	public ReturnT<Map<String, Object>> chartInfo(Date startDate, Date endDate) {
         ReturnT<Map<String, Object>> chartInfo = xxlJobService.chartInfo(startDate, endDate);
         return chartInfo;
     }
 	
-	@RequestMapping("/toLogin")
+	@GetMapping("/toLogin")
 	@PermissionLimit(limit=false)
 	public String toLogin(HttpServletRequest request, HttpServletResponse response) {
 		if (loginService.ifLogin(request, response) != null) {
@@ -62,7 +55,7 @@ public class IndexController {
 		return "login";
 	}
 	
-	@RequestMapping(value="login", method=RequestMethod.POST)
+	@PostMapping("/login")
 	@ResponseBody
 	@PermissionLimit(limit=false)
 	public ReturnT<String> loginDo(HttpServletRequest request, HttpServletResponse response, String userName, String password, String ifRemember){
@@ -70,14 +63,14 @@ public class IndexController {
 		return loginService.login(request, response, userName, password, ifRem);
 	}
 	
-	@RequestMapping(value="logout", method=RequestMethod.POST)
+	@PostMapping("/logout")
 	@ResponseBody
 	@PermissionLimit(limit=false)
 	public ReturnT<String> logout(HttpServletRequest request, HttpServletResponse response){
 		return loginService.logout(request, response);
 	}
 	
-	@RequestMapping("/help")
+	@GetMapping("/help")
 	public String help() {
 
 		/*if (!PermissionInterceptor.ifLogin(request)) {

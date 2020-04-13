@@ -10,6 +10,7 @@ import com.geektcp.alpha.scheduler.core.biz.model.RegistryParam;
 import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
 import com.geektcp.alpha.scheduler.core.util.XxlJobRemotingUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -68,7 +69,7 @@ public class JobApiController {
      * @param data
      * @return
      */
-    @RequestMapping("/callback")
+    @GetMapping("/callback")
     @ResponseBody
     @PermissionLimit(limit=false)
     public ReturnT<String> callback(HttpServletRequest request, @RequestBody(required = false) String data) {
@@ -90,7 +91,7 @@ public class JobApiController {
      * @param data
      * @return
      */
-    @RequestMapping("/registry")
+    @GetMapping("/registry")
     @ResponseBody
     @PermissionLimit(limit=false)
     public ReturnT<String> registry(HttpServletRequest request, @RequestBody(required = false) String data) {
@@ -110,7 +111,7 @@ public class JobApiController {
      * @param data
      * @return
      */
-    @RequestMapping("/registryRemove")
+    @GetMapping("/registryRemove")
     @ResponseBody
     @PermissionLimit(limit=false)
     public ReturnT<String> registryRemove(HttpServletRequest request, @RequestBody(required = false) String data) {

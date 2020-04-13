@@ -9,6 +9,7 @@ import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
 import com.geektcp.alpha.scheduler.core.glue.GlueTypeEnum;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,7 +31,7 @@ public class JobCodeController {
 	@Resource
 	private XxlJobLogGlueDao xxlJobLogGlueDao;
 
-	@RequestMapping
+	@GetMapping
 	public String index(HttpServletRequest request, Model model, int jobId) {
 		XxlJobInfo jobInfo = xxlJobInfoDao.loadById(jobId);
 		List<XxlJobLogGlue> jobLogGlues = xxlJobLogGlueDao.findByJobId(jobId);
@@ -53,7 +54,7 @@ public class JobCodeController {
 		return "jobcode/jobcode.index";
 	}
 	
-	@RequestMapping("/save")
+	@GetMapping("/save")
 	@ResponseBody
 	public ReturnT<String> save(Model model, int id, String glueSource, String glueRemark) {
 		// valid

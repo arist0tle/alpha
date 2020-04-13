@@ -9,19 +9,11 @@ import com.geektcp.alpha.scheduler.api.dao.XxlJobGroupDao;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobInfoDao;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobLogDao;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobRegistryDao;
-<<<<<<< HEAD:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/service/impl/AdminBizImpl.java
 import com.geektcp.alpha.scheduler.core.biz.AdminBiz;
 import com.geektcp.alpha.scheduler.core.biz.model.HandleCallbackParam;
 import com.geektcp.alpha.scheduler.core.biz.model.RegistryParam;
 import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
 import com.geektcp.alpha.scheduler.core.handler.IJobHandler;
-=======
-import com.xxl.job.core.biz.AdminBiz;
-import com.xxl.job.core.biz.model.HandleCallbackParam;
-import com.xxl.job.core.biz.model.RegistryParam;
-import com.xxl.job.core.biz.model.ReturnT;
-import com.xxl.job.core.handler.IJobHandler;
->>>>>>> upstream/master:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/service/impl/AdminBizImpl.java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

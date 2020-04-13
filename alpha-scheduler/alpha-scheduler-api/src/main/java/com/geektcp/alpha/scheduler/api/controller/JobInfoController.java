@@ -12,19 +12,13 @@ import com.geektcp.alpha.scheduler.api.core.util.I18nUtil;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobGroupDao;
 import com.geektcp.alpha.scheduler.api.service.LoginService;
 import com.geektcp.alpha.scheduler.api.service.XxlJobService;
-<<<<<<< HEAD:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/controller/JobInfoController.java
 import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
 import com.geektcp.alpha.scheduler.core.enums.ExecutorBlockStrategyEnum;
 import com.geektcp.alpha.scheduler.core.glue.GlueTypeEnum;
 import com.geektcp.alpha.scheduler.core.util.DateUtil;
-=======
-import com.xxl.job.core.biz.model.ReturnT;
-import com.xxl.job.core.enums.ExecutorBlockStrategyEnum;
-import com.xxl.job.core.glue.GlueTypeEnum;
-import com.xxl.job.core.util.DateUtil;
->>>>>>> upstream/master:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/controller/JobInfoController.java
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,7 +41,7 @@ public class JobInfoController {
 	@Resource
 	private XxlJobService xxlJobService;
 	
-	@RequestMapping
+	@GetMapping
 	public String index(HttpServletRequest request, Model model, @RequestParam(required = false, defaultValue = "-1") int jobGroup) {
 
 		// 枚举-字典
@@ -97,7 +91,7 @@ public class JobInfoController {
 		}
 	}
 	
-	@RequestMapping("/pageList")
+	@GetMapping("/pageList")
 	@ResponseBody
 	public Map<String, Object> pageList(@RequestParam(required = false, defaultValue = "0") int start,  
 			@RequestParam(required = false, defaultValue = "10") int length,
@@ -106,37 +100,37 @@ public class JobInfoController {
 		return xxlJobService.pageList(start, length, jobGroup, triggerStatus, jobDesc, executorHandler, author);
 	}
 	
-	@RequestMapping("/add")
+	@GetMapping("/add")
 	@ResponseBody
 	public ReturnT<String> add(XxlJobInfo jobInfo) {
 		return xxlJobService.add(jobInfo);
 	}
 	
-	@RequestMapping("/update")
+	@GetMapping("/update")
 	@ResponseBody
 	public ReturnT<String> update(XxlJobInfo jobInfo) {
 		return xxlJobService.update(jobInfo);
 	}
 	
-	@RequestMapping("/remove")
+	@GetMapping("/remove")
 	@ResponseBody
 	public ReturnT<String> remove(int id) {
 		return xxlJobService.remove(id);
 	}
 	
-	@RequestMapping("/stop")
+	@GetMapping("/stop")
 	@ResponseBody
 	public ReturnT<String> pause(int id) {
 		return xxlJobService.stop(id);
 	}
 	
-	@RequestMapping("/start")
+	@GetMapping("/start")
 	@ResponseBody
 	public ReturnT<String> start(int id) {
 		return xxlJobService.start(id);
 	}
 	
-	@RequestMapping("/trigger")
+	@GetMapping("/trigger")
 	@ResponseBody
 	//@PermissionLimit(limit = false)
 	public ReturnT<String> triggerJob(int id, String executorParam) {
@@ -149,7 +143,7 @@ public class JobInfoController {
 		return ReturnT.SUCCESS;
 	}
 
-	@RequestMapping("/nextTriggerTime")
+	@GetMapping("/nextTriggerTime")
 	@ResponseBody
 	public ReturnT<List<String>> nextTriggerTime(String cron) {
 		List<String> result = new ArrayList<>();
@@ -165,9 +159,9 @@ public class JobInfoController {
 				}
 			}
 		} catch (ParseException e) {
-			return new ReturnT<List<String>>(ReturnT.FAIL_CODE, I18nUtil.getString("jobinfo_field_cron_unvalid"));
+			return new ReturnT<>(ReturnT.FAIL_CODE, I18nUtil.getString("jobinfo_field_cron_unvalid"));
 		}
-		return new ReturnT<List<String>>(result);
+		return new ReturnT<>(result);
 	}
 	
 }

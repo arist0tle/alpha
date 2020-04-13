@@ -6,15 +6,11 @@ import com.geektcp.alpha.scheduler.api.core.util.I18nUtil;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobGroupDao;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobInfoDao;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobRegistryDao;
-<<<<<<< HEAD:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/controller/JobGroupController.java
 import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
 import com.geektcp.alpha.scheduler.core.enums.RegistryConfig;
-=======
-import com.xxl.job.core.biz.model.ReturnT;
-import com.xxl.job.core.enums.RegistryConfig;
->>>>>>> upstream/master:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/controller/JobGroupController.java
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,8 +21,7 @@ import java.util.*;
  * job group controller
  * @author xuxueli 2016-10-02 20:52:56
  */
-@Controller
-@RequestMapping("/jobgroup")
+@Controller("/jobgroup")
 public class JobGroupController {
 
 	@Resource
@@ -36,7 +31,7 @@ public class JobGroupController {
 	@Resource
 	private XxlJobRegistryDao xxlJobRegistryDao;
 
-	@RequestMapping
+	@GetMapping
 	public String index(Model model) {
 
 		// job group (executor)
@@ -46,28 +41,28 @@ public class JobGroupController {
 		return "jobgroup/jobgroup.index";
 	}
 
-	@RequestMapping("/save")
+	@GetMapping("/save")
 	@ResponseBody
 	public ReturnT<String> save(XxlJobGroup xxlJobGroup){
 
 		// valid
 		if (xxlJobGroup.getAppName()==null || xxlJobGroup.getAppName().trim().length()==0) {
-			return new ReturnT<String>(500, (I18nUtil.getString("system_please_input")+"AppName") );
+			return new ReturnT<>(500, (I18nUtil.getString("system_please_input")+"AppName") );
 		}
 		if (xxlJobGroup.getAppName().length()<4 || xxlJobGroup.getAppName().length()>64) {
-			return new ReturnT<String>(500, I18nUtil.getString("jobgroup_field_appName_length") );
+			return new ReturnT<>(500, I18nUtil.getString("jobgroup_field_appName_length") );
 		}
 		if (xxlJobGroup.getTitle()==null || xxlJobGroup.getTitle().trim().length()==0) {
-			return new ReturnT<String>(500, (I18nUtil.getString("system_please_input") + I18nUtil.getString("jobgroup_field_title")) );
+			return new ReturnT<>(500, (I18nUtil.getString("system_please_input") + I18nUtil.getString("jobgroup_field_title")) );
 		}
 		if (xxlJobGroup.getAddressType()!=0) {
 			if (xxlJobGroup.getAddressList()==null || xxlJobGroup.getAddressList().trim().length()==0) {
-				return new ReturnT<String>(500, I18nUtil.getString("jobgroup_field_addressType_limit") );
+				return new ReturnT<>(500, I18nUtil.getString("jobgroup_field_addressType_limit") );
 			}
 			String[] addresss = xxlJobGroup.getAddressList().split(",");
 			for (String item: addresss) {
 				if (item==null || item.trim().length()==0) {
-					return new ReturnT<String>(500, I18nUtil.getString("jobgroup_field_registryList_unvalid") );
+					return new ReturnT<>(500, I18nUtil.getString("jobgroup_field_registryList_unvalid") );
 				}
 			}
 		}
@@ -76,18 +71,18 @@ public class JobGroupController {
 		return (ret>0)?ReturnT.SUCCESS:ReturnT.FAIL;
 	}
 
-	@RequestMapping("/update")
+	@GetMapping("/update")
 	@ResponseBody
 	public ReturnT<String> update(XxlJobGroup xxlJobGroup){
 		// valid
 		if (xxlJobGroup.getAppName()==null || xxlJobGroup.getAppName().trim().length()==0) {
-			return new ReturnT<String>(500, (I18nUtil.getString("system_please_input")+"AppName") );
+			return new ReturnT<>(500, (I18nUtil.getString("system_please_input")+"AppName") );
 		}
 		if (xxlJobGroup.getAppName().length()<4 || xxlJobGroup.getAppName().length()>64) {
-			return new ReturnT<String>(500, I18nUtil.getString("jobgroup_field_appName_length") );
+			return new ReturnT<>(500, I18nUtil.getString("jobgroup_field_appName_length") );
 		}
 		if (xxlJobGroup.getTitle()==null || xxlJobGroup.getTitle().trim().length()==0) {
-			return new ReturnT<String>(500, (I18nUtil.getString("system_please_input") + I18nUtil.getString("jobgroup_field_title")) );
+			return new ReturnT<>(500, (I18nUtil.getString("system_please_input") + I18nUtil.getString("jobgroup_field_title")) );
 		}
 		if (xxlJobGroup.getAddressType() == 0) {
 			// 0=自动注册
@@ -105,12 +100,12 @@ public class JobGroupController {
 		} else {
 			// 1=手动录入
 			if (xxlJobGroup.getAddressList()==null || xxlJobGroup.getAddressList().trim().length()==0) {
-				return new ReturnT<String>(500, I18nUtil.getString("jobgroup_field_addressType_limit") );
+				return new ReturnT<>(500, I18nUtil.getString("jobgroup_field_addressType_limit") );
 			}
 			String[] addresss = xxlJobGroup.getAddressList().split(",");
 			for (String item: addresss) {
 				if (item==null || item.trim().length()==0) {
-					return new ReturnT<String>(500, I18nUtil.getString("jobgroup_field_registryList_unvalid") );
+					return new ReturnT<>(500, I18nUtil.getString("jobgroup_field_registryList_unvalid") );
 				}
 			}
 		}
@@ -141,26 +136,26 @@ public class JobGroupController {
 		return appAddressMap.get(appNameParam);
 	}
 
-	@RequestMapping("/remove")
+	@GetMapping("/remove")
 	@ResponseBody
 	public ReturnT<String> remove(int id){
 
 		// valid
 		int count = xxlJobInfoDao.pageListCount(0, 10, id, -1,  null, null, null);
 		if (count > 0) {
-			return new ReturnT<String>(500, I18nUtil.getString("jobgroup_del_limit_0") );
+			return new ReturnT<>(500, I18nUtil.getString("jobgroup_del_limit_0") );
 		}
 
 		List<XxlJobGroup> allList = xxlJobGroupDao.findAll();
 		if (allList.size() == 1) {
-			return new ReturnT<String>(500, I18nUtil.getString("jobgroup_del_limit_1") );
+			return new ReturnT<>(500, I18nUtil.getString("jobgroup_del_limit_1") );
 		}
 
 		int ret = xxlJobGroupDao.remove(id);
 		return (ret>0)?ReturnT.SUCCESS:ReturnT.FAIL;
 	}
 
-	@RequestMapping("/loadById")
+	@GetMapping("/loadById")
 	@ResponseBody
 	public ReturnT<XxlJobGroup> loadById(int id){
 		XxlJobGroup jobGroup = xxlJobGroupDao.load(id);

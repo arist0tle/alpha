@@ -1,6 +1,7 @@
 package com.geektcp.alpha.spring.security.auth.handle;
 
 import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
@@ -15,19 +16,20 @@ import java.io.IOException;
  * There will generate a token return to response.
  */
 @Service("authenticationSuccessHandler")
-public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+@Slf4j
+public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
     private LoginProvider tokenProvider;
 
     @Autowired
-    public AuthenticationSuccessHandler(LoginProvider tokenProvider){
+    public SuccessHandler(LoginProvider tokenProvider){
         this.tokenProvider = tokenProvider;
     }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException {
-        logger.info("User: " + authentication.getName() + " Login successfully.");
+        log.info("User: Login successfully.");
         this.returnJson(response,authentication);
     }
 
@@ -35,7 +37,6 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
         response.setStatus(HttpServletResponse.SC_OK);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-        response.getWriter()
-                .println("{\"tokenType\":\"Bearer\",\"token\": \"" + tokenProvider.createJwtToken(authentication) + "\"}");
+        response.getWriter().println("{\"tokenType\":\"Bearer\",\"token\": \"" + tokenProvider.createJwtToken(authentication) + "\"}");
     }
 }

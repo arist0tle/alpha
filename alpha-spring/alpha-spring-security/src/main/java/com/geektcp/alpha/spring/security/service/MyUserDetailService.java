@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
  * This service will reload user information from database.
  */
-@Service("myUserDetailService")
+@Service
 @Slf4j
 public class MyUserDetailService implements UserDetailsService {
 

@@ -2,12 +2,10 @@ package com.geektcp.alpha.spring.security.auth;
 
 import com.geektcp.alpha.spring.security.auth.filter.LoginFilter;
 import com.geektcp.alpha.spring.security.auth.filter.TokenFilter;
-import com.geektcp.alpha.spring.security.auth.handle.AuthenticationFailHandler;
-import com.geektcp.alpha.spring.security.auth.handle.AuthenticationSuccessHandler;
-import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
+import com.geektcp.alpha.spring.security.auth.handle.FailHandler;
+import com.geektcp.alpha.spring.security.auth.handle.SuccessHandler;
 import com.geektcp.alpha.spring.security.service.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,14 +20,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@Configuration
-public class MySecurityConfig extends WebSecurityConfigurerAdapter{
+public class MyConfig extends WebSecurityConfigurerAdapter{
 
     private MyUserDetailService myUserDetailService;
 
-    private AuthenticationSuccessHandler successHandler;
+    private SuccessHandler successHandler;
 
-    private AuthenticationFailHandler failHandler;
+    private FailHandler failHandler;
 
     private AuthenticationEntryPoint entryPoint;
 
@@ -37,12 +34,12 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
     private LoginFilter loginFilter;
 
     @Autowired
-    public MySecurityConfig(MyUserDetailService myUserDetailService,
-                            AuthenticationSuccessHandler successHandler,
-                            AuthenticationFailHandler failHandler,
-                            AuthenticationEntryPoint entryPoint,
-                            TokenFilter tokenFilter,
-                            LoginFilter loginFilter
+    public MyConfig(MyUserDetailService myUserDetailService,
+                    SuccessHandler successHandler,
+                    FailHandler failHandler,
+                    AuthenticationEntryPoint entryPoint,
+                    TokenFilter tokenFilter,
+                    LoginFilter loginFilter
                              ){
         this.myUserDetailService = myUserDetailService;
         this.successHandler = successHandler;
@@ -58,10 +55,9 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
                 .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(loginFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().csrf().disable().authenticationProvider(new LoginProvider())
+                .and().csrf().disable()
                 .authorizeRequests().antMatchers("/v2/api-docs/**").permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin().loginProcessingUrl("/api/login")
+                .anyRequest().authenticated().and().formLogin().loginProcessingUrl("/login")
                 .successHandler(successHandler).failureHandler(failHandler).permitAll().and().logout()
                 .and().exceptionHandling().authenticationEntryPoint(entryPoint);
     }

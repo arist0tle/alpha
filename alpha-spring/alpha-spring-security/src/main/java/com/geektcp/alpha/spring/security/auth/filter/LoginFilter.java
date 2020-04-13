@@ -2,6 +2,7 @@ package com.geektcp.alpha.spring.security.auth.filter;
 
 import com.geektcp.alpha.spring.security.auth.handle.AuthenticationFailHandler;
 import com.geektcp.alpha.spring.security.auth.handle.AuthenticationSuccessHandler;
+import com.geektcp.alpha.spring.security.exception.AuthException;
 import com.geektcp.alpha.spring.security.exception.LoginException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -44,5 +45,6 @@ public class LoginFilter extends OncePerRequestFilter {
         }
         authenticationSuccessHandler.onAuthenticationSuccess(request, response, null);
         chain.doFilter(request, response);
+            authenticationFailHandler.onAuthenticationFailure(request, response, new AuthException("登录失败，开思账户手机号为空！"));
     }
 }

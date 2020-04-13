@@ -2,6 +2,8 @@ package com.geektcp.alpha.spring.security.auth.provider;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 
 /**
@@ -9,18 +11,8 @@ import java.util.Collection;
  */
 public class LoginToken extends AbstractAuthenticationToken {
 
-    private final Object principal;
-
-
-    public LoginToken(Object principal){
-        super(null);
-        this.principal = principal;
-        setAuthenticated(false);
-    }
-
-    public LoginToken(Object principal, Collection<? extends GrantedAuthority> authorities){
+    public LoginToken(UserDetails userDetails, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
-        this.principal = principal;
         setAuthenticated(true);
     }
 

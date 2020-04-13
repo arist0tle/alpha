@@ -1,17 +1,23 @@
 package com.geektcp.alpha.spring.security.auth.handle;
 
-import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
+import com.geektcp.alpha.spring.security.auth.provider.LoginParameters;
 import com.geektcp.alpha.spring.security.domain.vo.JwtVo;
+import com.geektcp.alpha.spring.security.exception.BaseException;
 import com.google.common.base.Throwables;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.util.Date;
+import java.util.Objects;
 
 /**
  * Will run when user login username and pass word validate successfully.
@@ -21,11 +27,11 @@ import java.io.IOException;
 @Slf4j
 public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-    private LoginProvider tokenProvider;
+    private LoginParameters loginParameters;
 
     @Autowired
-    public SuccessHandler(LoginProvider tokenProvider){
-        this.tokenProvider = tokenProvider;
+    public void setAutowired(LoginParameters loginParameters){
+        this.loginParameters = loginParameters;
     }
 
     @Override
@@ -40,10 +46,11 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
         response.setContentType("application/json");
         JwtVo vo = new JwtVo();
         vo.setTokenType("Bearer");
-        vo.setToken(tokenProvider.createJwtToken(authentication));
+        vo.setToken(createJwtToken(authentication));
         responseWriter(response,vo);
     }
 
+    /////////////////////////////////////////////////////////////////
     private void responseWriter(HttpServletResponse response, JwtVo vo) {
         try{
             response.setCharacterEncoding("utf-8");
@@ -54,6 +61,23 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
         } catch (IOException e) {
             log.error(Throwables.getStackTraceAsString(e));
         }
+    }
+
+    private String createJwtToken(Authentication authentication) {
+        if (Objects.isNull(authentication)) {
+            throw new BaseException("authentication is null!");
+        }
+        User userObject = (User) authentication.getPrincipal();
+        String username = userObject.getUsername();
+        Date expireTime = new Date(System.currentTimeMillis() + loginParameters.getTokenExpiredMs());
+        String token = Jwts.builder()
+                .setSubject(username)
+                .setExpiration(expireTime)
+                .setIssuedAt(new Date())
+                .signWith(SignatureAlgorithm.HS512, loginParameters.getJwtTokenSecret())
+                .compact();
+        log.info("token: {}", token);
+        return token;
     }
 
 }

@@ -30,16 +30,18 @@ import java.io.IOException;
 @Slf4j
 public class TokenFilter extends OncePerRequestFilter {
 
-    private Logger logger = LoggerFactory.getLogger(TokenFilter.class);
-
-    @Autowired
     private LoginProvider loginProvider;
 
-    @Autowired
     private LoginParameters loginParameters;
 
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    private void setAutowired(LoginProvider loginProvider,LoginParameters loginParameters,UserService userService){
+        this.loginProvider = loginProvider;
+        this.loginParameters = loginParameters;
+        this.userService = userService;
+    }
 
     //1.从每个请求header获取token
     //2.调用前面写的validateToken方法对token进行合法性验证
@@ -48,7 +50,7 @@ public class TokenFilter extends OncePerRequestFilter {
     // （例如哪里需要判断用户权限是否足够时可以直接从SecurityContext取出去check
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-            throws ServletException, IOException {
+            throws IOException, ServletException {
         log.info("11111TokenFilter");
         String token = getJwtFromRequest(request);
         if(StringUtils.isNoneEmpty(token)) {
@@ -62,10 +64,9 @@ public class TokenFilter extends OncePerRequestFilter {
                 );
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }else {
-                logger.error("no authorization: {}", request.getParameter("username"));
+//                logger.error("no authorization: {}", request.getParameter("username"));
             }
         }
-//        super.doFilter(request, response, chain);
         chain.doFilter(request, response);
     }
 

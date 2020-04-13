@@ -42,6 +42,7 @@ public class LoginFilter extends OncePerRequestFilter {
         if(StringUtils.isAnyEmpty(username, password)){
             authenticationFailHandler.onAuthenticationFailure(request, response, new LoginException("登录失败，开思账户手机号为空！"));
         }
+        authenticationSuccessHandler.onAuthenticationSuccess(request, response, null);
         chain.doFilter(request, response);
     }
 }

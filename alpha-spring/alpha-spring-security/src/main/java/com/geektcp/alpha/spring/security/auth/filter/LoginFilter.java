@@ -33,9 +33,10 @@ public class LoginFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-        log.info("1111111111111111LoginFilter");
-        if (!StringUtils.contains(request.getRequestURI(), "api/login")) {
+        log.info("22222LoginFilter");
+        if (!StringUtils.contains(request.getRequestURI(), "/login")) {
             chain.doFilter(request, response);
+            return;
         }
         String username = request.getParameter("username");
         String password = request.getParameter("password");

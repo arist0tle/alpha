@@ -38,6 +38,7 @@ public class MyConfig extends WebSecurityConfigurerAdapter{
 
     private static final String[] IGNORE_PATHS = {
             "/auth/**",
+            "/login/**",
             "/api/**"
     };
 

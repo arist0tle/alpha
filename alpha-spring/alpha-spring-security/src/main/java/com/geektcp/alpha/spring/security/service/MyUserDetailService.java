@@ -22,7 +22,7 @@ public class MyUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        log.info("88888888888loadUserByUsername");
+        log.info("33333loadUserByUsername");
         return this.userService.getUserDetailByUserName(username);
     }
 }

@@ -4,8 +4,10 @@ import com.geektcp.alpha.spring.security.auth.filter.LoginFilter;
 import com.geektcp.alpha.spring.security.auth.filter.TokenFilter;
 import com.geektcp.alpha.spring.security.auth.handle.FailHandler;
 import com.geektcp.alpha.spring.security.auth.handle.SuccessHandler;
+import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
 import com.geektcp.alpha.spring.security.service.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,14 +34,21 @@ public class MyConfig extends WebSecurityConfigurerAdapter{
 
     private TokenFilter tokenFilter;
     private LoginFilter loginFilter;
+    private LoginProvider provider;
+
+    private static final String[] IGNORE_PATHS = {
+            "/auth/**",
+            "/api/**"
+    };
 
     @Autowired
-    public MyConfig(MyUserDetailService myUserDetailService,
+    public void setAutowired(MyUserDetailService myUserDetailService,
                     SuccessHandler successHandler,
                     FailHandler failHandler,
                     AuthenticationEntryPoint entryPoint,
                     TokenFilter tokenFilter,
-                    LoginFilter loginFilter
+                    LoginFilter loginFilter,
+                    LoginProvider provider
                              ){
         this.myUserDetailService = myUserDetailService;
         this.successHandler = successHandler;
@@ -47,6 +56,7 @@ public class MyConfig extends WebSecurityConfigurerAdapter{
         this.entryPoint = entryPoint;
         this.tokenFilter = tokenFilter;
         this.loginFilter = loginFilter;
+        this.provider = provider;
     }
 
     @Override
@@ -56,10 +66,15 @@ public class MyConfig extends WebSecurityConfigurerAdapter{
                 .addFilterBefore(loginFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().csrf().disable()
-                .authorizeRequests().antMatchers("/v2/api-docs/**").permitAll()
+
+                .authorizeRequests().antMatchers(IGNORE_PATHS).permitAll()
+
                 .anyRequest().authenticated().and().formLogin().loginProcessingUrl("/login")
+
                 .successHandler(successHandler).failureHandler(failHandler).permitAll().and().logout()
                 .and().exceptionHandling().authenticationEntryPoint(entryPoint);
+
+        http.authenticationProvider(provider);
     }
 
     @Override

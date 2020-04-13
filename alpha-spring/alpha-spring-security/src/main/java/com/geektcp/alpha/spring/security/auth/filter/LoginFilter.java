@@ -26,13 +26,13 @@ public class LoginFilter extends OncePerRequestFilter {
     private SuccessHandler successHandler;
 
     @Autowired
-    public void setAutowired(FailHandler failHandler, SuccessHandler successHandler) {
+    public  LoginFilter(FailHandler failHandler, SuccessHandler successHandler) {
         this.failHandler = failHandler;
         this.successHandler = successHandler;
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+    protected void doFilterInternal( HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         log.info("22222LoginFilter");
         if (!StringUtils.contains(request.getRequestURI(), "/login")) {
             chain.doFilter(request, response);

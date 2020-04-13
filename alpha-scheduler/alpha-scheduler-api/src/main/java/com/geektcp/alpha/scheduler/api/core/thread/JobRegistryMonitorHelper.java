@@ -3,11 +3,7 @@ package com.geektcp.alpha.scheduler.api.core.thread;
 import com.geektcp.alpha.scheduler.api.core.conf.XxlJobAdminConfig;
 import com.geektcp.alpha.scheduler.api.core.model.XxlJobGroup;
 import com.geektcp.alpha.scheduler.api.core.model.XxlJobRegistry;
-<<<<<<< HEAD:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/core/thread/JobRegistryMonitorHelper.java
 import com.geektcp.alpha.scheduler.core.enums.RegistryConfig;
-=======
-import com.xxl.job.core.enums.RegistryConfig;
->>>>>>> upstream/master:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/core/thread/JobRegistryMonitorHelper.java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -4,6 +4,7 @@ import com.geektcp.alpha.spring.security.auth.filter.LoginFilter;
 import com.geektcp.alpha.spring.security.auth.filter.TokenFilter;
 import com.geektcp.alpha.spring.security.auth.handle.AuthenticationFailHandler;
 import com.geektcp.alpha.spring.security.auth.handle.AuthenticationSuccessHandler;
+import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
 import com.geektcp.alpha.spring.security.service.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -57,13 +58,11 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
                 .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(loginFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/v2/api-docs/**").permitAll()
+                .and().csrf().disable().authenticationProvider(new LoginProvider())
+                .authorizeRequests().antMatchers("/v2/api-docs/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginProcessingUrl("/api/login")
-                .successHandler(successHandler)
-                .failureHandler(failHandler)
+                .successHandler(successHandler).failureHandler(failHandler).permitAll().and().logout()
                 .and().exceptionHandling().authenticationEntryPoint(entryPoint);
     }
 

@@ -9,21 +9,15 @@ import com.geektcp.alpha.scheduler.api.core.util.I18nUtil;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobGroupDao;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobInfoDao;
 import com.geektcp.alpha.scheduler.api.dao.XxlJobLogDao;
-<<<<<<< HEAD:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/controller/JobLogController.java
 import com.geektcp.alpha.scheduler.core.biz.ExecutorBiz;
 import com.geektcp.alpha.scheduler.core.biz.model.LogResult;
 import com.geektcp.alpha.scheduler.core.biz.model.ReturnT;
 import com.geektcp.alpha.scheduler.core.util.DateUtil;
-=======
-import com.xxl.job.core.biz.ExecutorBiz;
-import com.xxl.job.core.biz.model.LogResult;
-import com.xxl.job.core.biz.model.ReturnT;
-import com.xxl.job.core.util.DateUtil;
->>>>>>> upstream/master:alpha-scheduler/alpha-scheduler-api/src/main/java/com/geektcp/alpha/scheduler/api/controller/JobLogController.java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -51,7 +45,7 @@ public class JobLogController {
 	@Resource
 	public XxlJobLogDao xxlJobLogDao;
 
-	@RequestMapping
+	@GetMapping
 	public String index(HttpServletRequest request, Model model, @RequestParam(required = false, defaultValue = "0") Integer jobId) {
 
 		// 执行器列表
@@ -81,14 +75,14 @@ public class JobLogController {
 		return "joblog/joblog.index";
 	}
 
-	@RequestMapping("/getJobsByGroup")
+	@GetMapping("/getJobsByGroup")
 	@ResponseBody
 	public ReturnT<List<XxlJobInfo>> getJobsByGroup(int jobGroup){
 		List<XxlJobInfo> list = xxlJobInfoDao.getJobsByGroup(jobGroup);
 		return new ReturnT<List<XxlJobInfo>>(list);
 	}
 	
-	@RequestMapping("/pageList")
+	@GetMapping("/pageList")
 	@ResponseBody
 	public Map<String, Object> pageList(HttpServletRequest request,
 										@RequestParam(required = false, defaultValue = "0") int start,
@@ -121,7 +115,7 @@ public class JobLogController {
 		return maps;
 	}
 
-	@RequestMapping("/logDetailPage")
+	@GetMapping("/logDetailPage")
 	public String logDetailPage(int id, Model model){
 
 		// base check
@@ -139,7 +133,7 @@ public class JobLogController {
 		return "joblog/joblog.detail";
 	}
 
-	@RequestMapping("/logDetailCat")
+	@GetMapping("/logDetailCat")
 	@ResponseBody
 	public ReturnT<LogResult> logDetailCat(String executorAddress, long triggerTime, long logId, int fromLineNum){
 		try {
@@ -161,7 +155,7 @@ public class JobLogController {
 		}
 	}
 
-	@RequestMapping("/logKill")
+	@GetMapping("/logKill")
 	@ResponseBody
 	public ReturnT<String> logKill(int id){
 		// base check
@@ -195,7 +189,7 @@ public class JobLogController {
 		}
 	}
 
-	@RequestMapping("/clearLog")
+	@GetMapping("/clearLog")
 	@ResponseBody
 	public ReturnT<String> clearLog(int jobGroup, int jobId, int type){
 
@@ -220,7 +214,7 @@ public class JobLogController {
 		} else if (type == 9) {
 			clearBeforeNum = 0;			// 清理所有日志数据
 		} else {
-			return new ReturnT<String>(ReturnT.FAIL_CODE, I18nUtil.getString("joblog_clean_type_unvalid"));
+			return new ReturnT<>(ReturnT.FAIL_CODE, I18nUtil.getString("joblog_clean_type_unvalid"));
 		}
 
 		List<Long> logIds = null;

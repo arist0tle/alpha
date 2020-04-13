@@ -1,6 +1,6 @@
 package com.geektcp.alpha.spring.security.auth.handle;
 
-import com.geektcp.alpha.spring.security.auth.provider.JwtTokenProvider;
+import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
@@ -17,10 +17,10 @@ import java.io.IOException;
 @Service("authenticationSuccessHandler")
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-    private JwtTokenProvider tokenProvider;
+    private LoginProvider tokenProvider;
 
     @Autowired
-    public AuthenticationSuccessHandler(JwtTokenProvider tokenProvider){
+    public AuthenticationSuccessHandler(LoginProvider tokenProvider){
         this.tokenProvider = tokenProvider;
     }
 

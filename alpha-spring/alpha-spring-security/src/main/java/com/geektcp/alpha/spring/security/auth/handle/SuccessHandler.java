@@ -6,6 +6,7 @@ import com.geektcp.alpha.spring.security.exception.BaseException;
 import com.google.common.base.Throwables;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import com.geektcp.alpha.spring.security.domain.vo.JwtVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -49,8 +50,9 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
         vo.setToken(createJwtToken(authentication));
         responseWriter(response,vo);
     }
+        responseWriter(response,vo);
+    }
 
-    /////////////////////////////////////////////////////////////////
     private void responseWriter(HttpServletResponse response, JwtVo vo) {
         try{
             response.setCharacterEncoding("utf-8");
@@ -62,7 +64,6 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
             log.error(Throwables.getStackTraceAsString(e));
         }
     }
-
     private String createJwtToken(Authentication authentication) {
         if (Objects.isNull(authentication)) {
             throw new BaseException("authentication is null!");
@@ -79,5 +80,4 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
         log.info("token: {}", token);
         return token;
     }
-
 }

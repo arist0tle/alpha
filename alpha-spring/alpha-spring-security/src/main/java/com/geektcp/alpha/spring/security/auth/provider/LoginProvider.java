@@ -1,6 +1,7 @@
 package com.geektcp.alpha.spring.security.auth.provider;
 
 import com.geektcp.alpha.spring.security.exception.BaseException;
+import com.geektcp.alpha.spring.security.exception.LoginException;
 import com.geektcp.alpha.spring.security.service.UserService;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +46,8 @@ public class LoginProvider implements AuthenticationProvider {
         }catch (Exception e){
             throw new BaseException(e.getMessage());
         }
+        UserDetails userDetails = userService.getUserDetailByUserName(authentication.getPrincipal().toString());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return new LoginToken(userDetails, userDetails.getAuthorities());
     }
 

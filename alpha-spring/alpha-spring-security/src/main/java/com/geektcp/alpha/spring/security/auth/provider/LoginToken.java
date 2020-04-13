@@ -8,18 +8,18 @@ import java.util.Collection;
 /**
  * @author haiyang on 2020-04-13 10:01
  */
-public class LoginAuthenticationToken extends AbstractAuthenticationToken {
+public class LoginToken extends AbstractAuthenticationToken {
 
     private final Object principal;
 
 
-    public LoginAuthenticationToken(Object principal){
+    public LoginToken(Object principal){
         super(null);
         this.principal = principal;
         setAuthenticated(false);
     }
 
-    public LoginAuthenticationToken(Object principal, Collection<? extends GrantedAuthority> authorities){
+    public LoginToken(Object principal, Collection<? extends GrantedAuthority> authorities){
         super(null);
         this.principal = principal;
         setAuthenticated(true);

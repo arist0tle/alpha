@@ -18,23 +18,23 @@ import java.util.Date;
 @Slf4j
 public class LoginProvider implements AuthenticationProvider {
 
-    private AuthParameters authParameters;
+    private LoginParameters loginParameters;
     private UserService userService;
 
     @Autowired
-    public void setAutowired(AuthParameters authParameters){
-        this.authParameters = authParameters;
+    public void setAutowired(LoginParameters loginParameters){
+        this.loginParameters = loginParameters;
     }
 
     public String createJwtToken(Authentication authentication) {
         User userObject = (User)authentication.getPrincipal();
         String username = userObject.getUsername();
-        Date expireTime = new Date(System.currentTimeMillis() + authParameters.getTokenExpiredMs());
+        Date expireTime = new Date(System.currentTimeMillis() + loginParameters.getTokenExpiredMs());
         String token = Jwts.builder()
                 .setSubject(username)
                 .setExpiration(expireTime)
                 .setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS512, authParameters.getJwtTokenSecret())
+                .signWith(SignatureAlgorithm.HS512, loginParameters.getJwtTokenSecret())
                 .compact();
         log.info("token: {}", token);
         return token;
@@ -49,7 +49,7 @@ public class LoginProvider implements AuthenticationProvider {
     public boolean validateToken(String token) {
         try {
             log.info("check authorization");
-            Jwts.parser().setSigningKey(authParameters.getJwtTokenSecret()).parseClaimsJws(token);
+            Jwts.parser().setSigningKey(loginParameters.getJwtTokenSecret()).parseClaimsJws(token);
             log.info("check authorization success!");
             return true;
         } catch (Exception ex) {
@@ -67,7 +67,7 @@ public class LoginProvider implements AuthenticationProvider {
         } catch (Exception e) {
             throw new LoginException(e.getMessage());
         }
-        return new LoginAuthenticationToken(userDetails,userDetails.getAuthorities());
+        return new LoginToken(userDetails,userDetails.getAuthorities());
     }
 
     @Override

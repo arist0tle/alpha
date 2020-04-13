@@ -1,6 +1,6 @@
 package com.geektcp.alpha.spring.security.auth.filter;
 
-import com.geektcp.alpha.spring.security.auth.provider.AuthParameters;
+import com.geektcp.alpha.spring.security.auth.provider.LoginParameters;
 import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
 import com.geektcp.alpha.spring.security.service.UserService;
 import io.jsonwebtoken.Jwts;
@@ -36,7 +36,7 @@ public class TokenFilter extends OncePerRequestFilter {
     private LoginProvider loginProvider;
 
     @Autowired
-    private AuthParameters authParameters;
+    private LoginParameters loginParameters;
 
     @Autowired
     private UserService userService;
@@ -53,7 +53,7 @@ public class TokenFilter extends OncePerRequestFilter {
         String token = getJwtFromRequest(request);
         if(StringUtils.isNoneEmpty(token)) {
             if (loginProvider.validateToken(token)) {
-                String username = getUsernameFromJwt(token, authParameters.getJwtTokenSecret());
+                String username = getUsernameFromJwt(token, loginParameters.getJwtTokenSecret());
                 UserDetails userDetails = userService.getUserDetailByUserName(username);
                 Authentication authentication = new UsernamePasswordAuthenticationToken(
                         userDetails,

@@ -1,9 +1,10 @@
 package com.geektcp.alpha.spring.security.auth.filter;
 
 import com.geektcp.alpha.spring.security.auth.provider.AuthParameters;
-import com.geektcp.alpha.spring.security.auth.provider.JwtTokenProvider;
+import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
 import com.geektcp.alpha.spring.security.service.UserService;
 import io.jsonwebtoken.Jwts;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,12 +27,13 @@ import java.io.IOException;
  * 22:55 2018/10/15
  */
 @Component
+@Slf4j
 public class TokenFilter extends OncePerRequestFilter {
 
     private Logger logger = LoggerFactory.getLogger(TokenFilter.class);
 
     @Autowired
-    private JwtTokenProvider jwtTokenProvider;
+    private LoginProvider loginProvider;
 
     @Autowired
     private AuthParameters authParameters;
@@ -47,9 +49,10 @@ public class TokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
+        log.info("222222TokenFilter");
         String token = getJwtFromRequest(request);
         if(StringUtils.isNoneEmpty(token)) {
-            if (jwtTokenProvider.validateToken(token)) {
+            if (loginProvider.validateToken(token)) {
                 String username = getUsernameFromJwt(token, authParameters.getJwtTokenSecret());
                 UserDetails userDetails = userService.getUserDetailByUserName(username);
                 Authentication authentication = new UsernamePasswordAuthenticationToken(
@@ -62,7 +65,8 @@ public class TokenFilter extends OncePerRequestFilter {
                 logger.error("no authorization: {}", request.getParameter("username"));
             }
         }
-        super.doFilter(request, response, chain);
+//        super.doFilter(request, response, chain);
+        chain.doFilter(request, response);
     }
 
     ///////////////////////////////////////////////////////////////////

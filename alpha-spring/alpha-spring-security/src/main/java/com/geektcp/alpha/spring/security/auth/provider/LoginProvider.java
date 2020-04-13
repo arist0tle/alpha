@@ -1,23 +1,28 @@
 package com.geektcp.alpha.spring.security.auth.provider;
 
+import com.geektcp.alpha.spring.security.exception.LoginException;
+import com.geektcp.alpha.spring.security.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Component
 @Slf4j
-public class JwtTokenProvider {
+public class LoginProvider implements AuthenticationProvider {
 
     private AuthParameters authParameters;
+    private UserService userService;
 
     @Autowired
-    public JwtTokenProvider(AuthParameters authParameters){
+    public void setAutowired(AuthParameters authParameters){
         this.authParameters = authParameters;
     }
 
@@ -53,5 +58,20 @@ public class JwtTokenProvider {
         }
     }
 
+    @Override
+    public Authentication authenticate(Authentication authentication)  {
+        log.info("33333333323");
+        UserDetails userDetails;
+        try {
+            userDetails = userService.getUserDetailByUserName(authentication.getPrincipal().toString());
+        } catch (Exception e) {
+            throw new LoginException(e.getMessage());
+        }
+        return new LoginAuthenticationToken(userDetails,userDetails.getAuthorities());
+    }
 
+    @Override
+    public boolean supports(Class<?> aClass) {
+        return false;
+    }
 }

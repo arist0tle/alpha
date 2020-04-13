@@ -5,13 +5,13 @@ import org.springframework.security.core.AuthenticationException;
 /**
  * @author haiyang on 2020-04-12 17:41
  */
-public class AuthException extends AuthenticationException {
+public class LoginException extends AuthenticationException {
 
-    public AuthException(String msg, Throwable t) {
+    public LoginException(String msg, Throwable t) {
         super(msg, t);
     }
 
-    public AuthException(String msg) {
+    public LoginException(String msg) {
         super(msg);
     }
 }

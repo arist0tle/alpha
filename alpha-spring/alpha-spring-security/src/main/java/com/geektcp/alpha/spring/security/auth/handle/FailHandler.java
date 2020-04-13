@@ -12,7 +12,7 @@ import java.io.IOException;
  * 22:50 2018/9/2
  */
 @Service("authenticationFailHandler")
-public class AuthenticationFailHandler extends SimpleUrlAuthenticationFailureHandler {
+public class FailHandler extends SimpleUrlAuthenticationFailureHandler {
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)

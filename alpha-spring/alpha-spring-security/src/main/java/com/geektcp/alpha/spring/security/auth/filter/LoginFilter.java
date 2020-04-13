@@ -1,8 +1,7 @@
 package com.geektcp.alpha.spring.security.auth.filter;
 
-import com.geektcp.alpha.spring.security.auth.handle.AuthenticationFailHandler;
-import com.geektcp.alpha.spring.security.auth.handle.AuthenticationSuccessHandler;
-import com.geektcp.alpha.spring.security.exception.AuthException;
+import com.geektcp.alpha.spring.security.auth.handle.FailHandler;
+import com.geektcp.alpha.spring.security.auth.handle.SuccessHandler;
 import com.geektcp.alpha.spring.security.exception.LoginException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -23,13 +22,13 @@ import java.io.IOException;
 @Slf4j
 public class LoginFilter extends OncePerRequestFilter {
 
-    private AuthenticationFailHandler authenticationFailHandler;
-    private AuthenticationSuccessHandler authenticationSuccessHandler;
+    private FailHandler failHandler;
+    private SuccessHandler successHandler;
 
     @Autowired
-    public void setAutowired(AuthenticationFailHandler authenticationFailHandler, AuthenticationSuccessHandler authenticationSuccessHandler) {
-        this.authenticationFailHandler = authenticationFailHandler;
-        this.authenticationSuccessHandler = authenticationSuccessHandler;
+    public void setAutowired(FailHandler failHandler, SuccessHandler successHandler) {
+        this.failHandler = failHandler;
+        this.successHandler = successHandler;
     }
 
     @Override
@@ -40,11 +39,9 @@ public class LoginFilter extends OncePerRequestFilter {
         }
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        if(StringUtils.isAnyEmpty(username, password)){
-            authenticationFailHandler.onAuthenticationFailure(request, response, new LoginException("登录失败，开思账户手机号为空！"));
+        if (StringUtils.isAnyEmpty(username, password)) {
+            failHandler.onAuthenticationFailure(request, response, new LoginException("登录失败，账户手机号为空！"));
         }
-        authenticationSuccessHandler.onAuthenticationSuccess(request, response, null);
         chain.doFilter(request, response);
-            authenticationFailHandler.onAuthenticationFailure(request, response, new AuthException("登录失败，开思账户手机号为空！"));
     }
 }

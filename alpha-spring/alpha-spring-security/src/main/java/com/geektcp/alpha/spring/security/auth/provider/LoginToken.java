@@ -20,7 +20,7 @@ public class LoginToken extends AbstractAuthenticationToken {
     }
 
     public LoginToken(Object principal, Collection<? extends GrantedAuthority> authorities){
-        super(null);
+        super(authorities);
         this.principal = principal;
         setAuthenticated(true);
     }

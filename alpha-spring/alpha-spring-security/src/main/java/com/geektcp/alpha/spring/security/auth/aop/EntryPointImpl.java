@@ -13,7 +13,7 @@ import java.io.IOException;
  * 16:34 2018/9/9
  */
 @Service("authenticationEntryPointImpl")
-public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
+public class EntryPointImpl implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest httpServletRequest,

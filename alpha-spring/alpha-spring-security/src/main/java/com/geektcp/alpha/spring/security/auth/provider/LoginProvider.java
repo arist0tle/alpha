@@ -1,6 +1,7 @@
 package com.geektcp.alpha.spring.security.auth.provider;
 
 import com.geektcp.alpha.spring.security.exception.LoginException;
+import com.geektcp.alpha.spring.security.service.MyUserDetailService;
 import com.geektcp.alpha.spring.security.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -8,11 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Objects;
 
 @Component
 @Slf4j
@@ -20,14 +23,22 @@ public class LoginProvider implements AuthenticationProvider {
 
     private LoginParameters loginParameters;
     private UserService userService;
+    private MyUserDetailService myUserDetailService;
 
     @Autowired
-    public void setAutowired(LoginParameters loginParameters){
+    public void setAutowired(UserService userService,
+                             MyUserDetailService myUserDetailService,
+                             LoginParameters loginParameters) {
+        this.userService = userService;
+        this.myUserDetailService = myUserDetailService;
         this.loginParameters = loginParameters;
     }
 
     public String createJwtToken(Authentication authentication) {
-        User userObject = (User)authentication.getPrincipal();
+        if (Objects.isNull(authentication)) {
+            return "=-------------";
+        }
+        User userObject = (User) authentication.getPrincipal();
         String username = userObject.getUsername();
         Date expireTime = new Date(System.currentTimeMillis() + loginParameters.getTokenExpiredMs());
         String token = Jwts.builder()
@@ -59,15 +70,17 @@ public class LoginProvider implements AuthenticationProvider {
     }
 
     @Override
-    public Authentication authenticate(Authentication authentication)  {
+    public Authentication authenticate(Authentication authentication) {
         log.info("33333333323");
         UserDetails userDetails;
         try {
-            userDetails = userService.getUserDetailByUserName(authentication.getPrincipal().toString());
+             userDetails = myUserDetailService.loadUserByUsername("");
+//            userDetails = userService.getUserDetailByUserName(authentication.getPrincipal().toString());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (Exception e) {
             throw new LoginException(e.getMessage());
         }
-        return new LoginToken(userDetails,userDetails.getAuthorities());
+        return new LoginToken(userDetails, userDetails.getAuthorities());
     }
 
     @Override

@@ -50,8 +50,6 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
         vo.setToken(createJwtToken(authentication));
         responseWriter(response,vo);
     }
-        responseWriter(response,vo);
-    }
 
     private void responseWriter(HttpServletResponse response, JwtVo vo) {
         try{

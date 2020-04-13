@@ -46,8 +46,6 @@ public class LoginProvider implements AuthenticationProvider {
         }catch (Exception e){
             throw new BaseException(e.getMessage());
         }
-        UserDetails userDetails = userService.getUserDetailByUserName(authentication.getPrincipal().toString());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
         return new LoginToken(userDetails, userDetails.getAuthorities());
     }
 

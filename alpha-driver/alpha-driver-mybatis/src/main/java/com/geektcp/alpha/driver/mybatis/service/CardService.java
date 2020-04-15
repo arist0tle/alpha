@@ -16,6 +16,10 @@ public interface CardService {
 
     boolean addIdCard(CardPo cardPo);
 
+    boolean insert();
+
+    boolean put();
+
     CardPo queryIdCardByCode(String code);
 
     List<CardPo> findPage(String code);

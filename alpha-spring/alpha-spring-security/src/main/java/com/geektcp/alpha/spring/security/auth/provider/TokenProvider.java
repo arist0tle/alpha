@@ -6,6 +6,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,14 +28,14 @@ import java.util.stream.Collectors;
 @Component
 public class TokenProvider implements InitializingBean {
 
-   private final SecurityProperties properties;
+   private SecurityProperties properties;
    private static final String AUTHORITIES_KEY = "auth";
    private Key key;
 
-   public TokenProvider(SecurityProperties properties) {
+   @Autowired
+   public void setAutowired(SecurityProperties properties) {
       this.properties = properties;
    }
-
 
    @Override
    public void afterPropertiesSet() {

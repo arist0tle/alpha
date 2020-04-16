@@ -40,9 +40,9 @@ public class LoginFilter extends OncePerRequestFilter {
         }
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        if (StringUtils.isAnyEmpty(username, password)) {
-            failHandler.onAuthenticationFailure(request, response, new LoginException("登录失败，账户手机号为空！"));
-        }
+//        if (StringUtils.isAnyEmpty(username, password)) {
+//            failHandler.onAuthenticationFailure(request, response, new LoginException("登录失败，账户手机号为空！"));
+//        }
         chain.doFilter(request, response);
     }
 }

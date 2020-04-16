@@ -19,6 +19,7 @@ import java.security.Key;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -49,6 +50,9 @@ public class TokenProvider implements InitializingBean {
          .collect(Collectors.joining(","));
 
       long now = (new Date()).getTime();
+      if(Objects.isNull(properties.getTokenValidityInSeconds())){
+         properties.setTokenValidityInSeconds(1000L);
+      }
       Date validity = new Date(now + properties.getTokenValidityInSeconds());
 
       return Jwts.builder()

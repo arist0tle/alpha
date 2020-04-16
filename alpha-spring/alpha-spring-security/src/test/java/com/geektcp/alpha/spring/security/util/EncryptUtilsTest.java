@@ -22,7 +22,7 @@ public class EncryptUtilsTest {
 
     public static void main(String[] args) {
         RSA rsa = EncryptUtils.getRsa();
-        byte[] encrypt1 = rsa.encrypt(StrUtil.bytes("aaaa", CharsetUtil.CHARSET_UTF_8), KeyType.PublicKey);
+        byte[] encrypt1 = rsa.encrypt(StrUtil.bytes("123", CharsetUtil.CHARSET_UTF_8), KeyType.PublicKey);
         byte[] decrypt1 = rsa.decrypt(encrypt1, KeyType.PrivateKey);
         log.info("1111:{}", StrUtil.str(decrypt1, CharsetUtil.CHARSET_UTF_8));
 

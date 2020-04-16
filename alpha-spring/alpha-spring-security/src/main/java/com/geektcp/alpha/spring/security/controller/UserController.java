@@ -41,25 +41,19 @@ public class UserController {
 
 
     private UserService userService;
-    private RedisUtils redisUtils;
     private TokenProvider tokenProvider;
     private SecurityProperties properties;
     private LoginProvider loginProvider;
-    private AuthenticationManagerBuilder authenticationManagerBuilder;
 
     @Autowired
     public UserController(UserService userService,
-                          RedisUtils redisUtils,
                           TokenProvider tokenProvider,
                           SecurityProperties properties,
-                          LoginProvider loginProvider,
-                          AuthenticationManagerBuilder authenticationManagerBuilder) {
+                          LoginProvider loginProvider) {
         this.userService = userService;
-        this.redisUtils = redisUtils;
         this.tokenProvider = tokenProvider;
         this.loginProvider = loginProvider;
         this.properties = properties;
-        this.authenticationManagerBuilder = authenticationManagerBuilder;
     }
 
     @GetMapping(value = "/user")
@@ -68,7 +62,6 @@ public class UserController {
         log.info("success!");
         return userService.getUserByUserName(userName);
     }
-
 
     @ApiOperation("登录授权")
     @AnonymousAccess
@@ -81,10 +74,10 @@ public class UserController {
         Authentication authentication = loginProvider.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = tokenProvider.createToken(authentication);
-        JwtUser jwtUser = (JwtUser) authentication.getPrincipal();
+        String username = authentication.getPrincipal().toString();
         Map<String, Object> authInfo = new HashMap<>();
         authInfo.put("token", properties.getTokenStartWith() + token);
-        authInfo.put("user", jwtUser);
+        authInfo.put("user", username);
         return ResponseEntity.ok(authInfo);
     }
 

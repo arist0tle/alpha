@@ -1,5 +1,6 @@
 package com.geektcp.alpha.spring.security.auth.handle;
 
+import com.alibaba.fastjson.JSON;
 import com.geektcp.alpha.spring.security.auth.provider.LoginParameters;
 import com.geektcp.alpha.spring.security.domain.vo.JwtVo;
 import com.geektcp.alpha.spring.security.exception.BaseException;
@@ -56,7 +57,7 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
             response.setCharacterEncoding("utf-8");
             response.setContentType("application/json; charset=utf-8");
             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(response.getOutputStream());
-            bufferedOutputStream.write(vo.toString().getBytes());
+            bufferedOutputStream.write(JSON.toJSONBytes(vo));
             bufferedOutputStream.close();
         } catch (IOException e) {
             log.error(Throwables.getStackTraceAsString(e));

@@ -3,14 +3,15 @@ package com.geektcp.alpha.spring.security.auth;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * Jwt参数配置
  * @author haiyang
- * @date 2019年11月28日
  */
 @Data
 @Configuration
+@Component
 @ConfigurationProperties(prefix = "jwt")
 public class SecurityProperties {
 

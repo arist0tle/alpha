@@ -4,6 +4,7 @@ import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
 import com.geektcp.alpha.spring.security.annotation.AnonymousAccess;
 import com.geektcp.alpha.spring.security.auth.SecurityProperties;
+import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
 import com.geektcp.alpha.spring.security.auth.provider.TokenProvider;
 import com.geektcp.alpha.spring.security.domain.qo.AuthUser;
 import com.geektcp.alpha.spring.security.domain.vo.JwtUser;
@@ -43,6 +44,7 @@ public class UserController {
     private RedisUtils redisUtils;
     private TokenProvider tokenProvider;
     private SecurityProperties properties;
+    private LoginProvider loginProvider;
     private AuthenticationManagerBuilder authenticationManagerBuilder;
 
     @Autowired
@@ -50,10 +52,12 @@ public class UserController {
                           RedisUtils redisUtils,
                           TokenProvider tokenProvider,
                           SecurityProperties properties,
-                          AuthenticationManagerBuilder authenticationManagerBuilder){
+                          LoginProvider loginProvider,
+                          AuthenticationManagerBuilder authenticationManagerBuilder) {
         this.userService = userService;
         this.redisUtils = redisUtils;
         this.tokenProvider = tokenProvider;
+        this.loginProvider = loginProvider;
         this.properties = properties;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
     }
@@ -74,14 +78,13 @@ public class UserController {
         String password = new String(rsa.decrypt(authUser.getPassword(), KeyType.PrivateKey));
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 authUser.getUsername(), password);
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        Authentication authentication = loginProvider.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = tokenProvider.createToken(authentication);
-        final JwtUser jwtUser = (JwtUser) authentication.getPrincipal();
-        Map<String,Object> authInfo = new HashMap<String,Object>(2){{
-            put("token", properties.getTokenStartWith() + token);
-            put("user", jwtUser);
-        }};
+        JwtUser jwtUser = (JwtUser) authentication.getPrincipal();
+        Map<String, Object> authInfo = new HashMap<>();
+        authInfo.put("token", properties.getTokenStartWith() + token);
+        authInfo.put("user", jwtUser);
         return ResponseEntity.ok(authInfo);
     }
 

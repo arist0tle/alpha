@@ -10,7 +10,25 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  redis:
+    database: 0
+    host: alpha-server
+    port: 6379
+    pool:
+      max-idle: 5
 
 logging:
   level:
     org.springframework: INFO
+
+
+jwt:
+  header: Authorization
+  secret: mySecret
+  # token 过期时间/毫秒，6小时  1小时 = 3600000 毫秒
+  expiration: 21600000
+  # 在线用户key
+  online: online-token
+  # 验证码
+  codeKey: code-key
+  base64Secret: 123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890

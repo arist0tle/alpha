@@ -1,24 +1,17 @@
 package com.geektcp.alpha.spring.security.controller;
 
-import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.crypto.asymmetric.KeyType;
-import cn.hutool.crypto.asymmetric.RSA;
 import com.geektcp.alpha.spring.security.annotation.AnonymousAccess;
 import com.geektcp.alpha.spring.security.auth.SecurityProperties;
 import com.geektcp.alpha.spring.security.auth.handle.SuccessHandler;
 import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
 import com.geektcp.alpha.spring.security.auth.provider.TokenProvider;
 import com.geektcp.alpha.spring.security.domain.qo.AuthUser;
-import com.geektcp.alpha.spring.security.domain.vo.UserVo;
 import com.geektcp.alpha.spring.security.exception.BaseException;
-import com.geektcp.alpha.spring.security.service.UserService;
 import com.geektcp.alpha.spring.security.util.EncryptUtils;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,17 +34,14 @@ public class AuthController {
     private TokenProvider tokenProvider;
     private SecurityProperties properties;
     private LoginProvider loginProvider;
-    private SuccessHandler authenticationSuccessHandler;
 
     @Autowired
     public AuthController(TokenProvider tokenProvider,
                           SecurityProperties properties,
-                          LoginProvider loginProvider,
-                          SuccessHandler authenticationSuccessHandler) {
+                          LoginProvider loginProvider) {
         this.tokenProvider = tokenProvider;
         this.loginProvider = loginProvider;
         this.properties = properties;
-        this.authenticationSuccessHandler = authenticationSuccessHandler;
     }
 
     @ApiOperation("登录授权")

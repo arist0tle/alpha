@@ -1,5 +1,6 @@
 package com.geektcp.alpha.spring.security.controller;
 
+import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
 import com.geektcp.alpha.spring.security.annotation.AnonymousAccess;
@@ -67,21 +68,27 @@ public class UserController {
     @AnonymousAccess
     @PostMapping(value = "/login")
     public ResponseEntity<Object> login(@Validated @RequestBody AuthUser authUser, HttpServletRequest request) {
+        Map<String, Object> authInfo = new HashMap<>();
+        String password;
         try {
             RSA rsa = EncryptUtils.getRsa();
-            String password = new String(rsa.decrypt(authUser.getPassword(), KeyType.PrivateKey));
+            byte[] bytesPassword = rsa.decrypt(authUser.getEncryptPassword(), KeyType.PrivateKey);
+            password = StringUtils.toEncodedString(bytesPassword, CharsetUtil.CHARSET_UTF_8);
+        } catch (Exception e) {
+            throw new BaseException("密码解析错误!");
+        }
+        try {
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                     authUser.getUsername(), password);
             Authentication authentication = loginProvider.authenticate(authenticationToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String token = tokenProvider.createToken(authentication);
             String username = authentication.getPrincipal().toString();
-            Map<String, Object> authInfo = new HashMap<>();
             authInfo.put("token", properties.getTokenStartWith() + token);
-            authInfo.put("user", username);
+            authInfo.put("username", username);
             return ResponseEntity.ok(authInfo);
-        }catch (Exception e){
-            throw new BaseException(e.getMessage());
+        } catch (Exception authException) {
+            throw new BaseException(authException.getMessage());
         }
     }
 

@@ -27,3 +27,5 @@ https://www.jianshu.com/p/c1543622b8c2
 
 必须使用POST方法请求才能登录，因为登录入口类AbstractAuthenticationProcessingFilter不仅检查loginProcessingUrl是否匹配，
 还强制要求请求方法为POST，如果用GET方法是无法登陆的，不会调用UserDetailsService进行认证
+
+# other

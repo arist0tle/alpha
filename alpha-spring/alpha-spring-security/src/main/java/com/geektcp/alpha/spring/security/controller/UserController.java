@@ -8,12 +8,10 @@ import com.geektcp.alpha.spring.security.auth.SecurityProperties;
 import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
 import com.geektcp.alpha.spring.security.auth.provider.TokenProvider;
 import com.geektcp.alpha.spring.security.domain.qo.AuthUser;
-import com.geektcp.alpha.spring.security.domain.vo.JwtUser;
 import com.geektcp.alpha.spring.security.exception.BaseException;
 import com.geektcp.alpha.spring.security.service.UserService;
 import com.geektcp.alpha.spring.security.domain.vo.UserVo;
 import com.geektcp.alpha.spring.security.util.EncryptUtils;
-import com.geektcp.alpha.spring.security.util.RedisUtils;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -21,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
@@ -68,7 +65,6 @@ public class UserController {
     @AnonymousAccess
     @PostMapping(value = "/login")
     public ResponseEntity<Object> login(@Validated @RequestBody AuthUser authUser, HttpServletRequest request) {
-        Map<String, Object> authInfo = new HashMap<>();
         String password;
         try {
             RSA rsa = EncryptUtils.getRsa();
@@ -84,11 +80,12 @@ public class UserController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String token = tokenProvider.createToken(authentication);
             String username = authentication.getPrincipal().toString();
+            Map<String, Object> authInfo = new HashMap<>();
             authInfo.put("token", properties.getTokenStartWith() + token);
             authInfo.put("username", username);
             return ResponseEntity.ok(authInfo);
-        } catch (Exception authException) {
-            throw new BaseException(authException.getMessage());
+        }catch (Exception e){
+            throw new BaseException(e.getMessage());
         }
     }
 

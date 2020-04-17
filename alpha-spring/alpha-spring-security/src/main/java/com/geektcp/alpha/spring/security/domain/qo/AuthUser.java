@@ -16,7 +16,7 @@ public class AuthUser {
     private String username;
 
     @NotBlank
-    private String password;
+    private String encryptPassword;
 
     private String code;
 

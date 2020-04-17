@@ -2,6 +2,7 @@ package com.geektcp.alpha.spring.security.auth.filter;
 
 import com.geektcp.alpha.spring.security.auth.provider.LoginParameters;
 import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
+import com.geektcp.alpha.spring.security.exception.BaseException;
 import com.geektcp.alpha.spring.security.service.UserService;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
@@ -64,7 +65,7 @@ public class TokenFilter extends OncePerRequestFilter {
                 );
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }else {
-//                logger.error("no authorization: {}", request.getParameter("username"));
+                throw new BaseException("authecation failed, token is invalid!");
             }
         }
         chain.doFilter(request, response);

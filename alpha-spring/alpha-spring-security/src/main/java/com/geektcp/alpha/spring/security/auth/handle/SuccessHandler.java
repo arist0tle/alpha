@@ -7,13 +7,13 @@ import com.geektcp.alpha.spring.security.exception.BaseException;
 import com.google.common.base.Throwables;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import com.geektcp.alpha.spring.security.domain.vo.JwtVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Service;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
@@ -32,28 +32,28 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
     private LoginParameters loginParameters;
 
     @Autowired
-    public void setAutowired(LoginParameters loginParameters){
+    public void setAutowired(LoginParameters loginParameters) {
         this.loginParameters = loginParameters;
     }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         log.info("User: Login successfully.");
-        this.returnJson(response,authentication);
+        this.returnJson(response, authentication);
     }
 
-    private void returnJson(HttpServletResponse response,Authentication authentication) {
+    private void returnJson(HttpServletResponse response, Authentication authentication) {
         response.setStatus(HttpServletResponse.SC_OK);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         JwtVo vo = new JwtVo();
         vo.setTokenType("Bearer");
         vo.setToken(createJwtToken(authentication));
-        responseWriter(response,vo);
+        responseWriter(response, vo);
     }
 
     private void responseWriter(HttpServletResponse response, JwtVo vo) {
-        try{
+        try {
             response.setCharacterEncoding("utf-8");
             response.setContentType("application/json; charset=utf-8");
             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(response.getOutputStream());
@@ -63,12 +63,14 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
             log.error(Throwables.getStackTraceAsString(e));
         }
     }
-    private String createJwtToken(Authentication authentication) {
+
+    public String createJwtToken(Authentication authentication) {
         if (Objects.isNull(authentication)) {
             throw new BaseException("authentication is null!");
         }
-        User userObject = (User) authentication.getPrincipal();
-        String username = userObject.getUsername();
+//        User userObject = (User) authentication.getPrincipal();
+//        String username = userObject.getUsername();
+        String username = authentication.getPrincipal().toString();
         Date expireTime = new Date(System.currentTimeMillis() + loginParameters.getTokenExpiredMs());
         String token = Jwts.builder()
                 .setSubject(username)

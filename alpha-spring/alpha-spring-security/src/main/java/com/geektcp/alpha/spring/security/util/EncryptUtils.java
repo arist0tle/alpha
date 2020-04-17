@@ -1,6 +1,7 @@
 package com.geektcp.alpha.spring.security.util;
 
 import cn.hutool.crypto.asymmetric.RSA;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -24,9 +25,6 @@ public class EncryptUtils {
     public static RSA getRsa(){
         return new RSA(PRIVATE_KEY, PUBLIC_KEY);
     }
-
-
-
 
     private static String strParam = "Passw0rd";
 

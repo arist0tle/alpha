@@ -2,6 +2,7 @@ package com.geektcp.alpha.spring.security.auth.provider;
 
 import com.geektcp.alpha.spring.security.exception.BaseException;
 import com.geektcp.alpha.spring.security.service.UserService;
+import com.geektcp.alpha.spring.security.util.EncryptUtils;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class LoginProvider implements AuthenticationProvider {
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser().setSigningKey(loginParameters.getJwtTokenSecret()).parseClaimsJws(token);
+            Jwts.parser().setSigningKey(EncryptUtils.buildKey(loginParameters.getEncryptSecret())).parseClaimsJws(token);
             log.info("check authorization success!");
             return true;
         } catch (Exception ex) {

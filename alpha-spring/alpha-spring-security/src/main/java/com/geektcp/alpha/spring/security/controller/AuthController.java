@@ -60,9 +60,7 @@ public class AuthController {
     public ResponseEntity<Object> login(@Validated @RequestBody AuthUser authUser, HttpServletRequest request) {
         String password;
         try {
-            RSA rsa = EncryptUtils.getRsa();
-            byte[] bytesPassword = rsa.decrypt(authUser.getEncryptPassword(), KeyType.PrivateKey);
-            password = StringUtils.toEncodedString(bytesPassword, CharsetUtil.CHARSET_UTF_8);
+            password = EncryptUtils.decrypt(authUser.getEncryptPassword());
         } catch (Exception e) {
             log.error(e.getMessage());
             throw new BaseException("密码解析错误!");
@@ -73,7 +71,6 @@ public class AuthController {
             Authentication authentication = loginProvider.authenticate(authenticationToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String token = tokenProvider.createToken(authentication);
-//            String token = authenticationSuccessHandler.createJwtToken(authentication);
             String username = authentication.getPrincipal().toString();
             Map<String, Object> authInfo = new HashMap<>();
             authInfo.put("token", properties.getTokenStartWith() + token);

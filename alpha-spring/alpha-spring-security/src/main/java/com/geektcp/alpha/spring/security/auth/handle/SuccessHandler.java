@@ -10,7 +10,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Service;
 
@@ -64,19 +63,19 @@ public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandle
         }
     }
 
-    public String createJwtToken(Authentication authentication) {
+    private String createJwtToken(Authentication authentication) {
         if (Objects.isNull(authentication)) {
             throw new BaseException("authentication is null!");
         }
 //        User userObject = (User) authentication.getPrincipal();
 //        String username = userObject.getUsername();
         String username = authentication.getPrincipal().toString();
-        Date expireTime = new Date(System.currentTimeMillis() + loginParameters.getTokenExpiredMs());
+        Date expireTime = new Date(System.currentTimeMillis() + loginParameters.getExpiration());
         String token = Jwts.builder()
                 .setSubject(username)
                 .setExpiration(expireTime)
                 .setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS512, loginParameters.getJwtTokenSecret())
+                .signWith(SignatureAlgorithm.HS512, loginParameters.getEncryptSecret())
                 .compact();
         log.info("token: {}", token);
         return token;

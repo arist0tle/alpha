@@ -1,7 +1,13 @@
 package com.geektcp.alpha.spring.security.util;
 
+import cn.hutool.core.util.CharsetUtil;
+import cn.hutool.core.util.HexUtil;
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -9,6 +15,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import java.nio.charset.StandardCharsets;
+import java.security.Key;
 
 /**
  * @author haiyang on 2020-04-16 16:21
@@ -32,14 +39,19 @@ public class EncryptUtils {
 
     private static IvParameterSpec iv = new IvParameterSpec(strParam.getBytes(StandardCharsets.UTF_8));
 
-    private static DESKeySpec getDesKeySpec(String source) throws Exception {
-        if (source == null || source.length() == 0){
-            return null;
-        }
-        cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
-        String strKey = "Passw0rd";
-        return new DESKeySpec(strKey.getBytes(StandardCharsets.UTF_8));
+    public static String encrypt(String str) {
+        RSA rsa = EncryptUtils.getRsa();
+        byte[] encrypt1 = rsa.encrypt(StrUtil.bytes(str, CharsetUtil.CHARSET_UTF_8), KeyType.PublicKey);
+        return HexUtil.encodeHexStr(encrypt1);
     }
+
+    public static String decrypt(String str){
+        RSA rsa = EncryptUtils.getRsa();
+        byte[] bytesPassword = rsa.decrypt(str, KeyType.PrivateKey);
+        return StringUtils.toEncodedString(bytesPassword, CharsetUtil.CHARSET_UTF_8);
+    }
+
+
 
     /**
      * 对称加密
@@ -64,6 +76,22 @@ public class EncryptUtils {
         cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
         byte[] retByte = cipher.doFinal(src);
         return new String(retByte);
+    }
+
+
+    public static Key buildKey(String secret) {
+        byte[] keyBytes = Decoders.BASE64.decode(secret);
+        return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    ///////////////////////////////////////////////
+    private static DESKeySpec getDesKeySpec(String source) throws Exception {
+        if (source == null || source.length() == 0){
+            return null;
+        }
+        cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
+        String strKey = "Passw0rd";
+        return new DESKeySpec(strKey.getBytes(StandardCharsets.UTF_8));
     }
 
     private static String byte2hex(byte[] inStr) {
@@ -93,4 +121,6 @@ public class EncryptUtils {
         }
         return b2;
     }
+
+
 }

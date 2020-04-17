@@ -6,7 +6,10 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
 import com.alibaba.fastjson.JSON;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.security.PrivateKey;
@@ -60,4 +63,16 @@ public class EncryptUtilsTest {
     }
 
 
+    @Test
+    public void generateToekn() {
+        String secret = "Sayo111111111111111111111111Sayo111111111111111111111111Sayo111111111111111111111111Sayo111111111111111111111111";
+        String token = Jwts.builder()
+                .setSubject("test")
+//                .setExpiration(expireTime)
+//                .setIssuedAt(new Date())
+                .signWith(SignatureAlgorithm.HS512, secret)
+                .compact();
+        log.info("token: {}", token);
+        Assert.assertTrue(true);
+    }
 }

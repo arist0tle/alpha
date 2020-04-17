@@ -7,8 +7,6 @@ import com.geektcp.alpha.spring.security.service.UserService;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -56,7 +54,7 @@ public class TokenFilter extends OncePerRequestFilter {
         String token = getJwtFromRequest(request);
         if(StringUtils.isNoneEmpty(token)) {
             if (loginProvider.validateToken(token)) {
-                String username = getUsernameFromJwt(token, loginParameters.getJwtTokenSecret());
+                String username = getUsernameFromJwt(token, loginParameters.getEncryptSecret());
                 UserDetails userDetails = userService.getUserDetailByUserName(username);
                 Authentication authentication = new UsernamePasswordAuthenticationToken(
                         userDetails,

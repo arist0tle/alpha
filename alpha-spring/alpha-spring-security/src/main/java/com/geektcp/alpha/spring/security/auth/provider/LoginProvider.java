@@ -11,6 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
 @Slf4j
 public class LoginProvider implements AuthenticationProvider {
@@ -38,13 +40,11 @@ public class LoginProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) {
         log.info("33333333323");
-        UserDetails userDetails = null;
-        try {
-             userDetails = userService.getUserDetailByUserName(authentication.getPrincipal().toString());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        }catch (Exception e){
-            throw new BaseException(e.getMessage());
+        UserDetails userDetails = userService.getUserDetailByUserName(authentication.getPrincipal().toString());
+        if(Objects.isNull(userDetails)){
+            throw new BaseException("userDetails is null!");
         }
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return new LoginToken(userDetails, userDetails.getAuthorities());
     }
 

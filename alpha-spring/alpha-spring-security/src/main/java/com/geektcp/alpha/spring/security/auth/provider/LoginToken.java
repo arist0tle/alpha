@@ -14,6 +14,7 @@ public class LoginToken extends AbstractAuthenticationToken {
     public LoginToken(UserDetails userDetails, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         setAuthenticated(true);
+        setDetails(userDetails);
     }
 
     @Override
@@ -22,7 +23,14 @@ public class LoginToken extends AbstractAuthenticationToken {
     }
 
     @Override
-    public Object getPrincipal() {
-        return null;
+    public String getPrincipal() {
+         UserDetails userDetails = this.getDetails();
+        return userDetails.getUsername();
     }
+
+    @Override
+    public UserDetails getDetails() {
+        return (UserDetails)super.getDetails();
+    }
+
 }

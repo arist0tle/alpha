@@ -28,15 +28,20 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public TResponse handleException(Exception e) {
         log.error("系统内部异常，异常信息", e);
-        return new TResponse(HttpStatus.INTERNAL_SERVER_ERROR, "系统内部异常");
+        return new TResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
     }
 
+    @ExceptionHandler(value = BaseException.class)
+    public TResponse handleException(BaseException e) {
+        log.error("系统内部异常，自定义异常信息", e);
+        return new TResponse(600, e.getMessage());
+    }
 
     /**
      * 统一处理请求参数校验(实体对象传参)
      *
      * @param e BindException
-     * @return FebsResponse
+     * @return TResponse
      */
     @ExceptionHandler(BindException.class)
     public TResponse validExceptionHandler(BindException e) {
@@ -53,7 +58,7 @@ public class GlobalExceptionHandler {
      * 统一处理请求参数校验(普通传参)
      *
      * @param e ConstraintViolationException
-     * @return FebsResponse
+     * @return TResponse
      */
     @ExceptionHandler(value = ConstraintViolationException.class)
     public TResponse handleConstraintViolationException(ConstraintViolationException e) {

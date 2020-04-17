@@ -2,7 +2,6 @@ package com.geektcp.alpha.spring.security.controller;
 
 import com.geektcp.alpha.spring.security.annotation.AnonymousAccess;
 import com.geektcp.alpha.spring.security.auth.SecurityProperties;
-import com.geektcp.alpha.spring.security.auth.handle.SuccessHandler;
 import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
 import com.geektcp.alpha.spring.security.auth.provider.TokenProvider;
 import com.geektcp.alpha.spring.security.domain.qo.AuthUser;

@@ -7,7 +7,6 @@ import com.geektcp.alpha.spring.security.auth.handle.SuccessHandler;
 import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
 import com.geektcp.alpha.spring.security.service.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

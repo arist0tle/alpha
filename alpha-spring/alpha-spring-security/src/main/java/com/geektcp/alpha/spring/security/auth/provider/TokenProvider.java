@@ -1,11 +1,9 @@
 package com.geektcp.alpha.spring.security.auth.provider;
 
 import com.geektcp.alpha.spring.security.auth.SecurityProperties;
+import com.geektcp.alpha.spring.security.util.EncryptUtils;
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,7 +13,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.Key;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -27,22 +24,20 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Component
-public class TokenProvider implements InitializingBean {
+public class TokenProvider {
 
     private SecurityProperties properties;
     private static final String AUTHORITIES_KEY = "auth";
-    private Key key;
+    private LoginParameters loginParameters;
 
     @Autowired
-    public void setAutowired(SecurityProperties properties) {
+    public void setAutowired(SecurityProperties properties,LoginParameters loginParameters) {
+        this.loginParameters = loginParameters;
         this.properties = properties;
     }
 
-    @Override
-    public void afterPropertiesSet() {
-        byte[] keyBytes = Decoders.BASE64.decode(properties.getBase64Secret());
-        this.key = Keys.hmacShaKeyFor(keyBytes);
-    }
+
+
 
     public String createToken(Authentication authentication) {
         String authorities = authentication.getAuthorities().stream()
@@ -53,20 +48,24 @@ public class TokenProvider implements InitializingBean {
         if (Objects.isNull(properties.getTokenValidityInSeconds())) {
             properties.setTokenValidityInSeconds(1000L);
         }
-        Date validity = new Date(now + properties.getTokenValidityInSeconds());
-
-        return Jwts.builder()
+        Date validity = new Date(now + loginParameters.getExpiration());
+        Date expireTime = new Date(System.currentTimeMillis() + loginParameters.getExpiration());
+        String username = authentication.getName();
+        log.info("=============username: {}", username);
+        String token =  Jwts.builder()
                 .setSubject(authentication.getName())
-                .setExpiration(validity)
+                .setExpiration(expireTime)
                 .claim(AUTHORITIES_KEY, authorities)
-                .signWith(key, SignatureAlgorithm.HS512)
-//                .signWith(SignatureAlgorithm.HS512, key)
+                .signWith(EncryptUtils.buildKey(loginParameters.getEncryptSecret()), SignatureAlgorithm.HS512)
+//                .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
+        log.info("token: {}", token);
+        return token;
     }
 
     Authentication getAuthentication(String token) {
         Claims claims = Jwts.parser()
-                .setSigningKey(key)
+                .setSigningKey(loginParameters.getEncryptSecret())
                 .parseClaimsJws(token)
                 .getBody();
 
@@ -82,20 +81,16 @@ public class TokenProvider implements InitializingBean {
 
     boolean validateToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(key).parseClaimsJws(authToken);
+            Jwts.parser().setSigningKey(loginParameters.getEncryptSecret()).parseClaimsJws(authToken);
             return true;
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
-            log.info("Invalid JWT signature.");
-            e.printStackTrace();
+            log.info("Invalid JWT signature: {}",e.getMessage());
         } catch (ExpiredJwtException e) {
-            log.info("Expired JWT token.");
-            e.printStackTrace();
+            log.info("Expired JWT token: {}",e.getMessage());
         } catch (UnsupportedJwtException e) {
-            log.info("Unsupported JWT token.");
-            e.printStackTrace();
+            log.info("Unsupported JWT token: {}",e.getMessage());
         } catch (IllegalArgumentException e) {
-            log.info("JWT token compact of handler are invalid.");
-            e.printStackTrace();
+            log.info("JWT token compact of handler are invalid: {}",e.getMessage());
         }
         return false;
     }

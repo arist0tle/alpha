@@ -2,12 +2,14 @@ package com.geektcp.alpha.spring.security.auth.provider;
 
 import com.geektcp.alpha.spring.security.bean.LoginParameters;
 import com.geektcp.alpha.spring.security.bean.SecurityProperties;
+import com.geektcp.alpha.spring.security.constant.HttpHead;
 import com.geektcp.alpha.spring.security.exception.BaseException;
 import com.geektcp.alpha.spring.security.service.UserService;
 import com.geektcp.alpha.spring.security.util.EncryptUtils;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -29,6 +31,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class LoginProvider implements AuthenticationProvider {
 
+    private static final String CACHE_PRE = "login";
+
     private LoginParameters loginParameters;
     private SecurityProperties properties;
     private UserService userService;
@@ -41,6 +45,7 @@ public class LoginProvider implements AuthenticationProvider {
         this.properties = properties;
     }
 
+    @Cacheable(cacheNames = "loginCache", key = "'login.'+#p0")
     public boolean validateToken(String token) {
         try {
             Jwts.parser().setSigningKey(EncryptUtils.buildKey(loginParameters.getEncryptSecret())).parseClaimsJws(token);
@@ -81,7 +86,7 @@ public class LoginProvider implements AuthenticationProvider {
                 .signWith(EncryptUtils.buildKey(loginParameters.getEncryptSecret()), SignatureAlgorithm.HS512)
                 .compact();
         log.info("token: {}", token);
-        return token;
+        return HttpHead.TOKEN_PREFIX + token;
     }
 
 

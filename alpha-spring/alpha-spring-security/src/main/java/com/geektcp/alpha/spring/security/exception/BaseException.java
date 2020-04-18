@@ -1,7 +1,6 @@
 package com.geektcp.alpha.spring.security.exception;
 
-
-import com.geektcp.alpha.spring.security.constant.Status;
+import com.geektcp.alpha.spring.security.constant.status.Status;
 import org.springframework.http.HttpStatus;
 
 import java.text.MessageFormat;

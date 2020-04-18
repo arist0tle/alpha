@@ -3,7 +3,7 @@ package com.geektcp.alpha.spring.security.controller;
 import com.geektcp.alpha.spring.security.annotation.Anonymous;
 import com.geektcp.alpha.spring.security.bean.SecurityProperties;
 import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
-import com.geektcp.alpha.spring.security.constant.LoginStatus;
+import com.geektcp.alpha.spring.security.constant.status.LoginStatus;
 import com.geektcp.alpha.spring.security.domain.TResponse;
 import com.geektcp.alpha.spring.security.domain.qo.LoginQo;
 import com.geektcp.alpha.spring.security.domain.vo.LoginVo;
@@ -41,7 +41,7 @@ public class AuthController {
     @ApiOperation("登录授权")
     @Anonymous
     @PostMapping(value = "/login")
-    public TResponse<LoginVo> login(@Validated @RequestBody LoginQo loginQo, HttpServletRequest request) {
+    public TResponse<LoginVo> login(@Validated @RequestBody LoginQo loginQo) {
         String password;
         try {
             password = EncryptUtils.decrypt(loginQo.getEncryptPassword());

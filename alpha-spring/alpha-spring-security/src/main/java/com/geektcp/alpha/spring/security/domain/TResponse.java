@@ -36,6 +36,10 @@ public class TResponse<T> {
     @ApiModelProperty(value = "code")
     private int code;
 
+    public TResponse(){
+
+    }
+
     public TResponse(T data) {
         this.setData(data);
     }
@@ -69,34 +73,34 @@ public class TResponse<T> {
     }
 
     public static TResponse error() {
-        TResponse TResponse = new TResponse();
-        TResponse.setSuccess(false);
-        return TResponse;
+        TResponse response = new TResponse<>();
+        response.setSuccess(false);
+        return response;
     }
 
     public static TResponse error(String message) {
-        TResponse TResponse = new TResponse();
-        TResponse.setSuccess(false);
-        TResponse.setMessage(message);
-        return TResponse;
+        TResponse response = new TResponse();
+        response.setSuccess(false);
+        response.setMessage(message);
+        return response;
     }
 
     public static TResponse error(BaseException ex) {
-        TResponse TResponse = new TResponse();
-        TResponse.setSuccess(false);
-        return TResponse;
+        TResponse response = new TResponse();
+        response.setSuccess(false);
+        return response;
     }
 
     public static TResponse error(Status status) {
-        TResponse TResponse = new TResponse();
-        TResponse.setSuccess(false);
-        return TResponse;
+        TResponse response = new TResponse();
+        response.setSuccess(false);
+        return response;
     }
 
     public static TResponse error(Status status, Object... args) {
-        TResponse TResponse = new TResponse();
-        TResponse.setSuccess(false);
-        return TResponse;
+        TResponse response = new TResponse();
+        response.setSuccess(false);
+        return response;
     }
 
     protected static Map<String, Object> buildMessage(BaseException ex) {

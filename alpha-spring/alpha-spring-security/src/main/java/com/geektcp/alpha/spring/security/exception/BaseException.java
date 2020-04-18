@@ -2,6 +2,7 @@ package com.geektcp.alpha.spring.security.exception;
 
 
 import com.geektcp.alpha.spring.security.constant.Status;
+import org.springframework.http.HttpStatus;
 
 import java.text.MessageFormat;
 
@@ -25,6 +26,10 @@ public class BaseException extends RuntimeException {
 
     public BaseException(Status status) {
         this(status.getCode(), status.getDesc());
+    }
+
+    public BaseException(HttpStatus status, String msg) {
+        this(status.value(), msg);
     }
 
     public BaseException(Status status, String para) {

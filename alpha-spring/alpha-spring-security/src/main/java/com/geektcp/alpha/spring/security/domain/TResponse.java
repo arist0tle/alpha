@@ -36,12 +36,13 @@ public class TResponse<T> {
     @ApiModelProperty(value = "code")
     private int code;
 
-    public TResponse() {
-        this(null);
-    }
-
     public TResponse(T data) {
         this.setData(data);
+    }
+
+    public TResponse(Status status) {
+        this.setCode(status.getCode());
+        this.setMessage(status.getDesc());
     }
 
     public TResponse(int code) {

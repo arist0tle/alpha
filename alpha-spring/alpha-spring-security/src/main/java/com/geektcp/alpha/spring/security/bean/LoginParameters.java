@@ -1,4 +1,4 @@
-package com.geektcp.alpha.spring.security.auth.provider;
+package com.geektcp.alpha.spring.security.bean;
 
 import com.geektcp.alpha.spring.security.exception.BaseException;
 import com.geektcp.alpha.spring.security.util.EncryptUtils;

@@ -48,6 +48,7 @@ public class UserService {
         roleList.forEach(role ->
                 authorities.add( new SimpleGrantedAuthority(role) )
         );
-        return new User(username, userQo.getPassword(),authorities);
+        return new User(username, userQo.getPassword(), authorities);
     }
+
 }

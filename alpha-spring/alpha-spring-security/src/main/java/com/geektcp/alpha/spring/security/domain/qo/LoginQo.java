@@ -6,11 +6,10 @@ import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * @author haiyang
- * @date 2019-11-30
  */
 @Getter
 @Setter
-public class AuthUser {
+public class LoginQo {
 
     @NotBlank
     private String username;

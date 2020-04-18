@@ -1,7 +1,7 @@
 package com.geektcp.alpha.spring.security.auth.handle;
 
 import com.alibaba.fastjson.JSON;
-import com.geektcp.alpha.spring.security.auth.provider.LoginParameters;
+import com.geektcp.alpha.spring.security.bean.LoginParameters;
 import com.geektcp.alpha.spring.security.domain.vo.JwtVo;
 import com.geektcp.alpha.spring.security.exception.BaseException;
 import com.google.common.base.Throwables;

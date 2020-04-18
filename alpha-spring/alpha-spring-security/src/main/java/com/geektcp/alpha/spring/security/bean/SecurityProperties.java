@@ -1,4 +1,4 @@
-package com.geektcp.alpha.spring.security.auth;
+package com.geektcp.alpha.spring.security.bean;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

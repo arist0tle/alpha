@@ -1,28 +1,30 @@
-package com.geektcp.alpha.spring.security.constant;
-
-import lombok.Data;
+package com.geektcp.alpha.spring.security.constant.status;
 
 /**
  * @author haiyang on 2020-04-18 09:53
  */
 public enum LoginStatus implements Status {
 
-    ERROR_LOGIN_FAILED(10,"password parse failed!");
+    ERROR_LOGIN_FAILED(10,"password parse failed!")
+
+
+    ;
 
     private int code;
     private String desc;
 
-    private LoginStatus(int code,String desc){
+    LoginStatus(int code,String desc){
         this.code = code;
         this.desc = desc;
     }
+
     @Override
     public Integer getCode() {
-        return null;
+        return code;
     }
 
     @Override
     public String getDesc() {
-        return null;
+        return desc;
     }
 }

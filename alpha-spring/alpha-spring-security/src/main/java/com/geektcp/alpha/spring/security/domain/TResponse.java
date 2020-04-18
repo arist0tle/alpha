@@ -1,7 +1,7 @@
 package com.geektcp.alpha.spring.security.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.geektcp.alpha.spring.security.constant.Status;
+import com.geektcp.alpha.spring.security.constant.status.Status;
 import com.geektcp.alpha.spring.security.exception.BaseException;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

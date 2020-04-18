@@ -2,6 +2,7 @@ package com.geektcp.alpha.spring.security.auth.filter;
 
 import com.geektcp.alpha.spring.security.bean.LoginParameters;
 import com.geektcp.alpha.spring.security.auth.provider.LoginProvider;
+import com.geektcp.alpha.spring.security.constant.HttpHead;
 import com.geektcp.alpha.spring.security.exception.BaseException;
 import com.geektcp.alpha.spring.security.service.UserService;
 import io.jsonwebtoken.Jwts;
@@ -77,11 +78,9 @@ public class TokenFilter extends OncePerRequestFilter {
      * @return token or null.
      */
     private String getJwtFromRequest(HttpServletRequest request) {
-        String tokenPrefix = "Bearer ";
-        String headName = "Authorization";
-        String token = request.getHeader(headName);
-        if (token != null && token.startsWith(tokenPrefix)) {
-            return token.replace(tokenPrefix, "");
+        String token = request.getHeader(HttpHead.HEAD_NAME);
+        if (token != null && token.startsWith(HttpHead.TOKEN_PREFIX)) {
+            return token.replace(HttpHead.TOKEN_PREFIX, "");
         }
         return null;
     }

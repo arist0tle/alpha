@@ -30,8 +30,15 @@ public class UserController {
         return userService.getUserByUserName(userName);
     }
 
-    @GetMapping(value = "/test1")
+    @GetMapping(value = "/test0")
     @PreAuthorize("hasAuthority('admin')")
+    public UserVo test0() {
+        log.info("test0!");
+        return new UserVo("test1");
+    }
+
+    @GetMapping(value = "/test1")
+    @PreAuthorize("hasAuthority('employ')")
     public UserVo test1() {
         log.info("test1!");
         return new UserVo("test1");
@@ -51,27 +58,11 @@ public class UserController {
         return new UserVo("test3");
     }
 
-    @GetMapping(value = "/test1")
-    @PreAuthorize("hasAuthority('admin')")
-    public UserVo test1() {
-        log.info("success!");
-        return new UserVo("test1");
+    @GetMapping(value = "/test4")
+    @PreAuthorize("hasRole('sys:user:add')")
+    public UserVo test4() {
+        log.info("test4!");
+        return new UserVo("test4");
     }
-
-    @GetMapping(value = "/test2")
-    @PreAuthorize("@el.check('storage:list')")
-    public UserVo test2() {
-        log.info("success!");
-        return new UserVo("test2");
-    }
-
-    @GetMapping(value = "/test3")
-    @PreAuthorize("hasRole('sys:admin')")
-    public UserVo test3(@RequestParam("username") String userName) {
-        log.info("success!");
-        return new UserVo("test3");
-    }
-
-
 
 }

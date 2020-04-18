@@ -45,7 +45,7 @@ public class LoginProvider implements AuthenticationProvider {
         this.properties = properties;
     }
 
-    @Cacheable(cacheNames = "loginCache", key = "'login.'+#p0")
+//    @Cacheable(cacheNames = "loginCache", key = "'login.'+#p0")
     public boolean validateToken(String token) {
         try {
             Jwts.parser().setSigningKey(EncryptUtils.buildKey(loginParameters.getEncryptSecret())).parseClaimsJws(token);

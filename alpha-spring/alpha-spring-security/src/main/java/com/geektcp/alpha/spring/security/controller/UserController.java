@@ -51,5 +51,27 @@ public class UserController {
         return new UserVo("test3");
     }
 
+    @GetMapping(value = "/test1")
+    @PreAuthorize("hasAuthority('admin')")
+    public UserVo test1() {
+        log.info("success!");
+        return new UserVo("test1");
+    }
+
+    @GetMapping(value = "/test2")
+    @PreAuthorize("@el.check('storage:list')")
+    public UserVo test2() {
+        log.info("success!");
+        return new UserVo("test2");
+    }
+
+    @GetMapping(value = "/test3")
+    @PreAuthorize("hasRole('sys:admin')")
+    public UserVo test3(@RequestParam("username") String userName) {
+        log.info("success!");
+        return new UserVo("test3");
+    }
+
+
 
 }

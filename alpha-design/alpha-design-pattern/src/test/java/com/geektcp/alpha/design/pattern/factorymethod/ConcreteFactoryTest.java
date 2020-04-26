@@ -9,6 +9,5 @@ public class ConcreteFactoryTest {
     public static void main(String[] args) {
         ConcreteFactory concreteFactory = new ConcreteFactory();
         Product product = concreteFactory.factoryMethod();
-
     }
 }

@@ -40,6 +40,9 @@
 # proxy
 
 # simplefactory
+```
+工厂模式的优势是代码扩展时,调用方几乎不需要改动
+```
 
 # singleton
 
